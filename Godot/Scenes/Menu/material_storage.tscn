@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c57gibcb3088r"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/material_storage.gd" id="1_64m3c"]
+[ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/Pieces/part_button.tscn" id="2_e5nq5"]
+[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_3f26k"]
+
+[node name="MaterialStorage" type="Node2D"]
+script = ExtResource("1_64m3c")
+buttonScene = ExtResource("2_e5nq5")
+
+[node name="Buttons" type="Node2D" parent="."]
+position = Vector2(60, 100)
+
+[node name="PartDisplay" type="Node2D" parent="."]
+position = Vector2(34, 722)
+
+[node name="Label" type="Label" parent="PartDisplay"]
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = ExtResource("5_3f26k")

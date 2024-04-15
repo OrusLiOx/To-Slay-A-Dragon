@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cij5l3mti28ok"]
+
+[ext_resource type="Texture2D" uid="uid://etvfwjmynpus" path="res://Sprites/Equipment.png" id="1_uq833"]
+[ext_resource type="Script" path="res://Scenes/Scripts/equipment_sprite.gd" id="2_i6dog"]
+
+[node name="EquipmentSprite" type="Sprite2D"]
+texture = ExtResource("1_uq833")
+vframes = 6
+script = ExtResource("2_i6dog")

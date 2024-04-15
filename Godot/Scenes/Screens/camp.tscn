@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmx0jemjixann"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/camp.gd" id="1_n2q1u"]
+[ext_resource type="Texture2D" uid="uid://bedtgjo8m3qhr" path="res://Sprites/temp_campBackground.png" id="2_r1qae"]
+[ext_resource type="Texture2D" uid="uid://b26uuh4doeuuf" path="res://Sprites/temp_anvil.png" id="3_j43hg"]
+[ext_resource type="Texture2D" uid="uid://csk4rdey087lw" path="res://Sprites/temp_blacksmith.png" id="4_37e0c"]
+[ext_resource type="Texture2D" uid="uid://c2fjif026wnre" path="res://icon.svg" id="4_oq76x"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Blacksmith.gd" id="5_hyfrg"]
+[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="6_tw031"]
+[ext_resource type="PackedScene" uid="uid://b7rsad5y1w38s" path="res://Scenes/Menu/forge_menu.tscn" id="7_f5mex"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edwyj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pb0gu"]
+
+[node name="Camp" type="Node2D"]
+script = ExtResource("1_n2q1u")
+
+[node name="TempCampBackground" type="Sprite2D" parent="."]
+texture = ExtResource("2_r1qae")
+
+[node name="Anvil" type="Button" parent="."]
+z_index = 1
+offset_left = -600.0
+offset_top = 141.0
+offset_right = -307.0
+offset_bottom = 326.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_edwyj")
+icon = ExtResource("3_j43hg")
+flat = true
+
+[node name="Aura" type="Sprite2D" parent="Anvil"]
+z_index = -1
+position = Vector2(153, -37)
+texture = ExtResource("4_oq76x")
+
+[node name="Blacksmith" type="Button" parent="."]
+z_index = 1
+offset_left = -156.0
+offset_top = -141.0
+offset_right = 75.0
+offset_bottom = 168.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pb0gu")
+icon = ExtResource("4_37e0c")
+flat = true
+script = ExtResource("5_hyfrg")
+
+[node name="Aura" type="Sprite2D" parent="Blacksmith"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(118, 153)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("4_37e0c")
+
+[node name="Dialogue" type="Label" parent="Blacksmith"]
+z_index = 1
+layout_mode = 0
+offset_left = -365.0
+offset_top = -89.0
+offset_right = 65.0
+offset_bottom = 65.0
+text = "I know she's not little anymore, but she'll always be a hatchling in my eyes."
+label_settings = ExtResource("6_tw031")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+justification_flags = 0
+
+[node name="Backdrop" type="ColorRect" parent="Blacksmith/Dialogue"]
+z_index = -1
+layout_mode = 0
+offset_right = 430.0
+offset_bottom = 154.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="ForgeMenu" parent="." instance=ExtResource("7_f5mex")]
+z_index = 2
+position = Vector2(-960, -540)
+
+[connection signal="button_down" from="Anvil" to="." method="_on_anvil_button_down"]
+[connection signal="mouse_entered" from="Anvil" to="." method="_on_anvil_mouse_entered"]
+[connection signal="mouse_exited" from="Anvil" to="." method="_on_anvil_mouse_exited"]
+[connection signal="button_down" from="Blacksmith" to="Blacksmith" method="_on_button_down"]
+[connection signal="mouse_entered" from="Blacksmith" to="Blacksmith" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Blacksmith" to="Blacksmith" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_entered"]
+[connection signal="mouse_exited" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_exited"]
+[connection signal="exit" from="ForgeMenu" to="." method="_on_forge_menu_exit"]

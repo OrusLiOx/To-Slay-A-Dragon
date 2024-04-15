@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7rsad5y1w38s"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/forge_menu.gd" id="1_8yhtv"]
+[ext_resource type="PackedScene" uid="uid://c44m3ejm4xpob" path="res://Scenes/Pieces/ghost_button.tscn" id="2_5dsed"]
+[ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="2_lnby7"]
+[ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/Pieces/part_button.tscn" id="3_bdiyt"]
+[ext_resource type="PackedScene" uid="uid://jvem2bsy5c0" path="res://Scenes/Pieces/ui_backdrop.tscn" id="3_q2561"]
+[ext_resource type="PackedScene" uid="uid://ly2lqh5cyg56" path="res://Scenes/Menu/storage.tscn" id="5_w18v7"]
+
+[node name="ForgeMenu" type="Node2D"]
+script = ExtResource("1_8yhtv")
+ghostButScene = ExtResource("2_5dsed")
+partButScene = ExtResource("3_bdiyt")
+
+[node name="Exit" type="Button" parent="."]
+offset_right = 28.0
+offset_bottom = 31.0
+text = "x"
+
+[node name="ActiveBlueprint" type="Node2D" parent="."]
+position = Vector2(581, 311)
+
+[node name="Buttons" type="Node2D" parent="ActiveBlueprint"]
+
+[node name="BlueprintSelect" type="Node2D" parent="."]
+position = Vector2(27, 143)
+
+[node name="UIbackdrop" parent="BlueprintSelect" instance=ExtResource("3_q2561")]
+position = Vector2(-12, 12)
+layer_0/tile_data = PackedInt32Array(-65535, 131072, 1342177280, -65536, 131072, 0, 131072, 131072, 1610612736, 131073, 131072, 805306368, 65537, 196608, 0, 1, 196608, 0, 0, 196608, 0, 65536, 196608, 0)
+
+[node name="Buttons" type="Node2D" parent="BlueprintSelect"]
+
+[node name="Label" type="Label" parent="BlueprintSelect"]
+offset_left = -12.0
+offset_top = -79.0
+offset_right = 239.0
+text = "Blueprints"
+label_settings = ExtResource("2_lnby7")
+horizontal_alignment = 1
+
+[node name="Storage" parent="." instance=ExtResource("5_w18v7")]
+position = Vector2(1410, 35)
+
+[connection signal="button_down" from="Exit" to="." method="_on_exit_button_down"]
+[connection signal="use" from="Storage" to="." method="_on_storage_use"]

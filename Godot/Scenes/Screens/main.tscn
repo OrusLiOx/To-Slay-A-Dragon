@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwgh5bcbxpkpj"]
+
+[ext_resource type="PackedScene" uid="uid://bmx0jemjixann" path="res://Scenes/Screens/camp.tscn" id="1_vlsre"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Camp" parent="." instance=ExtResource("1_vlsre")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

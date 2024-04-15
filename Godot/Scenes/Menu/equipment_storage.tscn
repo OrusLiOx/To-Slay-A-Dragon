@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbkg2hwu1qssx"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/equipment_storage.gd" id="1_jjyk2"]
+[ext_resource type="PackedScene" uid="uid://cytiu54cl8vi4" path="res://Scenes/Pieces/equip_button.tscn" id="2_oyabb"]
+[ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/Pieces/part_button.tscn" id="3_3q3cr"]
+[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="3_l4isl"]
+
+[node name="EquipmentStorage" type="Node2D"]
+script = ExtResource("1_jjyk2")
+equipButScene = ExtResource("2_oyabb")
+matButScene = ExtResource("3_3q3cr")
+
+[node name="Equipped" type="Node2D" parent="."]
+position = Vector2(27, 18)
+
+[node name="Weapon" parent="Equipped" instance=ExtResource("2_oyabb")]
+offset_left = 17.0
+offset_top = 57.0
+offset_right = 117.0
+offset_bottom = 157.0
+disabled = true
+
+[node name="Armor" parent="Equipped" instance=ExtResource("2_oyabb")]
+offset_left = 138.0
+offset_top = 57.0
+offset_right = 238.0
+offset_bottom = 157.0
+disabled = true
+
+[node name="EquipedLabel" type="Label" parent="Equipped"]
+offset_left = 17.0
+offset_top = 8.0
+offset_right = 445.0
+offset_bottom = 50.0
+text = "Equiped:"
+label_settings = ExtResource("3_l4isl")
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="Equipped"]
+offset_left = 256.0
+offset_top = 65.0
+offset_right = 441.0
+offset_bottom = 150.0
+text = "Attack: 100
+Defense: 200"
+label_settings = ExtResource("3_l4isl")
+
+[node name="Buttons" type="Node2D" parent="."]
+position = Vector2(62, 223)
+
+[node name="PartDisplay" type="Node2D" parent="."]
+position = Vector2(62, 682)
+
+[node name="Label" type="Label" parent="PartDisplay"]
+offset_left = 1.0
+offset_top = -49.0
+offset_right = 351.0
+offset_bottom = -7.0
+text = "Attack: 100"
+label_settings = ExtResource("3_l4isl")
+horizontal_alignment = 1
+
+[node name="Parts" type="Node2D" parent="PartDisplay"]
