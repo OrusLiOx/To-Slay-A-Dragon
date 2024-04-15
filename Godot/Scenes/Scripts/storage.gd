@@ -11,6 +11,10 @@ func _ready():
 	tabs.push_back($Equipment)
 	pass # Replace with function body.
 
+func update():
+	tabs[0].update()
+	tabs[1].update()
+
 func set_tab(tab):
 	tabs[tab].visible = true
 	tabs[tab+2].modulate.a = 1

@@ -21,7 +21,8 @@ func _ready():
 		for i in range(0,5):
 			parts[key].push_back(0)
 	
-	
+	parts["m"][0] = 12
+	parts["s"][2] = 12
 	equipment.push_back(Equipment.new("dagger", [Part.new("m",0), Part.new("f",3)]))
 	equipment.push_back(Equipment.new("dagger", [Part.new("m",2), Part.new("f",2)]))
 	

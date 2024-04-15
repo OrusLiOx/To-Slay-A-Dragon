@@ -24,6 +24,10 @@ func _ready():
 	load_page(0)
 	load_current()
 	pass # Replace with function body.
+	
+func update():
+	load_page(page)
+	load_current()
 
 func load_current():
 	var attack = 0

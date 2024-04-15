@@ -9,7 +9,8 @@ func set_part(part):
 			f = 3
 		"s":
 			f = 6
-	if part.rarity == -1:
+			
+	if part.rarity < 0:
 		self.frame = f+2
 		$Shine.frame = f+2
 	else:

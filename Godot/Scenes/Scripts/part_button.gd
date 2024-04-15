@@ -5,14 +5,16 @@ var part : Part
 signal use(part:Part)
 
 func make_part(type, rarity):
-	part = Part.new()
-	part.type = type
-	part.rarity = rarity
-	$PartSprite.set_part(part)
+	set_part(Part.new(type,rarity))
 
 func set_part(p):
 	part = p
-	$PartSprite.set_part(part)
+	if p.rarity == -2:
+		disabled = true
+		visible = false
+	else:
+		visible = true
+		$PartSprite.set_part(part)
 
 func update():
 	var amount = Storage.parts[part.type][part.rarity]
@@ -28,7 +30,6 @@ func update():
 		$Quantity.modulate.a = 1
 
 func _on_button_down():
-	Storage.add_part(part, -1)
 	emit_signal("use",part)
 	update()
 	pass # Replace with function body.

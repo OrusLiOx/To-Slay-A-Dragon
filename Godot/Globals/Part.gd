@@ -3,10 +3,10 @@ class_name Part
 var type : String
 var rarity : int 
 
-func _init(arg1 = "" , arg2 : int = -1):
-	if arg1 == "":
+func _init(arg1 = "none" , arg2 : int = -100):
+	if arg1 == "none":
 		set_vals("m",0)
-	elif arg2 == -1:
+	elif arg2 == -100:
 		set_vals(arg1.type, arg1.rarity)
 	else:
 		set_vals(arg1,arg2)
@@ -26,17 +26,23 @@ func get_value():
 			return base*1.25
 
 func get_color():
+	match(rarity):
+		0: return Color(1,1,1)
+		1: return Color(0,1,0)
+		2: return Color(1,0,0)
+		3: return Color(.5,0,1)
+		4: return Color(1,1,0)
 	match(type):
 		"m":
 			match(rarity):
 				0: 
 					return Color(1,1,1)
 				1: 
-					return Color(1,0,0)
-				2: 
 					return Color(0,1,0)
+				2: 
+					return Color(1,0,0)
 				3: 
-					return Color(0,0,1)
+					return Color(0,1,1)
 		"f":
 			match(rarity):
 				0: 
@@ -57,7 +63,7 @@ func get_color():
 					return Color(0,1,0)
 				3: 
 					return Color(0,0,1)
-	return Color(.5,.5,.5);
+	return Color(1,1,0);
 
 func get_name():
 	match(type):
