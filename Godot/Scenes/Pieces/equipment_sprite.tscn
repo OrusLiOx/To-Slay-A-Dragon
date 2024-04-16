@@ -5,5 +5,38 @@
 
 [node name="EquipmentSprite" type="Sprite2D"]
 texture = ExtResource("1_uq833")
+hframes = 7
 vframes = 6
 script = ExtResource("2_i6dog")
+
+[node name="Parts" type="Node2D" parent="."]
+
+[node name="Sprite1" type="Sprite2D" parent="Parts"]
+texture = ExtResource("1_uq833")
+hframes = 7
+vframes = 6
+
+[node name="Sprite2" type="Sprite2D" parent="Parts"]
+texture = ExtResource("1_uq833")
+hframes = 7
+vframes = 6
+
+[node name="Sprite3" type="Sprite2D" parent="Parts"]
+texture = ExtResource("1_uq833")
+hframes = 7
+vframes = 6
+
+[node name="Sprite4" type="Sprite2D" parent="Parts"]
+texture = ExtResource("1_uq833")
+hframes = 7
+vframes = 6
+
+[node name="Sprite5" type="Sprite2D" parent="Parts"]
+texture = ExtResource("1_uq833")
+hframes = 7
+vframes = 6
+
+[node name="Sprite6" type="Sprite2D" parent="Parts"]
+texture = ExtResource("1_uq833")
+hframes = 7
+vframes = 6

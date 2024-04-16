@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7rsad5y1w38s"]
+[gd_scene load_steps=8 format=3 uid="uid://b7rsad5y1w38s"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/forge_menu.gd" id="1_8yhtv"]
-[ext_resource type="PackedScene" uid="uid://c44m3ejm4xpob" path="res://Scenes/Pieces/ghost_button.tscn" id="2_5dsed"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="2_lnby7"]
+[ext_resource type="PackedScene" uid="uid://cytiu54cl8vi4" path="res://Scenes/Pieces/equip_button.tscn" id="3_1pjjr"]
 [ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/Pieces/part_button.tscn" id="3_bdiyt"]
 [ext_resource type="PackedScene" uid="uid://jvem2bsy5c0" path="res://Scenes/Pieces/ui_backdrop.tscn" id="3_q2561"]
+[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="4_vslhu"]
 [ext_resource type="PackedScene" uid="uid://ly2lqh5cyg56" path="res://Scenes/Menu/storage.tscn" id="5_w18v7"]
 
 [node name="ForgeMenu" type="Node2D"]
 script = ExtResource("1_8yhtv")
-ghostButScene = ExtResource("2_5dsed")
 partButScene = ExtResource("3_bdiyt")
+equipButScene = ExtResource("3_1pjjr")
 
 [node name="Exit" type="Button" parent="."]
 offset_right = 28.0
@@ -21,6 +22,13 @@ text = "x"
 position = Vector2(581, 311)
 
 [node name="Buttons" type="Node2D" parent="ActiveBlueprint"]
+
+[node name="Label" type="Label" parent="ActiveBlueprint"]
+offset_left = 114.0
+offset_top = 279.0
+offset_right = 652.0
+offset_bottom = 508.0
+label_settings = ExtResource("4_vslhu")
 
 [node name="BlueprintSelect" type="Node2D" parent="."]
 position = Vector2(27, 143)

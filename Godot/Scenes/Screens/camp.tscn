@@ -1,13 +1,24 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmx0jemjixann"]
+[gd_scene load_steps=14 format=3 uid="uid://bmx0jemjixann"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/camp.gd" id="1_n2q1u"]
 [ext_resource type="Texture2D" uid="uid://bedtgjo8m3qhr" path="res://Sprites/temp_campBackground.png" id="2_r1qae"]
+[ext_resource type="Texture2D" uid="uid://b8r30k02j33i2" path="res://Sprites/lizor.png" id="3_gvae2"]
 [ext_resource type="Texture2D" uid="uid://b26uuh4doeuuf" path="res://Sprites/temp_anvil.png" id="3_j43hg"]
 [ext_resource type="Texture2D" uid="uid://csk4rdey087lw" path="res://Sprites/temp_blacksmith.png" id="4_37e0c"]
 [ext_resource type="Texture2D" uid="uid://c2fjif026wnre" path="res://icon.svg" id="4_oq76x"]
 [ext_resource type="Script" path="res://Scenes/Scripts/Blacksmith.gd" id="5_hyfrg"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="6_tw031"]
 [ext_resource type="PackedScene" uid="uid://b7rsad5y1w38s" path="res://Scenes/Menu/forge_menu.tscn" id="7_f5mex"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hpgy"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yjw64"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 30.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 112.9
+initial_velocity_max = 387.09
+gravity = Vector3(0, 0, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edwyj"]
 
@@ -18,6 +29,21 @@ script = ExtResource("1_n2q1u")
 
 [node name="TempCampBackground" type="Sprite2D" parent="."]
 texture = ExtResource("2_r1qae")
+
+[node name="Lizor" type="Button" parent="."]
+offset_left = -963.0
+offset_top = -544.0
+offset_right = 965.0
+offset_bottom = 544.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8hpgy")
+icon = ExtResource("3_gvae2")
+flat = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Lizor"]
+position = Vector2(273, 488)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_yjw64")
+texture = ExtResource("4_oq76x")
 
 [node name="Anvil" type="Button" parent="."]
 z_index = 1
@@ -74,9 +100,12 @@ offset_bottom = 154.0
 color = Color(0.933333, 0.862745, 0.701961, 1)
 
 [node name="ForgeMenu" parent="." instance=ExtResource("7_f5mex")]
+visible = false
 z_index = 2
 position = Vector2(-960, -540)
 
+[connection signal="mouse_entered" from="Lizor" to="." method="_on_lizor_mouse_entered"]
+[connection signal="mouse_exited" from="Lizor" to="." method="_on_lizor_mouse_exited"]
 [connection signal="button_down" from="Anvil" to="." method="_on_anvil_button_down"]
 [connection signal="mouse_entered" from="Anvil" to="." method="_on_anvil_mouse_entered"]
 [connection signal="mouse_exited" from="Anvil" to="." method="_on_anvil_mouse_exited"]

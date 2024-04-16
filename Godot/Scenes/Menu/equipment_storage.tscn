@@ -11,53 +11,69 @@ equipButScene = ExtResource("2_oyabb")
 matButScene = ExtResource("3_3q3cr")
 
 [node name="Equipped" type="Node2D" parent="."]
-position = Vector2(27, 18)
+position = Vector2(-413, 37)
 
 [node name="Weapon" parent="Equipped" instance=ExtResource("2_oyabb")]
-offset_left = 17.0
+offset_left = 124.0
 offset_top = 57.0
-offset_right = 117.0
+offset_right = 224.0
 offset_bottom = 157.0
 disabled = true
 
 [node name="Armor" parent="Equipped" instance=ExtResource("2_oyabb")]
-offset_left = 138.0
+offset_left = 245.0
 offset_top = 57.0
-offset_right = 238.0
+offset_right = 345.0
 offset_bottom = 157.0
 disabled = true
 
 [node name="EquipedLabel" type="Label" parent="Equipped"]
-offset_left = 17.0
-offset_top = 8.0
-offset_right = 445.0
-offset_bottom = 50.0
-text = "Equiped:"
+offset_left = 21.0
+offset_top = 7.0
+offset_right = 449.0
+offset_bottom = 49.0
+text = "Equipped:"
 label_settings = ExtResource("3_l4isl")
 horizontal_alignment = 1
 
 [node name="Stats" type="Label" parent="Equipped"]
-offset_left = 256.0
-offset_top = 65.0
-offset_right = 441.0
-offset_bottom = 150.0
+offset_left = 143.0
+offset_top = 172.0
+offset_right = 328.0
+offset_bottom = 257.0
 text = "Attack: 100
 Defense: 200"
 label_settings = ExtResource("3_l4isl")
 
-[node name="Buttons" type="Node2D" parent="."]
-position = Vector2(62, 223)
+[node name="Main" type="Node2D" parent="."]
 
-[node name="PartDisplay" type="Node2D" parent="."]
-position = Vector2(62, 682)
+[node name="Left" type="Button" parent="Main"]
+offset_left = 8.0
+offset_top = 202.0
+offset_right = 58.0
+offset_bottom = 402.0
 
-[node name="Label" type="Label" parent="PartDisplay"]
-offset_left = 1.0
-offset_top = -49.0
-offset_right = 351.0
-offset_bottom = -7.0
+[node name="Right" type="Button" parent="Main"]
+offset_left = 420.0
+offset_top = 213.0
+offset_right = 470.0
+offset_bottom = 413.0
+
+[node name="Buttons" type="Node2D" parent="Main"]
+position = Vector2(62.5, 125)
+
+[node name="PartDisplay" type="Node2D" parent="Main"]
+position = Vector2(0, 650)
+
+[node name="Label" type="Label" parent="Main/PartDisplay"]
+offset_right = 500.0
+offset_bottom = 42.0
 text = "Attack: 100"
 label_settings = ExtResource("3_l4isl")
 horizontal_alignment = 1
 
-[node name="Parts" type="Node2D" parent="PartDisplay"]
+[node name="Parts" type="Node2D" parent="Main/PartDisplay"]
+position = Vector2(62.5, 62.5)
+
+[connection signal="button_down" from="Main/Left" to="." method="_on_left_button_down"]
+[connection signal="button_down" from="Main/Right" to="." method="_on_right_button_down"]

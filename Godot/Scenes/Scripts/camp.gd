@@ -3,14 +3,26 @@ extends Node2D
 var blacksmith
 var forge : Node2D
 
+var touchingLizor : bool
+var mouse:InputEventMouseMotion
+var heartParticles
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	mouse = InputEventMouseMotion.new()
+	touchingLizor = false
+	heartParticles = $Lizor/GPUParticles2D
 	blacksmith = $Blacksmith
 	forge = $ForgeMenu
 	$Anvil/Aura.visible = false
 	_on_forge_menu_exit()
 	pass # Replace with function body.
-	
+
+func _process(_delta):
+	if touchingLizor and Input.is_action_pressed("Pet"):
+		heartParticles.amount_ratio = max(Input.get_last_mouse_velocity().length()/2000, .1)
+	else:
+		heartParticles.amount_ratio = 0
 
 func _on_anvil_button_down():
 	blacksmith.active = false
@@ -38,4 +50,15 @@ func _on_anvil_mouse_entered():
 
 func _on_anvil_mouse_exited():
 	$Anvil/Aura.visible = false
+	pass # Replace with function body.
+
+
+func _on_lizor_mouse_entered():
+	touchingLizor =true
+	pass # Replace with function body.
+
+
+func _on_lizor_mouse_exited():
+	
+	touchingLizor =false
 	pass # Replace with function body.

@@ -16,22 +16,20 @@ func update():
 	tabs[1].update()
 
 func set_tab(tab):
-	tabs[tab].visible = true
+	update()
+	tabs[tab].set_active(true)
 	tabs[tab+2].modulate.a = 1
 	
 	tab += 1
 	tab %=2
-	tabs[tab].visible = false
+	tabs[tab].set_active(false)
 	tabs[tab+2].modulate.a = .5
-
 
 func _on_material_button_down():
 	set_tab(0)
 
-
 func _on_equipment_button_down():
 	set_tab(1)
-
 
 func _on_material_storage_use(part):
 	emit_signal("use",part)

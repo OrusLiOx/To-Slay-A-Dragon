@@ -9,3 +9,7 @@ func set_equip(equip:Equipment):
 func update():
 	$EquipmentSprite.set_equip(equipment)
 	pass
+	
+func set_ghost(type):
+	equipment = null
+	$EquipmentSprite.set_ghost(type)

@@ -10,7 +10,7 @@ var food : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():	
-	curWeapon = 0
+	curWeapon = -1
 	curArmor = -1
 	parts = { 
 		's' : [],
@@ -22,6 +22,7 @@ func _ready():
 			parts[key].push_back(0)
 	
 	parts["m"][0] = 12
+	parts["m"][1] = 12
 	parts["s"][2] = 12
 	equipment.push_back(Equipment.new("dagger", [Part.new("m",0), Part.new("f",3)]))
 	equipment.push_back(Equipment.new("dagger", [Part.new("m",2), Part.new("f",2)]))
@@ -58,8 +59,10 @@ func add_parts(partsToAdd : Array, quantities : Array):
 
 func add_equipment(equip : Equipment):
 	equipment.insert(0, equip)
-	curWeapon+=1
-	curArmor+=1
+	if curWeapon >= 0:
+		curWeapon+=1
+	if curArmor >= 0:
+		curArmor+=1
 	#if equip.type.contains("armor"):
 		#armor.push_back(equip)
 		#armor.bsearch_custom(equip, compare_equip, true)
@@ -69,3 +72,15 @@ func add_equipment(equip : Equipment):
 		
 func compare_equip(a,b):
 	return a.value < b.value
+
+func set_cur_equip(i):
+	if equipment[i].is_weapon():
+		if curWeapon == i:
+			curWeapon = -1
+		else:
+			curWeapon = i
+	else:
+		if curArmor == i:
+			curArmor = -1
+		else:
+			curArmor = i

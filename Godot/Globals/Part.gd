@@ -16,6 +16,8 @@ func set_vals(t :String , r : int):
 	rarity = r
 
 func get_value():
+	if rarity <0:
+		return 0
 	var base = (rarity+1)*10
 	match(type):
 		"m":

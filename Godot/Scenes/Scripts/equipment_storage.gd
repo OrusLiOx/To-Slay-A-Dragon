@@ -3,6 +3,7 @@ extends Node2D
 @export var matButScene: PackedScene
 
 var page
+var pageSize
 
 var armorDisplay
 var weaponDisplay
@@ -12,6 +13,7 @@ var curWeapon : Equipment
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pageSize = 12
 	armorDisplay = $Equipped/Armor
 	weaponDisplay = $Equipped/Weapon
 	
@@ -38,23 +40,21 @@ func load_current():
 		defense = curArmor.value
 		armorDisplay.set_equip(curArmor)
 	else:
-		curArmor = null
-	armorDisplay.update()
+		armorDisplay.set_ghost("med armor")
 	
 	if Storage.curWeapon != -1:
 		curWeapon = Storage.equipment[Storage.curWeapon]
 		attack = curWeapon.value
 		weaponDisplay.set_equip(curWeapon)
 	else:
-		curWeapon = null
-	weaponDisplay.update()
+		weaponDisplay.set_ghost("sword")
 		
 	$Equipped/Stats.text = "Attack: " + str(attack) +"\nDefense: " + str(defense)
 
 func generate_inv():
-	var parent = $Buttons
+	var parent = $Main/Buttons
 	
-	for i in range(0, 9):
+	for i in range(0, pageSize):
 		var child = equipButScene.instantiate()
 		parent.add_child(child)
 		child.position.x = (i%3)*125
@@ -67,11 +67,20 @@ func generate_inv():
 		
 func load_page(p):
 	page = p
+
+	var cond = page > 0
+	$Main/Left.visible = cond
+	$Main/Left.disabled = !cond
 	
-	var parent = $Buttons
-	var start = page*9
+	cond = Storage.equipment.size() > (page+1)*pageSize
 	
-	for i in range(0, 9):
+	$Main/Right.visible = cond
+	$Main/Right.disabled = !cond
+	
+	var parent = $Main/Buttons
+	var start = page*pageSize
+	
+	for i in range(0, pageSize):
 		var child = parent.get_child(i)
 		
 		# set equipment
@@ -101,17 +110,17 @@ func set_item_display(vis:bool, obj):
 		
 	if e == null:
 		return
-	$PartDisplay.visible = vis
+	$Main/PartDisplay.visible = vis
 	
 	if vis:
 		if e.is_weapon():
-			$PartDisplay/Label.text = "Attack: " + str(e.value)
+			$Main/PartDisplay/Label.text = "Attack: " + str(e.value)
 		else:
-			$PartDisplay/Label.text = "Defense: " + str(e.value)
+			$Main/PartDisplay/Label.text = "Defense: " + str(e.value)
 		
 		var x = 0
 		var y = 0
-		var parent = $PartDisplay/Parts
+		var parent = $Main/PartDisplay/Parts
 		
 		for part in e.parts:
 			var child = matButScene.instantiate()
@@ -127,15 +136,22 @@ func set_item_display(vis:bool, obj):
 				x = 0
 				y+=125
 	else:
-		for child in $PartDisplay/Parts.get_children():
+		for child in $Main/PartDisplay/Parts.get_children():
 			child.queue_free()
-	print()
 
 func equip(index):
 	index = page*9+index
-	if Storage.equipment[index].is_weapon():
-		Storage.curWeapon = index
-	else:
-		Storage.surArmor = index
+	Storage.set_cur_equip(index)
 	load_current()
 	load_page(page)
+
+func set_active(state):
+	$Main.visible = state
+		
+func _on_left_button_down():
+	load_page(page-1)
+	pass # Replace with function body.
+
+func _on_right_button_down():
+	load_page(page+1)
+	pass # Replace with function body.

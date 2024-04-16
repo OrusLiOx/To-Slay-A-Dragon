@@ -28,6 +28,9 @@ func update():
 	for child in $Buttons.get_children():
 		child.update()
 
+func set_active(state):
+	visible = state
+
 func set_view_only(state):
 	for butt in $Buttons.get_children():
 		butt.disabled = state
