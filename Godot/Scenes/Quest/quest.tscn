@@ -2,5 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Scripts/quest.gd" id="1_ja0dw"]
 
-[node name="Quest" type="Node2D"]
+[node name="Quest" type="Button"]
+offset_right = 100.0
+offset_bottom = 100.0
 script = ExtResource("1_ja0dw")

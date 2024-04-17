@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwgh5bcbxpkpj"]
+[gd_scene load_steps=4 format=3 uid="uid://dwgh5bcbxpkpj"]
 
 [ext_resource type="PackedScene" uid="uid://bmx0jemjixann" path="res://Scenes/Screens/camp.tscn" id="1_vlsre"]
+[ext_resource type="Script" path="res://Scenes/Scripts/main.gd" id="1_xlm4h"]
+[ext_resource type="PackedScene" uid="uid://3po5cq6p7ujc" path="res://Scenes/Screens/map.tscn" id="2_mievb"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_xlm4h")
 
 [node name="Camp" parent="." instance=ExtResource("1_vlsre")]
 
+[node name="Map" parent="." instance=ExtResource("2_mievb")]
+
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="toMap" from="Camp" to="." method="_on_camp_to_map"]
+[connection signal="toCamp" from="Map" to="." method="_on_map_to_camp"]

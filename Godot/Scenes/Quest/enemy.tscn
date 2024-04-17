@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmylbepggimag"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/enemy.gd" id="1_027dj"]
+
+[node name="Enemy" type="Sprite2D"]
+script = ExtResource("1_027dj")

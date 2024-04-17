@@ -1,3 +1,125 @@
-[gd_scene format=3 uid="uid://3po5cq6p7ujc"]
+[gd_scene load_steps=8 format=3 uid="uid://3po5cq6p7ujc"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/map.gd" id="1_bqrdo"]
+[ext_resource type="Texture2D" uid="uid://b6k2ynjqiyrby" path="res://Sprites/temp_map.png" id="1_mbdqn"]
+[ext_resource type="PackedScene" uid="uid://b0781ipcpmjaf" path="res://Scenes/Quest/quest.tscn" id="3_d64i7"]
+[ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="4_cpy0l"]
+[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_7xw65"]
+[ext_resource type="PackedScene" uid="uid://bnvwxkdgsp4vp" path="res://Scenes/Pieces/part_sprite.tscn" id="6_h4mvh"]
+[ext_resource type="PackedScene" uid="uid://bxfmkq8bgumev" path="res://Scenes/Quest/combat.tscn" id="7_fpvvu"]
 
 [node name="Map" type="Node2D"]
+script = ExtResource("1_bqrdo")
+
+[node name="TempMap" type="Sprite2D" parent="."]
+texture = ExtResource("1_mbdqn")
+
+[node name="Switch" type="Button" parent="."]
+offset_left = -948.0
+offset_top = -517.0
+offset_right = -848.0
+offset_bottom = -417.0
+
+[node name="Quests" type="Node2D" parent="."]
+
+[node name="Goblin Grotto" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = -844.0
+offset_top = -81.0
+offset_right = -744.0
+offset_bottom = 19.0
+questMaterial = "m1"
+questEnemy = "Goblin"
+dataDisplayPosition = Vector2(-734, -235)
+
+[node name="Slime Meadows" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = -721.0
+offset_top = 314.0
+offset_right = -621.0
+offset_bottom = 414.0
+questMaterial = "f1"
+questEnemy = "Slime"
+dataDisplayPosition = Vector2(-600, 126)
+
+[node name="Slithering Stream" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = -330.0
+offset_top = 204.0
+offset_right = -230.0
+offset_bottom = 304.0
+questMaterial = "s1"
+questEnemy = "Snake"
+dataDisplayPosition = Vector2(-217, 126)
+
+[node name="QuestName" type="Label" parent="."]
+z_index = 1
+offset_left = -600.0
+offset_top = 126.0
+offset_right = -298.0
+offset_bottom = 195.0
+text = "Quest Name"
+label_settings = ExtResource("4_cpy0l")
+
+[node name="MaterialLabel" type="Label" parent="QuestName"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 77.0
+offset_right = 269.0
+offset_bottom = 162.0
+text = "Material:
+common metal"
+label_settings = ExtResource("5_7xw65")
+horizontal_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="QuestName"]
+position = Vector2(109, 184)
+
+[node name="Enemy" type="Label" parent="QuestName/Node2D"]
+offset_right = 106.0
+offset_bottom = 42.0
+text = "Enemy:"
+label_settings = ExtResource("5_7xw65")
+
+[node name="EnemyData" type="Label" parent="QuestName/Node2D/Enemy"]
+layout_mode = 0
+offset_left = -43.0
+offset_top = 50.0
+offset_right = 231.0
+offset_bottom = 215.0
+text = "enemy type
+Attack:
+Defense:"
+label_settings = ExtResource("5_7xw65")
+
+[node name="You" type="Label" parent="QuestName/Node2D"]
+offset_left = 300.0
+offset_right = 406.0
+offset_bottom = 42.0
+text = "You:"
+label_settings = ExtResource("5_7xw65")
+
+[node name="YourData" type="Label" parent="QuestName/Node2D/You"]
+layout_mode = 0
+offset_left = -43.0
+offset_top = 50.0
+offset_right = 231.0
+offset_bottom = 215.0
+text = "
+Attack:
+Defense:"
+label_settings = ExtResource("5_7xw65")
+
+[node name="ColorRect" type="ColorRect" parent="QuestName"]
+clip_children = 2
+z_index = -1
+layout_mode = 0
+offset_right = 616.0
+offset_bottom = 391.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="PartSprite" parent="QuestName" instance=ExtResource("6_h4mvh")]
+position = Vector2(442, 120)
+
+[node name="Combat" parent="." instance=ExtResource("7_fpvvu")]
+visible = false
+position = Vector2(-495, -491)
+
+[connection signal="button_down" from="Switch" to="." method="_on_switch_button_down"]

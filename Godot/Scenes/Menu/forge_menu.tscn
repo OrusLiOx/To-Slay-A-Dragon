@@ -4,8 +4,8 @@
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="2_lnby7"]
 [ext_resource type="PackedScene" uid="uid://cytiu54cl8vi4" path="res://Scenes/Pieces/equip_button.tscn" id="3_1pjjr"]
 [ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/Pieces/part_button.tscn" id="3_bdiyt"]
-[ext_resource type="PackedScene" uid="uid://jvem2bsy5c0" path="res://Scenes/Pieces/ui_backdrop.tscn" id="3_q2561"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="4_vslhu"]
+[ext_resource type="PackedScene" uid="uid://jvem2bsy5c0" path="res://Scenes/Pieces/ui_backdrop.tscn" id="5_1h7c4"]
 [ext_resource type="PackedScene" uid="uid://ly2lqh5cyg56" path="res://Scenes/Menu/storage.tscn" id="5_w18v7"]
 
 [node name="ForgeMenu" type="Node2D"]
@@ -33,7 +33,7 @@ label_settings = ExtResource("4_vslhu")
 [node name="BlueprintSelect" type="Node2D" parent="."]
 position = Vector2(27, 143)
 
-[node name="UIbackdrop" parent="BlueprintSelect" instance=ExtResource("3_q2561")]
+[node name="UIbackdrop" parent="BlueprintSelect" instance=ExtResource("5_1h7c4")]
 position = Vector2(-12, 12)
 layer_0/tile_data = PackedInt32Array(-65535, 131072, 1342177280, -65536, 131072, 0, 131072, 131072, 1610612736, 131073, 131072, 805306368, 65537, 196608, 0, 1, 196608, 0, 0, 196608, 0, 65536, 196608, 0)
 

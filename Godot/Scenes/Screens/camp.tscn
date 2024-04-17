@@ -104,6 +104,12 @@ visible = false
 z_index = 2
 position = Vector2(-960, -540)
 
+[node name="Switch" type="Button" parent="."]
+offset_left = -959.0
+offset_top = -481.0
+offset_right = -859.0
+offset_bottom = -381.0
+
 [connection signal="mouse_entered" from="Lizor" to="." method="_on_lizor_mouse_entered"]
 [connection signal="mouse_exited" from="Lizor" to="." method="_on_lizor_mouse_exited"]
 [connection signal="button_down" from="Anvil" to="." method="_on_anvil_button_down"]
@@ -115,3 +121,4 @@ position = Vector2(-960, -540)
 [connection signal="mouse_entered" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_entered"]
 [connection signal="mouse_exited" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_exited"]
 [connection signal="exit" from="ForgeMenu" to="." method="_on_forge_menu_exit"]
+[connection signal="button_down" from="Switch" to="." method="_on_switch_button_down"]
