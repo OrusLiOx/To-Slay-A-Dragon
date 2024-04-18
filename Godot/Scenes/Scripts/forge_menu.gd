@@ -178,7 +178,6 @@ func open():
 	storage.set_tab(0)
 	pass
 
-
 func _on_exit_button_down():
 	for r in range(0,2):
 		for c in range(0,3):
@@ -233,7 +232,7 @@ func update_equip_stats():
 			builtEquip.disabled = true
 			return
 			
-	var parts:Array
+	var parts:Array = []
 	for arr in selectedParts:
 		for partBut in arr:
 			if partBut.part.rarity >=0:

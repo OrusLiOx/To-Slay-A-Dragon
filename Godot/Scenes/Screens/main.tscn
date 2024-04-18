@@ -1,11 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwgh5bcbxpkpj"]
+[gd_scene load_steps=8 format=3 uid="uid://dwgh5bcbxpkpj"]
 
 [ext_resource type="PackedScene" uid="uid://bmx0jemjixann" path="res://Scenes/Screens/camp.tscn" id="1_vlsre"]
 [ext_resource type="Script" path="res://Scenes/Scripts/main.gd" id="1_xlm4h"]
 [ext_resource type="PackedScene" uid="uid://3po5cq6p7ujc" path="res://Scenes/Screens/map.tscn" id="2_mievb"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Sky.gd" id="2_tkocw"]
+[ext_resource type="Texture2D" uid="uid://dokfus5y1844d" path="res://Sprites/skybox/sky.png" id="3_rdefb"]
+[ext_resource type="Texture2D" uid="uid://drtvoc156b6ja" path="res://Sprites/skybox/sun.png" id="3_ufqu2"]
+[ext_resource type="Texture2D" uid="uid://c8qj2sgjmhx73" path="res://Sprites/skybox/moon.png" id="4_k4cvp"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_xlm4h")
+
+[node name="Sky" type="Node2D" parent="." node_paths=PackedStringArray("camp", "map")]
+script = ExtResource("2_tkocw")
+camp = NodePath("../Camp")
+map = NodePath("../Map")
+
+[node name="Sky" type="Sprite2D" parent="Sky"]
+texture = ExtResource("3_rdefb")
+
+[node name="Sun" type="Sprite2D" parent="Sky"]
+position = Vector2(4, -381)
+texture = ExtResource("3_ufqu2")
+
+[node name="Moon" type="Sprite2D" parent="Sky"]
+position = Vector2(-18, 407)
+rotation = 3.14159
+texture = ExtResource("4_k4cvp")
 
 [node name="Camp" parent="." instance=ExtResource("1_vlsre")]
 

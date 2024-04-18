@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b0781ipcpmjaf" path="res://Scenes/Quest/quest.tscn" id="3_d64i7"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="4_cpy0l"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_7xw65"]
-[ext_resource type="PackedScene" uid="uid://bnvwxkdgsp4vp" path="res://Scenes/Pieces/part_sprite.tscn" id="6_h4mvh"]
+[ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/Pieces/part_button.tscn" id="6_epqax"]
 [ext_resource type="PackedScene" uid="uid://bxfmkq8bgumev" path="res://Scenes/Quest/combat.tscn" id="7_fpvvu"]
 
 [node name="Map" type="Node2D"]
@@ -27,8 +27,8 @@ offset_left = -844.0
 offset_top = -81.0
 offset_right = -744.0
 offset_bottom = 19.0
-questMaterial = "m1"
-questEnemy = "Goblin"
+part = "m0"
+enemy = "Goblin"
 dataDisplayPosition = Vector2(-734, -235)
 
 [node name="Slime Meadows" parent="Quests" instance=ExtResource("3_d64i7")]
@@ -36,8 +36,8 @@ offset_left = -721.0
 offset_top = 314.0
 offset_right = -621.0
 offset_bottom = 414.0
-questMaterial = "f1"
-questEnemy = "Slime"
+part = "f0"
+enemy = "Slime"
 dataDisplayPosition = Vector2(-600, 126)
 
 [node name="Slithering Stream" parent="Quests" instance=ExtResource("3_d64i7")]
@@ -45,8 +45,8 @@ offset_left = -330.0
 offset_top = 204.0
 offset_right = -230.0
 offset_bottom = 304.0
-questMaterial = "s1"
-questEnemy = "Snake"
+part = "s1"
+enemy = "Snake"
 dataDisplayPosition = Vector2(-217, 126)
 
 [node name="QuestName" type="Label" parent="."]
@@ -115,11 +115,15 @@ offset_right = 616.0
 offset_bottom = 391.0
 color = Color(0.933333, 0.862745, 0.701961, 1)
 
-[node name="PartSprite" parent="QuestName" instance=ExtResource("6_h4mvh")]
-position = Vector2(442, 120)
+[node name="PartSprite" parent="QuestName" instance=ExtResource("6_epqax")]
+offset_left = 388.0
+offset_top = 73.0
+offset_right = 488.0
+offset_bottom = 173.0
 
 [node name="Combat" parent="." instance=ExtResource("7_fpvvu")]
 visible = false
 position = Vector2(-495, -491)
 
 [connection signal="button_down" from="Switch" to="." method="_on_switch_button_down"]
+[connection signal="combat_done" from="Combat" to="." method="_on_combat_combat_done"]

@@ -18,7 +18,6 @@ func _process(_delta):
 	pass
 
 
-
 func _on_camp_to_map():
 	map.position = Vector2(0,0)
 	camp.position = Vector2(0,2000)

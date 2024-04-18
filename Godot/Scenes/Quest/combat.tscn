@@ -1,15 +1,78 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxfmkq8bgumev"]
+[gd_scene load_steps=8 format=3 uid="uid://bxfmkq8bgumev"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/combat.gd" id="1_l0hou"]
-[ext_resource type="PackedScene" uid="uid://dmylbepggimag" path="res://Scenes/Quest/enemy.tscn" id="2_5ocxk"]
+[ext_resource type="PackedScene" uid="uid://bs6ej35oeq114" path="res://Scenes/Quest/note.tscn" id="2_ob6w2"]
+[ext_resource type="PackedScene" uid="uid://bnvwxkdgsp4vp" path="res://Scenes/Pieces/part_sprite.tscn" id="3_s2yiu"]
+[ext_resource type="PackedScene" uid="uid://dmylbepggimag" path="res://Scenes/Quest/enemy_sprite.tscn" id="4_7b527"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojbx8"]
+size = Vector2(30, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyscs"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogskr"]
+size = Vector2(20, 100)
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_l0hou")
+noteScene = ExtResource("2_ob6w2")
 
-[node name="Enemy" parent="." instance=ExtResource("2_5ocxk")]
-position = Vector2(433, 299)
-
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 offset_right = 924.0
 offset_bottom = 984.0
 color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="EnemyScreen" type="ColorRect" parent="."]
+offset_left = 26.0
+offset_top = 16.0
+offset_right = 904.0
+offset_bottom = 677.0
+color = Color(0.423529, 0.356863, 0.301961, 1)
+
+[node name="PartSprite" parent="EnemyScreen" instance=ExtResource("3_s2yiu")]
+position = Vector2(442, 328)
+
+[node name="Enemy" parent="EnemyScreen" instance=ExtResource("4_7b527")]
+position = Vector2(433, 299)
+
+[node name="Minigame" type="Node2D" parent="."]
+position = Vector2(0, 851)
+
+[node name="Goal" type="Sprite2D" parent="Minigame"]
+position = Vector2(166, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Minigame/Goal"]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+color = Color(0.717647, 0.607843, 0.501961, 1)
+
+[node name="Good" type="Area2D" parent="Minigame/Goal"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigame/Goal/Good"]
+shape = SubResource("RectangleShape2D_ojbx8")
+
+[node name="Ok" type="Area2D" parent="Minigame/Goal"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigame/Goal/Ok"]
+shape = SubResource("RectangleShape2D_jyscs")
+
+[node name="Notes" type="Node2D" parent="Minigame"]
+position = Vector2(1038, 0)
+
+[node name="Kill" type="Area2D" parent="Minigame"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigame/Kill"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ogskr")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Minigame/Goal/Good" to="." method="_on_good_area_entered"]
+[connection signal="area_exited" from="Minigame/Goal/Good" to="." method="_on_good_area_exited"]
+[connection signal="area_entered" from="Minigame/Goal/Ok" to="." method="_on_ok_area_entered"]
+[connection signal="area_exited" from="Minigame/Goal/Ok" to="." method="_on_ok_area_exited"]
+[connection signal="area_entered" from="Minigame/Kill" to="." method="_on_kill_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

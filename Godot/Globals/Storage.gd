@@ -84,3 +84,16 @@ func set_cur_equip(i):
 			curArmor = -1
 		else:
 			curArmor = i
+
+func get_attack():
+	if curWeapon >=0:
+		return equipment[curWeapon].value
+	else:
+		return 1
+
+func get_defense():
+	if curArmor >=0:
+		return equipment[curArmor].value
+	else:
+		return 0
+	

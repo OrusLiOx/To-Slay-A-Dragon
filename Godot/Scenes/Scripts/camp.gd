@@ -62,7 +62,6 @@ func _on_lizor_mouse_entered():
 	pass # Replace with function body.
 
 func _on_lizor_mouse_exited():
-	
 	touchingLizor =false
 	pass # Replace with function body.
 

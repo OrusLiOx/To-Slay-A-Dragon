@@ -1,23 +1,28 @@
-extends Sprite2D
+class_name Enemy
 var type : String
 var attack : float
 var defense : float
 var hp : float
 
-func set_enemy(t : String ):
+func _init(t :String):
+	set_enemy(t)
+
+func set_enemy(t : String):
 	type = t
 	match(type):
-		"slime":
+		"Slime":
 			attack = 10
 			defense = 10
-		"goblin":
+		"Goblin":
 			attack = 10
 			defense = 10
-		"snake":
+		"Snake":
 			attack = 10
 			defense = 10
+	attack = 10
+	defense = 0
 	
 	heal()
 
 func heal():
-	hp = defense
+	hp = max(defense*10,10)
