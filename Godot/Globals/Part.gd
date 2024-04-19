@@ -34,6 +34,7 @@ func get_color():
 		2: return Color(1,0,0)
 		3: return Color(.5,0,1)
 		4: return Color(1,1,0)
+	return Color(1,1,1)
 	match(type):
 		"m":
 			match(rarity):
@@ -65,7 +66,7 @@ func get_color():
 					return Color(0,1,0)
 				3: 
 					return Color(0,0,1)
-	return Color(1,1,0);
+	
 
 func get_name():
 	match(type):

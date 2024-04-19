@@ -8,30 +8,43 @@ func _ready():
 
 func set_equip(equip):
 	$Parts.visible = true
-	self.self_modulate.a = 0
 	equipment = equip
 	if equipment == null:
-		$Parts.visible = false 
+		visible = false 
 		return
-	var f
-	match(equipment.type):
-		"dagger": f = 0
-		"sword": f = 1
-		"greatsword": f = 2
-		"light armor": f = 3
-		"med armor": f = 4
-		"heavy armor": f = 5
-	f=f*7+1
+		
+	visible = true 
+	
 	for i in range(0,parts.size()):
-		parts[i].frame = f+i
+		parts[i].z_index = 0
 		if i < equipment.parts.size():
 			parts[i].visible = true
 			parts[i].self_modulate = equipment.parts[i].get_color()
 		else:
 			parts[i].visible = false
+	
+	var f
+	match(equipment.type):
+		"dagger": 
+			f = 0
+			parts[1].z_index = 2
+		"sword": 
+			f = 1
+			parts[2].z_index = 2
+		"greatsword": 
+			f = 2
+			parts[3].z_index = 2
+		"light armor": f = 3
+		"med armor": f = 4
+		"heavy armor": f = 5
+	f=f*8+1
+	frame = f+6
+	
+	for i in range(0,parts.size()):
+		parts[i].frame = f+i
+	
 
 func set_ghost(type):
-	self.self_modulate.a = 1
 	equipment = null
 	$Parts.visible = false
 	var f
@@ -43,4 +56,4 @@ func set_ghost(type):
 		"med armor": f = 4
 		"heavy armor": f = 5
 	
-	frame = f*7
+	frame = f*8

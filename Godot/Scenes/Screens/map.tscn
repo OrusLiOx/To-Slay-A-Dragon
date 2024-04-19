@@ -116,6 +116,7 @@ offset_bottom = 391.0
 color = Color(0.933333, 0.862745, 0.701961, 1)
 
 [node name="PartSprite" parent="QuestName" instance=ExtResource("6_epqax")]
+layout_mode = 0
 offset_left = 388.0
 offset_top = 73.0
 offset_right = 488.0

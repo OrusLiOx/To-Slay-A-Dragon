@@ -32,7 +32,7 @@ func _process(delta):
 			moving = false
 			return
 			
-		self.rotation = move_toward(self.rotation, angle, 1*delta)
+		self.rotation = move_toward(self.rotation, angle, 3*delta)
 		var percent = pow(abs(sin(rotation)),4)
 		
 		#sun.position.y = percent*-421 -388 
