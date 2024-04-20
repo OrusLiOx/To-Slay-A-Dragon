@@ -17,7 +17,7 @@ func set_equip(equip):
 	
 	for i in range(0,parts.size()):
 		parts[i].z_index = 0
-		if i < equipment.parts.size():
+		if i < equipment.parts.size() and equipment.parts[i].rarity >= 0:
 			parts[i].visible = true
 			parts[i].self_modulate = equipment.parts[i].get_color()
 		else:
@@ -34,9 +34,20 @@ func set_equip(equip):
 		"greatsword": 
 			f = 2
 			parts[3].z_index = 2
-		"light armor": f = 3
-		"med armor": f = 4
-		"heavy armor": f = 5
+		"light armor": 
+			f = 3
+			parts[0].z_index = 1
+			parts[2].z_index = 2
+		"med armor": 
+			f = 4
+			parts[0].z_index = 1
+			parts[3].z_index = 2
+			parts[4].z_index = 2
+		"heavy armor": 
+			f = 5
+			parts[0].z_index = 1
+			parts[4].z_index = 2
+			parts[5].z_index = 2
 	f=f*8+1
 	frame = f+6
 	

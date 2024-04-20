@@ -10,8 +10,8 @@ var food : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():	
-	curWeapon = -1
-	curArmor = -1
+	curWeapon = 0
+	curArmor = 1
 	parts = { 
 		's' : [],
 		'f' : [],
@@ -19,13 +19,10 @@ func _ready():
 	}
 	for key in parts.keys():
 		for i in range(0,5):
-			parts[key].push_back(5)
+			parts[key].push_back(0)
 	
-	parts["m"][0] = 12
-	parts["m"][1] = 12
-	parts["s"][2] = 12
-	equipment.push_back(Equipment.new("dagger", [Part.new("m",0), Part.new("f",3)]))
-	equipment.push_back(Equipment.new("dagger", [Part.new("m",2), Part.new("f",2)]))
+	equipment.push_back(Equipment.new("dagger", [Part.new("m",0)]))
+	equipment.push_back(Equipment.new("light armor", [Part.new("m",0), Part.new("s",0)]))
 	
 		
 	

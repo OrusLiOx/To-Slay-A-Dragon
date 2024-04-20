@@ -19,7 +19,7 @@ func _ready():
 	generate_blueprint_base()
 	load_blueprint_selection()
 	
-	load_blueprint("")
+	$ActiveBlueprint/Label.text = "select a blueprint\n<-----"
 	pass # Replace with function body.
 
 func _process(_delta):
@@ -56,7 +56,7 @@ func load_blueprint_selection():
 func generate_blueprint_base():
 	var parent = $ActiveBlueprint/Buttons
 	
-	for x in range(0,3):
+	for x in range(0,4):
 		var child = partButScene.instantiate()
 		parent.add_child(child)
 		child.make_part("",-2)
@@ -67,7 +67,7 @@ func generate_blueprint_base():
 		
 		child.button_down.connect(return_material.bind(child))
 	
-	for x in range(0,3):
+	for x in range(0,2):
 		var child = partButScene.instantiate()
 		parent.add_child(child)
 		child.make_part("",-2)
@@ -80,7 +80,7 @@ func generate_blueprint_base():
 	
 	builtEquip = equipButScene.instantiate()
 	$ActiveBlueprint.add_child(builtEquip)
-	builtEquip.position = Vector2(0,250)
+	builtEquip.position = Vector2(parent.position.x,parent.position.y+250)
 	builtEquip.visible = false
 	builtEquip.disabled = true
 	builtEquip.button_down.connect(craft_equip)
@@ -92,10 +92,10 @@ func load_blueprint(type):
 		set_blueprint_slot(0,0,"")
 		set_blueprint_slot(0,1,"")
 		set_blueprint_slot(0,2,"")
+		set_blueprint_slot(0,3, "")
 			
 		set_blueprint_slot(1,0,"")
 		set_blueprint_slot(1,1,"")
-		set_blueprint_slot(1,2,"")
 	activeBlueprint = type
 	$ActiveBlueprint.visible = true
 	builtEquip.visible = true
@@ -105,58 +105,58 @@ func load_blueprint(type):
 			set_blueprint_slot(0,0,"m")
 			set_blueprint_slot(0,1,"")
 			set_blueprint_slot(0,2,"")
+			set_blueprint_slot(0,3,"")
 			
 			set_blueprint_slot(1,0,"f")
 			set_blueprint_slot(1,1,"")
-			set_blueprint_slot(1,2,"")
 		"sword": 
 			set_blueprint_slot(0,0,"m")
 			set_blueprint_slot(0,1,"m")
 			set_blueprint_slot(0,2,"")
+			set_blueprint_slot(0,3,"")
 			
 			set_blueprint_slot(1,0,"f")
 			set_blueprint_slot(1,1,"")
-			set_blueprint_slot(1,2,"")
 		"greatsword": 
 			set_blueprint_slot(0,0,"m")
 			set_blueprint_slot(0,1,"m")
 			set_blueprint_slot(0,2,"m")
+			set_blueprint_slot(0,3,"")
 			
 			set_blueprint_slot(1,0,"f")
 			set_blueprint_slot(1,1,"")
-			set_blueprint_slot(1,2,"")
 		"light armor": 
-			set_blueprint_slot(0,0,"s")
-			set_blueprint_slot(0,1,"")
-			set_blueprint_slot(0,2,"")
-			
-			set_blueprint_slot(1,0,"m")
-			set_blueprint_slot(1,1,"")
-			set_blueprint_slot(1,2,"")
-		"med armor": 
-			set_blueprint_slot(0,0,"s")
+			set_blueprint_slot(0,0,"m")
 			set_blueprint_slot(0,1,"s")
 			set_blueprint_slot(0,2,"")
+			set_blueprint_slot(0,3,"")
 			
-			set_blueprint_slot(1,0,"m")
-			set_blueprint_slot(1,1,"f")
-			set_blueprint_slot(1,2,"")
-		"heavy armor": 
-			set_blueprint_slot(0,0,"s")
+			set_blueprint_slot(1,0,"f")
+			set_blueprint_slot(1,1,"")
+		"med armor": 
+			set_blueprint_slot(0,0,"m")
 			set_blueprint_slot(0,1,"s")
 			set_blueprint_slot(0,2,"s")
+			set_blueprint_slot(0,3,"")
 			
-			set_blueprint_slot(1,0,"m")
-			set_blueprint_slot(1,1,"m")
-			set_blueprint_slot(1,2,"f")
+			set_blueprint_slot(1,0,"f")
+			set_blueprint_slot(1,1,"f")
+		"heavy armor": 
+			set_blueprint_slot(0,0,"m")
+			set_blueprint_slot(0,1,"s")
+			set_blueprint_slot(0,2,"s")
+			set_blueprint_slot(0,3,"s")
+			
+			set_blueprint_slot(1,0,"f")
+			set_blueprint_slot(1,1,"f")
 		_:
 			set_blueprint_slot(0,0,"")
 			set_blueprint_slot(0,1,"")
 			set_blueprint_slot(0,2,"")
+			set_blueprint_slot(0,3,"")
 			
 			set_blueprint_slot(1,0,"")
 			set_blueprint_slot(1,1,"")
-			set_blueprint_slot(1,2,"")
 			builtEquip.visible = false
 	storage.update()
 	update_equip_stats()
@@ -179,9 +179,10 @@ func open():
 	pass
 
 func _on_exit_button_down():
-	for r in range(0,2):
-		for c in range(0,3):
-			set_blueprint_slot(r,c,"")
+	for c in range(0,4):
+		set_blueprint_slot(0,c,"")
+	for c in range(0,2):
+		set_blueprint_slot(0,c,"")
 			
 	emit_signal("exit")
 	pass # Replace with function body.
@@ -235,7 +236,7 @@ func update_equip_stats():
 	var parts:Array = []
 	for arr in selectedParts:
 		for partBut in arr:
-			if partBut.part.rarity >=0:
+			if partBut.part.rarity >= -1:
 				parts.push_back(partBut.part)
 	builtEquip.set_equip(Equipment.new(activeBlueprint, parts))
 	builtEquip.disabled = false

@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0781ipcpmjaf"]
+[gd_scene load_steps=4 format=3 uid="uid://b0781ipcpmjaf"]
 
+[ext_resource type="Texture2D" uid="uid://sejjgsr510ca" path="res://Sprites/questMarker.png" id="1_4h0kb"]
 [ext_resource type="Script" path="res://Scenes/Scripts/quest.gd" id="1_ja0dw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qjpcw"]
 
 [node name="Quest" type="Button"]
 offset_right = 100.0
 offset_bottom = 100.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qjpcw")
+icon = ExtResource("1_4h0kb")
+flat = true
 script = ExtResource("1_ja0dw")

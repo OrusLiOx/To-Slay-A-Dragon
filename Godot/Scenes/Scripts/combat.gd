@@ -3,14 +3,18 @@ extends Node2D
 @export var noteScene : PackedScene
 var timer : Timer
 var enemy
+var noteSpeed
 
-var goodNote
-var okNote
+var goodNote :Array
+var okNote :Array
+var badNote :Array
 var notes
 
 var minigameActive
 var killEnemy
 var partSprite
+var enemyHealth
+var enemyHealthBar
 
 var questReward
 var rewardQuantity
@@ -20,6 +24,7 @@ var player : Dictionary
 var dir:Dictionary
 
 signal combat_done()
+signal player_death()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +32,8 @@ func _ready():
 	timer = $Timer
 	enemy = $EnemyScreen/Enemy
 	partSprite = $EnemyScreen/PartSprite
+	enemyHealthBar = $EnemyScreen/Health
+	enemyHealth = $EnemyScreen/Health/Current
 	dir["Left"] = 0
 	dir["Up"] = 1
 	dir["Right"] = 2
@@ -43,17 +50,27 @@ func _process(delta):
 	if killEnemy:
 		if enemy.modulate.a  > 0:
 			enemy.modulate.a -= 2*delta
+			enemyHealthBar.modulate.a -= 2*delta
 		else:
 			if partSprite.visible == false:
-				timer.start(3)
+				timer.start(2)
 			partSprite.visible = true
 	pass
 
 func start(quest):
+	Stats.combats +=1
+	$EnemyScreen/Health/Name.text = quest.enemy
+	enemyHealth.size.x=enemyHealthBar.size.x
+	$EnemyScreen/You/Current.size.x = $EnemyScreen/You.size.x
+	$EnemyScreen/Health/LastHit.text = ""
+	$EnemyScreen/You/LastHit.text = ""
+	$EnemyScreen/Reward.text = ""
+	
 	# set display stuff
 	player["attack"] = Storage.get_attack()
 	player["defense"] = Storage.get_defense()
 	player["hp"] = 100
+	player["maxHp"] = 100
 	for note in notes.get_children():
 		note.queue_free()
 	
@@ -62,16 +79,18 @@ func start(quest):
 	partSprite.visible = false
 	partSprite.set_part(questReward)
 	enemy.set_enemy(quest.questEnemy)
+	enemy.stats.heal()
 	enemy.modulate.a = 1
-	goodNote == null
-	okNote == null
+	enemyHealthBar.modulate.a = 1
+	enemyHealth.size.x = enemyHealthBar.size.x
+	goodNote.clear()
+	okNote.clear()
+	badNote.clear()
 	minigameActive = true
 	killEnemy = false
 	
-	var n = noteScene.instantiate()
-	notes.add_child(n)
-	n.position = Vector2(0,0)
-	timer.start(randf_range(.5,2))
+	noteSpeed = max(300, (enemy.stats.attack-player["defense"]*1.1)*100+300)
+	spawn_note()
 	pass
 
 func end_minigame():
@@ -80,35 +99,74 @@ func end_minigame():
 		note.queue_free()
 
 func check(inp):
-	# if no note or pressed wrong direction
-	if okNote == null or dir[inp] != okNote.dir:
+	if !goodNote.is_empty():
+		if goodNote.front().dir == dir[inp]:
+			hit_enemy(.5)
+		else:
+			hit_player()
+		goodNote.front().queue_free()
+		goodNote.pop_front()
+		okNote.pop_front()
+		badNote.pop_front()	
+	elif !okNote.is_empty():
+		if okNote.front().dir == dir[inp]:
+			hit_enemy(0)
+		else:
+			hit_player()
+		okNote.front().queue_free()
+		okNote.pop_front()
+		badNote.pop_front()
+	elif !badNote.is_empty():
 		hit_player()
-		return
-		
-	if goodNote != null:
-		hit_enemy(.5)
+		badNote.front().queue_free()
+		badNote.pop_front()
 	else:
-		hit_enemy()
-	okNote.queue_free()
-	goodNote = null
-	okNote = null
-
+		hit_player()
+		
 func hit_player():
-	player["hp"] -= get_damage(enemy.stats.attack,player["defense"])
+	var damage = get_damage(enemy.stats.attack,player["defense"])
+	player["hp"] -= damage
+	$EnemyScreen/Health/LastHit.text = ""
+	$EnemyScreen/You/LastHit.text = str(damage)
+	
+	$EnemyScreen/You/Current.size.x = max(0,$EnemyScreen/You.size.x * player["hp"]/player["maxHp"])
+	
+	if player["hp"] <= 0:
+		end_minigame()
+		Stats.deaths += 1
+		emit_signal("player_death")
+		timer.stop()
 	pass
 
-func hit_enemy(crit = 0):
+func hit_enemy(crit:float = 0):
 	var damage = get_damage(player["attack"],enemy.stats.defense)
-	if damage > 0:
-		enemy.hit()
+	$EnemyScreen/You/LastHit.text = ""
+	enemy.hit()
 	if randf()<crit:
-		enemy.stats.hp -= damage * 2
+		damage = max(1,damage * 2)
+		enemy.stats.hp -= damage
+		$EnemyScreen/Health/LastHit.text = str(damage) + " CRIT!"
 	else:
 		enemy.stats.hp -= damage
+		$EnemyScreen/Health/LastHit.text = str(damage)
+	
+	enemyHealth.size.x = max(0,enemyHealthBar.size.x * enemy.stats.hp/enemy.stats.maxHp)
+	
 	if enemy.stats.hp <= 0:
 		end_minigame()
 		killEnemy = true
 		rewardQuantity = 1
+		var bonus = (player["hp"]/player["maxHp"])/2 + (abs(enemy.stats.hp)/enemy.stats.maxHp)/2
+		while bonus >= 1:
+			rewardQuantity += 1
+			bonus -= 1
+			
+		if randf_range(0,1) < bonus:
+			rewardQuantity +=1
+		
+		$EnemyScreen/Reward.text = "+"+str(rewardQuantity)
+		if rewardQuantity > 1:
+			$EnemyScreen/Reward.text +=  " ("+str(rewardQuantity-1)+" bonus)"
 		timer.stop()
 	pass
 
@@ -121,43 +179,56 @@ func get_damage(attack, defense):
 	else:
 		return 0
 
+func spawn_note():
+	var n = noteScene.instantiate()
+	notes.add_child(n)
+	n.speed = noteSpeed
+	n.position = Vector2(800,60)
+	timer.start(randf_range(.25/(noteSpeed/300),1/(noteSpeed/300)))
+
 # detect notes
 func _on_good_area_entered(area):
 	if area.is_in_group("Note"):
-		goodNote = area
+		goodNote.push_back(area)
 	pass # Replace with function body.
 
-func _on_good_area_exited(_area):
-	goodNote = null
+func _on_good_area_exited(area):
+	if area.is_in_group("Note"):
+		goodNote.pop_front()
 	pass # Replace with function body.
 
 func _on_ok_area_entered(area):
 	if area.is_in_group("Note"):
-		okNote = area
+		okNote.push_back(area)
 	pass # Replace with function body.
 
-func _on_ok_area_exited(_area):
-	okNote = null
+func _on_ok_area_exited(area):
+	if area.is_in_group("Note"):
+		okNote.pop_front()
 	pass # Replace with function body.
+
+func _on_bad_area_entered(area):
+	if area.is_in_group("Note"):
+		badNote.push_back(area)
+	pass #
+
+func _on_bad_area_exited(area):
+	if area.is_in_group("Note"):
+		badNote.pop_front()
+	pass # Replace with function body.
+
+func _on_kill_area_entered(area):
+	if area.is_in_group("Note"):
+		hit_player()
+	area.queue_free()
+	pass 
 
 func _on_timer_timeout():
 	if killEnemy:
 		timer.stop()
 		Storage.add_part(questReward, rewardQuantity)
 		emit_signal("combat_done")
-	elif player["hp"] <= 0:
-		emit_signal("combat_done")
-		timer.stop()
 	else:
-		var n = noteScene.instantiate()
-		notes.add_child(n)
-		n.position = Vector2(0,0)
-		timer.start(randf_range(.2,1.5))
+		spawn_note()
 	pass # Replace with function body.
 
-
-func _on_kill_area_entered(area):
-	if area.is_in_group("Note"):
-		hit_player()
-	area.queue_free()
-	pass # Replace with function body.

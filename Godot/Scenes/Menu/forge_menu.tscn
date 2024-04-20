@@ -19,15 +19,19 @@ offset_bottom = 31.0
 text = "x"
 
 [node name="ActiveBlueprint" type="Node2D" parent="."]
-position = Vector2(581, 311)
+position = Vector2(317, 33)
+
+[node name="UIbackdrop" parent="ActiveBlueprint" instance=ExtResource("5_1h7c4")]
+layer_0/tile_data = PackedInt32Array(0, 131072, 0, 1, 196608, 0, 2, 196608, 0, 3, 196608, 0, 4, 131072, 1342177280, 131076, 196608, 0, 131072, 196608, 0, 131073, 196608, 0, 131074, 196608, 0, 131075, 196608, 0, 65540, 196608, 0, 65539, 196608, 0, 65538, 196608, 0, 65537, 196608, 0, 65536, 196608, 0, 196609, 196608, 0, 196610, 196608, 0, 196611, 196608, 0, 196608, 131072, 1610612736, 196612, 131072, 805306368)
 
 [node name="Buttons" type="Node2D" parent="ActiveBlueprint"]
+position = Vector2(49, 46)
 
 [node name="Label" type="Label" parent="ActiveBlueprint"]
-offset_left = 114.0
-offset_top = 279.0
-offset_right = 652.0
-offset_bottom = 508.0
+offset_left = 172.0
+offset_top = 317.0
+offset_right = 710.0
+offset_bottom = 546.0
 label_settings = ExtResource("4_vslhu")
 
 [node name="BlueprintSelect" type="Node2D" parent="."]

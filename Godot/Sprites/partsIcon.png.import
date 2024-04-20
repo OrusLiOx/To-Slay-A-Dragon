@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csk4rdey087lw"
-path="res://.godot/imported/temp_blacksmith.png-add4471935cdab65bd9bb940d7eaf5e1.ctex"
+uid="uid://bwlwwxkp0cdhx"
+path="res://.godot/imported/partsIcon.png-3b3126956143ced85ae2efa1643f3897.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/temp_blacksmith.png"
-dest_files=["res://.godot/imported/temp_blacksmith.png-add4471935cdab65bd9bb940d7eaf5e1.ctex"]
+source_file="res://Sprites/partsIcon.png"
+dest_files=["res://.godot/imported/partsIcon.png-3b3126956143ced85ae2efa1643f3897.ctex"]
 
 [params]
 

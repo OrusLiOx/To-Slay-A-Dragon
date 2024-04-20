@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8r30k02j33i2"
-path="res://.godot/imported/lizor.png-78bba7a81345fac5fbd8ac1838393d12.ctex"
+uid="uid://ddmy0ntrchc50"
+path="res://.godot/imported/anvilGlow.png-720bc9b671c8232b488ce686ab0d4988.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/lizor.png"
-dest_files=["res://.godot/imported/lizor.png-78bba7a81345fac5fbd8ac1838393d12.ctex"]
+source_file="res://Sprites/camp/anvilGlow.png"
+dest_files=["res://.godot/imported/anvilGlow.png-720bc9b671c8232b488ce686ab0d4988.ctex"]
 
 [params]
 

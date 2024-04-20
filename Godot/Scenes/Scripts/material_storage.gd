@@ -9,7 +9,7 @@ func _ready():
 	
 	var x = 0
 	for t in ["m","f","s"]:
-		for r in range(0,5):
+		for r in range(0,4):
 			var child = buttonScene.instantiate()
 			child.make_part(t, r)
 			parent.add_child(child)
@@ -46,5 +46,4 @@ func set_item_display(vis:bool, part : Part):
 			"m": text += "weapons and armor\n"
 			"s": text += "armor\n"
 			"f": text += "weapons\n"
-		text+= "Found in "
 		$PartDisplay/Label.text = text

@@ -5,6 +5,8 @@ var quests
 var combat
 
 signal toCamp()
+signal death()
+signal time()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	combat = $Combat
@@ -25,6 +27,7 @@ func _ready():
 	pass # Replace with function body.
 
 func start_quest(quest):
+	emit_signal("time")
 	combat.visible = true
 	$Switch.disabled = true
 	for q in quests:
@@ -45,14 +48,14 @@ func show_quest_data(quest):
 	questData["main"].position = quest.dataDisplayPosition
 	questData["main"].text = quest.name
 	
-	questData["material"].text = quest.questMaterial.get_name()
+	questData["material"].text = quest.questMaterial.get_name() + "\nvalue: "+ str(quest.questMaterial.get_value())
 	questData["material sprite"].set_part(quest.questMaterial)
 	
 	questData["enemy name"].text = quest.enemy
 	questData["enemy stats"].text = str(quest.questEnemy.attack) + "\n" + str(quest.questEnemy.defense)
 	
-	questData["your stats"].text = str(Storage.equipment[Storage.curWeapon].value) + "\n" 
-	questData["your stats"].text += str(Storage.equipment[Storage.curArmor].value)
+	questData["your stats"].text = str(Storage.get_attack()) + "\n" 
+	questData["your stats"].text += str(Storage.get_defense())
 	questData["main"].visible = true
 	pass
 	
@@ -65,4 +68,8 @@ func _on_switch_button_down():
 
 func _on_combat_combat_done():
 	finish_quest()
+	pass # Replace with function body.
+
+func _on_combat_player_death():
+	emit_signal("death")
 	pass # Replace with function body.

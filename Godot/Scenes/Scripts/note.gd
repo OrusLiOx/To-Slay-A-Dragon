@@ -6,7 +6,7 @@ var dir
 func _ready():
 	speed = 300
 	dir = randi_range(0,3)
-	rotation = dir*PI/2
+	$Sprite2D.rotation = dir*PI/2
 	pass # Replace with function body.
 
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bedtgjo8m3qhr"
-path="res://.godot/imported/temp_campBackground.png-e4ab2323cfb5f0a1dc50a7a2e3350be7.ctex"
+uid="uid://cln4p7b7ixb78"
+path="res://.godot/imported/heart.png-e4c9cacde081f165402ad7c69da5bfce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/temp_campBackground.png"
-dest_files=["res://.godot/imported/temp_campBackground.png-e4ab2323cfb5f0a1dc50a7a2e3350be7.ctex"]
+source_file="res://Sprites/heart.png"
+dest_files=["res://.godot/imported/heart.png-e4c9cacde081f165402ad7c69da5bfce.ctex"]
 
 [params]
 

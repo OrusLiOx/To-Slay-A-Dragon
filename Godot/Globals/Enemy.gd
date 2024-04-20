@@ -3,6 +3,7 @@ var type : String
 var attack : float
 var defense : float
 var hp : float
+var maxHp : float
 
 func _init(t :String):
 	set_enemy(t)
@@ -11,18 +12,19 @@ func set_enemy(t : String):
 	type = t
 	match(type):
 		"Slime":
-			attack = 10
-			defense = 10
+			attack = 5
+			defense = 5
+			maxHp = 10
 		"Goblin":
 			attack = 10
 			defense = 10
+			maxHp = 10
 		"Snake":
-			attack = 10
-			defense = 10
-	attack = 10
-	defense = 0
+			attack = 5
+			defense = 5
+			maxHp = 10
 	
 	heal()
 
 func heal():
-	hp = max(defense*10,10)
+	hp = maxHp

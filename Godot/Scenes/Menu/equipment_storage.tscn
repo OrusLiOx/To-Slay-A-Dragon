@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbkg2hwu1qssx"]
+[gd_scene load_steps=7 format=3 uid="uid://dbkg2hwu1qssx"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/equipment_storage.gd" id="1_jjyk2"]
 [ext_resource type="PackedScene" uid="uid://cytiu54cl8vi4" path="res://Scenes/Pieces/equip_button.tscn" id="2_oyabb"]
 [ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/Pieces/part_button.tscn" id="3_3q3cr"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="3_l4isl"]
+[ext_resource type="Theme" uid="uid://dgifmyw55byck" path="res://Themes/UIButton.tres" id="5_t0c8o"]
+[ext_resource type="Texture2D" uid="uid://6203f8cgpqcs" path="res://Sprites/arrow.png" id="6_8ed6u"]
 
 [node name="EquipmentStorage" type="Node2D"]
 script = ExtResource("1_jjyk2")
@@ -49,18 +51,25 @@ label_settings = ExtResource("3_l4isl")
 
 [node name="Left" type="Button" parent="Main"]
 offset_left = 8.0
-offset_top = 202.0
+offset_top = 193.0
 offset_right = 58.0
-offset_bottom = 402.0
+offset_bottom = 537.0
+theme = ExtResource("5_t0c8o")
+icon = ExtResource("6_8ed6u")
+expand_icon = true
 
 [node name="Right" type="Button" parent="Main"]
-offset_left = 420.0
-offset_top = 213.0
-offset_right = 470.0
-offset_bottom = 413.0
+offset_left = 490.0
+offset_top = 537.0
+offset_right = 540.0
+offset_bottom = 881.0
+rotation = 3.14159
+theme = ExtResource("5_t0c8o")
+icon = ExtResource("6_8ed6u")
+expand_icon = true
 
 [node name="Buttons" type="Node2D" parent="Main"]
-position = Vector2(62.5, 125)
+position = Vector2(80, 125)
 
 [node name="PartDisplay" type="Node2D" parent="Main"]
 position = Vector2(0, 650)

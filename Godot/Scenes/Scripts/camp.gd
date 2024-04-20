@@ -25,7 +25,7 @@ func open():
 	blacksmith.dialogue.modulate.a = 0
 
 func _process(_delta):
-	if touchingLizor and Input.is_action_pressed("Pet"):
+	if touchingLizor and Input.is_action_pressed("Pet") and !forge.visible:
 		heartParticles.amount_ratio = max(Input.get_last_mouse_velocity().length()/2000, .1)
 	else:
 		heartParticles.amount_ratio = 0

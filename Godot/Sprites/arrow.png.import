@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b26uuh4doeuuf"
-path="res://.godot/imported/temp_anvil.png-d9df6d0b2db9bcaa909fcdc1846a2c8f.ctex"
+uid="uid://6203f8cgpqcs"
+path="res://.godot/imported/arrow.png-5405b2f4a5090f6ebaea005362d7d52b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/temp_anvil.png"
-dest_files=["res://.godot/imported/temp_anvil.png-d9df6d0b2db9bcaa909fcdc1846a2c8f.ctex"]
+source_file="res://Sprites/arrow.png"
+dest_files=["res://.godot/imported/arrow.png-5405b2f4a5090f6ebaea005362d7d52b.ctex"]
 
 [params]
 
