@@ -9,10 +9,10 @@ script = ExtResource("1_64m3c")
 buttonScene = ExtResource("2_e5nq5")
 
 [node name="Buttons" type="Node2D" parent="."]
-position = Vector2(80, 125)
+position = Vector2(74, 125)
 
 [node name="PartDisplay" type="Node2D" parent="."]
-position = Vector2(0, 658)
+position = Vector2(6, 480)
 
 [node name="Label" type="Label" parent="PartDisplay"]
 offset_left = 50.0

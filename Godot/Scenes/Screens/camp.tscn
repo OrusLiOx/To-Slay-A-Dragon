@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bmx0jemjixann"]
+[gd_scene load_steps=18 format=3 uid="uid://bmx0jemjixann"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/camp.gd" id="1_n2q1u"]
 [ext_resource type="Texture2D" uid="uid://bedtgjo8m3qhr" path="res://Sprites/camp/campBackground.png" id="2_53k2d"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b7rsad5y1w38s" path="res://Scenes/Menu/forge_menu.tscn" id="7_f5mex"]
 [ext_resource type="Texture2D" uid="uid://c1p32ma6xw854" path="res://Sprites/camp/blacksmithGlow.png" id="9_ut1ap"]
 [ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/camp/campfire.png" id="10_kjxj7"]
+[ext_resource type="Texture2D" uid="uid://dcnioqhxel2ku" path="res://Sprites/mapIcon.png" id="12_3gpqe"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hpgy"]
 
@@ -52,10 +53,10 @@ texture = ExtResource("4_7ukv5")
 
 [node name="Anvil" type="Button" parent="."]
 z_index = 1
-offset_left = -671.0
-offset_top = 254.0
-offset_right = -366.0
-offset_bottom = 482.0
+offset_left = -508.0
+offset_top = 222.0
+offset_right = -203.0
+offset_bottom = 450.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_edwyj")
 icon = ExtResource("5_lg7wt")
 flat = true
@@ -112,6 +113,7 @@ offset_left = -950.0
 offset_top = -534.0
 offset_right = -850.0
 offset_bottom = -434.0
+icon = ExtResource("12_3gpqe")
 
 [node name="fire" type="Button" parent="."]
 offset_left = -165.0

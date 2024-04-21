@@ -9,7 +9,7 @@ func _ready():
 	
 	var x = 0
 	for t in ["m","f","s"]:
-		for r in range(0,4):
+		for r in range(0,3):
 			var child = buttonScene.instantiate()
 			child.make_part(t, r)
 			parent.add_child(child)

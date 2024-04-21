@@ -25,6 +25,7 @@ var dir:Dictionary
 
 signal combat_done()
 signal player_death()
+signal win()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -69,8 +70,8 @@ func start(quest):
 	# set display stuff
 	player["attack"] = Storage.get_attack()
 	player["defense"] = Storage.get_defense()
-	player["hp"] = 100
-	player["maxHp"] = 100
+	player["maxHp"] = 50
+	player["hp"] = player["maxHp"]
 	for note in notes.get_children():
 		note.queue_free()
 	
@@ -89,7 +90,7 @@ func start(quest):
 	minigameActive = true
 	killEnemy = false
 	
-	noteSpeed = max(300, (enemy.stats.attack-player["defense"]*1.1)*100+300)
+	noteSpeed =enemy.stats.noteSpeed #min(2000,max(enemy.stats.noteSpeed, (enemy.stats.attack-player["defense"]*1.1)*100+enemy.stats.noteSpeed))
 	spawn_note()
 	pass
 
@@ -143,7 +144,7 @@ func hit_enemy(crit:float = 0):
 	$EnemyScreen/You/LastHit.text = ""
 	enemy.hit()
 	if randf()<crit:
-		damage = max(1,damage * 2)
+		damage = damage*2
 		enemy.stats.hp -= damage
 		$EnemyScreen/Health/LastHit.text = str(damage) + " CRIT!"
 	else:
@@ -161,7 +162,7 @@ func hit_enemy(crit:float = 0):
 			rewardQuantity += 1
 			bonus -= 1
 			
-		if randf_range(0,1) < bonus:
+		if randf() < bonus:
 			rewardQuantity +=1
 		
 		$EnemyScreen/Reward.text = "+"+str(rewardQuantity)
@@ -171,20 +172,18 @@ func hit_enemy(crit:float = 0):
 	pass
 
 func get_damage(attack, defense):
-	var damage = attack - defense
+	var damage = attack-defense
 	if damage > 0:
 		return damage
-	elif randf() < attack/defense:
-		return 1
 	else:
-		return 0
+		return int(attack/defense*100)/100.0
 
 func spawn_note():
 	var n = noteScene.instantiate()
 	notes.add_child(n)
 	n.speed = noteSpeed
 	n.position = Vector2(800,60)
-	timer.start(randf_range(.25/(noteSpeed/300),1/(noteSpeed/300)))
+	timer.start(randf_range(enemy.stats.noteDelayMin/(noteSpeed/enemy.stats.noteSpeed),enemy.stats.noteDelayMax/(noteSpeed/enemy.stats.noteSpeed)))
 
 # detect notes
 func _on_good_area_entered(area):
@@ -225,6 +224,10 @@ func _on_kill_area_entered(area):
 
 func _on_timer_timeout():
 	if killEnemy:
+		if enemy.stats.type == "Dragon":
+			emit_signal("win")
+			timer.stop()
+			return
 		timer.stop()
 		Storage.add_part(questReward, rewardQuantity)
 		emit_signal("combat_done")

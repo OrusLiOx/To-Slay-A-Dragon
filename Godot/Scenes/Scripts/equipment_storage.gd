@@ -13,7 +13,7 @@ var curWeapon : Equipment
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pageSize = 12
+	pageSize = 9
 	armorDisplay = $Equipped/Armor
 	weaponDisplay = $Equipped/Weapon
 	

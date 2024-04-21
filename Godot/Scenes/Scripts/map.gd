@@ -28,6 +28,7 @@ func _ready():
 
 func start_quest(quest):
 	emit_signal("time")
+	$Clock.turn()
 	combat.visible = true
 	$Switch.disabled = true
 	for q in quests:
@@ -44,12 +45,23 @@ func finish_quest():
 func show_quest_data(quest):
 	if combat.visible:
 		return
-
-	questData["main"].position = quest.dataDisplayPosition
+	
+	var x = quest.position.x
+	if x < 0:
+		x += 57
+	else:
+		x -= 463
+	var y = min(max(quest.position.y-125,-530),182)
+	questData["main"].position = Vector2(x,y)
 	questData["main"].text = quest.name
 	
-	questData["material"].text = quest.questMaterial.get_name() + "\nvalue: "+ str(quest.questMaterial.get_value())
-	questData["material sprite"].set_part(quest.questMaterial)
+	if quest.enemy == "Dragon":
+		questData["material"].text = "The final battle"
+		questData["material sprite"].visible = false
+	else:
+		questData["material"].text = quest.questMaterial.get_name() + "\nValue: "+ str(quest.questMaterial.get_value())
+		questData["material sprite"].set_part(quest.questMaterial)
+		questData["material sprite"].visible = true
 	
 	questData["enemy name"].text = quest.enemy
 	questData["enemy stats"].text = str(quest.questEnemy.attack) + "\n" + str(quest.questEnemy.defense)
@@ -72,4 +84,36 @@ func _on_combat_combat_done():
 
 func _on_combat_player_death():
 	emit_signal("death")
+	$Clock.turn(2)
+	combat.visible = false
+	pass # Replace with function body.
+
+func _on_combat_win():
+	combat.visible = false
+	$Win.visible = true
+	$Win/Stats.text = "You took " + str(Stats.totaltime/4.0) + " days\nto kill the dragon\n"
+	$Win/Stats.text += "\nTotal Combats: " + str(Stats.combats)
+	$Win/Stats.text += "\nDeaths: " + str(Stats.deaths)
+	$Win/Stats.text += "\nWin Rate: " + str((Stats.combats-Stats.deaths)/Stats.combats)
+	
+	pass # Replace with function body.
+
+func _on_button_mouse_entered():
+	if Stats.totaltime == 4:
+		$Button/ColorRect/Label.text = "1 day\nhas passed"
+	else:
+		$Button/ColorRect/Label.text = str(Stats.totaltime/4.0)+" days\nhave passed"
+	$Button/ColorRect.visible = true
+	pass # Replace with function body.
+
+func _on_button_mouse_exited():
+	$Button/ColorRect.visible = false
+	pass # Replace with function body.
+
+func _on_clock_done():
+	if combat.visible:
+		return
+	$Switch.disabled = false
+	for quest in quests:
+		quest.disabled = false
 	pass # Replace with function body.

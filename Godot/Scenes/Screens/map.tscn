@@ -1,19 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://3po5cq6p7ujc"]
+[gd_scene load_steps=12 format=3 uid="uid://3po5cq6p7ujc"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/map.gd" id="1_bqrdo"]
-[ext_resource type="Texture2D" uid="uid://b6k2ynjqiyrby" path="res://Sprites/temp_map.png" id="1_mbdqn"]
+[ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map.png" id="2_dmyx0"]
 [ext_resource type="PackedScene" uid="uid://b0781ipcpmjaf" path="res://Scenes/Quest/quest.tscn" id="3_d64i7"]
 [ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/camp/campfire.png" id="3_qnsfu"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="4_cpy0l"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_7xw65"]
 [ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/Pieces/part_button.tscn" id="6_epqax"]
 [ext_resource type="PackedScene" uid="uid://bxfmkq8bgumev" path="res://Scenes/Quest/combat.tscn" id="7_fpvvu"]
+[ext_resource type="Texture2D" uid="uid://28eu1obcagk1" path="res://Sprites/skybox/clock.png" id="9_jxxns"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Clock.gd" id="10_mq4ra"]
+[ext_resource type="Texture2D" uid="uid://3n0fg608t8j7" path="res://Sprites/skybox/clockFrame.png" id="11_vuy1i"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_bqrdo")
 
 [node name="TempMap" type="Sprite2D" parent="."]
-texture = ExtResource("1_mbdqn")
+texture = ExtResource("2_dmyx0")
 
 [node name="Switch" type="Button" parent="."]
 offset_left = -950.0
@@ -26,15 +29,16 @@ expand_icon = true
 [node name="Quests" type="Node2D" parent="."]
 
 [node name="Goblin Grotto" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = -844.0
-offset_top = -81.0
-offset_right = -744.0
-offset_bottom = 19.0
+offset_left = -769.0
+offset_top = 293.0
+offset_right = -661.0
+offset_bottom = 401.0
 part = "m0"
 enemy = "Goblin"
 dataDisplayPosition = Vector2(-734, -235)
 
 [node name="Slime Meadows" parent="Quests" instance=ExtResource("3_d64i7")]
+visible = false
 offset_left = -721.0
 offset_top = 314.0
 offset_right = -621.0
@@ -44,24 +48,25 @@ enemy = "Slime"
 dataDisplayPosition = Vector2(-600, 126)
 
 [node name="Slithering Stream" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = -330.0
-offset_top = 204.0
-offset_right = -230.0
-offset_bottom = 304.0
+offset_left = -286.0
+offset_top = 310.0
+offset_right = -178.0
+offset_bottom = 418.0
 part = "s0"
-enemy = "Snake"
+enemy = "Serpent"
 dataDisplayPosition = Vector2(-217, 126)
 
 [node name="Fungal Grove" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = -562.0
-offset_top = -361.0
-offset_right = -462.0
-offset_bottom = -261.0
-part = "f1"
+offset_left = -516.0
+offset_top = -436.0
+offset_right = -408.0
+offset_bottom = -328.0
+part = "f0"
 enemy = "Fairy"
 dataDisplayPosition = Vector2(-454, -474)
 
 [node name="Singing Lake" parent="Quests" instance=ExtResource("3_d64i7")]
+visible = false
 offset_left = -294.0
 offset_top = -127.0
 offset_right = -194.0
@@ -71,6 +76,7 @@ enemy = "Mermaid"
 dataDisplayPosition = Vector2(-189, -273)
 
 [node name="Abandon Mine" parent="Quests" instance=ExtResource("3_d64i7")]
+visible = false
 offset_left = -142.0
 offset_top = -375.0
 offset_right = -42.0
@@ -79,75 +85,76 @@ part = "m1"
 enemy = "Skeleton"
 dataDisplayPosition = Vector2(-35, -491)
 
-[node name="Glistening Sands" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 225.0
-offset_top = 343.0
-offset_right = 325.0
-offset_bottom = 443.0
-part = "m2"
-enemy = "Golem"
+[node name="Beetle Burrows" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = 175.0
+offset_top = 190.0
+offset_right = 283.0
+offset_bottom = 298.0
+part = "m1"
+enemy = "Gold Beetle"
 dataDisplayPosition = Vector2(-400, 140)
 
-[node name="Lizard Land" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 248.0
-offset_top = 46.0
-offset_right = 348.0
-offset_bottom = 146.0
-part = "s2"
+[node name="Prickly Plains" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = 112.0
+offset_top = -140.0
+offset_right = 220.0
+offset_bottom = -32.0
+part = "s1"
 enemy = "Magma Lizard"
 dataDisplayPosition = Vector2(-374, -93)
 
 [node name="Dancing Fires" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 627.0
-offset_top = 295.0
-offset_right = 727.0
-offset_bottom = 395.0
-part = "f2"
+offset_left = 745.0
+offset_top = 367.0
+offset_right = 853.0
+offset_bottom = 475.0
+part = "f1"
 enemy = "Fire Fox"
 dataDisplayPosition = Vector2(2, 126)
 
 [node name="Ancient Temple" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 335.0
-offset_top = -437.0
-offset_right = 435.0
-offset_bottom = -337.0
-part = "m3"
+offset_left = 792.0
+offset_top = -38.0
+offset_right = 900.0
+offset_bottom = 70.0
+part = "m2"
 enemy = "Animated Armor"
 dataDisplayPosition = Vector2(-292, -513)
 
 [node name="Suspicious Chest" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 706.0
-offset_top = -129.0
-offset_right = 806.0
-offset_bottom = -29.0
-part = "f3"
-enemy = "Mimic"
+offset_left = 414.0
+offset_top = -310.0
+offset_right = 522.0
+offset_bottom = -202.0
+part = "f2"
+enemy = "Chest?"
 dataDisplayPosition = Vector2(81, -273)
 
 [node name="Nearing Dragon" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 500.0
-offset_top = -254.0
-offset_right = 600.0
-offset_bottom = -154.0
-part = "s3"
+offset_left = 35.0
+offset_top = -449.0
+offset_right = 143.0
+offset_bottom = -341.0
+part = "s2"
 enemy = "Wyvern"
 dataDisplayPosition = Vector2(-125, -383)
 
 [node name="Dragon Peak" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 782.0
-offset_top = -483.0
+offset_left = 774.0
+offset_top = -465.0
 offset_right = 882.0
-offset_bottom = -383.0
+offset_bottom = -357.0
 part = "m0"
 enemy = "Dragon"
 dataDisplayPosition = Vector2(144, -482)
 
 [node name="QuestName" type="Label" parent="."]
+visible = false
 z_index = 1
-offset_left = 1073.0
-offset_top = -379.0
-offset_right = 1533.0
-offset_bottom = -310.0
+offset_left = -752.0
+offset_top = 175.0
+offset_right = -292.0
+offset_bottom = 244.0
 text = "Quest Name"
 label_settings = ExtResource("4_cpy0l")
 horizontal_alignment = 1
@@ -224,6 +231,70 @@ offset_bottom = 183.0
 visible = false
 position = Vector2(-495, -491)
 
+[node name="Win" type="Label" parent="."]
+z_index = 1
+offset_left = -256.0
+offset_top = -129.0
+offset_right = 253.0
+offset_bottom = -60.0
+text = "You Win!"
+label_settings = ExtResource("4_cpy0l")
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Win"]
+z_index = -1
+layout_mode = 0
+offset_right = 509.0
+offset_bottom = 366.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="Stats" type="Label" parent="Win"]
+layout_mode = 0
+offset_top = 70.0
+offset_right = 508.0
+offset_bottom = 315.0
+text = "you took 10 days to kill the dragon"
+label_settings = ExtResource("5_7xw65")
+horizontal_alignment = 1
+
+[node name="Clock" type="Sprite2D" parent="."]
+position = Vector2(-788, -483)
+texture = ExtResource("9_jxxns")
+script = ExtResource("10_mq4ra")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-788, -483)
+texture = ExtResource("11_vuy1i")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -838.0
+offset_top = -535.0
+offset_right = -737.0
+offset_bottom = -434.0
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="Button"]
+visible = false
+layout_mode = 0
+offset_left = -63.0
+offset_top = 117.0
+offset_right = 166.0
+offset_bottom = 220.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="Label" type="Label" parent="Button/ColorRect"]
+layout_mode = 0
+offset_right = 228.0
+offset_bottom = 103.0
+text = "20 days 
+have passed"
+label_settings = ExtResource("5_7xw65")
+horizontal_alignment = 1
+
 [connection signal="button_down" from="Switch" to="." method="_on_switch_button_down"]
 [connection signal="combat_done" from="Combat" to="." method="_on_combat_combat_done"]
 [connection signal="player_death" from="Combat" to="." method="_on_combat_player_death"]
+[connection signal="win" from="Combat" to="." method="_on_combat_win"]
+[connection signal="done" from="Clock" to="." method="_on_clock_done"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

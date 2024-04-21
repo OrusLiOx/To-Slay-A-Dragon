@@ -13,6 +13,7 @@ script = ExtResource("2_8musx")
 
 [node name="PartSprite" parent="." instance=ExtResource("3_a7aqb")]
 position = Vector2(50, 50)
+frame = 3
 
 [node name="Quantity" type="Label" parent="."]
 layout_mode = 0

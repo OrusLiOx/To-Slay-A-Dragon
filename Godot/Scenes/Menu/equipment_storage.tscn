@@ -13,7 +13,7 @@ equipButScene = ExtResource("2_oyabb")
 matButScene = ExtResource("3_3q3cr")
 
 [node name="Equipped" type="Node2D" parent="."]
-position = Vector2(-413, 37)
+position = Vector2(-379, 0)
 
 [node name="Weapon" parent="Equipped" instance=ExtResource("2_oyabb")]
 offset_left = 124.0
@@ -53,26 +53,26 @@ label_settings = ExtResource("3_l4isl")
 offset_left = 8.0
 offset_top = 193.0
 offset_right = 58.0
-offset_bottom = 537.0
+offset_bottom = 393.0
 theme = ExtResource("5_t0c8o")
 icon = ExtResource("6_8ed6u")
 expand_icon = true
 
 [node name="Right" type="Button" parent="Main"]
 offset_left = 490.0
-offset_top = 537.0
+offset_top = 393.0
 offset_right = 540.0
-offset_bottom = 881.0
+offset_bottom = 593.0
 rotation = 3.14159
 theme = ExtResource("5_t0c8o")
 icon = ExtResource("6_8ed6u")
 expand_icon = true
 
 [node name="Buttons" type="Node2D" parent="Main"]
-position = Vector2(80, 125)
+position = Vector2(74, 125)
 
 [node name="PartDisplay" type="Node2D" parent="Main"]
-position = Vector2(0, 650)
+position = Vector2(0, 502)
 
 [node name="Label" type="Label" parent="Main/PartDisplay"]
 offset_right = 500.0
@@ -82,7 +82,7 @@ label_settings = ExtResource("3_l4isl")
 horizontal_alignment = 1
 
 [node name="Parts" type="Node2D" parent="Main/PartDisplay"]
-position = Vector2(62.5, 62.5)
+position = Vector2(74, 62.5)
 
 [connection signal="button_down" from="Main/Left" to="." method="_on_left_button_down"]
 [connection signal="button_down" from="Main/Right" to="." method="_on_right_button_down"]

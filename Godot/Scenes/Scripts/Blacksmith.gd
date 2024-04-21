@@ -19,8 +19,6 @@ func _ready():
 	aura = $Aura
 	aura.visible = false
 	
-	dialogueOptions.push_back("hello")
-	dialogueOptions.push_back("die a log")
 	dialogueOptions.push_back("Be careful if you see any other magma lizards. They aren't usually so friendly.")
 	dialogueOptions.push_back("You can pet the little lady, she won't bite.")
 	dialogueOptions.push_back("Just because she has scales and breathes fire doesn't mean she's a dragon.")
@@ -28,9 +26,7 @@ func _ready():
 	dialogueOptions.push_back("No! You can not take her scales!")
 	dialogueOptions.push_back("Don't approach the little lady from the left, you might startle her.")
 	dialogueOptions.push_back("I know she's not little anymore, but she'll always be a hatchling in my eyes.")
-	
-	specialDialogue.push_back("special!")
-	specialDialogue.push_back("lizor!")
+
 	pass # Replace with function body.
 
 

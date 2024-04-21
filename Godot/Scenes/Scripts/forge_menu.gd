@@ -19,7 +19,7 @@ func _ready():
 	generate_blueprint_base()
 	load_blueprint_selection()
 	
-	$ActiveBlueprint/Label.text = "select a blueprint\n<-----"
+	load_blueprint("dagger")
 	pass # Replace with function body.
 
 func _process(_delta):
@@ -98,7 +98,10 @@ func load_blueprint(type):
 		set_blueprint_slot(1,1,"")
 	activeBlueprint = type
 	$ActiveBlueprint.visible = true
+	if type != "":
+		$ActiveBlueprint/Label2.text = "Required\n\n\nOptional"
 	builtEquip.visible = true
+	$ActiveBlueprint/Type.text = type.capitalize()
 	
 	match(type):
 		"dagger": 
@@ -253,3 +256,7 @@ func craft_equip():
 				partBut.set_part(Part.new(partBut.part.type, -1))
 	update_equip_stats()
 	pass
+
+func _on_help_button_down():
+	$HelpStuff.visible = !$HelpStuff.visible
+	pass # Replace with function body.

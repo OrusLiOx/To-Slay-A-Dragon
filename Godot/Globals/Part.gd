@@ -19,65 +19,59 @@ func get_value():
 	if rarity <0:
 		return 0
 	var base = (rarity+1)*10
-	match(type):
-		"m":
-			return base
-		"f":
-			return base*1.5
-		"s":
-			return base*1.25
+	return base
+	#match(type):
+		#"m":
+			#return base
+		#"f":
+			#return base*1.5
+		#"s":
+			#return base
 
 func get_color():
-	match(rarity):
-		0: return Color(1,1,1)
-		1: return Color(0,1,0)
-		2: return Color(1,0,0)
-		3: return Color(.5,0,1)
-		4: return Color(1,1,0)
-	return Color(1,1,1)
 	match(type):
 		"m":
 			match(rarity):
 				0: 
 					return Color(1,1,1)
 				1: 
-					return Color(0,1,0)
+					return Color("ffe652")
 				2: 
-					return Color(1,0,0)
+					return Color("b97cff")
 				3: 
 					return Color(0,1,1)
 		"f":
 			match(rarity):
 				0: 
-					return Color(1,1,1)
+					return Color("ff61f2")
 				1: 
-					return Color(1,0,0)
+					return Color("ff1200")
 				2: 
-					return Color(0,1,0)
+					return Color("4373ff")
 				3: 
 					return Color(0,0,1)
 		"s":
 			match(rarity):
 				0: 
-					return Color(1,1,1)
+					return Color("37a42a")
 				1: 
-					return Color(1,0,0)
+					return Color("f28e20")
 				2: 
-					return Color(0,1,0)
+					return Color("626262")
 				3: 
 					return Color(0,0,1)
-	
+	return Color(1,1,1)
 
 func get_name():
 	match(type):
 		"m":
 			match(rarity):
 				0: 
-					return "common metal"
+					return "Ferrite"
 				1: 
-					return "uncommon metal"
+					return "Pyre's Stone"
 				2: 
-					return "rare metal"
+					return "Lilium"
 				3: 
 					return "legendary metal"
 				4: 
@@ -85,11 +79,11 @@ func get_name():
 		"f":
 			match(rarity):
 				0: 
-					return "common focus"
+					return "Fairy Heart"
 				1: 
-					return "uncommon focus"
+					return "Burning Core"
 				2: 
-					return "rare focus"
+					return "Dreamer's Stone"
 				3: 
 					return "legendary focus"
 				4: 
@@ -97,11 +91,11 @@ func get_name():
 		"s":
 			match(rarity):
 				0: 
-					return "common focus"
+					return "Serpent Scale"
 				1: 
-					return "uncommon focus"
+					return "Lizard Scale"
 				2: 
-					return "rare focus"
+					return "Wyvern Scale"
 				3: 
 					return "legendary focus"
 				4: 

@@ -13,12 +13,8 @@ func craft(t:String, p : Array):
 	
 	value = 0
 	for part in parts:
-		value+= part.get_value()
-	match(type):
-		"sword":
-			value*=1.2
-		"greatsword":
-			value*=1.5
+		value += part.get_value()
+	
 	pass
 
 func is_weapon():

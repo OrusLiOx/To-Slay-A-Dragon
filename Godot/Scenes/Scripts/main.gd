@@ -44,16 +44,7 @@ func _on_map_to_camp():
 
 
 func _on_map_death():
-	blackoutActive = true
-	$Timer.start(1)
-	pass # Replace with function body.
-
-func _on_timer_timeout():
-	_on_map_to_camp()
-	$Timer.stop()
 	$Sky.turn(3)
-	map.finish_quest()
-	blackoutActive = false
 	pass # Replace with function body.
 
 func _on_map_time():
