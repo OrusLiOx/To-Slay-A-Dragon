@@ -100,4 +100,4 @@ func _on_control_mouse_exited():
 	if count == 0:
 		header.text ="Help: Forge Menu"
 		text.text="Hover the mouse over whatever you want to learn about.\n\n"
-		text.text+="NOTE: you cannot interact with most Forge Menu options while this help menu is open."
+		text.text+="NOTE: you cannot interact with most Forge Menu options while this help menu is open. Click the ? button in the botton right to close the help menu."

@@ -27,6 +27,8 @@ func _ready():
 	pass # Replace with function body.
 
 func start_quest(quest):
+	$HelpMenu.visible = false
+	$HelpCombat.visible = false
 	emit_signal("time")
 	$Clock.turn()
 	combat.visible = true
@@ -85,7 +87,6 @@ func _on_combat_combat_done():
 func _on_combat_player_death():
 	emit_signal("death")
 	$Clock.turn(2)
-	combat.visible = false
 	pass # Replace with function body.
 
 func _on_combat_win():
@@ -94,7 +95,6 @@ func _on_combat_win():
 	$Win/Stats.text = "You took " + str(Stats.totaltime/4.0) + " days\nto kill the dragon\n"
 	$Win/Stats.text += "\nTotal Combats: " + str(Stats.combats)
 	$Win/Stats.text += "\nDeaths: " + str(Stats.deaths)
-	$Win/Stats.text += "\nWin Rate: " + str((Stats.combats-Stats.deaths)/Stats.combats)
 	
 	pass # Replace with function body.
 
@@ -112,8 +112,21 @@ func _on_button_mouse_exited():
 
 func _on_clock_done():
 	if combat.visible:
+		if combat.player["hp"] <=0:
+			combat.visible = false
+			$Switch.disabled = false
+			for quest in quests:
+				quest.disabled = false
 		return
-	$Switch.disabled = false
-	for quest in quests:
-		quest.disabled = false
+	
+	pass # Replace with function body.
+
+func _on_help_button_down():
+	if $HelpMenu.visible:
+		$HelpCombat.visible = true
+		$HelpMenu.visible = false
+	elif $HelpCombat.visible:
+		$HelpCombat.visible = false
+	else:
+		$HelpMenu.visible = true
 	pass # Replace with function body.

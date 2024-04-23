@@ -60,6 +60,8 @@ func _process(delta):
 
 func start(quest):
 	Stats.combats +=1
+	if quest.enemy == "Dragon":
+		partSprite.modulate.a = 0
 	$EnemyScreen/Health/Name.text = quest.enemy
 	enemyHealth.size.x=enemyHealthBar.size.x
 	$EnemyScreen/You/Current.size.x = $EnemyScreen/You.size.x
@@ -176,7 +178,7 @@ func get_damage(attack, defense):
 	if damage > 0:
 		return damage
 	else:
-		return int(attack/defense*100)/100.0
+		return int(attack/defense*1000)/1000.0
 
 func spawn_note():
 	var n = noteScene.instantiate()

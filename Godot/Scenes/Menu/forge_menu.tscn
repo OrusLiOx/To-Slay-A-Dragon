@@ -86,6 +86,7 @@ horizontal_alignment = 1
 position = Vector2(1412, 8)
 
 [node name="HelpStuff" type="Node2D" parent="." node_paths=PackedStringArray("storage")]
+visible = false
 script = ExtResource("4_gsbmk")
 storage = NodePath("../Storage")
 

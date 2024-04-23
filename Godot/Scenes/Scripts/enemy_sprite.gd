@@ -2,6 +2,7 @@ extends Sprite2D
 var stats : Enemy
 var flash 
 var flashSpeed
+@export var background : Sprite2D
 
 func _ready():
 	flash = 0
@@ -25,10 +26,52 @@ func _process(delta):
 				modulate.g = 1
 
 func make_enemy(t:String):
-	stats = Enemy.new(t)
+	set_enemy(Enemy.new(t))
 
 func set_enemy(e : Enemy ):
 	stats = e
+	match(e.type):
+		"Goblin":
+			texture = load("res://icon.svg")
+			set_background("res://Sprites/Enemies/forest.png")
+		"Serpent":
+			texture = load("res://Sprites/Enemies/snake.png")
+			set_background("res://Sprites/Enemies/forest.png")
+		"Fairy":
+			texture = load("res://Sprites/Enemies/fairy.png")
+			set_background("res://Sprites/Enemies/forest.png")
+		
+		
+		"Gold Beetle":
+			texture = load("res://icon.svg")
+			set_background("res://Sprites/Enemies/desert.png")
+		"Magma Lizard":
+			texture = load("res://Sprites/Enemies/lizard.png")
+			set_background("res://Sprites/Enemies/desert.png")
+		"Fire Spirit":
+			texture = load("res://Sprites/Enemies/fox.png")
+			set_background("res://Sprites/Enemies/desert.png")
+			
+		"Animated Armor":
+			texture = load("res://icon.svg")
+			set_background("res://Sprites/Enemies/cave.png")
+		"Wyvern":
+			texture = load("res://icon.svg")
+			set_background("res://Sprites/Enemies/cave.png")
+		"Chest":
+			texture = load("res://Sprites/Enemies/chest.png")
+			set_background("res://Sprites/Enemies/mountain.png")
+		"Mimic":
+			texture = load("res://Sprites/Enemies/mimic.png")
+			set_background("res://Sprites/Enemies/mountain.png")
+		
+		"Dragon":
+			texture = load("res://icon.svg")
+			set_background("res://Sprites/Enemies/mountain.png")
+
+func set_background(path):
+	if background != null:
+		background.texture = load(path)
 
 func hit():
 	flash = 1

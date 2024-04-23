@@ -30,7 +30,7 @@ func set_enemy(t : String):
 			noteDelayMax = 1
 		"Fairy":
 			attack = 15
-			defense = 15
+			defense = 10
 			maxHp = 10
 			noteSpeed = 300
 			noteDelayMin = .25
@@ -51,7 +51,7 @@ func set_enemy(t : String):
 			noteSpeed = 400
 			noteDelayMin = .25
 			noteDelayMax = .5
-		"Fire Fox":
+		"Fire Spirit":
 			attack = 70
 			defense = 40
 			maxHp = 20
