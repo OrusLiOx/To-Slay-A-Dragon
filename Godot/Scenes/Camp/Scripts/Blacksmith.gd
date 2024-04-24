@@ -35,12 +35,13 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# fades out text box if necessary
 	if !active or (!inBlacksmith and !inTextBox):
 		dialogue.modulate.a = move_toward(dialogue.modulate.a,0,.5*delta)
 	pass
 
+# trigger dialogue when clicked
 func _on_button_down():
 	if !active:
 		return
@@ -53,6 +54,7 @@ func _on_button_down():
 		specialDialogue.remove_at(0);
 	pass # Replace with function body.
 
+# dialogue fade/reapear based on mouse overlap
 func _on_mouse_entered():
 	if !active:
 		return

@@ -8,8 +8,8 @@ var count
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	text = $Label
-	header = $Label2
+	text = $Description
+	header = $Title
 	count = 1
 	_on_control_mouse_exited()
 	storage = storage.get_child(3)
@@ -60,7 +60,7 @@ func _on_storage_mouse_entered():
 		text.text += "Clicking on an equipment equips/unequips it"
 	pass # Replace with function body.
 
-func _on_req_mouse_entered():
+func _on_required_mouse_entered():
 	count+=1
 	header.text = "Active Blueprint: Required Materials"
 	text.text = "Indicates materials that are required to forge the selected equipment.\n\n"
@@ -68,7 +68,7 @@ func _on_req_mouse_entered():
 	text.text+= "Clicking on a selected material in the blueprint will remove it."
 	pass # Replace with function body.
 
-func _on_req_2_mouse_entered():
+func _on_optional_mouse_entered():
 	count+=1
 	header.text = "Active Blueprint: Optional Materials"
 	text.text = "Indicates materials optional material that can be added to make the equipment stronger.\n\n"
@@ -76,7 +76,7 @@ func _on_req_2_mouse_entered():
 	text.text += "Clicking on a selected material in the blueprint will remove it."
 	pass # Replace with function body.
 
-func _on_req_3_mouse_entered():
+func _on_crafted_mouse_entered():
 	count+=1
 	header.text = "Active Blueprint: Equipment Preview"
 	text.text = "Displays the equipment to be forged and the stats it will provide.\n\n"
@@ -89,7 +89,7 @@ func _on_materials_mouse_entered():
 	text.text = "Sets storage to material display.\n\n"
 	pass # Replace with function body.
 
-func _on_materials_2_mouse_entered():
+func _on_equipment_mouse_entered():
 	count+=1
 	header.text = "Storage: Equipment Tab"
 	text.text = "Sets storage to equipment display.\n\n"

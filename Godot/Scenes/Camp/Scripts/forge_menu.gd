@@ -40,9 +40,9 @@ func _process(_delta):
 		if Input.is_action_just_pressed("Blueprint"+str(i+1)):
 			load_blueprint(types[i])
 
-# blueprint stuff
+# initial blueprint menu setup
 func load_blueprint_selection():
-	var parent = $BlueprintSelect/Buttons
+	var parent = $BlueprintSelect/Blueprints
 	var x = 0
 	var y = 0
 	for type in types:
@@ -60,7 +60,7 @@ func load_blueprint_selection():
 	pass
 
 func generate_blueprint_base():
-	var parent = $ActiveBlueprint/Buttons
+	var parent = $ActiveBlueprint/SelectedParts
 	
 	for x in range(0,4):
 		var child = partButScene.instantiate()
@@ -87,13 +87,15 @@ func generate_blueprint_base():
 	builtEquip = equipButScene.instantiate()
 	$ActiveBlueprint.add_child(builtEquip)
 	builtEquip.position = Vector2(parent.position.x,parent.position.y+250)
-	builtEquip.visible = false
-	builtEquip.disabled = true
+	builtEquip.visible = true
+	builtEquip.disabled = false
 	builtEquip.button_down.connect(craft_equip)
 	
 	pass
 
+# handle switching blueprints
 func blueprint_button_down(type):
+	# if active blueprint isn't changed, clear parts from selection
 	if type == activeBlueprint:
 		for i in range(0,4):
 			if selectedParts[0][i].part.rarity >= 0:
@@ -106,10 +108,6 @@ func blueprint_button_down(type):
 		
 func load_blueprint(type):
 	activeBlueprint = type
-	$ActiveBlueprint.visible = true
-	if type != "":
-		$ActiveBlueprint/Label2.text = "Required\n\n\nOptional"
-	builtEquip.visible = true
 	$ActiveBlueprint/Type.text = type.capitalize()
 	
 	match(type):
@@ -128,6 +126,7 @@ func load_blueprint(type):
 		_:
 			set_blueprint_slots(["","","","","",""])
 			builtEquip.visible = false
+	
 	storage.update()
 	update_equip_stats()
 	pass
@@ -210,7 +209,8 @@ func return_material(partBut):
 	update_equip_stats()
 
 func update_equip_stats():
-	var label = $ActiveBlueprint/Label
+	# determine value of crafted equipment
+	var label = $ActiveBlueprint/EquipStat
 	if activeBlueprint == "":
 		return
 		
@@ -230,12 +230,13 @@ func update_equip_stats():
 	
 	storage.update()
 	
+	# if row 0 isn't filled, you can't craft
 	for partBut in selectedParts[0]:
 		if partBut.part.rarity == -1:
 			builtEquip.set_ghost(activeBlueprint)
 			builtEquip.disabled = true
 			return
-			
+	# if row 0 is filled, build equip based on selected parts
 	var parts:Array = []
 	for arr in selectedParts:
 		for partBut in arr:
@@ -256,8 +257,6 @@ func craft_equip():
 				partBut.set_part(Part.new(partBut.part.type, -1))
 				partBut.update()
 	update_equip_stats()
-	pass
 
 func _on_help_button_down():
 	$HelpStuff.visible = !$HelpStuff.visible
-	pass # Replace with function body.

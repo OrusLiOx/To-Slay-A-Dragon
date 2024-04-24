@@ -77,8 +77,6 @@ position = Vector2(0, 502)
 [node name="Label" type="Label" parent="Main/PartDisplay"]
 offset_right = 500.0
 offset_bottom = 42.0
-text = "Weapon
-Attack: 100"
 label_settings = ExtResource("3_l4isl")
 horizontal_alignment = 1
 

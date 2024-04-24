@@ -8,7 +8,8 @@
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="6_p68io"]
 [ext_resource type="PackedScene" uid="uid://ly2lqh5cyg56" path="res://Scenes/StorageUI/storage.tscn" id="7_uefke"]
 [ext_resource type="Script" path="res://Scenes/Camp/Scripts/camp_help.gd" id="8_sxyww"]
-[ext_resource type="LabelSettings" uid="uid://cysjrmkj5ucc5" path="res://Themes/HeaderLabel_White.tres" id="9_bn2ai"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnipj"]
 
 [node name="ForgeMenu" type="Node2D"]
 script = ExtResource("1_5tl1t")
@@ -21,6 +22,7 @@ offset_top = 942.0
 offset_right = 1879.0
 offset_bottom = 1042.0
 theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rnipj")
 text = "x"
 
 [node name="Help" type="Button" parent="."]
@@ -29,6 +31,7 @@ offset_top = 943.0
 offset_right = 1759.0
 offset_bottom = 1043.0
 theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rnipj")
 text = "?"
 
 [node name="ActiveBlueprint" type="Node2D" parent="."]
@@ -37,10 +40,10 @@ position = Vector2(318, 10)
 [node name="UIbackdrop" parent="ActiveBlueprint" instance=ExtResource("4_xr85d")]
 layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 131076, 65536, 0, 131072, 65536, 0, 131073, 65536, 0, 131074, 65536, 0, 131075, 65536, 0, 65540, 65536, 0, 65539, 65536, 0, 65538, 65536, 0, 65537, 65536, 0, 65536, 65536, 0, 196609, 65536, 0, 196610, 65536, 0, 196611, 65536, 0, 196608, 65536, 0, 196612, 65536, 0, 5, 65536, 0, 6, 65536, 0, 7, 65536, 0, 65543, 65536, 0, 65542, 65536, 0, 65541, 65536, 0, 131077, 65536, 0, 131078, 65536, 0, 65544, 65536, 0, 131080, 65536, 0, 131079, 65536, 0, 196613, 65536, 0, 196614, 65536, 0, 196615, 65536, 0, 262151, 65536, 0, 262150, 65536, 0, 262149, 65536, 0, 262148, 65536, 0, 196616, 65536, 0, 262152, 65536, 0, 262147, 65536, 0, 262146, 65536, 0, 262145, 65536, 0, 262144, 65536, 0, 8, 65536, 0, 9, 65536, 0, 10, 65536, 0, 65546, 65536, 0, 131082, 65536, 0, 196618, 65536, 0, 262154, 65536, 0, 327690, 65536, 0, 327689, 65536, 0, 262153, 65536, 0, 131081, 65536, 0, 196617, 65536, 0, 65545, 65536, 0, 131083, 65536, 0, 131084, 65536, 0, 65547, 65536, 0, 11, 65536, 0, 12, 65536, 0, 65548, 65536, 0, 196620, 65536, 0, 262155, 65536, 0, 262156, 65536, 0, 65549, 65536, 0, 131085, 65536, 0, 196621, 65536, 0, 262157, 65536, 0, 196619, 65536, 0, 327692, 65536, 0, 327691, 65536, 0, 327688, 65536, 0, 327687, 65536, 0, 327686, 65536, 0, 327685, 65536, 0, 327684, 65536, 0, 327683, 65536, 0, 327682, 65536, 0, 327681, 65536, 0, 327680, 65536, 0, 393218, 65536, 0, 458755, 65536, 0, 524291, 65536, 0, 458754, 65536, 0, 524290, 65536, 0, 589826, 65536, 0, 589827, 65536, 0, 589828, 65536, 0, 589829, 65536, 0, 589830, 65536, 0, 589831, 65536, 0, 589832, 65536, 0, 327693, 65536, 0, 393229, 65536, 0, 458765, 65536, 0, 524301, 65536, 0, 589837, 0, 805306368, 589836, 65536, 0, 589835, 65536, 0, 589834, 65536, 0, 589833, 65536, 0, 524297, 65536, 0, 524298, 65536, 0, 524299, 65536, 0, 524300, 65536, 0, 458764, 65536, 0, 393228, 65536, 0, 393227, 65536, 0, 393226, 65536, 0, 393225, 65536, 0, 393224, 65536, 0, 393223, 65536, 0, 393222, 65536, 0, 393221, 65536, 0, 393220, 65536, 0, 393219, 65536, 0, 393217, 65536, 0, 393216, 65536, 0, 458752, 65536, 0, 524288, 65536, 0, 589824, 0, 1610612736, 589825, 65536, 0, 524289, 65536, 0, 458753, 65536, 0, 524292, 65536, 0, 524293, 65536, 0, 458758, 65536, 0, 458759, 65536, 0, 458760, 65536, 0, 458761, 65536, 0, 458762, 65536, 0, 458757, 65536, 0, 458756, 65536, 0, 524294, 65536, 0, 524295, 65536, 0, 524296, 65536, 0, 458763, 65536, 0, 13, 0, 1342177280)
 
-[node name="Buttons" type="Node2D" parent="ActiveBlueprint"]
+[node name="SelectedParts" type="Node2D" parent="ActiveBlueprint"]
 position = Vector2(191, 116)
 
-[node name="Label" type="Label" parent="ActiveBlueprint"]
+[node name="EquipStat" type="Label" parent="ActiveBlueprint"]
 offset_left = 321.0
 offset_top = 373.0
 offset_right = 859.0
@@ -54,7 +57,7 @@ offset_right = 657.0
 offset_bottom = 115.0
 label_settings = ExtResource("6_p68io")
 
-[node name="Label2" type="Label" parent="ActiveBlueprint"]
+[node name="PartType" type="Label" parent="ActiveBlueprint"]
 offset_left = 28.0
 offset_top = 140.0
 offset_right = 159.0
@@ -72,10 +75,10 @@ position = Vector2(72, 98)
 position = Vector2(-12, 12)
 layer_0/tile_data = PackedInt32Array(-65535, 65536, 0, -65536, 65536, 0, 131072, 65536, 0, 131073, 65536, 0, 65537, 65536, 0, 1, 65536, 0, 0, 65536, 0, 65536, 65536, 0, -65537, 0, 0, -131068, 0, 1342177280, -131072, 65536, 0, -131071, 65536, 0, -131070, 65536, 0, -131069, 65536, 0, -65534, 65536, 0, -65533, 65536, 0, 3, 65536, 0, 65539, 65536, 0, 131075, 65536, 0, 65538, 65536, 0, 131074, 65536, 0, 2, 65536, 0, 65535, 65536, 0, -1, 65536, 0, 131071, 65536, 0, 196607, 65536, 0, 262143, 65536, 0, 196608, 65536, 0, 262144, 65536, 0, 262145, 65536, 0, 196610, 65536, 0, 196611, 65536, 0, -65532, 65536, 0, 4, 65536, 0, 65540, 65536, 0, 131076, 65536, 0, 196612, 65536, 0, 262148, 65536, 0, 262147, 65536, 0, 262146, 65536, 0, 196609, 65536, 0, 327683, 65536, 0, 327682, 65536, 0, 327681, 65536, 0, 327680, 65536, 0, 327679, 65536, 0, 393215, 65536, 0, 327684, 65536, 0, 524287, 0, 1610612736, 458756, 0, 805306368, 393220, 65536, 0, 393219, 65536, 0, 393218, 65536, 0, 393217, 65536, 0, 393216, 65536, 0, 458751, 65536, 0, 458752, 65536, 0, 458753, 65536, 0, 458754, 65536, 0, 458755, 65536, 0)
 
-[node name="Buttons" type="Node2D" parent="BlueprintSelect"]
+[node name="Blueprints" type="Node2D" parent="BlueprintSelect"]
 position = Vector2(-32, 0)
 
-[node name="Label" type="Label" parent="BlueprintSelect"]
+[node name="Title" type="Label" parent="BlueprintSelect"]
 offset_left = -37.0
 offset_top = -79.0
 offset_right = 214.0
@@ -105,7 +108,7 @@ offset_top = 8.0
 offset_right = 1014.0
 offset_bottom = 510.0
 
-[node name="Req" type="Control" parent="HelpStuff"]
+[node name="Required" type="Control" parent="HelpStuff"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 320.0
@@ -113,7 +116,7 @@ offset_top = 123.0
 offset_right = 1014.0
 offset_bottom = 238.0
 
-[node name="Req2" type="Control" parent="HelpStuff"]
+[node name="Optional" type="Control" parent="HelpStuff"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 319.0
@@ -121,7 +124,7 @@ offset_top = 247.0
 offset_right = 1013.0
 offset_bottom = 362.0
 
-[node name="Req3" type="Control" parent="HelpStuff"]
+[node name="Crafted" type="Control" parent="HelpStuff"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 449.0
@@ -145,7 +148,7 @@ offset_top = 7.0
 offset_right = 1917.0
 offset_bottom = 910.0
 
-[node name="materials" type="Control" parent="HelpStuff"]
+[node name="Materials" type="Control" parent="HelpStuff"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1438.0
@@ -153,7 +156,7 @@ offset_top = 18.0
 offset_right = 1647.0
 offset_bottom = 126.0
 
-[node name="materials2" type="Control" parent="HelpStuff"]
+[node name="Equipment" type="Control" parent="HelpStuff"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1667.0
@@ -161,7 +164,7 @@ offset_top = 18.0
 offset_right = 1876.0
 offset_bottom = 126.0
 
-[node name="ColorRect" type="ColorRect" parent="HelpStuff"]
+[node name="Backdrop" type="ColorRect" parent="HelpStuff"]
 custom_minimum_size = Vector2(100, 100)
 offset_left = 17.0
 offset_top = 769.0
@@ -169,7 +172,7 @@ offset_right = 1002.0
 offset_bottom = 1065.0
 color = Color(0.933333, 0.862745, 0.701961, 1)
 
-[node name="Label" type="Label" parent="HelpStuff"]
+[node name="Description" type="Label" parent="HelpStuff"]
 offset_left = 31.0
 offset_top = 836.0
 offset_right = 997.0
@@ -179,13 +182,13 @@ label_settings = ExtResource("5_r3t7k")
 autowrap_mode = 2
 visible_characters_behavior = 1
 
-[node name="Label2" type="Label" parent="HelpStuff"]
+[node name="Title" type="Label" parent="HelpStuff"]
 offset_left = 34.0
 offset_top = 764.0
 offset_right = 1000.0
 offset_bottom = 1036.0
 text = "Item"
-label_settings = ExtResource("9_bn2ai")
+label_settings = ExtResource("6_p68io")
 autowrap_mode = 2
 visible_characters_behavior = 1
 
@@ -200,17 +203,17 @@ visible_characters_behavior = 1
 [connection signal="mouse_exited" from="HelpStuff/BlueprintSelect" to="HelpStuff" method="_on_control_mouse_exited"]
 [connection signal="mouse_entered" from="HelpStuff/BlueprintActive" to="HelpStuff" method="_on_blueprint_active_mouse_entered"]
 [connection signal="mouse_exited" from="HelpStuff/BlueprintActive" to="HelpStuff" method="_on_control_mouse_exited"]
-[connection signal="mouse_entered" from="HelpStuff/Req" to="HelpStuff" method="_on_req_mouse_entered"]
-[connection signal="mouse_exited" from="HelpStuff/Req" to="HelpStuff" method="_on_control_mouse_exited"]
-[connection signal="mouse_entered" from="HelpStuff/Req2" to="HelpStuff" method="_on_req_2_mouse_entered"]
-[connection signal="mouse_exited" from="HelpStuff/Req2" to="HelpStuff" method="_on_control_mouse_exited"]
-[connection signal="mouse_entered" from="HelpStuff/Req3" to="HelpStuff" method="_on_req_3_mouse_entered"]
-[connection signal="mouse_exited" from="HelpStuff/Req3" to="HelpStuff" method="_on_control_mouse_exited"]
+[connection signal="mouse_entered" from="HelpStuff/Required" to="HelpStuff" method="_on_required_mouse_entered"]
+[connection signal="mouse_exited" from="HelpStuff/Required" to="HelpStuff" method="_on_control_mouse_exited"]
+[connection signal="mouse_entered" from="HelpStuff/Optional" to="HelpStuff" method="_on_optional_mouse_entered"]
+[connection signal="mouse_exited" from="HelpStuff/Optional" to="HelpStuff" method="_on_control_mouse_exited"]
+[connection signal="mouse_entered" from="HelpStuff/Crafted" to="HelpStuff" method="_on_crafted_mouse_entered"]
+[connection signal="mouse_exited" from="HelpStuff/Crafted" to="HelpStuff" method="_on_control_mouse_exited"]
 [connection signal="mouse_entered" from="HelpStuff/Equipped" to="HelpStuff" method="_on_equipped_mouse_entered"]
 [connection signal="mouse_exited" from="HelpStuff/Equipped" to="HelpStuff" method="_on_control_mouse_exited"]
 [connection signal="mouse_entered" from="HelpStuff/Storage" to="HelpStuff" method="_on_storage_mouse_entered"]
 [connection signal="mouse_exited" from="HelpStuff/Storage" to="HelpStuff" method="_on_control_mouse_exited"]
-[connection signal="mouse_entered" from="HelpStuff/materials" to="HelpStuff" method="_on_materials_mouse_entered"]
-[connection signal="mouse_exited" from="HelpStuff/materials" to="HelpStuff" method="_on_control_mouse_exited"]
-[connection signal="mouse_entered" from="HelpStuff/materials2" to="HelpStuff" method="_on_materials_2_mouse_entered"]
-[connection signal="mouse_exited" from="HelpStuff/materials2" to="HelpStuff" method="_on_control_mouse_exited"]
+[connection signal="mouse_entered" from="HelpStuff/Materials" to="HelpStuff" method="_on_materials_mouse_entered"]
+[connection signal="mouse_exited" from="HelpStuff/Materials" to="HelpStuff" method="_on_control_mouse_exited"]
+[connection signal="mouse_entered" from="HelpStuff/Equipment" to="HelpStuff" method="_on_equipment_mouse_entered"]
+[connection signal="mouse_exited" from="HelpStuff/Equipment" to="HelpStuff" method="_on_control_mouse_exited"]
