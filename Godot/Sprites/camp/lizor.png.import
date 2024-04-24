@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8r30k02j33i2"
-path="res://.godot/imported/lizor.png-2316d000778c9cb9dfe90a30f787f7ab.ctex"
+path="res://.godot/imported/lizor.png-cf1d8ecd1459e3b8b5352cda3febb9b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/camp/lizor.png"
-dest_files=["res://.godot/imported/lizor.png-2316d000778c9cb9dfe90a30f787f7ab.ctex"]
+source_file="res://Sprites/Camp/lizor.png"
+dest_files=["res://.godot/imported/lizor.png-cf1d8ecd1459e3b8b5352cda3febb9b5.ctex"]
 
 [params]
 

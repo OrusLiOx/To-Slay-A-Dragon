@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmylbepggimag"]
+
+[ext_resource type="Texture2D" uid="uid://c2fjif026wnre" path="res://icon.svg" id="1_5uow0"]
+[ext_resource type="Script" path="res://Scenes/Map/Combat/Scripts/enemy_sprite.gd" id="2_8hdfd"]
+
+[node name="EnemySprite" type="Sprite2D"]
+texture = ExtResource("1_5uow0")
+script = ExtResource("2_8hdfd")

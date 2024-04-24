@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs6ej35oeq114"]
+
+[ext_resource type="Script" path="res://Scenes/Map/Combat/Scripts/note.gd" id="1_qvm6b"]
+[ext_resource type="LabelSettings" uid="uid://cysjrmkj5ucc5" path="res://Themes/HeaderLabel_White.tres" id="2_6m7ql"]
+[ext_resource type="Texture2D" uid="uid://6203f8cgpqcs" path="res://Sprites/UI/arrow.png" id="2_7ougi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jg3n"]
+size = Vector2(100, 1)
+
+[node name="Note" type="Area2D" groups=["Note"]]
+modulate = Color(0, 0, 0, 1)
+script = ExtResource("1_qvm6b")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+text = "W"
+label_settings = ExtResource("2_6m7ql")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-18, 0)
+texture = ExtResource("2_7ougi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0jg3n")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)

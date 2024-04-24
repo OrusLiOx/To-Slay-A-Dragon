@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bedtgjo8m3qhr"
-path="res://.godot/imported/campBackground.png-8bcf2362d2674876243f27174b165d8c.ctex"
+uid="uid://c5xu3y4g1t45h"
+path="res://.godot/imported/parts.png-0799536822f7852befe027a6ad77fbf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Camp/campBackground.png"
-dest_files=["res://.godot/imported/campBackground.png-8bcf2362d2674876243f27174b165d8c.ctex"]
+source_file="res://Sprites/UI/parts.png"
+dest_files=["res://.godot/imported/parts.png-0799536822f7852befe027a6ad77fbf1.ctex"]
 
 [params]
 

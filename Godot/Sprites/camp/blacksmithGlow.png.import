@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1p32ma6xw854"
-path="res://.godot/imported/blacksmithGlow.png-eda40e81564853cd6ef762bb8e6e3544.ctex"
+path="res://.godot/imported/blacksmithGlow.png-929242e0f5645f05da8298d5f9274b99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/camp/blacksmithGlow.png"
-dest_files=["res://.godot/imported/blacksmithGlow.png-eda40e81564853cd6ef762bb8e6e3544.ctex"]
+source_file="res://Sprites/Camp/blacksmithGlow.png"
+dest_files=["res://.godot/imported/blacksmithGlow.png-929242e0f5645f05da8298d5f9274b99.ctex"]
 
 [params]
 

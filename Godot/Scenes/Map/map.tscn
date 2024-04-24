@@ -1,0 +1,570 @@
+[gd_scene load_steps=16 format=3 uid="uid://3po5cq6p7ujc"]
+
+[ext_resource type="Script" path="res://Scenes/Map/Scripts/map.gd" id="1_bqrdo"]
+[ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map/Map.png" id="2_dmyx0"]
+[ext_resource type="PackedScene" uid="uid://b0781ipcpmjaf" path="res://Scenes/Map/quest.tscn" id="3_d64i7"]
+[ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/Camp/campfire.png" id="3_qnsfu"]
+[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_7xw65"]
+[ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/StorageUI/PartUI/part_button.tscn" id="6_epqax"]
+[ext_resource type="Texture2D" uid="uid://cqg2d4ursr1sh" path="res://Sprites/Enemies/forest.png" id="6_rorcs"]
+[ext_resource type="Texture2D" uid="uid://ot02xp1yo4ha" path="res://Sprites/Enemies/snake.png" id="7_72jth"]
+[ext_resource type="PackedScene" uid="uid://bxfmkq8bgumev" path="res://Scenes/Map/Combat/combat.tscn" id="7_fpvvu"]
+[ext_resource type="Texture2D" uid="uid://6203f8cgpqcs" path="res://Sprites/UI/arrow.png" id="8_3rdga"]
+[ext_resource type="LabelSettings" uid="uid://cysjrmkj5ucc5" path="res://Themes/HeaderLabel_White.tres" id="9_h5qja"]
+[ext_resource type="Texture2D" uid="uid://28eu1obcagk1" path="res://Sprites/skybox/clock.png" id="9_jxxns"]
+[ext_resource type="Script" path="res://Scenes/Map/Scripts/Clock.gd" id="10_mq4ra"]
+[ext_resource type="Texture2D" uid="uid://etvfwjmynpus" path="res://Sprites/UI/Equipment.png" id="10_uiadi"]
+[ext_resource type="Texture2D" uid="uid://3n0fg608t8j7" path="res://Sprites/skybox/clockFrame.png" id="11_vuy1i"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_bqrdo")
+
+[node name="TempMap" type="Sprite2D" parent="."]
+texture = ExtResource("2_dmyx0")
+
+[node name="Switch" type="Button" parent="."]
+offset_left = -950.0
+offset_top = -534.0
+offset_right = -850.0
+offset_bottom = -434.0
+icon = ExtResource("3_qnsfu")
+expand_icon = true
+
+[node name="Quests" type="Node2D" parent="."]
+
+[node name="Goblin Grotto" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = -769.0
+offset_top = 293.0
+offset_right = -661.0
+offset_bottom = 401.0
+part = "m0"
+enemy = "Goblin"
+dataDisplayPosition = Vector2(-734, -235)
+
+[node name="Slime Meadows" parent="Quests" instance=ExtResource("3_d64i7")]
+visible = false
+offset_left = -721.0
+offset_top = 314.0
+offset_right = -621.0
+offset_bottom = 414.0
+part = "f0"
+enemy = "Slime"
+dataDisplayPosition = Vector2(-600, 126)
+
+[node name="Slithering Stream" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = -286.0
+offset_top = 310.0
+offset_right = -178.0
+offset_bottom = 418.0
+part = "s0"
+enemy = "Serpent"
+dataDisplayPosition = Vector2(-217, 126)
+
+[node name="Fungal Grove" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = -516.0
+offset_top = -436.0
+offset_right = -408.0
+offset_bottom = -328.0
+part = "f0"
+enemy = "Fairy"
+dataDisplayPosition = Vector2(-454, -474)
+
+[node name="Singing Lake" parent="Quests" instance=ExtResource("3_d64i7")]
+visible = false
+offset_left = -294.0
+offset_top = -127.0
+offset_right = -194.0
+offset_bottom = -27.0
+part = "s1"
+enemy = "Mermaid"
+dataDisplayPosition = Vector2(-189, -273)
+
+[node name="Abandon Mine" parent="Quests" instance=ExtResource("3_d64i7")]
+visible = false
+offset_left = -142.0
+offset_top = -375.0
+offset_right = -42.0
+offset_bottom = -275.0
+part = "m1"
+enemy = "Skeleton"
+dataDisplayPosition = Vector2(-35, -491)
+
+[node name="Beetle Burrows" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = 175.0
+offset_top = 190.0
+offset_right = 283.0
+offset_bottom = 298.0
+part = "m1"
+enemy = "Gold Beetle"
+dataDisplayPosition = Vector2(-400, 140)
+
+[node name="Prickly Plains" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = 112.0
+offset_top = -140.0
+offset_right = 220.0
+offset_bottom = -32.0
+part = "s1"
+enemy = "Magma Lizard"
+dataDisplayPosition = Vector2(-374, -93)
+
+[node name="Dancing Fires" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = 745.0
+offset_top = 367.0
+offset_right = 853.0
+offset_bottom = 475.0
+part = "f1"
+enemy = "Fire Spirit"
+dataDisplayPosition = Vector2(2, 126)
+
+[node name="Ancient Temple" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = 792.0
+offset_top = -38.0
+offset_right = 900.0
+offset_bottom = 70.0
+part = "m2"
+enemy = "Animated Armor"
+dataDisplayPosition = Vector2(-292, -513)
+
+[node name="Suspicious Chest" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = 414.0
+offset_top = -310.0
+offset_right = 522.0
+offset_bottom = -202.0
+part = "f2"
+enemy = "Chest?"
+dataDisplayPosition = Vector2(81, -273)
+
+[node name="Nearing Dragon" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = 35.0
+offset_top = -449.0
+offset_right = 143.0
+offset_bottom = -341.0
+part = "s2"
+enemy = "Wyvern"
+dataDisplayPosition = Vector2(-125, -383)
+
+[node name="Dragon Peak" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = 774.0
+offset_top = -465.0
+offset_right = 882.0
+offset_bottom = -357.0
+part = "m0"
+enemy = "Dragon"
+dataDisplayPosition = Vector2(144, -482)
+
+[node name="HelpMenu" type="Node2D" parent="."]
+visible = false
+
+[node name="clock" type="ColorRect" parent="HelpMenu"]
+offset_left = -954.0
+offset_top = -421.0
+offset_right = -529.0
+offset_bottom = -240.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="Label" type="Label" parent="HelpMenu/clock"]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 450.0
+offset_bottom = 171.0
+text = "Going on quests or dying causes time to pass. Hover over the clock to see how many days have passed."
+label_settings = ExtResource("5_7xw65")
+autowrap_mode = 2
+
+[node name="help" type="ColorRect" parent="HelpMenu"]
+offset_left = -839.0
+offset_top = 432.0
+offset_right = -586.0
+offset_bottom = 529.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="Label" type="Label" parent="HelpMenu/help"]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 257.0
+offset_bottom = 171.0
+text = "Toggles the help display"
+label_settings = ExtResource("5_7xw65")
+autowrap_mode = 2
+
+[node name="quest" type="ColorRect" parent="HelpMenu"]
+offset_left = 254.0
+offset_top = 147.0
+offset_right = 631.0
+offset_bottom = 285.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="Label" type="Label" parent="HelpMenu/quest"]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 386.0
+offset_bottom = 128.0
+text = "Green nodes mark quests you can go on to get materials."
+label_settings = ExtResource("5_7xw65")
+autowrap_mode = 2
+
+[node name="dragon" type="ColorRect" parent="HelpMenu"]
+offset_left = 661.0
+offset_top = -392.0
+offset_right = 940.0
+offset_bottom = -297.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="Label" type="Label" parent="HelpMenu/dragon"]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 4.0
+offset_right = 327.0
+offset_bottom = 132.0
+text = "Defeat the dragon 
+to win"
+label_settings = ExtResource("5_7xw65")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HelpCombat" type="Node2D" parent="."]
+visible = false
+position = Vector2(-474, -474)
+
+[node name="combat" type="Node2D" parent="HelpCombat"]
+
+[node name="Background" type="ColorRect" parent="HelpCombat/combat"]
+offset_right = 924.0
+offset_bottom = 984.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="EnemyScreen" type="ColorRect" parent="HelpCombat/combat"]
+offset_left = 26.0
+offset_top = 16.0
+offset_right = 904.0
+offset_bottom = 739.0
+color = Color(0.588235, 0.505882, 0.439216, 1)
+
+[node name="background" type="Sprite2D" parent="HelpCombat/combat/EnemyScreen"]
+position = Vector2(439, 361.5)
+texture = ExtResource("6_rorcs")
+
+[node name="Sprite2D" type="Sprite2D" parent="HelpCombat/combat/EnemyScreen"]
+position = Vector2(448, 360)
+texture = ExtResource("7_72jth")
+
+[node name="Health" type="ColorRect" parent="HelpCombat/combat/EnemyScreen"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 636.0
+offset_right = 563.0
+offset_bottom = 676.0
+color = Color(0.254902, 0.105882, 0.105882, 1)
+
+[node name="Name" type="Label" parent="HelpCombat/combat/EnemyScreen/Health"]
+layout_mode = 0
+offset_top = -41.0
+offset_right = 137.0
+text = "Snake"
+label_settings = ExtResource("5_7xw65")
+
+[node name="Current" type="ColorRect" parent="HelpCombat/combat/EnemyScreen/Health"]
+layout_mode = 0
+offset_right = 436.8
+offset_bottom = 40.0
+color = Color(0.0156863, 0.690196, 0, 1)
+
+[node name="LastHit" type="Label" parent="HelpCombat/combat/EnemyScreen/Health"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 42.0
+offset_right = 81.0
+offset_bottom = 84.0
+text = "10"
+label_settings = ExtResource("5_7xw65")
+
+[node name="You" type="ColorRect" parent="HelpCombat/combat/EnemyScreen"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 912.0
+offset_right = 558.0
+offset_bottom = 952.0
+color = Color(0.254902, 0.105882, 0.105882, 1)
+
+[node name="Name" type="Label" parent="HelpCombat/combat/EnemyScreen/You"]
+layout_mode = 0
+offset_top = -41.0
+offset_right = 137.0
+text = "You"
+label_settings = ExtResource("5_7xw65")
+
+[node name="Current" type="ColorRect" parent="HelpCombat/combat/EnemyScreen/You"]
+layout_mode = 0
+offset_right = 546.0
+offset_bottom = 40.0
+color = Color(0.0156863, 0.690196, 0, 1)
+
+[node name="Minigame" type="Node2D" parent="HelpCombat/combat"]
+position = Vector2(-2, 822)
+
+[node name="Notes" type="ColorRect" parent="HelpCombat/combat/Minigame"]
+clip_children = 2
+offset_left = 75.0
+offset_top = -59.0
+offset_right = 841.0
+offset_bottom = 62.0
+color = Color(0.588235, 0.505882, 0.439216, 1)
+
+[node name="ColorRect" type="ColorRect" parent="HelpCombat/combat/Minigame"]
+offset_left = 116.0
+offset_top = -50.0
+offset_right = 216.0
+offset_bottom = 50.0
+color = Color(1, 1, 1, 0.458824)
+
+[node name="Sprite2D" type="Sprite2D" parent="HelpCombat/combat/Minigame"]
+position = Vector2(776, 5)
+texture = ExtResource("8_3rdga")
+
+[node name="Sprite2D2" type="Sprite2D" parent="HelpCombat/combat/Minigame"]
+position = Vector2(590, 5)
+rotation = 1.5708
+texture = ExtResource("8_3rdga")
+
+[node name="Sprite2D3" type="Sprite2D" parent="HelpCombat/combat/Minigame"]
+position = Vector2(363, 2)
+rotation = 3.14159
+texture = ExtResource("8_3rdga")
+
+[node name="General" type="ColorRect" parent="HelpCombat"]
+offset_left = 938.0
+offset_top = 67.0
+offset_right = 1331.0
+offset_bottom = 913.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="Label" type="Label" parent="HelpCombat/General"]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 386.0
+offset_bottom = 264.0
+text = "Arrows will move across the screen from right to left.
+
+When an arrow is in the light box, use WASD or arrow keys to input the  same direction as the arrow. This will deal damage to the enemy.
+
+Try pressing the direction when the arrow is centered in the box.
+
+Missed arrows and incorrect inputs will cause you to get hit."
+label_settings = ExtResource("5_7xw65")
+autowrap_mode = 2
+
+[node name="help2" type="ColorRect" parent="HelpCombat"]
+offset_left = -365.0
+offset_top = 906.0
+offset_right = -112.0
+offset_bottom = 1003.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="Label" type="Label" parent="HelpCombat/help2"]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 257.0
+offset_bottom = 171.0
+text = "Toggles the help display"
+label_settings = ExtResource("5_7xw65")
+autowrap_mode = 2
+
+[node name="QuestName" type="Label" parent="."]
+z_index = 1
+offset_left = -752.0
+offset_top = 175.0
+offset_right = -292.0
+offset_bottom = 244.0
+text = "Quest Name"
+label_settings = ExtResource("9_h5qja")
+horizontal_alignment = 1
+
+[node name="MaterialLabel" type="Label" parent="QuestName"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 92.0
+offset_right = 248.0
+offset_bottom = 177.0
+text = "common metal"
+label_settings = ExtResource("5_7xw65")
+horizontal_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="QuestName"]
+position = Vector2(-2, 200)
+
+[node name="Enemy" type="Label" parent="QuestName/Node2D"]
+offset_top = -1.0
+offset_right = 285.0
+offset_bottom = 41.0
+text = "Enemy:"
+label_settings = ExtResource("5_7xw65")
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="QuestName/Node2D/Enemy"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(61, 57)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_uiadi")
+hframes = 8
+vframes = 6
+
+[node name="Sprite2D2" type="Sprite2D" parent="QuestName/Node2D/Enemy"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(58, 100)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_uiadi")
+hframes = 8
+vframes = 6
+frame = 40
+
+[node name="EnemyData" type="Label" parent="QuestName/Node2D/Enemy"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 37.0
+offset_right = 275.0
+offset_bottom = 202.0
+text = "att
+def"
+label_settings = ExtResource("5_7xw65")
+horizontal_alignment = 1
+
+[node name="You" type="Label" parent="QuestName/Node2D"]
+offset_left = 307.0
+offset_right = 413.0
+offset_bottom = 42.0
+text = "You"
+label_settings = ExtResource("5_7xw65")
+
+[node name="YourData" type="Label" parent="QuestName/Node2D/You"]
+layout_mode = 0
+offset_left = -80.0
+offset_top = 37.0
+offset_right = 140.0
+offset_bottom = 202.0
+text = "att
+def"
+label_settings = ExtResource("5_7xw65")
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="QuestName/Node2D/You"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-30, 58)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_uiadi")
+hframes = 8
+vframes = 6
+
+[node name="Sprite2D2" type="Sprite2D" parent="QuestName/Node2D/You"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-33, 101)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_uiadi")
+hframes = 8
+vframes = 6
+frame = 40
+
+[node name="ColorRect" type="ColorRect" parent="QuestName"]
+clip_children = 2
+z_index = -1
+layout_mode = 0
+offset_right = 461.0
+offset_bottom = 349.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="PartSprite" parent="QuestName" instance=ExtResource("6_epqax")]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 83.0
+offset_right = 408.0
+offset_bottom = 183.0
+
+[node name="Combat" parent="." instance=ExtResource("7_fpvvu")]
+visible = false
+position = Vector2(-495, -491)
+
+[node name="Win" type="Label" parent="."]
+visible = false
+z_index = 1
+offset_left = -262.0
+offset_top = -227.0
+offset_right = 247.0
+offset_bottom = -158.0
+text = "You Win!"
+label_settings = ExtResource("9_h5qja")
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Win"]
+z_index = -1
+layout_mode = 0
+offset_left = -39.0
+offset_top = -44.0
+offset_right = 553.0
+offset_bottom = 406.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="Stats" type="Label" parent="Win"]
+layout_mode = 0
+offset_top = 70.0
+offset_right = 508.0
+offset_bottom = 315.0
+text = "you took 10 days to kill the dragon"
+label_settings = ExtResource("5_7xw65")
+horizontal_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Win"]
+layout_mode = 0
+offset_left = -894.0
+offset_top = -470.0
+offset_right = 1926.0
+offset_bottom = 1405.0
+color = Color(1, 1, 1, 0)
+
+[node name="Clock" type="Sprite2D" parent="."]
+position = Vector2(-788, -483)
+texture = ExtResource("9_jxxns")
+script = ExtResource("10_mq4ra")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-788, -483)
+texture = ExtResource("11_vuy1i")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -838.0
+offset_top = -535.0
+offset_right = -737.0
+offset_bottom = -434.0
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="Button"]
+visible = false
+layout_mode = 0
+offset_left = 112.0
+offset_right = 341.0
+offset_bottom = 103.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="Label" type="Label" parent="Button/ColorRect"]
+layout_mode = 0
+offset_right = 228.0
+offset_bottom = 103.0
+text = "20 days 
+have passed"
+label_settings = ExtResource("5_7xw65")
+horizontal_alignment = 1
+
+[node name="Help" type="Button" parent="."]
+offset_left = -952.0
+offset_top = 434.0
+offset_right = -852.0
+offset_bottom = 534.0
+theme_override_font_sizes/font_size = 60
+text = "?"
+
+[connection signal="button_down" from="Switch" to="." method="_on_switch_button_down"]
+[connection signal="combat_done" from="Combat" to="." method="_on_combat_combat_done"]
+[connection signal="player_death" from="Combat" to="." method="_on_combat_player_death"]
+[connection signal="win" from="Combat" to="." method="_on_combat_win"]
+[connection signal="done" from="Clock" to="." method="_on_clock_done"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="button_down" from="Help" to="." method="_on_help_button_down"]

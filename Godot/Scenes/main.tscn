@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwgh5bcbxpkpj"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_gtsxp"]
+[ext_resource type="PackedScene" uid="uid://wstkkynamdel" path="res://Scenes/Camp/sky.tscn" id="2_kt1cm"]
+[ext_resource type="PackedScene" uid="uid://bmx0jemjixann" path="res://Scenes/Camp/camp.tscn" id="3_0baxm"]
+[ext_resource type="PackedScene" uid="uid://3po5cq6p7ujc" path="res://Scenes/Map/map.tscn" id="4_x1pbn"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_gtsxp")
+
+[node name="Sky" parent="." instance=ExtResource("2_kt1cm")]
+
+[node name="Camp" parent="." instance=ExtResource("3_0baxm")]
+z_index = 2
+
+[node name="Map" parent="." instance=ExtResource("4_x1pbn")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Blackout" type="ColorRect" parent="."]
+visible = false
+z_index = 10
+offset_left = -1386.0
+offset_top = -1336.0
+offset_right = 1542.0
+offset_bottom = 982.0
+color = Color(0, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="toMap" from="Camp" to="." method="_on_camp_to_map"]
+[connection signal="death" from="Map" to="." method="_on_map_death"]
+[connection signal="time" from="Map" to="." method="_on_map_time"]
+[connection signal="toCamp" from="Map" to="." method="_on_map_to_camp"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

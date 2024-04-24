@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://wstkkynamdel"]
+
+[ext_resource type="Script" path="res://Scenes/Camp/Sky.gd" id="1_iree3"]
+[ext_resource type="Texture2D" uid="uid://dokfus5y1844d" path="res://Sprites/skybox/sky.png" id="2_k40db"]
+[ext_resource type="Texture2D" uid="uid://drtvoc156b6ja" path="res://Sprites/skybox/sun.png" id="3_y8nas"]
+[ext_resource type="Texture2D" uid="uid://c8qj2sgjmhx73" path="res://Sprites/skybox/moon.png" id="4_ela5e"]
+
+[node name="Sky" type="Node2D" node_paths=PackedStringArray("camp", "map")]
+script = ExtResource("1_iree3")
+camp = NodePath("")
+map = NodePath("")
+
+[node name="Sky" type="Sprite2D" parent="."]
+position = Vector2(0, 850)
+texture = ExtResource("2_k40db")
+
+[node name="Bodies" type="Node2D" parent="."]
+
+[node name="Sun" type="Sprite2D" parent="Bodies"]
+position = Vector2(4, -381)
+texture = ExtResource("3_y8nas")
+
+[node name="Moon" type="Sprite2D" parent="Bodies"]
+position = Vector2(-18, 407)
+rotation = 3.14159
+texture = ExtResource("4_ela5e")
+
+[node name="Night" type="ColorRect" parent="."]
+z_index = 10
+offset_left = -1420.0
+offset_top = -1231.0
+offset_right = 1508.0
+offset_bottom = 1087.0
+color = Color(0, 0, 0, 0)

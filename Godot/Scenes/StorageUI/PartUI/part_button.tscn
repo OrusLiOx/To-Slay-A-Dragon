@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6gdoil0o70r1"]
+
+[ext_resource type="Theme" uid="uid://dgifmyw55byck" path="res://Themes/UIButton.tres" id="1_i85wa"]
+[ext_resource type="Script" path="res://Scenes/StorageUI/PartUI/Scripts/part_button.gd" id="2_8musx"]
+[ext_resource type="PackedScene" uid="uid://bnvwxkdgsp4vp" path="res://Scenes/StorageUI/PartUI/part_sprite.tscn" id="3_a7aqb"]
+[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="4_wpidv"]
+
+[node name="PartButton" type="Button"]
+offset_right = 100.0
+offset_bottom = 100.0
+theme = ExtResource("1_i85wa")
+script = ExtResource("2_8musx")
+
+[node name="PartSprite" parent="." instance=ExtResource("3_a7aqb")]
+position = Vector2(50, 50)
+frame = 3
+
+[node name="Quantity" type="Label" parent="."]
+layout_mode = 0
+offset_right = 95.0
+offset_bottom = 100.0
+label_settings = ExtResource("4_wpidv")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
