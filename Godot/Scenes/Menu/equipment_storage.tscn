@@ -77,12 +77,13 @@ position = Vector2(0, 502)
 [node name="Label" type="Label" parent="Main/PartDisplay"]
 offset_right = 500.0
 offset_bottom = 42.0
-text = "Attack: 100"
+text = "Weapon
+Attack: 100"
 label_settings = ExtResource("3_l4isl")
 horizontal_alignment = 1
 
 [node name="Parts" type="Node2D" parent="Main/PartDisplay"]
-position = Vector2(74, 62.5)
+position = Vector2(74, 100)
 
 [connection signal="button_down" from="Main/Left" to="." method="_on_left_button_down"]
 [connection signal="button_down" from="Main/Right" to="." method="_on_right_button_down"]

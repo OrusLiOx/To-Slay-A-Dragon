@@ -46,4 +46,5 @@ func set_item_display(vis:bool, part : Part):
 			"m": text += "weapons and armor\n"
 			"s": text += "armor\n"
 			"f": text += "weapons\n"
+		text+="Dropped by " + part.get_enemy() + "s"
 		$PartDisplay/Label.text = text

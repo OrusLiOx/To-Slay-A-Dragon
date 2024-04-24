@@ -6,6 +6,7 @@ var storage
 var activeBlueprint : String
 var selectedParts:Array
 var builtEquip
+var partQueue : Dictionary
 
 var types
 
@@ -15,6 +16,11 @@ signal exit()
 func _ready():
 	types = ["dagger","sword","greatsword","light armor","med armor","heavy armor"]
 	selectedParts = [[],[]]
+	partQueue = {
+		"m": [-1],
+		"f": [-1],
+		"s": [-1]
+	}
 	storage = $Storage
 	generate_blueprint_base()
 	load_blueprint_selection()
@@ -50,7 +56,7 @@ func load_blueprint_selection():
 			y=0
 			x+=125
 			
-		child.button_down.connect(load_blueprint.bind(type))
+		child.button_down.connect(blueprint_button_down.bind(type))
 	pass
 
 func generate_blueprint_base():
@@ -87,15 +93,18 @@ func generate_blueprint_base():
 	
 	pass
 
-func load_blueprint(type):
+func blueprint_button_down(type):
 	if type == activeBlueprint:
-		set_blueprint_slot(0,0,"")
-		set_blueprint_slot(0,1,"")
-		set_blueprint_slot(0,2,"")
-		set_blueprint_slot(0,3, "")
-			
-		set_blueprint_slot(1,0,"")
-		set_blueprint_slot(1,1,"")
+		for i in range(0,4):
+			if selectedParts[0][i].part.rarity >= 0:
+				Storage.add_part(selectedParts[0][i].part,1)
+				storage.update()
+				selectedParts[0][i].make_part(selectedParts[0][i].part.type,-1)
+				selectedParts[0][i].disabled = true
+	else:
+		load_blueprint(type)
+		
+func load_blueprint(type):
 	activeBlueprint = type
 	$ActiveBlueprint.visible = true
 	if type != "":
@@ -105,66 +114,37 @@ func load_blueprint(type):
 	
 	match(type):
 		"dagger": 
-			set_blueprint_slot(0,0,"m")
-			set_blueprint_slot(0,1,"")
-			set_blueprint_slot(0,2,"")
-			set_blueprint_slot(0,3,"")
-			
-			set_blueprint_slot(1,0,"f")
-			set_blueprint_slot(1,1,"")
+			set_blueprint_slots(["m","","","","f",""])
 		"sword": 
-			set_blueprint_slot(0,0,"m")
-			set_blueprint_slot(0,1,"m")
-			set_blueprint_slot(0,2,"")
-			set_blueprint_slot(0,3,"")
-			
-			set_blueprint_slot(1,0,"f")
-			set_blueprint_slot(1,1,"")
+			set_blueprint_slots(["m","m","","","f",""])
 		"greatsword": 
-			set_blueprint_slot(0,0,"m")
-			set_blueprint_slot(0,1,"m")
-			set_blueprint_slot(0,2,"m")
-			set_blueprint_slot(0,3,"")
-			
-			set_blueprint_slot(1,0,"f")
-			set_blueprint_slot(1,1,"")
+			set_blueprint_slots(["m","m","m","","f",""])
 		"light armor": 
-			set_blueprint_slot(0,0,"m")
-			set_blueprint_slot(0,1,"s")
-			set_blueprint_slot(0,2,"")
-			set_blueprint_slot(0,3,"")
-			
-			set_blueprint_slot(1,0,"f")
-			set_blueprint_slot(1,1,"")
+			set_blueprint_slots(["m","s","","","f",""])
 		"med armor": 
-			set_blueprint_slot(0,0,"m")
-			set_blueprint_slot(0,1,"s")
-			set_blueprint_slot(0,2,"s")
-			set_blueprint_slot(0,3,"")
-			
-			set_blueprint_slot(1,0,"f")
-			set_blueprint_slot(1,1,"f")
+			set_blueprint_slots(["m","s","s","","f","f"])
 		"heavy armor": 
-			set_blueprint_slot(0,0,"m")
-			set_blueprint_slot(0,1,"s")
-			set_blueprint_slot(0,2,"s")
-			set_blueprint_slot(0,3,"s")
-			
-			set_blueprint_slot(1,0,"f")
-			set_blueprint_slot(1,1,"f")
+			set_blueprint_slots(["m","s","s","s","f","f"])
 		_:
-			set_blueprint_slot(0,0,"")
-			set_blueprint_slot(0,1,"")
-			set_blueprint_slot(0,2,"")
-			set_blueprint_slot(0,3,"")
-			
-			set_blueprint_slot(1,0,"")
-			set_blueprint_slot(1,1,"")
+			set_blueprint_slots(["","","","","",""])
 			builtEquip.visible = false
 	storage.update()
 	update_equip_stats()
 	pass
 
+func set_blueprint_slots(slots):
+	partQueue["m"] = []
+	partQueue["f"] = []
+	partQueue["s"] = []
+	for i in range(0,4):
+		if slots[i] != "":
+			partQueue[slots[i]].push_back(i)
+		set_blueprint_slot(0,i,slots[i])
+	for i in range(0,2):
+		if slots[4+i] != "":
+			partQueue["f"].push_back(i)
+		set_blueprint_slot(1,i,slots[4+i])
+		
 func set_blueprint_slot(r, c, t):
 	if t =="":
 		if selectedParts[r][c].part.rarity >= 0:
@@ -192,21 +172,41 @@ func _on_exit_button_down():
 
 # add/remove materials
 func _on_storage_use(part):
+	if partQueue[part.type].is_empty():
+		return
+	# look for empty slot
 	for arr in selectedParts:
 		for partBut in arr:
 			if part.type == partBut.part.type and partBut.part.rarity == -1:
 				Storage.add_part(part, -1)
 				partBut.set_part(part)
 				partBut.disabled = false
+				load_blueprint(activeBlueprint)
 				update_equip_stats()
-				return true
+				return
+	
+	# if no empty slot, go in order
+	var i = partQueue[part.type].front()
+	var p = 0
+	partQueue[part.type].pop_front()
+	partQueue[part.type].push_back(i)
+	if part.type == "f":
+		p = 1
+	
+	var but = selectedParts[p][i]
+	Storage.add_part(part, -1)
+	if but.part.rarity != -1:
+		Storage.add_part(but.part, 1)
+	but.set_part(part)
+	but.disabled = false
+	update_equip_stats()
 	
 	pass # Replace with function body.
 
 func return_material(partBut):
 	Storage.add_part(partBut.part, 1)
 	partBut.set_part(Part.new(partBut.part.type,-1))
-	partBut.disabled = true
+	partBut.update()
 	update_equip_stats()
 
 func update_equip_stats():
@@ -239,7 +239,7 @@ func update_equip_stats():
 	var parts:Array = []
 	for arr in selectedParts:
 		for partBut in arr:
-			if partBut.part.rarity >= -1:
+			if partBut.part.rarity > -1:
 				parts.push_back(partBut.part)
 	builtEquip.set_equip(Equipment.new(activeBlueprint, parts))
 	builtEquip.disabled = false
@@ -254,6 +254,7 @@ func craft_equip():
 		for partBut in arr:
 			if partBut.part.rarity != -2:
 				partBut.set_part(Part.new(partBut.part.type, -1))
+				partBut.update()
 	update_equip_stats()
 	pass
 

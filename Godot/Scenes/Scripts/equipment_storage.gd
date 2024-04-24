@@ -114,9 +114,9 @@ func set_item_display(vis:bool, obj):
 	
 	if vis:
 		if e.is_weapon():
-			$Main/PartDisplay/Label.text = "Attack: " + str(e.value)
+			$Main/PartDisplay/Label.text = e.type.capitalize() + "\nAttack: " + str(e.value)
 		else:
-			$Main/PartDisplay/Label.text = "Defense: " + str(e.value)
+			$Main/PartDisplay/Label.text =  e.type.capitalize() + "\nDefense: " + str(e.value)
 		
 		var x = 0
 		var y = 0

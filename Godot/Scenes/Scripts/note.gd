@@ -1,16 +1,30 @@
 extends Area2D
 var speed
 var dir
+var active
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	speed = 300
-	dir = randi_range(0,3)
+	active = false
+
+func go(s):
 	$Sprite2D.rotation = dir*PI/2
-	pass # Replace with function body.
+	match dir:
+		0:
+			$Label.text = "A"
+			$Sprite2D.position = Vector2(-18,0)
+		1:
+			$Label.text = "W"
+			$Sprite2D.position = Vector2(0,-12)
+		2:
+			$Label.text = "D"
+			$Sprite2D.position = Vector2(18,0)
+		3:
+			$Label.text = "S"
+			$Sprite2D.position = Vector2(0,12)
+	speed = s
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position.x -= speed*delta
+	position.y += speed*delta
 	pass

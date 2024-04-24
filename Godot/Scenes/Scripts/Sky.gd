@@ -35,8 +35,7 @@ func _process(delta):
 			bodies.rotation = angleDest
 			curAngle = bodies.rotation
 			return
-		
-		var percent = pow(abs(sin(bodies.rotation)),4)
+			
 		if scale.x == 1:
 			sky.position.y = 2*((moon.global_position.y-global_position.y)+381) - 850
 		else:

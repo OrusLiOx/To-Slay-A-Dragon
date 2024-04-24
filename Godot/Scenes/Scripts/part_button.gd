@@ -19,8 +19,11 @@ func set_part(p):
 func update():
 	var amount = Storage.parts[part.type][part.rarity]
 	$Quantity.text = str(amount)
-	
-	if amount == 0 :
+	if part.rarity == - 1:
+		disabled = true
+		$PartSprite.modulate.a = 1
+		$Quantity.modulate.a = 1
+	elif amount == 0:
 		disabled = true
 		$PartSprite.modulate.a = .3
 		$Quantity.modulate.a = .3

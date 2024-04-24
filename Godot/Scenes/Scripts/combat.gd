@@ -4,6 +4,7 @@ extends Node2D
 var timer : Timer
 var enemy
 var noteSpeed
+var gameCols
 
 var goodNote :Array
 var okNote :Array
@@ -15,6 +16,12 @@ var killEnemy
 var partSprite
 var enemyHealth
 var enemyHealthBar
+
+var accuracy
+var totalNotes
+
+var enemyDamage
+var playerDamage
 
 var questReward
 var rewardQuantity
@@ -29,25 +36,17 @@ signal win()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	notes = $Minigame/Notes
 	timer = $Timer
 	enemy = $EnemyScreen/Enemy
 	partSprite = $EnemyScreen/PartSprite
 	enemyHealthBar = $EnemyScreen/Health
 	enemyHealth = $EnemyScreen/Health/Current
-	dir["Left"] = 0
-	dir["Up"] = 1
-	dir["Right"] = 2
-	dir["Down"] = 3
+	gameCols = $Minigame.get_children()
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if minigameActive:
-		for inp in dir.keys():
-			if Input.is_action_just_pressed(inp):
-				check(inp)
 	if killEnemy:
 		if enemy.modulate.a  > 0:
 			enemy.modulate.a -= 2*delta
@@ -59,6 +58,9 @@ func _process(delta):
 	pass
 
 func start(quest):
+	accuracy =0
+	totalNotes = 0
+	
 	Stats.combats +=1
 	if quest.enemy == "Dragon":
 		partSprite.modulate.a = 0
@@ -74,8 +76,6 @@ func start(quest):
 	player["defense"] = Storage.get_defense()
 	player["maxHp"] = 50
 	player["hp"] = player["maxHp"]
-	for note in notes.get_children():
-		note.queue_free()
 	
 	questReward = quest.questMaterial
 	rewardQuantity = 0
@@ -86,51 +86,48 @@ func start(quest):
 	enemy.modulate.a = 1
 	enemyHealthBar.modulate.a = 1
 	enemyHealth.size.x = enemyHealthBar.size.x
-	goodNote.clear()
-	okNote.clear()
-	badNote.clear()
 	minigameActive = true
 	killEnemy = false
 	
-	noteSpeed =enemy.stats.noteSpeed #min(2000,max(enemy.stats.noteSpeed, (enemy.stats.attack-player["defense"]*1.1)*100+enemy.stats.noteSpeed))
+	noteSpeed =enemy.stats.noteSpeed
+	for col in gameCols:
+		col.speed = noteSpeed
+		col.reset()
+	
+	playerDamage = get_damage(player["attack"], enemy.stats.defense)
+	enemyDamage = get_damage(enemy.stats.attack, player["defense"])
 	spawn_note()
 	pass
 
 func end_minigame():
 	minigameActive = false
-	for note in notes.get_children():
-		note.queue_free()
+	for col in gameCols:
+		col.reset()
+	Stats.accuracy.x += accuracy
+	Stats.accuracy.y += totalNotes
 
-func check(inp):
-	if !goodNote.is_empty():
-		if goodNote.front().dir == dir[inp]:
-			hit_enemy(.5)
-		else:
-			hit_player()
-		goodNote.front().queue_free()
-		goodNote.pop_front()
-		okNote.pop_front()
-		badNote.pop_front()	
-	elif !okNote.is_empty():
-		if okNote.front().dir == dir[inp]:
-			hit_enemy(0)
-		else:
-			hit_player()
-		okNote.front().queue_free()
-		okNote.pop_front()
-		badNote.pop_front()
-	elif !badNote.is_empty():
-		hit_player()
-		badNote.front().queue_free()
-		badNote.pop_front()
-	else:
-		hit_player()
-		
-func hit_player():
-	var damage = get_damage(enemy.stats.attack,player["defense"])
+func update_accuracy(quality):
+	totalNotes+=1
+	match quality:
+		"good": accuracy +=1
+		"ok": accuracy +=.5
+
+func hit_player(quality):
+	update_accuracy(quality)
+	var damage = enemyDamage
+	match quality:
+		"good":
+			$EnemyScreen/You/LastHit.text = "PERFECT BLOCK"
+			return
+		"ok":
+			damage /= 4
+			$EnemyScreen/You/LastHit.text = str(damage) + " BLOCK"
+		"miss":
+			$EnemyScreen/You/LastHit.text = str(damage)
+		"wrong":
+			return
+	
 	player["hp"] -= damage
-	$EnemyScreen/Health/LastHit.text = ""
-	$EnemyScreen/You/LastHit.text = str(damage)
 	
 	$EnemyScreen/You/Current.size.x = max(0,$EnemyScreen/You.size.x * player["hp"]/player["maxHp"])
 	
@@ -141,17 +138,21 @@ func hit_player():
 		timer.stop()
 	pass
 
-func hit_enemy(crit:float = 0):
-	var damage = get_damage(player["attack"],enemy.stats.defense)
-	$EnemyScreen/You/LastHit.text = ""
-	enemy.hit()
-	if randf()<crit:
-		damage = damage*2
-		enemy.stats.hp -= damage
-		$EnemyScreen/Health/LastHit.text = str(damage) + " CRIT!"
-	else:
-		enemy.stats.hp -= damage
-		$EnemyScreen/Health/LastHit.text = str(damage)
+func hit_enemy(quality):
+	update_accuracy(quality)
+	var damage = playerDamage
+	match quality:
+		"good":
+			damage *= 2
+			$EnemyScreen/Health/LastHit.text = str(damage) + " CRITICAL"
+		"ok":
+			$EnemyScreen/Health/LastHit.text = str(damage)
+		"miss":
+			return
+		"wrong":
+			return
+
+	enemy.stats.hp -= damage
 	
 	enemyHealth.size.x = max(0,enemyHealthBar.size.x * enemy.stats.hp/enemy.stats.maxHp)
 	
@@ -159,12 +160,14 @@ func hit_enemy(crit:float = 0):
 		end_minigame()
 		killEnemy = true
 		rewardQuantity = 1
-		var bonus = (player["hp"]/player["maxHp"])/2 + (abs(enemy.stats.hp)/enemy.stats.maxHp)/2
+		var bonus = accuracy/totalNotes
+		if bonus == 1:
+			bonus = 2
 		while bonus >= 1:
 			rewardQuantity += 1
 			bonus -= 1
 			
-		if randf() < bonus:
+		if randf() <= bonus:
 			rewardQuantity +=1
 		
 		$EnemyScreen/Reward.text = "+"+str(rewardQuantity)
@@ -174,6 +177,7 @@ func hit_enemy(crit:float = 0):
 	pass
 
 func get_damage(attack, defense):
+	return max(attack * defense/180,1)
 	var damage = attack-defense
 	if damage > 0:
 		return damage
@@ -181,48 +185,38 @@ func get_damage(attack, defense):
 		return int(attack/defense*1000)/1000.0
 
 func spawn_note():
-	var n = noteScene.instantiate()
-	notes.add_child(n)
-	n.speed = noteSpeed
-	n.position = Vector2(800,60)
-	timer.start(randf_range(enemy.stats.noteDelayMin/(noteSpeed/enemy.stats.noteSpeed),enemy.stats.noteDelayMax/(noteSpeed/enemy.stats.noteSpeed)))
-
-# detect notes
-func _on_good_area_entered(area):
-	if area.is_in_group("Note"):
-		goodNote.push_back(area)
-	pass # Replace with function body.
-
-func _on_good_area_exited(area):
-	if area.is_in_group("Note"):
-		goodNote.pop_front()
-	pass # Replace with function body.
-
-func _on_ok_area_entered(area):
-	if area.is_in_group("Note"):
-		okNote.push_back(area)
-	pass # Replace with function body.
-
-func _on_ok_area_exited(area):
-	if area.is_in_group("Note"):
-		okNote.pop_front()
-	pass # Replace with function body.
-
-func _on_bad_area_entered(area):
-	if area.is_in_group("Note"):
-		badNote.push_back(area)
-	pass #
-
-func _on_bad_area_exited(area):
-	if area.is_in_group("Note"):
-		badNote.pop_front()
-	pass # Replace with function body.
-
-func _on_kill_area_entered(area):
-	if area.is_in_group("Note"):
-		hit_player()
-	area.queue_free()
-	pass 
+	match enemy.stats.pick_action():
+		"attack":
+			if randf()<.5:
+				gameCols[1].spawn_note()
+			else:
+				gameCols[2].spawn_note()
+		"block":
+			if randf()<.5:
+				gameCols[0].spawn_note()
+			else:
+				gameCols[3].spawn_note()
+		"double block":
+			gameCols[0].spawn_note()
+			gameCols[3].spawn_note()
+		"attack block":
+			if randf()<.5:
+				gameCols[0].spawn_note()
+			else:
+				gameCols[3].spawn_note()
+			if randf()<.5:
+				gameCols[1].spawn_note()
+			else:
+				gameCols[2].spawn_note()
+		"attack double block":
+			if randf()<.5:
+				gameCols[1].spawn_note()
+			else:
+				gameCols[2].spawn_note()
+			gameCols[0].spawn_note()
+			gameCols[3].spawn_note()
+			
+	timer.start(randf_range(enemy.stats.noteDelayMin,enemy.stats.noteDelayMax))
 
 func _on_timer_timeout():
 	if killEnemy:
@@ -236,4 +230,3 @@ func _on_timer_timeout():
 	else:
 		spawn_note()
 	pass # Replace with function body.
-

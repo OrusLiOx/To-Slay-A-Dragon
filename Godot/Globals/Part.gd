@@ -100,3 +100,21 @@ func get_name():
 					return "legendary focus"
 				4: 
 					return "dragon focus"
+
+func get_enemy():
+	match type:
+		"m":
+			match rarity:
+				0: return "goblin"
+				1: return "gold beetle"
+				2: return "animated armor"
+		"f":
+			match rarity:
+				0: return "farie"
+				1: return "fire spirit"
+				2: return "chest"
+		"s":
+			match rarity:
+				0: return "serpent"
+				1: return "magma lizard"
+				2: return "wyvren"

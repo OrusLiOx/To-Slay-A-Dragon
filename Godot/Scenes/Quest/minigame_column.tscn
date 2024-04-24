@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://cefk5ifs7rf4r"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/MinigameColumn.gd" id="1_tlttv"]
+[ext_resource type="PackedScene" uid="uid://bs6ej35oeq114" path="res://Scenes/Quest/note.tscn" id="2_p1ryb"]
+[ext_resource type="Texture2D" uid="uid://6203f8cgpqcs" path="res://Sprites/arrow.png" id="2_xhf2x"]
+[ext_resource type="LabelSettings" uid="uid://cysjrmkj5ucc5" path="res://Themes/HeaderLabel_White.tres" id="3_ro7bh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hs5a"]
+size = Vector2(50, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gioy"]
+size = Vector2(50, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1jpd"]
+size = Vector2(50, 20)
+
+[node name="MinigameColumn" type="Node2D"]
+script = ExtResource("1_tlttv")
+noteScene = ExtResource("2_p1ryb")
+
+[node name="Goal" type="Node2D" parent="."]
+
+[node name="Kill" type="Area2D" parent="Goal"]
+position = Vector2(0, 126)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal/Kill"]
+shape = SubResource("RectangleShape2D_5hs5a")
+
+[node name="Goal" type="Node2D" parent="Goal"]
+
+[node name="Arrow" type="Sprite2D" parent="Goal/Goal"]
+texture = ExtResource("2_xhf2x")
+
+[node name="Letter" type="Label" parent="Goal/Goal"]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+text = "A"
+label_settings = ExtResource("3_ro7bh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ok" type="Area2D" parent="Goal"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal/Ok"]
+shape = SubResource("RectangleShape2D_5gioy")
+
+[node name="Good" type="Area2D" parent="Goal"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal/Good"]
+shape = SubResource("RectangleShape2D_o1jpd")
+
+[node name="Notes" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="Goal/Kill" to="." method="_on_kill_area_entered"]
+[connection signal="area_entered" from="Goal/Ok" to="." method="_on_ok_area_entered"]
+[connection signal="area_exited" from="Goal/Ok" to="." method="_on_ok_area_exited"]
+[connection signal="area_entered" from="Goal/Good" to="." method="_on_good_area_entered"]
+[connection signal="area_exited" from="Goal/Good" to="." method="_on_good_area_exited"]
