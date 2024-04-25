@@ -42,3 +42,4 @@ position = Vector2(0, 10)
 [connection signal="button_down" from="Material" to="." method="_on_material_button_down"]
 [connection signal="button_down" from="Equipment" to="." method="_on_equipment_button_down"]
 [connection signal="use" from="MaterialStorage" to="." method="_on_material_storage_use"]
+[connection signal="use_equip" from="EquipmentStorage" to="." method="_on_equipment_storage_use_equip"]

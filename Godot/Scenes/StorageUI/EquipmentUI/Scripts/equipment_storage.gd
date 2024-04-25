@@ -11,6 +11,8 @@ var weaponDisplay
 var curArmor : Equipment
 var curWeapon : Equipment
 
+signal use_equip(index)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pageSize = 9
@@ -26,6 +28,21 @@ func _ready():
 	load_page(0)
 	load_current()
 	pass # Replace with function body.
+
+# generates inventory slots on startup
+func generate_inv():
+	var parent = $Main/Buttons
+	
+	for i in range(0, pageSize):
+		var child = equipButScene.instantiate()
+		parent.add_child(child)
+		child.position.x = (i%3)*125
+		child.position.y = (i/3)*125
+			
+		child.mouse_entered.connect(set_item_display.bind(true,child))
+		child.mouse_exited.connect(set_item_display.bind(false,child))
+		
+		child.button_down.connect(equip.bind(i))
 	
 func update():
 	load_page(page)
@@ -50,21 +67,7 @@ func load_current():
 		weaponDisplay.set_ghost("sword")
 		
 	$Equipped/Stats.text = "Attack: " + str(attack) +"\nDefense: " + str(defense)
-
-func generate_inv():
-	var parent = $Main/Buttons
 	
-	for i in range(0, pageSize):
-		var child = equipButScene.instantiate()
-		parent.add_child(child)
-		child.position.x = (i%3)*125
-		child.position.y = (i/3)*125
-			
-		child.mouse_entered.connect(set_item_display.bind(true,child))
-		child.mouse_exited.connect(set_item_display.bind(false,child))
-		
-		child.button_down.connect(equip.bind(i))
-		
 func load_page(p):
 	page = p
 
@@ -88,6 +91,7 @@ func load_page(p):
 			child.set_equip(null)
 			child.update()
 			child.disabled = true
+			child.get_child(1).text = ""
 		else:
 			child.set_equip(Storage.equipment[start+i])
 			child.update()
@@ -98,17 +102,24 @@ func load_page(p):
 				child.get_child(1).text = "E"
 			else:
 				child.get_child(1).text = ""
-	
-func set_item_display(vis:bool, obj):
+
+# display equipment stats when mouse over
+func set_item_display(vis:bool, obj, isEquip = false):
 	var e
-	if obj == armorDisplay:
-		e = curArmor
-	elif obj == weaponDisplay:
-		e = curWeapon
+	if isEquip:
+		e = obj
 	else:
-		e = obj.equipment
+		if obj == armorDisplay:
+			e = curArmor
+		elif obj == weaponDisplay:
+			e = curWeapon
+		else:
+			e = obj.equipment
 		
 	if e == null:
+		$Main/PartDisplay/Label.text = ""
+		for child in $Main/PartDisplay/Parts.get_children():
+			child.queue_free()
 		return
 	$Main/PartDisplay.visible = vis
 	
@@ -136,18 +147,28 @@ func set_item_display(vis:bool, obj):
 				x = 0
 				y+=125
 	else:
+		$Main/PartDisplay/Label.text = ""
 		for child in $Main/PartDisplay/Parts.get_children():
 			child.queue_free()
 
 func equip(index):
-	index = page*9+index
-	Storage.set_cur_equip(index)
-	load_current()
-	load_page(page)
-
+	if Input.is_action_just_pressed("Pet"):
+		index = page*9+index
+		Storage.set_cur_equip(index)
+		load_current()
+		load_page(page)
+	else:
+		if index+1 < Storage.equipment.size():
+			set_item_display(true, Storage.equipment[index+1], true)
+		else:
+			set_item_display(false, null, true)
+		emit_signal("use_equip", index)
+		$Main/Buttons.get_child(index%pageSize).get_child(1).text = ""
+		
 func set_active(state):
 	$Main.visible = state
-		
+
+# change page
 func _on_left_button_down():
 	load_page(page-1)
 	pass # Replace with function body.

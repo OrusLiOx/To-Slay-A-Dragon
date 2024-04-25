@@ -19,6 +19,8 @@ func get_value():
 	if rarity <0:
 		return 0
 	var base = (rarity+1)*10
+	if type =="f":
+		base+=5
 	return base
 	#match(type):
 		#"m":

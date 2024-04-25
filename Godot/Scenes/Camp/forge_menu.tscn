@@ -199,6 +199,7 @@ visible_characters_behavior = 1
 [connection signal="mouse_entered" from="Help" to="HelpStuff" method="_on_help_mouse_entered"]
 [connection signal="mouse_exited" from="Help" to="HelpStuff" method="_on_control_mouse_exited"]
 [connection signal="use" from="Storage" to="." method="_on_storage_use"]
+[connection signal="use_equip" from="Storage" to="." method="_on_storage_use_equip"]
 [connection signal="mouse_entered" from="HelpStuff/BlueprintSelect" to="HelpStuff" method="_on_blueprint_select_mouse_entered"]
 [connection signal="mouse_exited" from="HelpStuff/BlueprintSelect" to="HelpStuff" method="_on_control_mouse_exited"]
 [connection signal="mouse_entered" from="HelpStuff/BlueprintActive" to="HelpStuff" method="_on_blueprint_active_mouse_entered"]

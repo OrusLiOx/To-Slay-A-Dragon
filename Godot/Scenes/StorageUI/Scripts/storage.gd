@@ -2,6 +2,7 @@ extends Node2D
 var tabs :Array
 
 signal use(part:Part)
+signal use_equip(index)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,4 +34,8 @@ func _on_equipment_button_down():
 
 func _on_material_storage_use(part):
 	emit_signal("use",part)
+	pass # Replace with function body.
+
+func _on_equipment_storage_use_equip(index):
+	emit_signal("use_equip", index)
 	pass # Replace with function body.

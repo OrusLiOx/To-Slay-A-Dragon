@@ -41,16 +41,6 @@ part = "m0"
 enemy = "Goblin"
 dataDisplayPosition = Vector2(-734, -235)
 
-[node name="Slime Meadows" parent="Quests" instance=ExtResource("3_d64i7")]
-visible = false
-offset_left = -721.0
-offset_top = 314.0
-offset_right = -621.0
-offset_bottom = 414.0
-part = "f0"
-enemy = "Slime"
-dataDisplayPosition = Vector2(-600, 126)
-
 [node name="Slithering Stream" parent="Quests" instance=ExtResource("3_d64i7")]
 offset_left = -286.0
 offset_top = 310.0
@@ -68,26 +58,6 @@ offset_bottom = -328.0
 part = "f0"
 enemy = "Fairy"
 dataDisplayPosition = Vector2(-454, -474)
-
-[node name="Singing Lake" parent="Quests" instance=ExtResource("3_d64i7")]
-visible = false
-offset_left = -294.0
-offset_top = -127.0
-offset_right = -194.0
-offset_bottom = -27.0
-part = "s1"
-enemy = "Mermaid"
-dataDisplayPosition = Vector2(-189, -273)
-
-[node name="Abandon Mine" parent="Quests" instance=ExtResource("3_d64i7")]
-visible = false
-offset_left = -142.0
-offset_top = -375.0
-offset_right = -42.0
-offset_bottom = -275.0
-part = "m1"
-enemy = "Skeleton"
-dataDisplayPosition = Vector2(-35, -491)
 
 [node name="Beetle Burrows" parent="Quests" instance=ExtResource("3_d64i7")]
 offset_left = 175.0
@@ -524,18 +494,18 @@ position = Vector2(-788, -483)
 texture = ExtResource("9_jxxns")
 script = ExtResource("10_mq4ra")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="ClockHand" type="Sprite2D" parent="."]
 position = Vector2(-788, -483)
 texture = ExtResource("11_vuy1i")
 
-[node name="Button" type="Button" parent="."]
+[node name="ClockOverlay" type="Button" parent="."]
 offset_left = -838.0
 offset_top = -535.0
 offset_right = -737.0
 offset_bottom = -434.0
 flat = true
 
-[node name="ColorRect" type="ColorRect" parent="Button"]
+[node name="ColorRect" type="ColorRect" parent="ClockOverlay"]
 visible = false
 layout_mode = 0
 offset_left = 112.0
@@ -543,7 +513,7 @@ offset_right = 341.0
 offset_bottom = 103.0
 color = Color(0.933333, 0.862745, 0.701961, 1)
 
-[node name="Label" type="Label" parent="Button/ColorRect"]
+[node name="Label" type="Label" parent="ClockOverlay/ColorRect"]
 layout_mode = 0
 offset_right = 228.0
 offset_bottom = 103.0
@@ -565,6 +535,6 @@ text = "?"
 [connection signal="player_death" from="Combat" to="." method="_on_combat_player_death"]
 [connection signal="win" from="Combat" to="." method="_on_combat_win"]
 [connection signal="done" from="Clock" to="." method="_on_clock_done"]
-[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="mouse_entered" from="ClockOverlay" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="ClockOverlay" to="." method="_on_button_mouse_exited"]
 [connection signal="button_down" from="Help" to="." method="_on_help_button_down"]

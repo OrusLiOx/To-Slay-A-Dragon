@@ -97,16 +97,19 @@ func generate_blueprint_base():
 func blueprint_button_down(type):
 	# if active blueprint isn't changed, clear parts from selection
 	if type == activeBlueprint:
+		load_blueprint(type, true)
+	else:
+		load_blueprint(type)
+		
+func load_blueprint(type, clear = false):
+	if clear:
 		for i in range(0,4):
 			if selectedParts[0][i].part.rarity >= 0:
 				Storage.add_part(selectedParts[0][i].part,1)
 				storage.update()
 				selectedParts[0][i].make_part(selectedParts[0][i].part.type,-1)
 				selectedParts[0][i].disabled = true
-	else:
-		load_blueprint(type)
-		
-func load_blueprint(type):
+				
 	activeBlueprint = type
 	$ActiveBlueprint/Type.text = type.capitalize()
 	
@@ -240,7 +243,7 @@ func update_equip_stats():
 	var parts:Array = []
 	for arr in selectedParts:
 		for partBut in arr:
-			if partBut.part.rarity > -1:
+			if partBut.part.rarity >= -1:
 				parts.push_back(partBut.part)
 	builtEquip.set_equip(Equipment.new(activeBlueprint, parts))
 	builtEquip.disabled = false
@@ -260,3 +263,27 @@ func craft_equip():
 
 func _on_help_button_down():
 	$HelpStuff.visible = !$HelpStuff.visible
+
+# decraft
+func _on_storage_use_equip(index):
+	var equip = Storage.remove_equipment(index)
+	if equip == null:
+		return
+		
+	# load corresponding blueprint
+	load_blueprint(equip.type, true)
+	
+	# add all parts
+	var i = 0
+	for part in equip.parts:
+		while selectedParts[i%4][i/4].part.rarity == -2:
+			i+=1
+			print(i)
+		selectedParts[i%4][i/4].set_part(part)
+		selectedParts[i%4][i/4].disabled = part.rarity == -1
+		i+=1
+	
+	# load equip
+	update_equip_stats()
+	
+	pass # Replace with function body.

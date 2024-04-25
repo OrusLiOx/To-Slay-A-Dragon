@@ -1,40 +1,39 @@
 extends Node2D
 
 @export var noteScene : PackedScene
+# parts
 var timer : Timer
+var gameCols
+var partSprite
+var enemyHealth # current health
+var enemyHealthBar # full bar
+
+# states
+var minigameActive
+var killEnemy
+
+# stats
 var enemy
 var noteSpeed
-var gameCols
+var enemyDamage
+var playerDamage
+var player : Dictionary
 
+var accuracy
+var totalNotes
+var questReward
+var rewardQuantity
+
+# note stuff
 var goodNote :Array
 var okNote :Array
 var badNote :Array
 var notes
 
-var minigameActive
-var killEnemy
-var partSprite
-var enemyHealth
-var enemyHealthBar
-
-var accuracy
-var totalNotes
-
-var enemyDamage
-var playerDamage
-
-var questReward
-var rewardQuantity
-
-var player : Dictionary
-
-var dir:Dictionary
-
 signal combat_done()
 signal player_death()
 signal win()
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	timer = $Timer
 	enemy = $EnemyScreen/Enemy
@@ -44,8 +43,6 @@ func _ready():
 	gameCols = $Minigame.get_children()
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if killEnemy:
 		if enemy.modulate.a  > 0:
@@ -58,44 +55,48 @@ func _process(delta):
 	pass
 
 func start(quest):
+	# generic
 	accuracy =0
 	totalNotes = 0
-	
 	Stats.combats +=1
-	if quest.enemy == "Dragon":
-		partSprite.modulate.a = 0
-	$EnemyScreen/Health/Name.text = quest.enemy
-	enemyHealth.size.x=enemyHealthBar.size.x
-	$EnemyScreen/You/Current.size.x = $EnemyScreen/You.size.x
-	$EnemyScreen/Health/LastHit.text = ""
-	$EnemyScreen/You/LastHit.text = ""
-	$EnemyScreen/Reward.text = ""
 	
-	# set display stuff
-	player["attack"] = Storage.get_attack()
-	player["defense"] = Storage.get_defense()
-	player["maxHp"] = 50
-	player["hp"] = player["maxHp"]
-	
-	questReward = quest.questMaterial
-	rewardQuantity = 0
-	partSprite.visible = false
-	partSprite.set_part(questReward)
-	enemy.set_enemy(quest.questEnemy)
-	enemy.stats.heal()
-	enemy.modulate.a = 1
-	enemyHealthBar.modulate.a = 1
-	enemyHealth.size.x = enemyHealthBar.size.x
-	minigameActive = true
 	killEnemy = false
+	noteSpeed = enemy.stats.noteSpeed
 	
-	noteSpeed =enemy.stats.noteSpeed
 	for col in gameCols:
 		col.speed = noteSpeed
 		col.reset()
 	
-	playerDamage = get_damage(player["attack"], enemy.stats.defense)
-	enemyDamage = get_damage(enemy.stats.attack, player["defense"])
+	# Enemy stuff
+	$EnemyScreen/Health/Name.text = quest.enemy
+	enemy.set_enemy(quest.questEnemy)
+	enemy.stats.heal()
+	enemy.modulate.a = 1
+	
+	enemyHealth.size.x=enemyHealthBar.size.x
+	$EnemyScreen/Health/LastHit.text = ""
+	enemyDamage = get_damage(enemy.stats.attack, Storage.get_defense())
+	enemyHealthBar.modulate.a = 1
+	enemyHealth.size.x = enemyHealthBar.size.x
+	
+	# player stuff
+	$EnemyScreen/You/Current.size.x = $EnemyScreen/You.size.x
+	$EnemyScreen/You/LastHit.text = ""
+	$EnemyScreen/Reward.text = ""
+	playerDamage = get_damage(Storage.get_attack(), enemy.stats.defense)
+	player["maxHp"] = 50
+	player["hp"] = player["maxHp"]
+
+	# quest reward
+	questReward = quest.questMaterial
+	partSprite.set_part(questReward)
+	
+	# no drop if dragon
+	if quest.enemy == "Dragon":
+		partSprite.modulate.a = 0
+	
+	# start
+	minigameActive = true
 	spawn_note()
 	pass
 
@@ -177,12 +178,9 @@ func hit_enemy(quality):
 	pass
 
 func get_damage(attack, defense):
-	return max(attack * defense/180,1)
-	var damage = attack-defense
-	if damage > 0:
-		return damage
-	else:
-		return int(attack/defense*1000)/1000.0
+	var damage = max(attack * defense/200,1)
+	
+	return max(int(attack/defense*1000)/1000.0, .001)
 
 func spawn_note():
 	match enemy.stats.pick_action():

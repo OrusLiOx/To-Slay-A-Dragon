@@ -9,6 +9,7 @@
 offset_right = 100.0
 offset_bottom = 100.0
 theme = ExtResource("1_ilh16")
+button_mask = 3
 script = ExtResource("1_5814x")
 
 [node name="EquipmentSprite" parent="." instance=ExtResource("1_n3xh0")]

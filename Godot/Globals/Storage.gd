@@ -19,7 +19,7 @@ func _ready():
 	}
 	for key in parts.keys():
 		for i in range(0,5):
-			parts[key].push_back(5)
+			parts[key].push_back(0)
 	
 	parts["m"][0] = 1
 	
@@ -51,18 +51,30 @@ func add_parts(partsToAdd : Array, quantities : Array):
 	
 	return success
 
+func remove_equipment(index):
+	if index <0 or index >= equipment.size():
+		return null
+		
+	if index == curWeapon:
+		curWeapon = -1
+	elif index < curWeapon:
+		curWeapon -= 1
+		
+	if index == curArmor:
+		curArmor = -1
+	elif index < curArmor:
+		curArmor -= 1
+	
+	var equip = equipment[index]
+	equipment.remove_at(index)
+	return equip
+
 func add_equipment(equip : Equipment):
 	equipment.insert(0, equip)
 	if curWeapon >= 0:
 		curWeapon+=1
 	if curArmor >= 0:
 		curArmor+=1
-	#if equip.type.contains("armor"):
-		#armor.push_back(equip)
-		#armor.bsearch_custom(equip, compare_equip, true)
-	#else:
-		#weapons.push_back(equip)
-		#weapons.bsearch_custom(equip, compare_equip, true)
 		
 func compare_equip(a,b):
 	return a.value < b.value
