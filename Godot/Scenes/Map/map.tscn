@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://3po5cq6p7ujc"]
+[gd_scene load_steps=17 format=3 uid="uid://3po5cq6p7ujc"]
 
 [ext_resource type="Script" path="res://Scenes/Map/Scripts/map.gd" id="1_bqrdo"]
 [ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map/Map.png" id="2_dmyx0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ot02xp1yo4ha" path="res://Sprites/Enemies/snake.png" id="7_72jth"]
 [ext_resource type="PackedScene" uid="uid://bxfmkq8bgumev" path="res://Scenes/Map/Combat/combat.tscn" id="7_fpvvu"]
 [ext_resource type="Texture2D" uid="uid://6203f8cgpqcs" path="res://Sprites/UI/arrow.png" id="8_3rdga"]
+[ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="9_cuwvo"]
 [ext_resource type="LabelSettings" uid="uid://cysjrmkj5ucc5" path="res://Themes/HeaderLabel_White.tres" id="9_h5qja"]
 [ext_resource type="Texture2D" uid="uid://28eu1obcagk1" path="res://Sprites/skybox/clock.png" id="9_jxxns"]
 [ext_resource type="Script" path="res://Scenes/Map/Scripts/Clock.gd" id="10_mq4ra"]
@@ -33,73 +34,73 @@ expand_icon = true
 [node name="Quests" type="Node2D" parent="."]
 
 [node name="Goblin Grotto" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = -769.0
-offset_top = 293.0
-offset_right = -661.0
-offset_bottom = 401.0
+offset_left = -778.0
+offset_top = 302.0
+offset_right = -670.0
+offset_bottom = 410.0
 part = "m0"
 enemy = "Goblin"
 dataDisplayPosition = Vector2(-734, -235)
 
 [node name="Slithering Stream" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = -286.0
-offset_top = 310.0
-offset_right = -178.0
-offset_bottom = 418.0
+offset_left = -344.0
+offset_top = 312.0
+offset_right = -236.0
+offset_bottom = 420.0
 part = "s0"
 enemy = "Serpent"
 dataDisplayPosition = Vector2(-217, 126)
 
 [node name="Fungal Grove" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = -516.0
-offset_top = -436.0
-offset_right = -408.0
-offset_bottom = -328.0
+offset_left = -517.0
+offset_top = -439.0
+offset_right = -409.0
+offset_bottom = -331.0
 part = "f0"
 enemy = "Fairy"
 dataDisplayPosition = Vector2(-454, -474)
 
 [node name="Beetle Burrows" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 175.0
-offset_top = 190.0
-offset_right = 283.0
-offset_bottom = 298.0
+offset_left = 164.0
+offset_top = 235.0
+offset_right = 272.0
+offset_bottom = 343.0
 part = "m1"
 enemy = "Gold Beetle"
 dataDisplayPosition = Vector2(-400, 140)
 
 [node name="Prickly Plains" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 112.0
-offset_top = -140.0
-offset_right = 220.0
-offset_bottom = -32.0
+offset_left = 109.0
+offset_top = -126.0
+offset_right = 217.0
+offset_bottom = -18.0
 part = "s1"
 enemy = "Magma Lizard"
 dataDisplayPosition = Vector2(-374, -93)
 
 [node name="Dancing Fires" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 745.0
-offset_top = 367.0
-offset_right = 853.0
-offset_bottom = 475.0
+offset_left = 689.0
+offset_top = 407.0
+offset_right = 797.0
+offset_bottom = 515.0
 part = "f1"
 enemy = "Fire Spirit"
 dataDisplayPosition = Vector2(2, 126)
 
 [node name="Ancient Temple" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 792.0
-offset_top = -38.0
-offset_right = 900.0
-offset_bottom = 70.0
+offset_left = 797.0
+offset_top = -46.0
+offset_right = 905.0
+offset_bottom = 62.0
 part = "m2"
 enemy = "Animated Armor"
 dataDisplayPosition = Vector2(-292, -513)
 
 [node name="Suspicious Chest" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 414.0
-offset_top = -310.0
-offset_right = 522.0
-offset_bottom = -202.0
+offset_left = 413.0
+offset_top = -328.0
+offset_right = 521.0
+offset_bottom = -220.0
 part = "f2"
 enemy = "Chest?"
 dataDisplayPosition = Vector2(81, -273)
@@ -114,10 +115,10 @@ enemy = "Wyvern"
 dataDisplayPosition = Vector2(-125, -383)
 
 [node name="Dragon Peak" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 774.0
-offset_top = -465.0
-offset_right = 882.0
-offset_bottom = -357.0
+offset_left = 645.0
+offset_top = -529.0
+offset_right = 753.0
+offset_bottom = -421.0
 part = "m0"
 enemy = "Dragon"
 dataDisplayPosition = Vector2(144, -482)
@@ -340,13 +341,14 @@ label_settings = ExtResource("5_7xw65")
 autowrap_mode = 2
 
 [node name="QuestName" type="Label" parent="."]
+visible = false
 z_index = 1
 offset_left = -752.0
 offset_top = 175.0
 offset_right = -292.0
 offset_bottom = 244.0
 text = "Quest Name"
-label_settings = ExtResource("9_h5qja")
+label_settings = ExtResource("9_cuwvo")
 horizontal_alignment = 1
 
 [node name="MaterialLabel" type="Label" parent="QuestName"]
@@ -450,7 +452,7 @@ offset_bottom = 183.0
 
 [node name="Combat" parent="." instance=ExtResource("7_fpvvu")]
 visible = false
-position = Vector2(-495, -491)
+position = Vector2(-702, -425)
 
 [node name="Win" type="Label" parent="."]
 visible = false

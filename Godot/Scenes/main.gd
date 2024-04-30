@@ -39,6 +39,7 @@ func _on_camp_to_map():
 	map.position = Vector2(0,0)
 	camp.position = Vector2(0,2000)
 	$Map/QuestName.visible = false
+	$Map/Combat.visible = false
 	pass # Replace with function body.
 
 func _on_map_to_camp():

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Storage="*res://Globals/Storage.gd"
 Stats="*res://Globals/Stats.gd"
+Settings="*res://Globals/Settings.gd"
 
 [display]
 

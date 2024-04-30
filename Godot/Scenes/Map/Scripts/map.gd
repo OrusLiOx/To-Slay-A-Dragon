@@ -100,14 +100,14 @@ func _on_combat_win():
 
 func _on_button_mouse_entered():
 	if Stats.totaltime == 4:
-		$Button/ColorRect/Label.text = "1 day\nhas passed"
+		$ClockOverlay/ColorRect/Label.text = "1 day\nhas passed"
 	else:
-		$Button/ColorRect/Label.text = str(Stats.totaltime/4.0)+" days\nhave passed"
-	$Button/ColorRect.visible = true
+		$ClockOverlay/ColorRect/Label.text = str(Stats.totaltime/4.0)+" days\nhave passed"
+	$ClockOverlay/ColorRect.visible = true
 	pass # Replace with function body.
 
 func _on_button_mouse_exited():
-	$Button/ColorRect.visible = false
+	$ClockOverlay/ColorRect.visible = false
 	pass # Replace with function body.
 
 func _on_clock_done():

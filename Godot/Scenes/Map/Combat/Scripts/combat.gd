@@ -61,7 +61,7 @@ func start(quest):
 	Stats.combats +=1
 	
 	killEnemy = false
-	noteSpeed = enemy.stats.noteSpeed
+	noteSpeed = Settings.noteSpeed
 	
 	for col in gameCols:
 		col.speed = noteSpeed
@@ -90,6 +90,7 @@ func start(quest):
 	# quest reward
 	questReward = quest.questMaterial
 	partSprite.set_part(questReward)
+	partSprite.visible = false
 	
 	# no drop if dragon
 	if quest.enemy == "Dragon":
@@ -145,7 +146,7 @@ func hit_enemy(quality):
 	match quality:
 		"good":
 			damage *= 2
-			$EnemyScreen/Health/LastHit.text = str(damage) + " CRITICAL"
+			$EnemyScreen/Health/LastHit.text = str(damage) + " CRIT"
 		"ok":
 			$EnemyScreen/Health/LastHit.text = str(damage)
 		"miss":

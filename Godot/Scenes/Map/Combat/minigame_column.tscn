@@ -21,7 +21,7 @@ noteScene = ExtResource("2_p1ryb")
 [node name="Goal" type="Node2D" parent="."]
 
 [node name="Kill" type="Area2D" parent="Goal"]
-position = Vector2(0, 126)
+position = Vector2(0, 154)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal/Kill"]
 shape = SubResource("RectangleShape2D_5hs5a")

@@ -32,7 +32,7 @@ func set_enemy(e : Enemy ):
 	stats = e
 	match(e.type):
 		"Goblin":
-			texture = load("res://icon.svg")
+			texture = load("res://Sprites/Enemies/goblin.png")
 			set_background("res://Sprites/Enemies/forest.png")
 		"Serpent":
 			texture = load("res://Sprites/Enemies/snake.png")
@@ -43,7 +43,7 @@ func set_enemy(e : Enemy ):
 		
 		
 		"Gold Beetle":
-			texture = load("res://icon.svg")
+			texture = load("res://Sprites/Enemies/beetle.png")
 			set_background("res://Sprites/Enemies/desert.png")
 		"Magma Lizard":
 			texture = load("res://Sprites/Enemies/lizard.png")
@@ -60,10 +60,10 @@ func set_enemy(e : Enemy ):
 			set_background("res://Sprites/Enemies/cave.png")
 		"Chest":
 			texture = load("res://Sprites/Enemies/chest.png")
-			set_background("res://Sprites/Enemies/mountain.png")
+			set_background("res://Sprites/Enemies/cave.png")
 		"Mimic":
 			texture = load("res://Sprites/Enemies/mimic.png")
-			set_background("res://Sprites/Enemies/mountain.png")
+			set_background("res://Sprites/Enemies/cave.png")
 		
 		"Dragon":
 			texture = load("res://icon.svg")
