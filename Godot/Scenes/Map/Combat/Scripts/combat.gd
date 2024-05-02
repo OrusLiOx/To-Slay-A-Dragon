@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var noteScene : PackedScene
+@export var syncBar : PackedScene
+
 # parts
 var timer : Timer
 var gameCols
@@ -29,6 +31,7 @@ var goodNote :Array
 var okNote :Array
 var badNote :Array
 var notes
+var bars
 
 signal combat_done()
 signal player_death()
@@ -38,9 +41,10 @@ func _ready():
 	timer = $Timer
 	enemy = $EnemyScreen/Enemy
 	partSprite = $EnemyScreen/PartSprite
-	enemyHealthBar = $EnemyScreen/Health
-	enemyHealth = $EnemyScreen/Health/Current
-	gameCols = $Minigame.get_children()
+	enemyHealthBar = $Health/Enemy
+	enemyHealth = $Health/Enemy/Current
+	gameCols = $Minigame/cols.get_children()
+	bars = $Minigame/Bars
 	pass # Replace with function body.
 
 func _process(delta):
@@ -67,27 +71,44 @@ func start(quest):
 		col.speed = noteSpeed
 		col.reset()
 	
+	match Settings.noteType:
+		"letter":
+			gameCols[0].position.x = 0
+			gameCols[1].position.x = 100
+			gameCols[2].position.x = 200
+			gameCols[3].position.x = 300
+		"arrow":
+			gameCols[0].position.x = -20
+			gameCols[1].position.x = 92.5
+			gameCols[2].position.x = 207.5
+			gameCols[3].position.x = 320
+		_:
+			gameCols[0].position.x = 0
+			gameCols[1].position.x = 95
+			gameCols[2].position.x = 205
+			gameCols[3].position.x = 300
+	
 	# Enemy stuff
-	$EnemyScreen/Health/Name.text = quest.enemy
+	$Health/Enemy/Name.text = quest.enemy
 	enemy.set_enemy(quest.questEnemy)
 	enemy.stats.heal()
 	enemy.modulate.a = 1
 	
 	enemyHealth.size.x=enemyHealthBar.size.x
-	$EnemyScreen/Health/LastHit.text = ""
+	$Health/Enemy/LastHit.text = ""
 	enemyDamage = get_damage(enemy.stats.attack, Storage.get_defense())
 	enemyHealthBar.modulate.a = 1
 	enemyHealth.size.x = enemyHealthBar.size.x
 	
 	# player stuff
-	$EnemyScreen/You/Current.size.x = $EnemyScreen/You.size.x
-	$EnemyScreen/You/LastHit.text = ""
-	$EnemyScreen/Reward.text = ""
+	$Health/You/Current.size.x = $Health/You.size.x
+	$Health/You/LastHit.text = ""
 	playerDamage = get_damage(Storage.get_attack(), enemy.stats.defense)
 	player["maxHp"] = 50
 	player["hp"] = player["maxHp"]
 
 	# quest reward
+	$EnemyScreen/Reward.text = ""
 	questReward = quest.questMaterial
 	partSprite.set_part(questReward)
 	partSprite.visible = false
@@ -103,6 +124,8 @@ func start(quest):
 
 func end_minigame():
 	minigameActive = false
+	for bar in bars:
+		bar.queue_free()
 	for col in gameCols:
 		col.reset()
 	Stats.accuracy.x += accuracy
@@ -119,19 +142,20 @@ func hit_player(quality):
 	var damage = enemyDamage
 	match quality:
 		"good":
-			$EnemyScreen/You/LastHit.text = "PERFECT BLOCK"
+			$Health/You/LastHit.text = "PERFECT BLOCK"
 			return
 		"ok":
 			damage /= 4
-			$EnemyScreen/You/LastHit.text = str(damage) + " BLOCK"
+			$Health/You/LastHit.text = str(damage) + " BLOCK"
 		"miss":
-			$EnemyScreen/You/LastHit.text = str(damage)
+			$Health/You/LastHit.text = str(damage)
 		"wrong":
 			return
 	
+		
 	player["hp"] -= damage
 	
-	$EnemyScreen/You/Current.size.x = max(0,$EnemyScreen/You.size.x * player["hp"]/player["maxHp"])
+	$Health/You/Current.size.x = max(0,$Health/You.size.x * player["hp"]/player["maxHp"])
 	
 	if player["hp"] <= 0:
 		end_minigame()
@@ -146,15 +170,16 @@ func hit_enemy(quality):
 	match quality:
 		"good":
 			damage *= 2
-			$EnemyScreen/Health/LastHit.text = str(damage) + " CRIT"
+			$Health/Enemy/LastHit.text = str(damage) + " CRIT"
 		"ok":
-			$EnemyScreen/Health/LastHit.text = str(damage)
+			$Health/Enemy/LastHit.text = str(damage)
 		"miss":
 			return
 		"wrong":
 			return
 
 	enemy.stats.hp -= damage
+	enemy.hit()
 	
 	enemyHealth.size.x = max(0,enemyHealthBar.size.x * enemy.stats.hp/enemy.stats.maxHp)
 	
@@ -179,42 +204,48 @@ func hit_enemy(quality):
 	pass
 
 func get_damage(attack, defense):
-	var damage = max(attack * defense/200,1)
-	
 	return max(int(attack/defense*1000)/1000.0, .001)
 
 func spawn_note():
+	var spawnedNotes :Array
 	match enemy.stats.pick_action():
 		"attack":
 			if randf()<.5:
-				gameCols[1].spawn_note()
+				spawnedNotes.push_back(gameCols[1].spawn_note())
 			else:
-				gameCols[2].spawn_note()
+				spawnedNotes.push_back(gameCols[2].spawn_note())
 		"block":
 			if randf()<.5:
-				gameCols[0].spawn_note()
+				spawnedNotes.push_back(gameCols[0].spawn_note())
 			else:
-				gameCols[3].spawn_note()
+				spawnedNotes.push_back(gameCols[3].spawn_note())
 		"double block":
-			gameCols[0].spawn_note()
-			gameCols[3].spawn_note()
+			spawnedNotes.push_back(gameCols[0].spawn_note())
+			spawnedNotes.push_back(gameCols[3].spawn_note())
 		"attack block":
 			if randf()<.5:
-				gameCols[0].spawn_note()
+				spawnedNotes.push_back(gameCols[0].spawn_note())
 			else:
-				gameCols[3].spawn_note()
+				spawnedNotes.push_back(gameCols[3].spawn_note())
 			if randf()<.5:
-				gameCols[1].spawn_note()
+				spawnedNotes.push_back(gameCols[1].spawn_note())
 			else:
-				gameCols[2].spawn_note()
+				spawnedNotes.push_back(gameCols[2].spawn_note())
 		"attack double block":
 			if randf()<.5:
-				gameCols[1].spawn_note()
+				spawnedNotes.push_back(gameCols[1].spawn_note())
 			else:
-				gameCols[2].spawn_note()
-			gameCols[0].spawn_note()
-			gameCols[3].spawn_note()
-			
+				spawnedNotes.push_back(gameCols[2].spawn_note())
+			spawnedNotes.push_back(gameCols[0].spawn_note())
+			spawnedNotes.push_back(gameCols[3].spawn_note())
+	
+	if Settings.noteSyncBar == "all" or (Settings.noteSyncBar == "multi" and spawnedNotes.size()>1):
+		var bar = syncBar.instantiate()
+		bar.position = Vector2.ZERO
+		bar.speed = noteSpeed
+		bars.add_child(bar)
+		bar.notes = spawnedNotes
+	
 	timer.start(randf_range(enemy.stats.noteDelayMin,enemy.stats.noteDelayMax))
 
 func _on_timer_timeout():

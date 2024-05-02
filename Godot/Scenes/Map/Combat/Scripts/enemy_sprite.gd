@@ -53,7 +53,7 @@ func set_enemy(e : Enemy ):
 			set_background("res://Sprites/Enemies/desert.png")
 			
 		"Animated Armor":
-			texture = load("res://icon.svg")
+			texture = load("res://Sprites/Enemies/armor.png")
 			set_background("res://Sprites/Enemies/cave.png")
 		"Wyvern":
 			texture = load("res://icon.svg")

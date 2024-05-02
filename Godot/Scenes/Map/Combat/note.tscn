@@ -8,7 +8,6 @@
 size = Vector2(100, 1)
 
 [node name="Note" type="Area2D" groups=["Note"]]
-modulate = Color(0, 0, 0, 1)
 script = ExtResource("1_qvm6b")
 
 [node name="Label" type="Label" parent="."]
@@ -21,8 +20,7 @@ label_settings = ExtResource("2_6m7ql")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-18, 0)
+[node name="Arrow" type="Sprite2D" parent="."]
 texture = ExtResource("2_7ougi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

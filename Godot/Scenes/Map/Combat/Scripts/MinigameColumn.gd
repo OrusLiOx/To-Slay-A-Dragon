@@ -1,8 +1,10 @@
 extends Node2D
 @export var dir:int
 @export var noteScene :PackedScene
+@export var isBlock : bool
 var speed:float
 var input
+var color : Color
 
 var good:Array
 var ok:Array
@@ -15,19 +17,15 @@ func _ready():
 	match dir:
 		0:
 			$Goal/Goal/Letter.text = "A"
-			$Goal/Goal/Arrow.position = Vector2(-18,0)
 			input = "Left"
 		1:
 			$Goal/Goal/Letter.text = "W"
-			$Goal/Goal/Arrow.position = Vector2(0,-12)
 			input = "Up"
 		2:
 			$Goal/Goal/Letter.text = "D"
-			$Goal/Goal/Arrow.position = Vector2(18,0)
 			input = "Right"
 		3:
 			$Goal/Goal/Letter.text = "S"
-			$Goal/Goal/Arrow.position = Vector2(0,12)
 			input = "Down"
 	reset()
 	pass # Replace with function body.
@@ -37,17 +35,54 @@ func reset():
 		child.queue_free()
 		good.clear()
 		ok.clear()
-	pass
+		
+	if isBlock:
+		color = Settings.get_note_color("block")
+	else:
+		color = Settings.get_note_color("attack")
+	
+	
+	$Goal/Goal.modulate = Color(1,1,1,.4)
+	$Goal/Goal/Arrow.modulate = color
+	$Goal/Goal/Letter.modulate = color
+	
+	if Settings.noteType == "letter":
+		$Goal/Goal/Arrow.visible = false
+		$Goal/Goal/Letter.visible = true
+	elif Settings.noteType == "arrow":
+		$Goal/Goal/Arrow.texture = load("res://Sprites/UI/arrowFull.png")
+		$Goal/Goal/Letter.visible = false
+		$Goal/Goal/Arrow.visible = true
+		$Goal/Goal/Arrow.position = Vector2(0,0)
+	else:
+		$Goal/Goal/Arrow.texture = load("res://Sprites/UI/arrow.png")
+		$Goal/Goal/Letter.visible = true
+		$Goal/Goal/Arrow.visible = true
+		
+		match dir:
+			0:
+				$Goal/Goal/Arrow.position = Vector2(-18,0)
+			1:
+				$Goal/Goal/Arrow.position = Vector2(0,-12)
+			2:
+				$Goal/Goal/Arrow.position = Vector2(18,0)
+			3:
+				$Goal/Goal/Arrow.position = Vector2(0,12)
 
 func spawn_note():
 	var note = noteScene.instantiate()
 	note.dir = dir
-	note.position = Vector2(0,-300)
+	note.position = Vector2(0, 0)
+	note.modulate = color
 	note.go(speed)
 	$Notes.add_child(note)
+	return note
 
-func _process(delta):
+func _process(_delta):
+	if Input.is_action_just_released(input):
+		$Goal/Goal.modulate = Color(1,1,1,.4)
 	if Input.is_action_just_pressed(input):
+		$Goal/Goal.modulate = Color(1,1,1,.7)
 		if !ok.is_empty():
 			if good.find(ok.front()) == -1:
 				ok.front().queue_free()

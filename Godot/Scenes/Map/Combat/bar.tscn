@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://coa8b87kpurhs"]
+
+[ext_resource type="Texture2D" uid="uid://dyuc8dp6seclj" path="res://Sprites/UI/beam.png" id="1_ypd8j"]
+[ext_resource type="Script" path="res://Scenes/Map/Combat/Scripts/bar.gd" id="2_1ua5m"]
+
+[node name="Bar" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.576471)
+texture = ExtResource("1_ypd8j")
+script = ExtResource("2_1ua5m")

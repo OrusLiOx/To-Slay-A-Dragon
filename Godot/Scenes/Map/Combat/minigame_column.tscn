@@ -21,9 +21,11 @@ noteScene = ExtResource("2_p1ryb")
 [node name="Goal" type="Node2D" parent="."]
 
 [node name="Kill" type="Area2D" parent="Goal"]
+visible = false
 position = Vector2(0, 154)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal/Kill"]
+position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_5hs5a")
 
 [node name="Goal" type="Node2D" parent="Goal"]
@@ -42,16 +44,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Ok" type="Area2D" parent="Goal"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal/Ok"]
 shape = SubResource("RectangleShape2D_5gioy")
 
 [node name="Good" type="Area2D" parent="Goal"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal/Good"]
 shape = SubResource("RectangleShape2D_o1jpd")
 
 [node name="Notes" type="Node2D" parent="."]
+position = Vector2(0, -500)
 
 [connection signal="area_entered" from="Goal/Kill" to="." method="_on_kill_area_entered"]
 [connection signal="area_entered" from="Goal/Ok" to="." method="_on_ok_area_entered"]
