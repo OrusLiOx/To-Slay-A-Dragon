@@ -69,7 +69,7 @@ part = "m1"
 enemy = "Gold Beetle"
 dataDisplayPosition = Vector2(-400, 140)
 
-[node name="Prickly Plains" parent="Quests" instance=ExtResource("3_d64i7")]
+[node name="Prickly Plateau" parent="Quests" instance=ExtResource("3_d64i7")]
 offset_left = 109.0
 offset_top = -126.0
 offset_right = 217.0
