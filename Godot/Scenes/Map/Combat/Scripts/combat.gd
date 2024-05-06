@@ -124,7 +124,7 @@ func start(quest):
 
 func end_minigame():
 	minigameActive = false
-	for bar in bars:
+	for bar in bars.get_children():
 		bar.queue_free()
 	for col in gameCols:
 		col.reset()

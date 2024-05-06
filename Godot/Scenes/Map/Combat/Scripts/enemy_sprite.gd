@@ -35,46 +35,39 @@ func set_enemy(e : Enemy ):
 	match(e.type):
 		"Goblin":
 			load_enemy_sprite("goblin")
-			set_background("res://Sprites/Enemies/forest.png")
 		"Serpent":
 			load_enemy_sprite("snake")
-			set_background("res://Sprites/Enemies/forest.png")
 		"Fairy":
 			load_enemy_sprite("fairy")
-			set_background("res://Sprites/Enemies/forest.png")
 		
 		
 		"Gold Beetle":
 			load_enemy_sprite("beetle")
-			set_background("res://Sprites/Enemies/desert.png")
 		"Magma Lizard":
 			load_enemy_sprite("lizard")
-			set_background("res://Sprites/Enemies/desert.png")
 		"Fire Spirit":
 			load_enemy_sprite("fox")
-			set_background("res://Sprites/Enemies/desert.png")
 			
 		"Animated Armor":
 			load_enemy_sprite("armor")
-			set_background("res://Sprites/Enemies/cave.png")
 		"Wyvern":
 			load_enemy_sprite("wyvern")
-			set_background("res://Sprites/Enemies/cave.png")
 		"Chest":
 			load_enemy_sprite("chest")
-			set_background("res://Sprites/Enemies/cave.png")
 		"Mimic":
-			load_enemy_sprite("mimic")
-			set_background("res://Sprites/Enemies/cave.png")
+			load_enemy_sprite("chest")
+			sprite.texture = load("res://Sprites/Enemies/mimic.png")
 		
 		"Dragon":
-			sprite.texture = load("res://icon.svg")
-			set_background("res://Sprites/Enemies/mountain.png")
+			load_enemy_sprite("dragon")
 
 func load_enemy_sprite(type, shadow = true):
 	sprite.texture = load("res://Sprites/Enemies/"+type+".png")
-	if type == "fox" or type == "lizard":
+	background.texture = load("res://Sprites/Enemies/"+type+"Background.png")
+	if type == "fox":
+		$Shadow.visible = false
 		return
+	$Shadow.visible = true
 	$Shadow.texture = load("res://Sprites/Enemies/"+type+"Shadow.png")
 
 func set_background(path):

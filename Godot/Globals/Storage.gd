@@ -19,7 +19,7 @@ func _ready():
 	}
 	for key in parts.keys():
 		for i in range(0,5):
-			parts[key].push_back(0)
+			parts[key].push_back(5)
 	
 	parts["m"][0] = 1
 	

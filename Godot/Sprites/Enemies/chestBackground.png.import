@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fmof0kxbmay6"
-path="res://.godot/imported/mimicShadow.png-fbea39d6986a19ffb04a2495ce66787a.ctex"
+uid="uid://wf7s1h1qt2f7"
+path="res://.godot/imported/chestBackground.png-5b558f49f29c20ed78ad685ad2aca6a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemies/mimicShadow.png"
-dest_files=["res://.godot/imported/mimicShadow.png-fbea39d6986a19ffb04a2495ce66787a.ctex"]
+source_file="res://Sprites/Enemies/chestBackground.png"
+dest_files=["res://.godot/imported/chestBackground.png-5b558f49f29c20ed78ad685ad2aca6a9.ctex"]
 
 [params]
 

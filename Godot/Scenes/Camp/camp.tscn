@@ -68,9 +68,9 @@ texture = ExtResource("6_xnutx")
 
 [node name="Blacksmith" type="Button" parent="."]
 z_index = 1
-offset_left = -147.0
+offset_left = -153.0
 offset_top = -109.0
-offset_right = 161.0
+offset_right = 155.0
 offset_bottom = 299.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pb0gu")
 icon = ExtResource("6_h7npj")
