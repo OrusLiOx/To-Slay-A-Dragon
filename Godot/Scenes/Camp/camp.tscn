@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bmx0jemjixann"]
+[gd_scene load_steps=20 format=3 uid="uid://bmx0jemjixann"]
 
 [ext_resource type="Script" path="res://Scenes/Camp/Scripts/camp.gd" id="1_n2q1u"]
 [ext_resource type="Texture2D" uid="uid://bedtgjo8m3qhr" path="res://Sprites/Camp/campBackground.png" id="2_53k2d"]
@@ -30,6 +30,8 @@ hue_variation_max = -0.9
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edwyj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pb0gu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1a3ij"]
 
 [node name="Camp" type="Node2D"]
 script = ExtResource("1_n2q1u")
@@ -121,6 +123,7 @@ offset_left = -165.0
 offset_top = 261.0
 offset_right = 121.0
 offset_bottom = 538.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1a3ij")
 icon = ExtResource("10_kjxj7")
 flat = true
 

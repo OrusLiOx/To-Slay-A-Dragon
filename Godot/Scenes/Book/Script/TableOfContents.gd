@@ -1,10 +1,12 @@
 extends Node2D
-@export var headers:Array
+@export var headers:Array[Array]
+@export var pageNums:Array[int]
+@export var pageNumStart : int
 
 signal go_to_page(page)
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func update():
 	var y = 0
 	for arr in headers:
 		for val in arr:
@@ -16,7 +18,7 @@ func _ready():
 			but.text_overrun_behavior = 1
 			but.flat = true
 			but.theme = load("res://Themes/UIButton.tres")
-			but.button_down.connect(clicked.bind(y*4))
+			but.button_down.connect(clicked.bind(int(str(pageNums[y]+pageNumStart))))
 			if val != arr[0]:
 				but.text = "     "
 			else:
@@ -29,13 +31,12 @@ func _ready():
 			page.size.x = 34
 			page.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 			page.label_settings = load("res://Themes/BodyLabel.tres")
-			page.text = str(y)
+			page.text = str(pageNums[y]+pageNumStart)
 			
 			but.mouse_entered.connect(mouse_over.bind(page, true))
 			but.mouse_exited.connect(mouse_over.bind(page, false))
 			y+=1
 		
-	
 func mouse_over(obj, state):
 	if state:
 		obj.modulate.a = 72/255.0

@@ -13,6 +13,11 @@ func _init(t :String):
 
 func set_enemy(t : String):
 	type = t
+	if type == "Chest?":
+		if randf()<.1:
+			type = "Chest"
+		else:
+			type = "Mimic"
 	match(type):
 		"Goblin":
 			attack = 10
@@ -97,27 +102,24 @@ func set_enemy(t : String):
 			weight["double block"] = .2
 			weight["attack block"] = .2
 			weight["attack double block"] = .1
-		"Chest?":
-			if randf()<.1:
-				type = "Chest"
-				attack = 0
-				defense = 0
-				maxHp = 1
-				noteDelayMin = .7
-				noteDelayMax = .7
-				weight["attack"] = 1
-			else:
-				type = "Mimic"
-				attack = 70
-				defense = 70
-				maxHp = 30
-				noteDelayMin = .7
-				noteDelayMax = .7
+		"Chest":
+			attack = 0
+			defense = 0
+			maxHp = 1
+			noteDelayMin = .7
+			noteDelayMax = .7
+			weight["attack"] = 1
+		"Mimic":
+			attack = 70
+			defense = 70
+			maxHp = 30
+			noteDelayMin = .7
+			noteDelayMax = .7
 				
-				weight["attack"] = .4
-				weight["block"] = .4
-				weight["double block"] = .1
-				weight["attack block"] = .1
+			weight["attack"] = .4
+			weight["block"] = .4
+			weight["double block"] = .1
+			weight["attack block"] = .1
 		
 		"Dragon":
 			attack = 110

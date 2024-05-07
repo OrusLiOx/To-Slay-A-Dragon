@@ -41,7 +41,7 @@ autowrap_mode = 1
 [node name="Stats" type="Label" parent="."]
 offset_left = 532.0
 offset_top = -139.0
-offset_right = 823.0
+offset_right = 797.0
 offset_bottom = 204.0
 text = "Attack : 100
 Defense: 100
@@ -59,9 +59,6 @@ offset_left = 540.0
 offset_top = 241.0
 offset_right = 1196.0
 offset_bottom = 734.0
-text = "asdfksdjflkajs ldflkasjdlkfj aslfas dfasdf alskjdflk jaslkjdfkja slkjdfklaj lsjdfkajsl kjflkajsdklfj alksjdflk ajslkd
-
-jfl kajsldfj alskjdfklj aslkjfdkl ajslkdfj lkasjkfldj klasjdfkl ajskldfj klasjdfkl jaskldfj lkasjdfkl jaslkdjfoa wiefjai sjdiofn aownefkna jxkncknduvonai kwmkosmdfo aufjaso mvoknaneofina soasjfi woeimf oismd faisdovxamoicmvoi asoidf owef asdfasdf "
 label_settings = ExtResource("4_4drxp")
 autowrap_mode = 2
 text_overrun_behavior = 1
