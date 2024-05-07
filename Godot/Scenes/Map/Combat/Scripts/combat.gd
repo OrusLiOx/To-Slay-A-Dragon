@@ -132,6 +132,8 @@ func end_minigame():
 	Stats.accuracy.y += totalNotes
 
 func update_accuracy(quality):
+	if !minigameActive:
+		return
 	totalNotes+=1
 	match quality:
 		"good": accuracy +=1

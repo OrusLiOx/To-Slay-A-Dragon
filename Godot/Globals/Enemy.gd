@@ -33,9 +33,6 @@ func set_enemy(t : String):
 			weight["attack"] = .4
 			weight["block"] = .5
 			weight["attack block"] = .1
-			
-			weight["attack"] = .5
-			weight["block"] = .5
 		"Fairy":
 			attack = 15
 			defense = 10

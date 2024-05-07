@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dgifmyw55byck"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dgifmyw55byck"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rtga"]
 bg_color = Color(0.858824, 0.772549, 0.572549, 1)
@@ -14,9 +14,24 @@ bg_color = Color(0.776471, 0.698039, 0.513726, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4ono"]
 bg_color = Color(0.47451, 0.415686, 0.278431, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6jc4x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_slbl8"]
+
 [resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 0.501961)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 0.447059)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 30
 Button/styles/disabled = SubResource("StyleBoxFlat_5rtga")
 Button/styles/focus = SubResource("StyleBoxEmpty_52r25")
 Button/styles/hover = SubResource("StyleBoxFlat_c8aiu")
 Button/styles/normal = SubResource("StyleBoxFlat_d1mvq")
 Button/styles/pressed = SubResource("StyleBoxFlat_o4ono")
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/font_sizes/font_size = 30
+TextEdit/styles/focus = SubResource("StyleBoxEmpty_6jc4x")
+TextEdit/styles/normal = SubResource("StyleBoxEmpty_slbl8")

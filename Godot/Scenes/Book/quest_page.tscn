@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce1p1s1byjllv"]
+
+[ext_resource type="Script" path="res://Scenes/Book/Script/quest_page.gd" id="1_hf6km"]
+[ext_resource type="LabelSettings" uid="uid://b11e7oyd37eom" path="res://Themes/TitleLabel.tres" id="2_1qgwh"]
+[ext_resource type="PackedScene" uid="uid://dmylbepggimag" path="res://Scenes/Map/Combat/enemy_sprite.tscn" id="3_rdcrw"]
+[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="4_4drxp"]
+[ext_resource type="Texture2D" uid="uid://dkmi88t3fr10n" path="res://Sprites/book/BookBackgroundClipping2.png" id="4_xod6u"]
+[ext_resource type="Texture2D" uid="uid://bjislvbpjadwb" path="res://Sprites/Enemies/goblinBackground.png" id="5_36i27"]
+
+[node name="QuestPage" type="Node2D"]
+script = ExtResource("1_hf6km")
+
+[node name="Area" type="Label" parent="."]
+offset_left = -173.0
+offset_top = -158.0
+offset_right = 450.0
+offset_bottom = 119.0
+text = "Goblin"
+label_settings = ExtResource("2_1qgwh")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 1
+
+[node name="Actions" type="Label" parent="."]
+offset_left = 813.0
+offset_top = -139.0
+offset_right = 1185.0
+offset_bottom = 425.0
+text = "Attack
+Opening
+Attack x2
+Attack + Opening
+Attack x2 + Opening: 20%
+
+Time Between Actions: 
+0.25 - 0.75 s"
+label_settings = ExtResource("4_4drxp")
+autowrap_mode = 1
+
+[node name="Stats" type="Label" parent="."]
+offset_left = 532.0
+offset_top = -139.0
+offset_right = 823.0
+offset_bottom = 204.0
+text = "Attack : 100
+Defense: 100
+Health: 1000
+
+Drop: Dreamer's Stone
+Value: 100
+
+"
+label_settings = ExtResource("4_4drxp")
+autowrap_mode = 2
+
+[node name="Flavor" type="Label" parent="."]
+offset_left = 540.0
+offset_top = 241.0
+offset_right = 1196.0
+offset_bottom = 734.0
+text = "asdfksdjflkajs ldflkasjdlkfj aslfas dfasdf alskjdflk jaslkjdfkja slkjdfklaj lsjdfkajsl kjflkajsdklfj alksjdflk ajslkd
+
+jfl kajsldfj alskjdfklj aslkjfdkl ajslkdfj lkasjkfldj klasjdfkl ajskldfj klasjdfkl jaskldfj lkasjdfkl jaslkdjfoa wiefjai sjdiofn aownefkna jxkncknduvonai kwmkosmdfo aufjaso mvoknaneofina soasjfi woeimf oismd faisdovxamoicmvoi asoidf owef asdfasdf "
+label_settings = ExtResource("4_4drxp")
+autowrap_mode = 2
+text_overrun_behavior = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+clip_children = 1
+position = Vector2(128, 392)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("4_xod6u")
+
+[node name="Enemy" type="Sprite2D" parent="Sprite2D"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_36i27")
+
+[node name="EnemySprite" parent="Sprite2D/Enemy" node_paths=PackedStringArray("background") instance=ExtResource("3_rdcrw")]
+background = NodePath("..")

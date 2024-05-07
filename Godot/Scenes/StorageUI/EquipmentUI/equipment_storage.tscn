@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/StorageUI/PartUI/part_button.tscn" id="3_3q3cr"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="3_l4isl"]
 [ext_resource type="Theme" uid="uid://dgifmyw55byck" path="res://Themes/UIButton.tres" id="5_t0c8o"]
-[ext_resource type="Texture2D" uid="uid://6203f8cgpqcs" path="res://Sprites/UI/arrow.png" id="6_8ed6u"]
+[ext_resource type="Texture2D" uid="uid://br3lcjhomebab" path="res://Sprites/UI/arrowCrop.png" id="6_aegdj"]
 
 [node name="EquipmentStorage" type="Node2D"]
 script = ExtResource("1_jjyk2")
@@ -55,8 +55,7 @@ offset_top = 193.0
 offset_right = 58.0
 offset_bottom = 393.0
 theme = ExtResource("5_t0c8o")
-icon = ExtResource("6_8ed6u")
-expand_icon = true
+icon = ExtResource("6_aegdj")
 
 [node name="Right" type="Button" parent="Main"]
 offset_left = 490.0
@@ -65,8 +64,7 @@ offset_right = 540.0
 offset_bottom = 593.0
 rotation = 3.14159
 theme = ExtResource("5_t0c8o")
-icon = ExtResource("6_8ed6u")
-expand_icon = true
+icon = ExtResource("6_aegdj")
 
 [node name="Buttons" type="Node2D" parent="Main"]
 position = Vector2(74, 125)

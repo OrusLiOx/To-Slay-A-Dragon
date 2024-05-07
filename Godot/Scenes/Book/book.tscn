@@ -1,0 +1,138 @@
+[gd_scene load_steps=15 format=3 uid="uid://tr660l4oomhm"]
+
+[ext_resource type="Texture2D" uid="uid://cf2sbqwtsq0vd" path="res://Sprites/book/book.png" id="1_rktjd"]
+[ext_resource type="Script" path="res://Scenes/Book/Script/RegionTitlePage.gd" id="2_4ahq4"]
+[ext_resource type="LabelSettings" uid="uid://b11e7oyd37eom" path="res://Themes/TitleLabel.tres" id="2_aod8j"]
+[ext_resource type="PackedScene" uid="uid://ce1p1s1byjllv" path="res://Scenes/Book/quest_page.tscn" id="2_vl5qr"]
+[ext_resource type="Theme" uid="uid://dgifmyw55byck" path="res://Themes/UIButton.tres" id="4_cdtq7"]
+[ext_resource type="Texture2D" uid="uid://dxc67woulqfnb" path="res://Sprites/book/ForestEdit.png" id="4_u7d7b"]
+[ext_resource type="Texture2D" uid="uid://br3lcjhomebab" path="res://Sprites/UI/arrowCrop.png" id="5_cw70f"]
+[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_iiqke"]
+[ext_resource type="Texture2D" uid="uid://cf0xej0dmr7rq" path="res://Sprites/Enemies/beetle.png" id="6_va7t1"]
+[ext_resource type="Texture2D" uid="uid://dde35b4ko241e" path="res://Sprites/book/map.png" id="7_2h8yx"]
+[ext_resource type="Texture2D" uid="uid://cnq33yf2cm21l" path="res://Sprites/Enemies/fairy.png" id="7_sxw0x"]
+[ext_resource type="Script" path="res://Scenes/Book/Script/TableOfContents.gd" id="7_v5i45"]
+[ext_resource type="Texture2D" uid="uid://ot02xp1yo4ha" path="res://Sprites/Enemies/snake.png" id="8_hgdp7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwrn0"]
+
+[node name="Book" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rktjd")
+
+[node name="TableOfContents" type="Node2D" parent="."]
+
+[node name="QuestPageL" parent="." instance=ExtResource("2_vl5qr")]
+position = Vector2(-495, -284)
+
+[node name="RegionTitlePage" type="Node2D" parent="."]
+visible = false
+script = ExtResource("2_4ahq4")
+
+[node name="Map" type="Sprite2D" parent="RegionTitlePage"]
+texture = ExtResource("4_u7d7b")
+
+[node name="Title" type="Label" parent="RegionTitlePage"]
+offset_left = 61.0
+offset_top = -424.0
+offset_right = 660.0
+offset_bottom = -280.0
+text = "Forest"
+label_settings = ExtResource("2_aod8j")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="RegionTitlePage"]
+offset_left = 61.0
+offset_top = -283.0
+offset_right = 660.0
+offset_bottom = 94.0
+text = "hello this is flavor text for this area"
+label_settings = ExtResource("5_iiqke")
+
+[node name="MapTitlePage" type="Node2D" parent="."]
+visible = false
+
+[node name="Map" type="Sprite2D" parent="MapTitlePage"]
+position = Vector2(-360, 213)
+texture = ExtResource("7_2h8yx")
+
+[node name="Beetle" type="Sprite2D" parent="MapTitlePage"]
+position = Vector2(-474, -152)
+scale = Vector2(0.585, 0.585)
+texture = ExtResource("6_va7t1")
+
+[node name="Fairy" type="Sprite2D" parent="MapTitlePage"]
+position = Vector2(-352, -319)
+texture = ExtResource("7_sxw0x")
+
+[node name="Snake" type="Sprite2D" parent="MapTitlePage"]
+position = Vector2(-132, -293)
+scale = Vector2(0.795, 0.795)
+texture = ExtResource("8_hgdp7")
+
+[node name="Title" type="Label" parent="MapTitlePage"]
+offset_left = 128.0
+offset_top = -433.0
+offset_right = 602.0
+offset_bottom = -16.0
+text = "Creatures
+&
+Places"
+label_settings = ExtResource("2_aod8j")
+horizontal_alignment = 1
+
+[node name="Buttons" type="Node2D" parent="MapTitlePage"]
+position = Vector2(146, 0)
+script = ExtResource("7_v5i45")
+headers = [["Forest"], ["Desert"], ["Mountains", "Dragon", "Enemies"]]
+
+[node name="Text" type="ColorRect" parent="MapTitlePage/Buttons"]
+clip_children = 1
+offset_right = 410.0
+offset_bottom = 408.0
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="PageNumR" type="TextEdit" parent="UI"]
+offset_left = 645.0
+offset_top = 400.0
+offset_right = 692.0
+offset_bottom = 450.0
+theme = ExtResource("4_cdtq7")
+text = "00"
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="PageNumL" type="TextEdit" parent="UI"]
+offset_left = -686.0
+offset_top = 398.0
+offset_right = -639.0
+offset_bottom = 448.0
+theme = ExtResource("4_cdtq7")
+text = "12"
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="Left" type="Button" parent="UI"]
+offset_left = -822.0
+offset_top = -56.0
+offset_right = -746.0
+offset_bottom = 57.0
+pivot_offset = Vector2(224, -100)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qwrn0")
+icon = ExtResource("5_cw70f")
+flat = true
+icon_alignment = 1
+
+[node name="Right" type="Button" parent="UI"]
+offset_left = 375.0
+offset_top = 256.0
+offset_right = 451.0
+offset_bottom = 369.0
+rotation = 3.14159
+pivot_offset = Vector2(224, -100)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qwrn0")
+icon = ExtResource("5_cw70f")
+flat = true
+icon_alignment = 1

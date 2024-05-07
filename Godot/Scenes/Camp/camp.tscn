@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bmx0jemjixann"]
+[gd_scene load_steps=19 format=3 uid="uid://bmx0jemjixann"]
 
 [ext_resource type="Script" path="res://Scenes/Camp/Scripts/camp.gd" id="1_n2q1u"]
 [ext_resource type="Texture2D" uid="uid://bedtgjo8m3qhr" path="res://Sprites/Camp/campBackground.png" id="2_53k2d"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c1p32ma6xw854" path="res://Sprites/Camp/blacksmithGlow.png" id="9_ut1ap"]
 [ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/Camp/campfire.png" id="10_kjxj7"]
 [ext_resource type="Texture2D" uid="uid://dcnioqhxel2ku" path="res://Sprites/Map/mapIcon.png" id="12_3gpqe"]
+[ext_resource type="PackedScene" uid="uid://tr660l4oomhm" path="res://Scenes/Book/book.tscn" id="14_7evyw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hpgy"]
 
@@ -122,6 +123,9 @@ offset_right = 121.0
 offset_bottom = 538.0
 icon = ExtResource("10_kjxj7")
 flat = true
+
+[node name="Book" parent="." instance=ExtResource("14_7evyw")]
+z_index = 2
 
 [connection signal="mouse_entered" from="Lizor" to="." method="_on_lizor_mouse_entered"]
 [connection signal="mouse_exited" from="Lizor" to="." method="_on_lizor_mouse_exited"]
