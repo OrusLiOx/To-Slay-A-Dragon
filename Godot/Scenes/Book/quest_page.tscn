@@ -55,10 +55,11 @@ label_settings = ExtResource("4_4drxp")
 autowrap_mode = 2
 
 [node name="Flavor" type="Label" parent="."]
-offset_left = 540.0
-offset_top = 241.0
-offset_right = 1196.0
-offset_bottom = 734.0
+offset_left = 529.0
+offset_top = 221.0
+offset_right = 1193.0
+offset_bottom = 714.0
+text = "Despite their name, the pink stones that fairies often leave behind are not their hearts. This should be obvious considering the stones are larger than a fairy's body and faries are immortal. Fairies consider fighting to be a form a play and they leave behind magical stones as gifts."
 label_settings = ExtResource("4_4drxp")
 autowrap_mode = 2
 text_overrun_behavior = 1

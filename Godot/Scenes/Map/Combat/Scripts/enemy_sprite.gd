@@ -67,7 +67,7 @@ func load_enemy_sprite(type, shadow = true):
 	if type == "fox":
 		$Shadow.visible = false
 		return
-	$Shadow.visible = true
+	$Shadow.visible = shadow
 	$Shadow.texture = load("res://Sprites/Enemies/"+type+"Shadow.png")
 
 func set_background(path):

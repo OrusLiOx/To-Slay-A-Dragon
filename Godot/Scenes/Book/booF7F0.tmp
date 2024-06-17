@@ -1,0 +1,261 @@
+[gd_scene load_steps=17 format=3 uid="uid://tr660l4oomhm"]
+
+[ext_resource type="Texture2D" uid="uid://cf2sbqwtsq0vd" path="res://Sprites/book/book.png" id="1_rktjd"]
+[ext_resource type="Script" path="res://Scenes/Book/Script/book.gd" id="1_w6myh"]
+[ext_resource type="Script" path="res://Scenes/Book/Script/RegionTitlePage.gd" id="2_4ahq4"]
+[ext_resource type="LabelSettings" uid="uid://b11e7oyd37eom" path="res://Themes/TitleLabel.tres" id="2_aod8j"]
+[ext_resource type="PackedScene" uid="uid://ce1p1s1byjllv" path="res://Scenes/Book/quest_page.tscn" id="2_vl5qr"]
+[ext_resource type="Theme" uid="uid://dgifmyw55byck" path="res://Themes/UIButton.tres" id="4_cdtq7"]
+[ext_resource type="Texture2D" uid="uid://dxc67woulqfnb" path="res://Sprites/book/ForestEdit.png" id="4_u7d7b"]
+[ext_resource type="Texture2D" uid="uid://br3lcjhomebab" path="res://Sprites/UI/arrowCrop.png" id="5_cw70f"]
+[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_iiqke"]
+[ext_resource type="Texture2D" uid="uid://dde35b4ko241e" path="res://Sprites/book/map.png" id="7_2h8yx"]
+[ext_resource type="Texture2D" uid="uid://cnq33yf2cm21l" path="res://Sprites/Enemies/fairy.png" id="7_sxw0x"]
+[ext_resource type="Script" path="res://Scenes/Book/Script/TableOfContents.gd" id="7_v5i45"]
+[ext_resource type="Texture2D" uid="uid://ot02xp1yo4ha" path="res://Sprites/Enemies/snake.png" id="8_hgdp7"]
+[ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="12_pafpr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_782mq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwrn0"]
+
+[node name="Book" type="Node2D"]
+script = ExtResource("1_w6myh")
+
+[node name="Exit" type="Button" parent="."]
+offset_left = -948.0
+offset_top = -529.0
+offset_right = -848.0
+offset_bottom = -429.0
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_782mq")
+text = "x"
+
+[node name="BookBase" type="Sprite2D" parent="."]
+texture = ExtResource("1_rktjd")
+
+[node name="TitlePage" type="Node2D" parent="."]
+visible = false
+
+[node name="TableOfContents" type="Node2D" parent="TitlePage"]
+position = Vector2(146, -429)
+script = ExtResource("7_v5i45")
+headers = Array[Array]([["Help"], ["Settings"], ["Creatures & Regions"], ["Numbers"]])
+pageNums = Array[int]([0, 1, 2, 3])
+pageNumStart = 3
+
+[node name="Text" type="ColorRect" parent="TitlePage/TableOfContents"]
+clip_children = 1
+offset_right = 410.0
+offset_bottom = 700.0
+
+[node name="Label" type="Label" parent="TitlePage"]
+offset_left = -704.0
+offset_top = -532.0
+offset_right = -3.0
+offset_bottom = 434.0
+text = "Dren's 
+Book 
+of 
+Things"
+label_settings = ExtResource("2_aod8j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyInfo" type="Node2D" parent="."]
+visible = false
+
+[node name="QuestPage" parent="EnemyInfo" instance=ExtResource("2_vl5qr")]
+visible = false
+position = Vector2(-495, -284)
+
+[node name="RegionTitlePage" type="Node2D" parent="EnemyInfo"]
+visible = false
+script = ExtResource("2_4ahq4")
+
+[node name="Map" type="Sprite2D" parent="EnemyInfo/RegionTitlePage"]
+texture = ExtResource("4_u7d7b")
+
+[node name="Title" type="Label" parent="EnemyInfo/RegionTitlePage"]
+offset_left = 61.0
+offset_top = -424.0
+offset_right = 660.0
+offset_bottom = -280.0
+text = "Forest"
+label_settings = ExtResource("2_aod8j")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="EnemyInfo/RegionTitlePage"]
+offset_left = 69.0
+offset_top = 2.0
+offset_right = 668.0
+offset_bottom = 379.0
+text = "The forest is the perfect place for novice adventures to start their journey. The region has a temperate climate and it's pretty easy to find something to eat in case you underpack. The creatures in this region don't tend to attack unless you get too close and they're pretty easy to run away from if necessary."
+label_settings = ExtResource("5_iiqke")
+autowrap_mode = 2
+
+[node name="Creatures" type="Label" parent="EnemyInfo/RegionTitlePage"]
+offset_left = 124.0
+offset_top = -270.0
+offset_right = 363.0
+offset_bottom = -201.0
+text = "Creatures"
+label_settings = ExtResource("12_pafpr")
+
+[node name="Forest" type="Node2D" parent="EnemyInfo/RegionTitlePage/Creatures"]
+visible = false
+position = Vector2(0, 80)
+script = ExtResource("7_v5i45")
+headers = Array[Array]([["Goblin"], ["Serpent"], ["Fairy"]])
+pageNums = Array[int]([2, 4, 6])
+
+[node name="Text" type="ColorRect" parent="EnemyInfo/RegionTitlePage/Creatures/Forest"]
+clip_children = 1
+offset_right = 410.0
+offset_bottom = 408.0
+
+[node name="Desert" type="Node2D" parent="EnemyInfo/RegionTitlePage/Creatures"]
+visible = false
+position = Vector2(0, 80)
+script = ExtResource("7_v5i45")
+headers = Array[Array]([["Magma Lizard"], ["Gold Beetle"], ["Fire Spirit"]])
+pageNums = Array[int]([2, 4, 6])
+
+[node name="Text" type="ColorRect" parent="EnemyInfo/RegionTitlePage/Creatures/Desert"]
+clip_children = 1
+offset_right = 410.0
+offset_bottom = 408.0
+
+[node name="Mountain" type="Node2D" parent="EnemyInfo/RegionTitlePage/Creatures"]
+position = Vector2(0, 80)
+script = ExtResource("7_v5i45")
+headers = Array[Array]([["Animated Armor"], ["Mimic"], ["Wyvern"], ["Dragon"]])
+pageNums = Array[int]([2, 4, 6, 8])
+
+[node name="Text" type="ColorRect" parent="EnemyInfo/RegionTitlePage/Creatures/Mountain"]
+clip_children = 1
+offset_right = 410.0
+offset_bottom = 408.0
+
+[node name="MapTitlePage" type="Node2D" parent="EnemyInfo"]
+visible = false
+
+[node name="Map" type="Sprite2D" parent="EnemyInfo/MapTitlePage"]
+position = Vector2(-360, 213)
+texture = ExtResource("7_2h8yx")
+
+[node name="Fairy" type="Sprite2D" parent="EnemyInfo/MapTitlePage"]
+position = Vector2(487, -357)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("7_sxw0x")
+
+[node name="Snake" type="Sprite2D" parent="EnemyInfo/MapTitlePage"]
+position = Vector2(-580, -208)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_hgdp7")
+
+[node name="Label" type="Label" parent="EnemyInfo/MapTitlePage"]
+offset_left = 134.0
+offset_top = -386.0
+offset_right = 354.0
+offset_bottom = -317.0
+text = "Contents"
+label_settings = ExtResource("12_pafpr")
+
+[node name="Title" type="Label" parent="EnemyInfo/MapTitlePage"]
+offset_left = -543.0
+offset_top = -409.0
+offset_right = -69.0
+offset_bottom = 8.0
+text = "Creatures
+&
+Regions"
+label_settings = ExtResource("2_aod8j")
+horizontal_alignment = 1
+
+[node name="Buttons" type="Node2D" parent="EnemyInfo/MapTitlePage"]
+position = Vector2(133, -296)
+script = ExtResource("7_v5i45")
+headers = Array[Array]([["Forest", "Goblins", "Serpents", "Fairies"], ["Desert", "Magma Lizards", "Gold Beetles", "Fire Spirit"], ["Mountains", "Animated Armor", "Mimic", "Wyvern", "Dragon"]])
+pageNums = Array[int]([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28])
+pageNumStart = 10
+
+[node name="Text" type="ColorRect" parent="EnemyInfo/MapTitlePage/Buttons"]
+clip_children = 1
+offset_right = 410.0
+offset_bottom = 700.0
+
+[node name="Numbers" type="Node2D" parent="."]
+visible = false
+
+[node name="Help" type="Node2D" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="Help"]
+offset_left = -562.0
+offset_top = -416.0
+offset_right = -175.0
+offset_bottom = -279.0
+text = "Help"
+label_settings = ExtResource("2_aod8j")
+
+[node name="Settings" type="Node2D" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="Settings"]
+offset_left = -562.0
+offset_top = -416.0
+offset_right = -175.0
+offset_bottom = -279.0
+text = "Settings"
+label_settings = ExtResource("2_aod8j")
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="PageNumR" type="Label" parent="UI"]
+offset_left = 645.0
+offset_top = 400.0
+offset_right = 757.0
+offset_bottom = 450.0
+theme = ExtResource("4_cdtq7")
+text = "00"
+label_settings = ExtResource("5_iiqke")
+
+[node name="PageNumL" type="Label" parent="UI"]
+offset_left = -686.0
+offset_top = 398.0
+offset_right = -574.0
+offset_bottom = 448.0
+theme = ExtResource("4_cdtq7")
+text = "12"
+label_settings = ExtResource("5_iiqke")
+
+[node name="Left" type="Button" parent="UI"]
+offset_left = -822.0
+offset_top = -56.0
+offset_right = -746.0
+offset_bottom = 57.0
+pivot_offset = Vector2(224, -100)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qwrn0")
+icon = ExtResource("5_cw70f")
+icon_alignment = 1
+
+[node name="Right" type="Button" parent="UI"]
+offset_left = 375.0
+offset_top = 256.0
+offset_right = 451.0
+offset_bottom = 369.0
+rotation = 3.14159
+pivot_offset = Vector2(224, -100)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qwrn0")
+icon = ExtResource("5_cw70f")
+icon_alignment = 1
+
+[connection signal="button_down" from="Exit" to="." method="_on_exit_button_down"]
+[connection signal="go_to_page" from="TitlePage/TableOfContents" to="." method="update_page"]
+[connection signal="go_to_page" from="EnemyInfo/RegionTitlePage/Creatures/Forest" to="." method="update_page"]
+[connection signal="go_to_page" from="EnemyInfo/RegionTitlePage/Creatures/Desert" to="." method="update_page"]
+[connection signal="go_to_page" from="EnemyInfo/RegionTitlePage/Creatures/Mountain" to="." method="update_page"]
+[connection signal="go_to_page" from="EnemyInfo/MapTitlePage/Buttons" to="." method="update_page"]
+[connection signal="button_down" from="UI/Left" to="." method="_on_left_button_down"]
+[connection signal="button_down" from="UI/Right" to="." method="_on_right_button_down"]

@@ -1,77 +1,131 @@
 extends Node2D
 var curPage = 0
-@export var infoPageStart:int
+var enemyInfo:Dictionary
+var start:Dictionary
+var length
+var maxPage
+@export var pageBuffer:int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$MapTitlePage/Buttons.pageNumStart = infoPageStart
-	$RegionTitlePage/Creatures/Forest.pageNumStart = infoPageStart+2
-	$RegionTitlePage/Creatures/Desert.pageNumStart = infoPageStart+10
-	$RegionTitlePage/Creatures/Mountain.pageNumStart = infoPageStart+18
-	$MapTitlePage/Buttons.update()
-	$RegionTitlePage/Creatures/Forest.update()
-	$RegionTitlePage/Creatures/Desert.update()
-	$RegionTitlePage/Creatures/Mountain.update()
+	length = {
+		"info": 28,
+		"settings":2,
+		"help":2,
+		"numbers":2
+	}
+	start = {
+		"info": pageBuffer,
+		"settings":pageBuffer,
+		"help":pageBuffer,
+		"numbers":pageBuffer
+	}
+	var order = ["help","settings","info","numbers"]
 	
+	for i in 4:
+		for j in range(i+1,4):
+			start[order[j]]+= length[order[i]]
+
+	maxPage = pageBuffer
+	for value in length.values():
+		maxPage+=value
+	
+	enemyInfo["Quest"] = $EnemyInfo/QuestPage
+	enemyInfo["Region"] = $EnemyInfo/RegionTitlePage
+	enemyInfo["Map"] = $EnemyInfo/MapTitlePage
+	$EnemyInfo/MapTitlePage/Buttons.pageNumStart = start["info"]
+	$EnemyInfo/RegionTitlePage/Creatures/Forest.pageNumStart = start["info"]+2
+	$EnemyInfo/RegionTitlePage/Creatures/Desert.pageNumStart = start["info"]+10
+	$EnemyInfo/RegionTitlePage/Creatures/Mountain.pageNumStart = start["info"]+18
+	$EnemyInfo/MapTitlePage/Buttons.update()
+	$EnemyInfo/RegionTitlePage/Creatures/Forest.update()
+	$EnemyInfo/RegionTitlePage/Creatures/Desert.update()
+	$EnemyInfo/RegionTitlePage/Creatures/Mountain.update()
+	
+	var arr:Array[int]
+	for key in order:
+		arr.push_back(start[key])
+	$TitlePage/TableOfContents.pageNums = arr
+	$TitlePage/TableOfContents.pageNumStart = 1
+	$TitlePage/TableOfContents.update()
+	pageBuffer -=1
 	update_page(1)
 	pass # Replace with function body.
 
-
 func update_page(newPage):
-	newPage = min(max(newPage,1),30)
+	# clean page number
+	newPage = min(max(newPage,1),maxPage)
 	if newPage%2 == 0:
 		newPage-=1
-		
+	# set visual page number 
 	$UI/PageNumL.text = str(newPage)
 	$UI/PageNumR.text = str(newPage+1)
 	
+	# if page number is unchanged, return
 	if newPage == curPage:
 		return
 	
 	curPage = newPage
-
-	if curPage>=infoPageStart and curPage < infoPageStart+28:
-		if curPage == infoPageStart:
-			$QuestPage.visible = false
-			$RegionTitlePage.visible = false
-			$MapTitlePage.visible = true
-		elif (curPage-infoPageStart-2)%8 == 0 and curPage <= infoPageStart+18:
-			$QuestPage.visible = false
-			$RegionTitlePage.visible = true
-			$MapTitlePage.visible = false
-			match int(curPage-infoPageStart-2)/8:
+	
+	# hide all
+	enemyInfo["Quest"].visible = false
+	enemyInfo["Region"].visible = false
+	enemyInfo["Map"].visible = false
+	$TitlePage.visible = false
+	$Help.visible = false
+	$Settings.visible = false
+	$EnemyInfo.visible = false
+	
+	# title page
+	if curPage == 1:
+		$TitlePage.visible = true
+	# Enemy Info page
+	elif newPage>=start["info"] and newPage < start["info"]+length["info"]:
+		$EnemyInfo.visible = true
+		newPage -=start["info"]
+		# Map page
+		if newPage == 0:
+			enemyInfo["Map"].visible = true
+		# Region page
+		elif (newPage-2)%8 == 0 and newPage <= 18:
+			enemyInfo["Region"].visible = true
+			match newPage/8:
 				0:
-					$RegionTitlePage.set_region("Forest")
+					enemyInfo["Region"].set_region("Forest")
 				1:
-					$RegionTitlePage.set_region("Desert")
+					enemyInfo["Region"].set_region("Desert")
 				2:
-					$RegionTitlePage.set_region("Mountain")
+					enemyInfo["Region"].set_region("Mountain")
+		# Enemy page
 		else:
-			$QuestPage.visible = true
-			$RegionTitlePage.visible = false
-			$MapTitlePage.visible = false
-			match curPage-infoPageStart-4:
+			enemyInfo["Quest"].visible = true
+			match newPage-4:
 				0:
-					$QuestPage.set_page(Enemy.new("Goblin"))
+					enemyInfo["Quest"].set_page(Enemy.new("Goblin"))
 				2:
-					$QuestPage.set_page(Enemy.new("Serpent"))
+					enemyInfo["Quest"].set_page(Enemy.new("Serpent"))
 				4:
-					$QuestPage.set_page(Enemy.new("Fairy"))
+					enemyInfo["Quest"].set_page(Enemy.new("Fairy"))
 				8:
-					$QuestPage.set_page(Enemy.new("Magma Lizard"))
+					enemyInfo["Quest"].set_page(Enemy.new("Magma Lizard"))
 				10:
-					$QuestPage.set_page(Enemy.new("Gold Beetle"))
+					enemyInfo["Quest"].set_page(Enemy.new("Gold Beetle"))
 				12:
-					$QuestPage.set_page(Enemy.new("Fire Spirit"))
+					enemyInfo["Quest"].set_page(Enemy.new("Fire Spirit"))
 				16:
-					$QuestPage.set_page(Enemy.new("Animated Armor"))
+					enemyInfo["Quest"].set_page(Enemy.new("Animated Armor"))
 				18:
-					$QuestPage.set_page(Enemy.new("Mimic"))
+					enemyInfo["Quest"].set_page(Enemy.new("Mimic"))
 				20:
-					$QuestPage.set_page(Enemy.new("Wyvern"))
+					enemyInfo["Quest"].set_page(Enemy.new("Wyvern"))
 				22:
-					$QuestPage.set_page(Enemy.new("Dragon"))
-				
+					enemyInfo["Quest"].set_page(Enemy.new("Dragon"))
+	elif newPage>=start["help"] and newPage < start["help"]+length["help"]:
+		$Help.visible = true
+	elif newPage>=start["settings"] and newPage < start["settings"]+length["settings"]:
+		$Settings.visible = true
+	elif newPage>=start["numbers"] and newPage < start["numbers"]+length["numbers"]:
+		$Numbers.visible = true
 	pass
 	
 func _on_left_button_down():
@@ -80,4 +134,8 @@ func _on_left_button_down():
 
 func _on_right_button_down():
 	update_page(curPage+2)
+	pass # Replace with function body.
+
+func _on_exit_button_down():
+	visible = false
 	pass # Replace with function body.

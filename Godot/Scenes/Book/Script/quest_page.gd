@@ -10,14 +10,13 @@ func set_page(enemy:Enemy):
 	match enemy.type:
 		"Goblin":
 			drop = Part.new("m",0)
-			edit.text = "Goblin text"
+			edit.text = "Goblins typically live in small groups. They camp together and gather food together and many assume that attacking one goblin will cause the whole group to attack you. In reality, goblins are quite cowardly and will typically flee if a member of the group gets attacked."
 		"Serpent":
 			drop = Part.new("s",0)
-			edit.text = "serpent text"
+			edit.text = "Serpents spend most of their time basking near rivers. When they're hungry, they dive into the water to hunt fish and other animals drinking from the river. They're pretty slow on land and don't pose much of a threat unless they manage to drag you underwater."
 		"Fairy":
 			drop = Part.new("f",0)
-			edit.text = "fairy text"
-		
+			edit.text = "Despite their name, the pink stones that fairies often leave behind are not their hearts. This should be obvious considering the stones are larger than a fairy's body and faries are immortal. Fairies consider fighting to be a form a play and they leave behind magical stones as gifts."
 		"Gold Beetle":
 			drop = Part.new("m",1)
 			edit.text = "beetle text"
@@ -58,19 +57,19 @@ func set_page(enemy:Enemy):
 	for key in enemy.weight.keys():
 		match key:
 			"attack":
-				edit.text += "Opening: "
-			"block":
 				edit.text += "Attack: "
+			"block":
+				edit.text += "Block: "
 			"double block":
-				edit.text += "Attack x2: "
+				edit.text += "Block x2: "
 			"attack block":
-				edit.text += "Attack + Opening: "
+				edit.text += "Attack + Block: "
 			"attack double block":
-				edit.text += "Attack x2 + Opening: "
+				edit.text += "Block x2 + Attack: "
 		edit.text += str(enemy.weight[key]*100)+"%\n"
 	edit.text +="\nTime Between Actions:\n"
-	var min = enemy.noteDelayMin
-	var max = enemy.noteDelayMax
-	if min != max:
-		edit.text += str(min) + " - "
-	edit.text += str(max)+" s"
+	var mi = enemy.noteDelayMin
+	var ma = enemy.noteDelayMax
+	if mi != ma:
+		edit.text += str(mi) + " - "
+	edit.text += str(ma)+" s"

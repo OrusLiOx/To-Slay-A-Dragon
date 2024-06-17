@@ -128,11 +128,9 @@ func set_enemy(t : String):
 			noteDelayMin = .5
 			noteDelayMax = .5
 			
-			weight["attack"] = .2
-			weight["block"] = .2
-			weight["double block"] = .2
-			weight["attack block"] = .2
-			weight["attack double block"] = .2
+			weight["double block"] = .3
+			weight["attack block"] = .4
+			weight["attack double block"] = .3
 	maxHp = 50
 	heal()
 
