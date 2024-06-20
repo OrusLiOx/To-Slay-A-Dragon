@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://tr660l4oomhm"]
+[gd_scene load_steps=20 format=3 uid="uid://tr660l4oomhm"]
 
 [ext_resource type="Texture2D" uid="uid://cf2sbqwtsq0vd" path="res://Sprites/book/book.png" id="1_rktjd"]
 [ext_resource type="Script" path="res://Scenes/Book/Script/book.gd" id="1_w6myh"]
 [ext_resource type="Script" path="res://Scenes/Book/Script/RegionTitlePage.gd" id="2_4ahq4"]
 [ext_resource type="LabelSettings" uid="uid://b11e7oyd37eom" path="res://Themes/TitleLabel.tres" id="2_aod8j"]
+[ext_resource type="Texture2D" uid="uid://bvrfuba3av8is" path="res://Sprites/UI/home.png" id="2_nl4pi"]
 [ext_resource type="PackedScene" uid="uid://ce1p1s1byjllv" path="res://Scenes/Book/quest_page.tscn" id="2_vl5qr"]
 [ext_resource type="Theme" uid="uid://dgifmyw55byck" path="res://Themes/UIButton.tres" id="4_cdtq7"]
 [ext_resource type="Texture2D" uid="uid://dxc67woulqfnb" path="res://Sprites/book/ForestEdit.png" id="4_u7d7b"]
@@ -14,6 +15,8 @@
 [ext_resource type="Script" path="res://Scenes/Book/Script/TableOfContents.gd" id="7_v5i45"]
 [ext_resource type="Texture2D" uid="uid://ot02xp1yo4ha" path="res://Sprites/Enemies/snake.png" id="8_hgdp7"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="12_pafpr"]
+[ext_resource type="PackedScene" uid="uid://bbqavw5571ou3" path="res://Scenes/Book/help.tscn" id="13_u6qfh"]
+[ext_resource type="PackedScene" uid="uid://dbpw77fbrbkms" path="res://Scenes/Book/settings.tscn" id="13_vb34e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_782mq"]
 
@@ -24,24 +27,32 @@ script = ExtResource("1_w6myh")
 pageBuffer = 3
 
 [node name="Exit" type="Button" parent="."]
-offset_left = -948.0
-offset_top = -529.0
-offset_right = -848.0
-offset_bottom = -429.0
+offset_left = 842.0
+offset_top = -534.0
+offset_right = 950.0
+offset_bottom = -426.0
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_782mq")
 text = "x"
+
+[node name="Home" type="Button" parent="."]
+offset_left = -950.0
+offset_top = -534.0
+offset_right = -842.0
+offset_bottom = -426.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_782mq")
+icon = ExtResource("2_nl4pi")
 
 [node name="BookBase" type="Sprite2D" parent="."]
 texture = ExtResource("1_rktjd")
 
 [node name="TitlePage" type="Node2D" parent="."]
-visible = false
 
 [node name="TableOfContents" type="Node2D" parent="TitlePage"]
 position = Vector2(146, -429)
 script = ExtResource("7_v5i45")
-headers = Array[Array]([["Help"], ["Settings"], ["Creatures & Regions"], ["Numbers"]])
+headers = Array[Array]([["Tutorial"], ["Settings"], ["Creatures & Regions"]])
 
 [node name="Text" type="ColorRect" parent="TitlePage/TableOfContents"]
 clip_children = 1
@@ -53,10 +64,8 @@ offset_left = -704.0
 offset_top = -532.0
 offset_right = -3.0
 offset_bottom = 434.0
-text = "Dren's 
-Book 
-of 
-Things"
+text = "Adventurer's
+Guide"
 label_settings = ExtResource("2_aod8j")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -117,7 +126,7 @@ offset_bottom = 408.0
 visible = false
 position = Vector2(0, 80)
 script = ExtResource("7_v5i45")
-headers = Array[Array]([["Magma Lizard"], ["Gold Beetle"], ["Fire Spirit"]])
+headers = Array[Array]([["Gold Beetle"], ["Magma Lizard"], ["Fire Spirit"]])
 pageNums = Array[int]([2, 4, 6])
 
 [node name="Text" type="ColorRect" parent="EnemyInfo/RegionTitlePage/Creatures/Desert"]
@@ -128,7 +137,7 @@ offset_bottom = 408.0
 [node name="Mountain" type="Node2D" parent="EnemyInfo/RegionTitlePage/Creatures"]
 position = Vector2(0, 80)
 script = ExtResource("7_v5i45")
-headers = Array[Array]([["Animated Armor"], ["Mimic"], ["Wyvern"], ["Dragon"]])
+headers = Array[Array]([["Animated Armor"], ["Wyvern"], ["Mimic"], ["Dragon"]])
 pageNums = Array[int]([2, 4, 6, 8])
 
 [node name="Text" type="ColorRect" parent="EnemyInfo/RegionTitlePage/Creatures/Mountain"]
@@ -175,7 +184,7 @@ horizontal_alignment = 1
 [node name="Buttons" type="Node2D" parent="EnemyInfo/MapTitlePage"]
 position = Vector2(133, -296)
 script = ExtResource("7_v5i45")
-headers = Array[Array]([["Forest", "Goblins", "Serpents", "Fairies"], ["Desert", "Magma Lizards", "Gold Beetles", "Fire Spirit"], ["Mountains", "Animated Armor", "Mimic", "Wyvern", "Dragon"]])
+headers = Array[Array]([["Forest", "Goblin", "Serpent", "Fairy"], ["Desert", "Gold Beetle", "Magma Lizard", "Fire Spirit"], ["Mountains", "Animated Armor", "Wyvern", "Mimic", "Dragon"]])
 pageNums = Array[int]([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28])
 pageNumStart = 10
 
@@ -184,38 +193,12 @@ clip_children = 1
 offset_right = 410.0
 offset_bottom = 700.0
 
-[node name="Numbers" type="Node2D" parent="."]
+[node name="Help" parent="." instance=ExtResource("13_u6qfh")]
+position = Vector2(-465, -440)
+
+[node name="Settings" parent="." instance=ExtResource("13_vb34e")]
 visible = false
-
-[node name="Label" type="Label" parent="Numbers"]
-offset_left = -562.0
-offset_top = -416.0
-offset_right = -175.0
-offset_bottom = -279.0
-text = "Numbers"
-label_settings = ExtResource("2_aod8j")
-
-[node name="Help" type="Node2D" parent="."]
-visible = false
-
-[node name="Label" type="Label" parent="Help"]
-offset_left = -562.0
-offset_top = -416.0
-offset_right = -175.0
-offset_bottom = -279.0
-text = "Help"
-label_settings = ExtResource("2_aod8j")
-
-[node name="Settings" type="Node2D" parent="."]
-visible = false
-
-[node name="Label" type="Label" parent="Settings"]
-offset_left = -562.0
-offset_top = -416.0
-offset_right = -175.0
-offset_bottom = -279.0
-text = "Settings"
-label_settings = ExtResource("2_aod8j")
+position = Vector2(-832, -467)
 
 [node name="UI" type="Node2D" parent="."]
 
@@ -259,6 +242,7 @@ icon = ExtResource("5_cw70f")
 icon_alignment = 1
 
 [connection signal="button_down" from="Exit" to="." method="_on_exit_button_down"]
+[connection signal="button_down" from="Home" to="." method="update_page" binds= [1]]
 [connection signal="go_to_page" from="TitlePage/TableOfContents" to="." method="update_page"]
 [connection signal="go_to_page" from="EnemyInfo/RegionTitlePage/Creatures/Forest" to="." method="update_page"]
 [connection signal="go_to_page" from="EnemyInfo/RegionTitlePage/Creatures/Desert" to="." method="update_page"]

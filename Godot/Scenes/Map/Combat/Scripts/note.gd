@@ -1,6 +1,6 @@
 extends Area2D
-var speed
-var dir
+var speed =0
+@export var dir:int
 var active
 
 func _ready():
@@ -10,6 +10,7 @@ func go(s):
 	match(Settings.noteType):
 		"letter":
 			$Arrow.visible = false
+			$Label.visible = true
 			match dir:
 				0:
 					$Label.text = "A"
@@ -22,8 +23,11 @@ func go(s):
 		"arrow":
 			$Arrow.texture = load("res://Sprites/UI/arrowFull.png")
 			$Label.visible = false
+			$Arrow.visible = true
 		_:
 			$Arrow.texture = load("res://Sprites/UI/arrow.png")
+			$Arrow.visible = true
+			$Label.visible = true
 			match dir:
 				0:
 					$Label.text = "A"
@@ -39,7 +43,6 @@ func go(s):
 					$Arrow.position = Vector2(0,12)
 	$Arrow.rotation = dir*PI/2
 	speed = s
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -6,24 +6,24 @@ var length
 var maxPage
 @export var pageBuffer:int
 
+signal close_book()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	length = {
 		"info": 28,
 		"settings":2,
-		"help":2,
-		"numbers":2
+		"help":2
 	}
 	start = {
 		"info": pageBuffer,
 		"settings":pageBuffer,
-		"help":pageBuffer,
-		"numbers":pageBuffer
+		"help":pageBuffer
 	}
-	var order = ["help","settings","info","numbers"]
+	var order = ["help","settings","info"]
 	
-	for i in 4:
-		for j in range(i+1,4):
+	for i in order.size():
+		for j in range(i+1,order.size()):
 			start[order[j]]+= length[order[i]]
 
 	maxPage = pageBuffer
@@ -107,25 +107,23 @@ func update_page(newPage):
 				4:
 					enemyInfo["Quest"].set_page(Enemy.new("Fairy"))
 				8:
-					enemyInfo["Quest"].set_page(Enemy.new("Magma Lizard"))
-				10:
 					enemyInfo["Quest"].set_page(Enemy.new("Gold Beetle"))
+				10:
+					enemyInfo["Quest"].set_page(Enemy.new("Magma Lizard"))
 				12:
 					enemyInfo["Quest"].set_page(Enemy.new("Fire Spirit"))
 				16:
 					enemyInfo["Quest"].set_page(Enemy.new("Animated Armor"))
 				18:
-					enemyInfo["Quest"].set_page(Enemy.new("Mimic"))
-				20:
 					enemyInfo["Quest"].set_page(Enemy.new("Wyvern"))
+				20:
+					enemyInfo["Quest"].set_page(Enemy.new("Mimic"))
 				22:
 					enemyInfo["Quest"].set_page(Enemy.new("Dragon"))
 	elif newPage>=start["help"] and newPage < start["help"]+length["help"]:
 		$Help.visible = true
 	elif newPage>=start["settings"] and newPage < start["settings"]+length["settings"]:
 		$Settings.visible = true
-	elif newPage>=start["numbers"] and newPage < start["numbers"]+length["numbers"]:
-		$Numbers.visible = true
 	pass
 	
 func _on_left_button_down():
@@ -138,4 +136,5 @@ func _on_right_button_down():
 
 func _on_exit_button_down():
 	visible = false
+	emit_signal("close_book")
 	pass # Replace with function body.

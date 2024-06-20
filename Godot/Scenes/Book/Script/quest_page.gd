@@ -35,7 +35,7 @@ func set_page(enemy:Enemy):
 			edit.text = "wyvern text"
 		"Mimic":
 			drop = Part.new("f",2)
-			edit.text = "mimic text"
+			edit.text = "If a dreamer stone is left in an empty container for a week, the container will turn into a mimic. Mimics are suprisingly smart and can be kept as companions if you have the patience to train them. They act a lot like cats except they're really good at casting spells."
 		
 		"Dragon":
 			edit.text = "dragon text"

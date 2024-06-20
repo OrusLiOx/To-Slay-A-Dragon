@@ -55,15 +55,17 @@ func set_enemy(e : Enemy ):
 		"Chest":
 			load_enemy_sprite("chest")
 		"Mimic":
-			load_enemy_sprite("chest")
-			sprite.texture = load("res://Sprites/Enemies/mimic.png")
-		
+			load_enemy_sprite("mimic")
+			
 		"Dragon":
 			load_enemy_sprite("dragon")
 
 func load_enemy_sprite(type, shadow = true):
 	sprite.texture = load("res://Sprites/Enemies/"+type+".png")
-	background.texture = load("res://Sprites/Enemies/"+type+"Background.png")
+	if type == "mimic":
+		background.texture = load("res://Sprites/Enemies/chestBackground.png")
+	else:
+		background.texture = load("res://Sprites/Enemies/"+type+"Background.png")
 	if type == "fox":
 		$Shadow.visible = false
 		return

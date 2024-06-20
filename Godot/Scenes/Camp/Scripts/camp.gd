@@ -36,6 +36,7 @@ func _on_anvil_button_down():
 	blacksmith.active = false
 	$Anvil/Aura.visible = false
 	$Switch.visible = false
+	$BookBut.visible = false
 	forge.visible = true
 	forge.set_process(true)
 	forge.open()
@@ -43,6 +44,7 @@ func _on_anvil_button_down():
 
 func _on_forge_menu_exit():
 	$Switch.visible = true
+	$BookBut.visible = true
 	blacksmith.active = true
 	
 	forge.visible = false
@@ -73,4 +75,16 @@ func _on_lizor_mouse_exited():
 func _on_switch_button_down():
 	emit_signal("toMap")
 	open()
+	pass # Replace with function body.
+
+func _on_book_but_button_down():
+	$Book.visible = true
+	$BookBut.visible = false
+	$Switch.visible = false
+	pass # Replace with function body.
+
+
+func _on_book_close_book():
+	$BookBut.visible = true
+	$Switch.visible = true
 	pass # Replace with function body.

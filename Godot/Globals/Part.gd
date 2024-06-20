@@ -85,7 +85,7 @@ func get_name():
 				1: 
 					return "Burning Core"
 				2: 
-					return "Dreamer's Stone"
+					return "Dreamer Stone"
 				3: 
 					return "legendary focus"
 				4: 

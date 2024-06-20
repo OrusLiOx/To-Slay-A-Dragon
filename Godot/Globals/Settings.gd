@@ -5,10 +5,11 @@ var noteSpeed : float
 var noteColorDefault :Color
 var noteColorAttack : Color
 var noteColorBlock : Color
-var noteColorOff :bool
+var noteColorOff :bool 
 var noteColorSwap :bool
-var noteType : String
-var noteSyncBar : String
+var noteType : String # mixed, letter, arrow
+var noteSyncBar : String # multi, all. none
+var infiniteParts
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,11 +25,10 @@ func set_to_default():
 	noteColorAttack = Color("a60000")
 	noteColorBlock = Color("2953b5")
 	noteColorSwap = false
-	noteColorOff = true
+	noteColorOff = false
 	noteType = "mixed"
-	noteSyncBar = "multi"
+	noteSyncBar = "none"
 	
-
 func get_note_color(type):
 	if noteColorOff:
 		return noteColorDefault

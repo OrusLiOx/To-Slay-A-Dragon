@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbqavw5571ou3"]
+
+[ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="1_f63lc"]
+[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="2_q0mne"]
+
+[node name="Help" type="Node2D"]
+
+[node name="Tutorial" type="Node2D" parent="."]
+
+[node name="Introduction" type="Node2D" parent="."]
+
+[node name="Description" type="Label" parent="Introduction"]
+offset_left = 538.0
+offset_top = 126.0
+offset_right = 1167.0
+offset_bottom = 710.0
+text = "Slaying a dragon is one of the greatest accomplishments an adventurer can achieve. In order to do so, you're going to need really good equipment.
+
+Materials strong enough resist a dragon's attacks and pierce its scales aren't easy to come by and you'll likely need to hunt down the materials yourself."
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="Title" type="Label" parent="Introduction"]
+offset_left = 655.0
+offset_top = 27.0
+offset_right = 960.0
+offset_bottom = 96.0
+text = "Introduction"
+label_settings = ExtResource("1_f63lc")
+
+[node name="Forge" type="Node2D" parent="."]
+
+[node name="Combat" type="Node2D" parent="."]

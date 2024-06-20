@@ -1,4 +1,7 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dgifmyw55byck"]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://dgifmyw55byck"]
+
+[ext_resource type="Texture2D" uid="uid://c57oackn18mq4" path="res://Sprites/UI/checkBox_checked.png" id="1_re5vn"]
+[ext_resource type="Texture2D" uid="uid://bpgesirwebt7t" path="res://Sprites/UI/checkBox_unchecked.png" id="2_f63b1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rtga"]
 bg_color = Color(0.858824, 0.772549, 0.572549, 1)
@@ -13,6 +16,26 @@ bg_color = Color(0.776471, 0.698039, 0.513726, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4ono"]
 bg_color = Color(0.47451, 0.415686, 0.278431, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_48o56"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_122jt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_73cuk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pha7w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpeh0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ajp2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8fhmj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dcq8c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gtxg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yk5y6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pndrr"]
 
@@ -33,6 +56,18 @@ Button/styles/focus = SubResource("StyleBoxEmpty_52r25")
 Button/styles/hover = SubResource("StyleBoxFlat_c8aiu")
 Button/styles/normal = SubResource("StyleBoxFlat_d1mvq")
 Button/styles/pressed = SubResource("StyleBoxFlat_o4ono")
+CheckBox/icons/radio_checked = ExtResource("1_re5vn")
+CheckBox/icons/radio_unchecked = ExtResource("2_f63b1")
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_48o56")
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_122jt")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_73cuk")
+CheckBox/styles/normal = SubResource("StyleBoxEmpty_pha7w")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_tpeh0")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_5ajp2")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_8fhmj")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_dcq8c")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_8gtxg")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_yk5y6")
 LineEdit/colors/caret_color = Color(0, 0, 0, 1)
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
 LineEdit/colors/font_selected_color = Color(0, 0, 0, 1)

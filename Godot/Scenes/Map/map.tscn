@@ -60,24 +60,24 @@ enemy = "Fairy"
 dataDisplayPosition = Vector2(-454, -474)
 
 [node name="Beetle Burrows" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 164.0
-offset_top = 235.0
-offset_right = 272.0
-offset_bottom = 343.0
+offset_left = 6.0
+offset_top = -108.0
+offset_right = 114.0
+offset_bottom = 0.0
 part = "m1"
 enemy = "Gold Beetle"
 dataDisplayPosition = Vector2(-400, 140)
 
 [node name="Prickly Plateau" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 109.0
-offset_top = -126.0
-offset_right = 217.0
-offset_bottom = -18.0
+offset_left = 191.0
+offset_top = 159.0
+offset_right = 299.0
+offset_bottom = 267.0
 part = "s1"
 enemy = "Magma Lizard"
 dataDisplayPosition = Vector2(-374, -93)
 
-[node name="Dancing Fires" parent="Quests" instance=ExtResource("3_d64i7")]
+[node name="Flaming Sands" parent="Quests" instance=ExtResource("3_d64i7")]
 offset_left = 689.0
 offset_top = 407.0
 offset_right = 797.0
@@ -95,20 +95,20 @@ part = "m2"
 enemy = "Animated Armor"
 dataDisplayPosition = Vector2(-292, -513)
 
-[node name="Suspicious Chest" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 413.0
-offset_top = -328.0
-offset_right = 521.0
-offset_bottom = -220.0
+[node name="Treasure Trove" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = 94.0
+offset_top = -440.0
+offset_right = 202.0
+offset_bottom = -332.0
 part = "f2"
 enemy = "Chest?"
 dataDisplayPosition = Vector2(81, -273)
 
-[node name="Nearing Dragon" parent="Quests" instance=ExtResource("3_d64i7")]
-offset_left = 35.0
-offset_top = -449.0
-offset_right = 143.0
-offset_bottom = -341.0
+[node name="Wyvern Nest" parent="Quests" instance=ExtResource("3_d64i7")]
+offset_left = 411.0
+offset_top = -277.0
+offset_right = 519.0
+offset_bottom = -169.0
 part = "s2"
 enemy = "Wyvern"
 dataDisplayPosition = Vector2(-125, -383)
