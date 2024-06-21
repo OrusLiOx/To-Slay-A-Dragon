@@ -71,7 +71,7 @@ func get_name():
 				0: 
 					return "Ferrite"
 				1: 
-					return "Pyre's Stone"
+					return "Pyre's Ore"
 				2: 
 					return "Lilium"
 				3: 

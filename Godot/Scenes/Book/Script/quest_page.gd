@@ -19,10 +19,10 @@ func set_page(enemy:Enemy):
 			edit.text = "Despite their name, the pink stones that fairies often leave behind are not their hearts. This should be obvious considering the stones are larger than a fairy's body and faries are immortal. Fairies consider fighting to be a form a play and they leave behind magical stones as gifts."
 		"Gold Beetle":
 			drop = Part.new("m",1)
-			edit.text = "beetle text"
+			edit.text = "At high temperatures, the plating on gold beetles can be melted down into a metal-like material known as Pyre's ore. Pyre's ore is difficult to obtain since gold beetles don't develop their plating until they reach adulthood. If you feel well prepared, you should definitely try to take one down. Pyre's ore is very strong and makes excellent weapons and armor."
 		"Magma Lizard":
 			drop = Part.new("s",1)
-			edit.text = "lizard text"
+			edit.text = "Magma lizards are one of the closest living relatives of dragons. Like dragons, they have six limbs and can breathe fire. Unlike dragons, they tend to be very friendly when raised in captivity. They would probably be popular pets if they didn't need so much food and take up so much space. They'll also set your house on fire if they get too nervous."
 		"Fire Spirit":
 			drop = Part.new("f",1)
 			edit.text = "fire text"
@@ -35,7 +35,7 @@ func set_page(enemy:Enemy):
 			edit.text = "wyvern text"
 		"Mimic":
 			drop = Part.new("f",2)
-			edit.text = "If a dreamer stone is left in an empty container for a week, the container will turn into a mimic. Mimics are suprisingly smart and can be kept as companions if you have the patience to train them. They act a lot like cats except they're really good at casting spells."
+			edit.text = "If a dreamer stone is left in an empty container for a week, the container will turn into a mimic. Mimics are suprisingly smart and can be kept as companions if you have the patience to train them. They're a lot like cats except they're really good at casting spells."
 		
 		"Dragon":
 			edit.text = "dragon text"
