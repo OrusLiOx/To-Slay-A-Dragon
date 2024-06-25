@@ -69,11 +69,11 @@ func get_name():
 		"m":
 			match(rarity):
 				0: 
-					return "Ferrite"
+					return "Ferrum"
 				1: 
 					return "Pyre's Ore"
 				2: 
-					return "Lilium"
+					return "Enchanted Metal"
 				3: 
 					return "legendary metal"
 				4: 

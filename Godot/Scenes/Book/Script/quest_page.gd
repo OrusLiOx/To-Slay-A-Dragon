@@ -25,11 +25,11 @@ func set_page(enemy:Enemy):
 			edit.text = "Magma lizards are one of the closest living relatives of dragons. Like dragons, they have six limbs and can breathe fire. Unlike dragons, they tend to be very friendly when raised in captivity. They would probably be popular pets if they didn't need so much food and take up so much space. They'll also set your house on fire if they get too nervous."
 		"Fire Spirit":
 			drop = Part.new("f",1)
-			edit.text = "fire text"
+			edit.text = "Fire Spirits typically appear as trails of fire dancing across the ground. Most Fire Spirits will flee if you get too close, but some will take on fox-like forms and attack. Their speed can make them very dangerous, but they only take a few hits to defeat.\n\nNOTE: Water is not an effective weapon against them. Unless you can dump the entire ocean on them, this will only make them more angry."
 			
 		"Animated Armor":
 			drop = Part.new("m",2)
-			edit.text = "armor text"
+			edit.text = "Long ago, our ancestors built temples to worship dragons and created guardians to protect and maintain the temples. Animated Armor was a very popular choice of guardian. An Animated Armor's creator can teach it commands, but for many temples, the words and phrases to command the armors have been lost to time. Technically, you can deactivate them by dispelling the magic that controls them, but that would prevent you from getting enchanted metal from them."
 		"Wyvern":
 			drop = Part.new("s",2)
 			edit.text = "wyvern text"

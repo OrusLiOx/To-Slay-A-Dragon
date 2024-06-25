@@ -27,12 +27,11 @@ func _ready():
 	dialogueOptions.push_back("Don't approach the little lady from the left, you might startle her.")
 	dialogueOptions.push_back("I know she's not little anymore, but she'll always be a hatchling in my eyes.")
 	
-	specialDialogue.push_back("If you want to slay that dragon, you're going to need some equipment.")
-	specialDialogue.push_back("I have a piece of ferrite that I could turn into a dagger for you.")
-	specialDialogue.push_back("When you open the forge, there will be a ? button that will give you information.")
-	specialDialogue.push_back("Click on the anvil to get started.")
-	specialDialogue.push_back("If you're ready to collet better materials, click on the map in the top left.")
-	pass # Replace with function body.
+	#specialDialogue.push_back("If you want to slay that dragon, you're going to need some equipment.")
+	#specialDialogue.push_back("I have a piece of ferrite that I could turn into a dagger for you.")
+	#specialDialogue.push_back("When you open the forge, there will be a ? button that will give you information.")
+	#specialDialogue.push_back("Click on the anvil to get started.")
+	#specialDialogue.push_back("If you're ready to collet better materials, click on the map in the top left.")
 
 
 func _process(delta):
