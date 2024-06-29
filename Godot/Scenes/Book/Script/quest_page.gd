@@ -32,10 +32,10 @@ func set_page(enemy:Enemy):
 			edit.text = "Long ago, our ancestors built temples to worship dragons and created guardians to protect and maintain the temples. Animated Armor was a very popular choice of guardian. An Animated Armor's creator can teach it commands, but for many temples, the words and phrases to command the armors have been lost to time. Technically, you can deactivate them by dispelling the magic that controls them, but that would prevent you from getting enchanted metal from them."
 		"Wyvern":
 			drop = Part.new("s",2)
-			edit.text = "wyvern text"
+			edit.text = "Wyverns were once thought to be baby dragons that would eventually metamorphosize into the brightly colored, fire breathing beasts that we all know and fear. Despite their similarities, wyverns aren't closely related to dragons. Since wyverns aren't as big or strong as dragons, some people will steal wyvern eggs thinking they'll be docile if raised in captivity. This is not true. No matter how you raise them, they will eventually see you as food."
 		"Mimic":
 			drop = Part.new("f",2)
-			edit.text = "If a dreamer stone is left in an empty container for a week, the container will turn into a mimic. Mimics are suprisingly smart and can be kept as companions if you have the patience to train them. They're a lot like cats except they're really good at casting spells."
+			edit.text = "If a dreamer stone is left in an empty container for a week, the container will turn into a mimic. Mimics are suprisingly smart and can be kept as companions if you have the patience to train them. They're a lot like cats except they can bite your hand off and cast fireball."
 		
 		"Dragon":
 			edit.text = "dragon text"

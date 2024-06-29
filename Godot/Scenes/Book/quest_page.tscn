@@ -59,7 +59,6 @@ offset_left = 529.0
 offset_top = 221.0
 offset_right = 1193.0
 offset_bottom = 714.0
-text = "Long ago, our ancestors built temples to worship dragons and created guardians to protect and maintain the temples. Animated Armor was a very popular choice of guardian. An Animated Armor's creator can teach it commands, but for many temples, the words and phrases to command the armors have been lost to time. Technically, you can deactivate them by dispelling the magic that controls them, but that would prevent you from getting enchanted metal from them."
 label_settings = ExtResource("4_4drxp")
 autowrap_mode = 2
 text_overrun_behavior = 1
