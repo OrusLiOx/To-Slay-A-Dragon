@@ -66,7 +66,7 @@ func show_quest_data(quest):
 		questData["material sprite"].visible = true
 	
 	questData["enemy name"].text = quest.enemy
-	questData["enemy stats"].text = str(quest.questEnemy.attack) + "\n" + str(quest.questEnemy.defense)
+	questData["enemy stats"].text = str(quest.questEnemy.attack) + "\n" + str(quest.questEnemy.maxHp)
 	
 	questData["your stats"].text = str(Storage.get_attack()) + "\n" 
 	questData["your stats"].text += str(Storage.get_defense())

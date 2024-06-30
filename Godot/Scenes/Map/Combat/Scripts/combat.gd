@@ -96,15 +96,15 @@ func start(quest):
 	
 	enemyHealth.size.x=enemyHealthBar.size.x
 	$Health/Enemy/LastHit.text = ""
-	enemyDamage = get_damage(enemy.stats.attack, Storage.get_defense())
+	enemyDamage = enemy.stats.attack
 	enemyHealthBar.modulate.a = 1
 	enemyHealth.size.x = enemyHealthBar.size.x
 	
 	# player stuff
 	$Health/You/Current.size.x = $Health/You.size.x
 	$Health/You/LastHit.text = ""
-	playerDamage = get_damage(Storage.get_attack(), enemy.stats.defense)
-	player["maxHp"] = 50
+	playerDamage = Storage.get_attack()
+	player["maxHp"] = Storage.get_defense()
 	player["hp"] = player["maxHp"]
 
 	# quest reward
@@ -171,7 +171,7 @@ func hit_enemy(quality):
 	var damage = playerDamage
 	match quality:
 		"good":
-			damage *= 2
+			damage *= 1.5
 			$Health/Enemy/LastHit.text = str(damage) + " CRIT"
 		"ok":
 			$Health/Enemy/LastHit.text = str(damage)
@@ -190,8 +190,6 @@ func hit_enemy(quality):
 		killEnemy = true
 		rewardQuantity = 1
 		var bonus = accuracy/totalNotes
-		if bonus == 1:
-			bonus = 2
 		while bonus >= 1:
 			rewardQuantity += 1
 			bonus -= 1
@@ -200,13 +198,8 @@ func hit_enemy(quality):
 			rewardQuantity +=1
 		
 		$EnemyScreen/Reward.text = "+"+str(rewardQuantity)
-		if rewardQuantity > 1:
-			$EnemyScreen/Reward.text +=  " ("+str(rewardQuantity-1)+" bonus)"
 		timer.stop()
 	pass
-
-func get_damage(attack, defense):
-	return max(int(attack/defense*1000)/1000.0, .001)
 
 func spawn_note():
 	var spawnedNotes :Array

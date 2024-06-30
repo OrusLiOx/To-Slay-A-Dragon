@@ -103,12 +103,14 @@ func blueprint_button_down(type):
 		
 func load_blueprint(type, clear = false):
 	if clear:
-		for i in range(0,4):
-			if selectedParts[0][i].part.rarity >= 0:
-				Storage.add_part(selectedParts[0][i].part,1)
+		for i in range(0,6):
+			var r = i/4
+			var c = i%4
+			if selectedParts[r][c].part.rarity >= 0:
+				Storage.add_part(selectedParts[r][c].part,1)
 				storage.update()
-				selectedParts[0][i].make_part(selectedParts[0][i].part.type,-1)
-				selectedParts[0][i].disabled = true
+				selectedParts[r][c].make_part(selectedParts[r][c].part.type,-1)
+			selectedParts[r][c].disabled = true
 				
 	activeBlueprint = type
 	$ActiveBlueprint/Type.text = type.capitalize()
@@ -148,11 +150,11 @@ func set_blueprint_slots(slots):
 		set_blueprint_slot(1,i,slots[4+i])
 		
 func set_blueprint_slot(r, c, t):
-	if t =="":
+	if t =="": # slot not part of blueprint
 		if selectedParts[r][c].part.rarity >= 0:
 			Storage.add_part(selectedParts[r][c].part,1)
 		selectedParts[r][c].set_part(Part.new(t,-2))
-	elif selectedParts[r][c].part.type != t:
+	elif selectedParts[r][c].part.type != t: # not the same type of part as previous blueprint
 		if selectedParts[r][c].part.rarity >= 0:
 			Storage.add_part(selectedParts[r][c].part,1)
 		selectedParts[r][c].set_part(Part.new(t,-1))
@@ -167,7 +169,7 @@ func _on_exit_button_down():
 	for c in range(0,4):
 		set_blueprint_slot(0,c,"")
 	for c in range(0,2):
-		set_blueprint_slot(0,c,"")
+		set_blueprint_slot(1,c,"")
 			
 	emit_signal("exit")
 	pass # Replace with function body.
@@ -176,11 +178,18 @@ func _on_exit_button_down():
 func _on_storage_use(part):
 	if partQueue[part.type].is_empty():
 		return
+	
+	add_material(part, true)
+	
+	pass # Replace with function body.
+
+func add_material(part, remove):
 	# look for empty slot
 	for arr in selectedParts:
 		for partBut in arr:
 			if part.type == partBut.part.type and partBut.part.rarity == -1:
-				Storage.add_part(part, -1)
+				if remove:
+					Storage.add_part(part, -1)
 				partBut.set_part(part)
 				partBut.disabled = false
 				load_blueprint(activeBlueprint)
@@ -196,14 +205,13 @@ func _on_storage_use(part):
 		p = 1
 	
 	var but = selectedParts[p][i]
-	Storage.add_part(part, -1)
+	if remove:
+		Storage.add_part(part, -1)
 	if but.part.rarity != -1:
 		Storage.add_part(but.part, 1)
 	but.set_part(part)
 	but.disabled = false
 	update_equip_stats()
-	
-	pass # Replace with function body.
 
 func return_material(partBut):
 	Storage.add_part(partBut.part, 1)
@@ -272,16 +280,11 @@ func _on_storage_use_equip(index):
 		
 	# load corresponding blueprint
 	load_blueprint(equip.type, true)
-	
 	# add all parts
 	var i = 0
 	for part in equip.parts:
-		while selectedParts[i%4][i/4].part.rarity == -2:
-			i+=1
-			print(i)
-		selectedParts[i%4][i/4].set_part(part)
-		selectedParts[i%4][i/4].disabled = part.rarity == -1
-		i+=1
+		if part.rarity >=0:
+			add_material(part, false)
 	
 	# load equip
 	update_equip_stats()

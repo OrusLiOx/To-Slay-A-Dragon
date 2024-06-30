@@ -19,70 +19,64 @@ func set_enemy(t : String):
 		else:
 			type = "Mimic"
 	match(type):
-		"Goblin":
-			attack = 10
-			defense = 5
-			maxHp = 10
+		"Goblin": # 5, 10
+			attack = 2
+			maxHp = 25
 			noteDelayMin = .7
 			noteDelayMax = .7
 			
 			weight["attack"] = .5
 			weight["block"] = .5
-		"Serpent":
-			attack = 10
-			defense = 10
-			maxHp = 10
+		"Serpent": # 10, 10
+			attack = 5
+			maxHp = 200
 			noteDelayMin = .5
 			noteDelayMax = 1
 			
-			weight["attack"] = .4
-			weight["block"] = .5
-			weight["attack block"] = .1
-		"Fairy":
-			attack = 15
-			defense = 10
-			maxHp = 10
+			weight["attack"] = .8
+			weight["block"] = .2
+		"Fairy": # 10, 20
+			attack = 5
+			maxHp = 100
 			noteDelayMin = .5
 			noteDelayMax = .5
 			
-			weight["attack"] = .5
+			weight["attack"] = .3
 			weight["block"] = .4
-			weight["double block"] = .1
+			weight["double block"] = .3
 		
-		"Gold Beetle":
-			attack = 50
-			defense = 30
-			maxHp = 20
+		
+		"Gold Beetle": # 15, 30
+			attack = 10
+			maxHp = 200
 			noteDelayMin = .5
 			noteDelayMax = 1
 			
 			weight["attack"] = .5
 			weight["block"] = .3
 			weight["double block"] = .2
-		"Magma Lizard":
-			attack = 45
-			defense = 50
-			maxHp = 20
+		"Magma Lizard": # 25, 30
+			attack = 15
+			maxHp = 300
 			noteDelayMin = .7
 			noteDelayMax = .7
 			
-			weight["attack"] = .4
+			weight["attack"] = .3
 			weight["block"] = .4
-			weight["attack block"] = .2
-		"Fire Spirit":
-			attack = 70
-			defense = 40
-			maxHp = 20
+			weight["attack block"] = .3
+		"Fire Spirit": # 25, 40
+			attack = 10
+			maxHp = 25
 			noteDelayMin = .5
 			noteDelayMax = .5
 			
-			weight["block"] = .5
-			weight["attack block"] = .5
+			weight["block"] = .6
+			weight["attack block"] = .05
+			weight["double block"] = .35
 			
-		"Animated Armor":
-			attack = 90
-			defense = 80
-			maxHp = 30
+		"Animated Armor": # 30, 50
+			attack = 20
+			maxHp = 250
 			noteDelayMin = .5
 			noteDelayMax = 1
 			
@@ -90,48 +84,44 @@ func set_enemy(t : String):
 			weight["block"] = .3
 			weight["double block"] = .2
 			weight["attack block"] = .2
-		"Wyvern":
-			attack = 80
-			defense = 95
-			maxHp = 30
+		"Wyvern": # 40, 50
+			attack = 15
+			maxHp = 350
 			noteDelayMin = .5
-			noteDelayMax = .5
+			noteDelayMax = .7
 			
 			weight["attack"] = .2
-			weight["block"] = .3
-			weight["double block"] = .2
-			weight["attack block"] = .2
-			weight["attack double block"] = .1
+			weight["block"] = .2
+			weight["double block"] = .3
+			weight["attack block"] = .3
 		"Chest":
 			attack = 0
-			defense = 0
 			maxHp = 1
 			noteDelayMin = .7
 			noteDelayMax = .7
 			weight["attack"] = 1
-		"Mimic":
-			attack = 70
-			defense = 70
-			maxHp = 30
-			noteDelayMin = .7
-			noteDelayMax = .7
+		"Mimic": # 40, 60
+			attack = 20
+			maxHp = 300
+			noteDelayMin = .3
+			noteDelayMax = 1
 				
-			weight["attack"] = .4
-			weight["block"] = .4
-			weight["double block"] = .1
-			weight["attack block"] = .1
+			weight["block"] = .3
+			weight["double block"] = .2
+			weight["attack block"] = .3
+			weight["attack double block"] = .2
 		
-		"Dragon":
-			attack = 110
-			defense = 110
-			maxHp = 50
-			noteDelayMin = .5
-			noteDelayMax = .5
+		"Dragon": # 45, 70
+			attack = 25
+			maxHp = 500
+			noteDelayMin = .3
+			noteDelayMax = .7
 			
-			weight["double block"] = .3
-			weight["attack block"] = .4
-			weight["attack double block"] = .3
-	maxHp = 50
+			weight["attack"] = .2
+			weight["block"] = .2
+			weight["double block"] = .2
+			weight["attack block"] = .2
+			weight["attack double block"] = .2
 	heal()
 
 func pick_action():

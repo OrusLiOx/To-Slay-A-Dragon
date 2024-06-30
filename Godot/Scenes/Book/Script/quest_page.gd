@@ -42,7 +42,6 @@ func set_page(enemy:Enemy):
 	
 	edit = $Stats
 	edit.text = "Attack: " + str(enemy.attack) + "\n"
-	edit.text += "Defense: " + str(enemy.defense) + "\n"
 	edit.text += "Health: " + str(enemy.maxHp) + "\n\n"	
 	
 	edit.text += "Drop: "
@@ -54,6 +53,14 @@ func set_page(enemy:Enemy):
 	
 	edit = $Actions
 	edit.text = ""
+	
+	edit.text +="Time Between Actions:\n"
+	var mi = enemy.noteDelayMin
+	var ma = enemy.noteDelayMax
+	if mi != ma:
+		edit.text += str(mi) + " - "
+	edit.text += str(ma)+" s\n\n"
+	
 	for key in enemy.weight.keys():
 		match key:
 			"attack":
@@ -67,9 +74,4 @@ func set_page(enemy:Enemy):
 			"attack double block":
 				edit.text += "Block x2 + Attack: "
 		edit.text += str(enemy.weight[key]*100)+"%\n"
-	edit.text +="\nTime Between Actions:\n"
-	var mi = enemy.noteDelayMin
-	var ma = enemy.noteDelayMax
-	if mi != ma:
-		edit.text += str(mi) + " - "
-	edit.text += str(ma)+" s"
+	

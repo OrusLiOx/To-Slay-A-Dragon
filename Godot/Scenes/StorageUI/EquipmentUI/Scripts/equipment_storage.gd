@@ -49,24 +49,20 @@ func update():
 	load_current()
 
 func load_current():
-	var attack = 0
-	var defense = 0
 	
 	if Storage.curArmor != -1:
 		curArmor = Storage.equipment[Storage.curArmor]
-		defense = curArmor.value
 		armorDisplay.set_equip(curArmor)
 	else:
 		armorDisplay.set_ghost("med armor")
 	
 	if Storage.curWeapon != -1:
 		curWeapon = Storage.equipment[Storage.curWeapon]
-		attack = curWeapon.value
 		weaponDisplay.set_equip(curWeapon)
 	else:
 		weaponDisplay.set_ghost("sword")
 		
-	$Equipped/Stats.text = "Attack: " + str(attack) +"\nDefense: " + str(defense)
+	$Equipped/Stats.text = "Attack: " + str(Storage.get_attack()) +"\nDefense: " + str(Storage.get_defense())
 	
 func load_page(p):
 	page = p
@@ -121,7 +117,7 @@ func set_item_display(vis:bool, obj, isEquip = false):
 		for child in $Main/PartDisplay/Parts.get_children():
 			child.queue_free()
 		return
-	$Main/PartDisplay.visible = vis
+	$Main/PartDisplay.visible = true
 	
 	if vis:
 		if e.is_weapon():
