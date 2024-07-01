@@ -14,7 +14,7 @@ signal exit()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	types = ["dagger","sword","greatsword","light armor","med armor","heavy armor"]
+	types = ["dagger","sword","greatsword","light armor","armor","heavy armor"]
 	selectedParts = [[],[]]
 	partQueue = {
 		"m": [-1],
@@ -25,7 +25,7 @@ func _ready():
 	generate_blueprint_base()
 	load_blueprint_selection()
 	
-	load_blueprint("dagger")
+	load_blueprint("sword")
 	pass # Replace with function body.
 
 func _process(_delta):
@@ -124,7 +124,7 @@ func load_blueprint(type, clear = false):
 			set_blueprint_slots(["m","m","m","","f",""])
 		"light armor": 
 			set_blueprint_slots(["m","s","","","f",""])
-		"med armor": 
+		"armor": 
 			set_blueprint_slots(["m","s","s","","f","f"])
 		"heavy armor": 
 			set_blueprint_slots(["m","s","s","s","f","f"])
@@ -242,18 +242,32 @@ func update_equip_stats():
 	storage.update()
 	
 	# if row 0 isn't filled, you can't craft
-	for partBut in selectedParts[0]:
-		if partBut.part.rarity == -1:
-			builtEquip.set_ghost(activeBlueprint)
+	var type = activeBlueprint
+	if activeBlueprint.contains("armor"):
+		for partBut in selectedParts[0]:
+			if partBut.part.rarity == -1:
+				builtEquip.set_ghost(activeBlueprint)
+				builtEquip.disabled = true
+				return
+	else:
+		var count = 0
+		for partBut in selectedParts[0]:
+			if partBut.part.rarity >= 0 and partBut.part.type =="m":
+				count += 1
+		if count == 1:
+			type = "dagger"
+		if count == 0:
 			builtEquip.disabled = true
+			builtEquip.set_ghost(activeBlueprint)
 			return
+			
 	# if row 0 is filled, build equip based on selected parts
 	var parts:Array = []
 	for arr in selectedParts:
 		for partBut in arr:
-			if partBut.part.rarity >= -1:
+			if partBut.part.rarity >= 0:
 				parts.push_back(partBut.part)
-	builtEquip.set_equip(Equipment.new(activeBlueprint, parts))
+	builtEquip.set_equip(Equipment.new(type, parts))
 	builtEquip.disabled = false
 
 # finalize crafting
@@ -268,6 +282,7 @@ func craft_equip():
 				partBut.set_part(Part.new(partBut.part.type, -1))
 				partBut.update()
 	update_equip_stats()
+	$Equipped.load_current()
 
 func _on_help_button_down():
 	$HelpStuff.visible = !$HelpStuff.visible
@@ -275,11 +290,19 @@ func _on_help_button_down():
 # decraft
 func _on_storage_use_equip(index):
 	var equip = Storage.remove_equipment(index)
+	decraft(equip.type, equip)
+
+func decraft(type, equip):
+	# load corresponding blueprint
+	if type == "armor":
+		load_blueprint("armor", true)
+	else:
+		type = "sword"
+		load_blueprint("sword", true)
+		
 	if equip == null:
 		return
 		
-	# load corresponding blueprint
-	load_blueprint(equip.type, true)
 	# add all parts
 	var i = 0
 	for part in equip.parts:
@@ -288,5 +311,3 @@ func _on_storage_use_equip(index):
 	
 	# load equip
 	update_equip_stats()
-	
-	pass # Replace with function body.

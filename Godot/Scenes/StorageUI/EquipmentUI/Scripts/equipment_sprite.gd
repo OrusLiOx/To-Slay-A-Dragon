@@ -38,7 +38,7 @@ func set_equip(equip):
 			f = 3
 			parts[0].z_index = 1
 			parts[2].z_index = 2
-		"med armor": 
+		"armor": 
 			f = 4
 			parts[0].z_index = 1
 			parts[3].z_index = 2
@@ -64,7 +64,7 @@ func set_ghost(type):
 		"sword": f = 1
 		"greatsword": f = 2
 		"light armor": f = 3
-		"med armor": f = 4
+		"armor": f = 4
 		"heavy armor": f = 5
 	
 	frame = f*8

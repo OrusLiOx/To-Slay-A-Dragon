@@ -30,6 +30,7 @@ func _ready():
 	for value in length.values():
 		maxPage+=value
 	
+	# region/enemy info stuff
 	enemyInfo["Quest"] = $EnemyInfo/QuestPage
 	enemyInfo["Region"] = $EnemyInfo/RegionTitlePage
 	enemyInfo["Map"] = $EnemyInfo/MapTitlePage
@@ -42,6 +43,11 @@ func _ready():
 	$EnemyInfo/RegionTitlePage/Creatures/Desert.update()
 	$EnemyInfo/RegionTitlePage/Creatures/Mountain.update()
 	
+	# tutorial/help stuff
+	$Help/Contents.pageNumStart = start["help"]
+	$Help/Contents.update()
+	
+	# main table of contents
 	var arr:Array[int]
 	for key in order:
 		arr.push_back(start[key])

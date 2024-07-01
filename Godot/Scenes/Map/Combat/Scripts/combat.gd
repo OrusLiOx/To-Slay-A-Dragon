@@ -147,7 +147,7 @@ func hit_player(quality):
 			$Health/You/LastHit.text = "PERFECT BLOCK"
 			return
 		"ok":
-			damage /= 4
+			damage /= 2
 			$Health/You/LastHit.text = str(damage) + " BLOCK"
 		"miss":
 			$Health/You/LastHit.text = str(damage)

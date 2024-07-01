@@ -1,11 +1,94 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbqavw5571ou3"]
+[gd_scene load_steps=8 format=3 uid="uid://bbqavw5571ou3"]
 
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="1_f63lc"]
+[ext_resource type="Script" path="res://Scenes/Book/Script/TableOfContents.gd" id="1_qwcor"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="2_q0mne"]
+[ext_resource type="LabelSettings" uid="uid://b11e7oyd37eom" path="res://Themes/TitleLabel.tres" id="4_p7f1e"]
+[ext_resource type="LabelSettings" uid="uid://cysjrmkj5ucc5" path="res://Themes/HeaderLabel_White.tres" id="4_v0x42"]
+[ext_resource type="Texture2D" uid="uid://6203f8cgpqcs" path="res://Sprites/UI/arrow.png" id="5_5m4lw"]
+[ext_resource type="Texture2D" uid="uid://bvrfuba3av8is" path="res://Sprites/UI/home.png" id="6_6uyp4"]
 
 [node name="Help" type="Node2D"]
 
-[node name="Tutorial" type="Node2D" parent="."]
+[node name="ButtonGuide" type="Node2D" parent="."]
+position = Vector2(43, -21)
+
+[node name="title" type="Label" parent="ButtonGuide"]
+offset_left = -96.0
+offset_top = 316.0
+offset_right = 364.0
+offset_bottom = 385.0
+text = "Button Guide"
+label_settings = ExtResource("1_f63lc")
+
+[node name="text" type="Label" parent="ButtonGuide"]
+offset_left = -2.0
+offset_top = 440.0
+offset_right = 252.0
+offset_bottom = 869.0
+text = "Next Page
+
+
+Previous Page
+
+
+Close Book
+
+
+Table of Contents"
+label_settings = ExtResource("2_q0mne")
+
+[node name="Symbols" type="Node2D" parent="ButtonGuide"]
+position = Vector2(-16, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ButtonGuide/Symbols"]
+offset_left = -119.0
+offset_top = 400.0
+offset_right = -9.0
+offset_bottom = 894.0
+color = Color(0, 0, 0, 0.329412)
+
+[node name="Home" type="Sprite2D" parent="ButtonGuide/Symbols"]
+position = Vector2(-63, 835)
+texture = ExtResource("6_6uyp4")
+
+[node name="Arrow" type="Sprite2D" parent="ButtonGuide/Symbols"]
+position = Vector2(-89, 460)
+rotation = -3.14159
+texture = ExtResource("5_5m4lw")
+
+[node name="Arrow2" type="Sprite2D" parent="ButtonGuide/Symbols"]
+position = Vector2(-45, 585)
+texture = ExtResource("5_5m4lw")
+
+[node name="exit" type="Label" parent="ButtonGuide/Symbols"]
+offset_left = -78.0
+offset_top = 683.0
+offset_right = -38.0
+offset_bottom = 752.0
+text = "x"
+label_settings = ExtResource("4_v0x42")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -255.0
+offset_top = -15.0
+offset_right = 446.0
+offset_bottom = 951.0
+text = "Tutorial"
+label_settings = ExtResource("4_p7f1e")
+horizontal_alignment = 1
+
+[node name="Contents" type="Node2D" parent="."]
+position = Vector2(-122, 112)
+script = ExtResource("1_qwcor")
+headers = Array[Array]([["Introduction"], ["Combat"], ["Forging"]])
+pageNums = Array[int]([1, 2, 3])
+pageNumStart = 2
+
+[node name="Text" type="ColorRect" parent="Contents"]
+clip_children = 1
+offset_right = 410.0
+offset_bottom = 700.0
 
 [node name="Introduction" type="Node2D" parent="."]
 

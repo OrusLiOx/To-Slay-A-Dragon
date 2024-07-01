@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7rsad5y1w38s"]
+[gd_scene load_steps=11 format=3 uid="uid://b7rsad5y1w38s"]
 
 [ext_resource type="Script" path="res://Scenes/Camp/Scripts/forge_menu.gd" id="1_5tl1t"]
 [ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/StorageUI/PartUI/part_button.tscn" id="2_a6guu"]
@@ -8,6 +8,7 @@
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="6_p68io"]
 [ext_resource type="PackedScene" uid="uid://ly2lqh5cyg56" path="res://Scenes/StorageUI/storage.tscn" id="7_uefke"]
 [ext_resource type="Script" path="res://Scenes/Camp/Scripts/camp_help.gd" id="8_sxyww"]
+[ext_resource type="PackedScene" uid="uid://dwc7qnmdrv0l5" path="res://Scenes/StorageUI/EquippedUI/equipped.tscn" id="9_60jb7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnipj"]
 
@@ -69,6 +70,7 @@ Optional"
 label_settings = ExtResource("5_r3t7k")
 
 [node name="BlueprintSelect" type="Node2D" parent="."]
+visible = false
 position = Vector2(72, 98)
 
 [node name="UIbackdrop" parent="BlueprintSelect" instance=ExtResource("4_xr85d")]
@@ -192,6 +194,9 @@ label_settings = ExtResource("6_p68io")
 autowrap_mode = 2
 visible_characters_behavior = 1
 
+[node name="Equipped" parent="." instance=ExtResource("9_60jb7")]
+position = Vector2(989, 12)
+
 [connection signal="button_down" from="Exit" to="." method="_on_exit_button_down"]
 [connection signal="mouse_entered" from="Exit" to="HelpStuff" method="_on_exit_mouse_entered"]
 [connection signal="mouse_exited" from="Exit" to="HelpStuff" method="_on_control_mouse_exited"]
@@ -218,3 +223,4 @@ visible_characters_behavior = 1
 [connection signal="mouse_exited" from="HelpStuff/Materials" to="HelpStuff" method="_on_control_mouse_exited"]
 [connection signal="mouse_entered" from="HelpStuff/Equipment" to="HelpStuff" method="_on_equipment_mouse_entered"]
 [connection signal="mouse_exited" from="HelpStuff/Equipment" to="HelpStuff" method="_on_control_mouse_exited"]
+[connection signal="pressed_equip" from="Equipped" to="." method="decraft"]

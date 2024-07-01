@@ -54,7 +54,7 @@ func load_current():
 		curArmor = Storage.equipment[Storage.curArmor]
 		armorDisplay.set_equip(curArmor)
 	else:
-		armorDisplay.set_ghost("med armor")
+		armorDisplay.set_ghost("armor")
 	
 	if Storage.curWeapon != -1:
 		curWeapon = Storage.equipment[Storage.curWeapon]
