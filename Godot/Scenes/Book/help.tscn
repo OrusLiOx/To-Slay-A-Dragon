@@ -1,116 +1,274 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbqavw5571ou3"]
+[gd_scene load_steps=14 format=3 uid="uid://bbqavw5571ou3"]
 
+[ext_resource type="Script" path="res://Scenes/Book/Script/help.gd" id="1_635m8"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="1_f63lc"]
 [ext_resource type="Script" path="res://Scenes/Book/Script/TableOfContents.gd" id="1_qwcor"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="2_q0mne"]
+[ext_resource type="Texture2D" uid="uid://c1ycrhsfmgqvd" path="res://Sprites/UI/arrowFull.png" id="4_2tlut"]
 [ext_resource type="LabelSettings" uid="uid://b11e7oyd37eom" path="res://Themes/TitleLabel.tres" id="4_p7f1e"]
-[ext_resource type="LabelSettings" uid="uid://cysjrmkj5ucc5" path="res://Themes/HeaderLabel_White.tres" id="4_v0x42"]
 [ext_resource type="Texture2D" uid="uid://6203f8cgpqcs" path="res://Sprites/UI/arrow.png" id="5_5m4lw"]
-[ext_resource type="Texture2D" uid="uid://bvrfuba3av8is" path="res://Sprites/UI/home.png" id="6_6uyp4"]
+[ext_resource type="Texture2D" uid="uid://dcdkfrejvbkgr" path="res://Sprites/UI/Anvil.png" id="6_6xcev"]
+[ext_resource type="Texture2D" uid="uid://bvrfuba3av8is" path="res://Sprites/UI/home.png" id="6_76xq2"]
+[ext_resource type="Texture2D" uid="uid://cscwiq3psgq8o" path="res://Sprites/book/bookIcon.png" id="6_uucqv"]
+[ext_resource type="Texture2D" uid="uid://chqhu8igli3k0" path="res://Sprites/UI/forgeBuildSample.png" id="11_f35k6"]
+[ext_resource type="Texture2D" uid="uid://sejjgsr510ca" path="res://Sprites/Map/questMarker.png" id="12_vd3m2"]
+[ext_resource type="Texture2D" uid="uid://bgi7i22rlnins" path="res://Sprites/UI/combatSample.png" id="13_x5h5f"]
 
 [node name="Help" type="Node2D"]
+script = ExtResource("1_635m8")
 
-[node name="ButtonGuide" type="Node2D" parent="."]
-position = Vector2(43, -21)
+[node name="Introduction" type="Node2D" parent="."]
+visible = false
 
-[node name="title" type="Label" parent="ButtonGuide"]
-offset_left = -96.0
-offset_top = 316.0
-offset_right = 364.0
-offset_bottom = 385.0
+[node name="Intro" type="Node2D" parent="Introduction"]
+position = Vector2(518, 541)
+
+[node name="Description" type="Label" parent="Introduction/Intro"]
+visible = false
+offset_right = 629.0
+offset_bottom = 736.0
+text = "Slaying a dragon is one of the greatest accomplishments an adventurer can achieve. Since you're reading this book, I would assume that's your goal.
+
+You will need to hunt down powerful creatures to get the materials needed to make equipment strong enough to take down a dragon.  If you're lucky, you might find a blacksmith willing to work for free, hoping to gain the glory of forging a dragon slaying blade.
+
+The next two sections of this book explain combat and equipment forging."
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="Description2" type="Label" parent="Introduction/Intro"]
+offset_left = 2.0
+offset_top = -15.0
+offset_right = 631.0
+offset_bottom = 721.0
+text = "Welcome to the Adventurer's Handbook. Slaying a dragon is one of the greatest accomplishments an adventurer can achieve. Since you're reading this book, I  assume that's your goal. This book will tell you everything you need to know to succeed."
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="Introduction/Intro"]
+offset_left = 117.0
+offset_top = -99.0
+offset_right = 422.0
+offset_bottom = -30.0
+text = "Introduction"
+label_settings = ExtResource("1_f63lc")
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonGuide" type="Node2D" parent="Introduction"]
+position = Vector2(62, -177)
+
+[node name="title" type="Label" parent="Introduction/ButtonGuide"]
+offset_left = -129.0
+offset_top = 274.0
+offset_right = 426.0
+offset_bottom = 343.0
 text = "Button Guide"
 label_settings = ExtResource("1_f63lc")
 
-[node name="text" type="Label" parent="ButtonGuide"]
+[node name="text" type="Label" parent="Introduction/ButtonGuide"]
 offset_left = -2.0
 offset_top = 440.0
 offset_right = 252.0
 offset_bottom = 869.0
-text = "Next Page
+text = "Previous/Next Page
 
 
-Previous Page
+Open/Close Book
 
 
-Close Book
+To table of contents
 
 
-Table of Contents"
+Open/Close Forge"
 label_settings = ExtResource("2_q0mne")
 
-[node name="Symbols" type="Node2D" parent="ButtonGuide"]
+[node name="Symbols" type="Node2D" parent="Introduction/ButtonGuide"]
 position = Vector2(-16, 1)
 
-[node name="ColorRect" type="ColorRect" parent="ButtonGuide/Symbols"]
-offset_left = -119.0
+[node name="ColorRect2" type="ColorRect" parent="Introduction/ButtonGuide/Symbols"]
+offset_left = -167.0
 offset_top = 400.0
-offset_right = -9.0
-offset_bottom = 894.0
+offset_right = -90.0
+offset_bottom = 518.0
 color = Color(0, 0, 0, 0.329412)
 
-[node name="Home" type="Sprite2D" parent="ButtonGuide/Symbols"]
-position = Vector2(-63, 835)
-texture = ExtResource("6_6uyp4")
+[node name="ColorRect" type="ColorRect" parent="Introduction/ButtonGuide/Symbols"]
+offset_left = -80.0
+offset_top = 400.0
+offset_right = -9.0
+offset_bottom = 518.0
+color = Color(0, 0, 0, 0.329412)
 
-[node name="Arrow" type="Sprite2D" parent="ButtonGuide/Symbols"]
-position = Vector2(-89, 460)
+[node name="Arrow" type="Sprite2D" parent="Introduction/ButtonGuide/Symbols"]
+position = Vector2(-70, 460)
 rotation = -3.14159
 texture = ExtResource("5_5m4lw")
 
-[node name="Arrow2" type="Sprite2D" parent="ButtonGuide/Symbols"]
-position = Vector2(-45, 585)
+[node name="Arrow2" type="Sprite2D" parent="Introduction/ButtonGuide/Symbols"]
+position = Vector2(-102, 458)
 texture = ExtResource("5_5m4lw")
 
-[node name="exit" type="Label" parent="ButtonGuide/Symbols"]
-offset_left = -78.0
-offset_top = 683.0
-offset_right = -38.0
-offset_bottom = 752.0
-text = "x"
-label_settings = ExtResource("4_v0x42")
+[node name="ColorRect3" type="ColorRect" parent="Introduction/ButtonGuide/Symbols"]
+offset_left = -142.0
+offset_top = 532.0
+offset_right = -36.0
+offset_bottom = 641.0
+color = Color(0, 0, 0, 0.329412)
 
-[node name="Label" type="Label" parent="."]
-offset_left = -255.0
-offset_top = -15.0
-offset_right = 446.0
-offset_bottom = 951.0
-text = "Tutorial"
-label_settings = ExtResource("4_p7f1e")
-horizontal_alignment = 1
+[node name="ColorRect5" type="ColorRect" parent="Introduction/ButtonGuide/Symbols"]
+offset_left = -143.0
+offset_top = 658.0
+offset_right = -37.0
+offset_bottom = 767.0
+color = Color(0, 0, 0, 0.329412)
 
-[node name="Contents" type="Node2D" parent="."]
-position = Vector2(-122, 112)
+[node name="book" type="Sprite2D" parent="Introduction/ButtonGuide/Symbols"]
+position = Vector2(-92, 588)
+texture = ExtResource("6_uucqv")
+
+[node name="tableofcontents" type="Sprite2D" parent="Introduction/ButtonGuide/Symbols"]
+position = Vector2(-89, 714)
+texture = ExtResource("6_76xq2")
+
+[node name="ColorRect4" type="ColorRect" parent="Introduction/ButtonGuide/Symbols"]
+offset_left = -142.5
+offset_top = 792.0
+offset_right = -36.5
+offset_bottom = 901.0
+color = Color(0, 0, 0, 0.329412)
+
+[node name="anvil" type="Sprite2D" parent="Introduction/ButtonGuide/Symbols"]
+position = Vector2(-86.5, 851)
+scale = Vector2(0.34, 0.335)
+texture = ExtResource("6_6xcev")
+
+[node name="PrevNextPage" type="Node2D" parent="Introduction/ButtonGuide"]
+
+[node name="Contents" type="Node2D" parent="Introduction"]
+position = Vector2(568, 161)
 script = ExtResource("1_qwcor")
 headers = Array[Array]([["Introduction"], ["Combat"], ["Forging"]])
 pageNums = Array[int]([1, 2, 3])
 pageNumStart = 2
 
-[node name="Text" type="ColorRect" parent="Contents"]
+[node name="Text" type="ColorRect" parent="Introduction/Contents"]
 clip_children = 1
 offset_right = 410.0
 offset_bottom = 700.0
 
-[node name="Introduction" type="Node2D" parent="."]
+[node name="Label" type="Label" parent="Introduction/Contents"]
+offset_left = -49.0
+offset_top = 194.0
+offset_right = 508.0
+offset_bottom = 236.0
+theme_override_font_sizes/font_size = 0
+text = "you can click these to jump to a page"
+label_settings = ExtResource("2_q0mne")
+horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="Introduction"]
-offset_left = 538.0
-offset_top = 126.0
-offset_right = 1167.0
-offset_bottom = 710.0
-text = "Slaying a dragon is one of the greatest accomplishments an adventurer can achieve. In order to do so, you're going to need really good equipment.
+[node name="Sprite2D" type="Sprite2D" parent="Introduction/Contents"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(218, 173)
+rotation = 1.5708
+scale = Vector2(0.445008, 0.18433)
+texture = ExtResource("4_2tlut")
 
-Materials strong enough resist a dragon's attacks and pierce its scales aren't easy to come by and you'll likely need to hunt down the materials yourself."
+[node name="Label2" type="Label" parent="Introduction/Contents"]
+offset_left = -125.0
+offset_top = -174.0
+offset_right = 576.0
+offset_bottom = 792.0
+text = "Tutorial"
+label_settings = ExtResource("4_p7f1e")
+horizontal_alignment = 1
+
+[node name="Forge" type="Node2D" parent="."]
+visible = false
+position = Vector2(-196, 0)
+
+[node name="Title" type="Label" parent="Forge"]
+offset_left = -31.0
+offset_top = 25.0
+offset_right = 626.0
+offset_bottom = 94.0
+text = "Forging"
+label_settings = ExtResource("1_f63lc")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Forge"]
+offset_left = 11.0
+offset_top = 129.0
+offset_right = 640.0
+offset_bottom = 865.0
+text = "The forge has three sections: equipment, materials, and blueprint.
+
+The equipment section displays your current weapon and armor. Clicking on a piece of equipment will place it in the blueprint section. This will allow you to add/replace materials on your equipment.
+
+Click on the material you want to add in the Materials section to add it to your weapon.
+
+If you want to remove a material, click on it in the blueprint section.
+
+"
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
-[node name="Title" type="Label" parent="Introduction"]
-offset_left = 655.0
-offset_top = 27.0
-offset_right = 960.0
-offset_bottom = 96.0
-text = "Introduction"
-label_settings = ExtResource("1_f63lc")
+[node name="Description2" type="Label" parent="Forge"]
+offset_left = 711.0
+offset_top = 366.0
+offset_right = 1340.0
+offset_bottom = 1102.0
+text = "The top row of materials in the blueprint indicate requirments to biuld the equipment. The second row allows you to add bonus material to further strengthen your equipment.
 
-[node name="Forge" type="Node2D" parent="."]
+Once you have selected all the material you want, click on the equipment in the bottom row of the blueprint to equip it."
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Forge"]
+position = Vector2(1007, 185)
+scale = Vector2(0.596, 0.6)
+texture = ExtResource("11_f35k6")
 
 [node name="Combat" type="Node2D" parent="."]
+
+[node name="QuestMarker" type="Sprite2D" parent="Combat"]
+position = Vector2(-173, 262)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_vd3m2")
+
+[node name="Title" type="Label" parent="Combat"]
+offset_left = 10.0
+offset_top = 16.0
+offset_right = 315.0
+offset_bottom = 85.0
+text = "Combat"
+label_settings = ExtResource("1_f63lc")
+
+[node name="Description3" type="Label" parent="Combat"]
+offset_left = -196.0
+offset_top = 86.0
+offset_right = 433.0
+offset_bottom = 859.0
+text = "To get materials, you will need to kill certain creatures.
+
+        These green markers show you where 
+         you can find these creatures.
+Hovering over the marker will tell you about the creature and the material it will give you. Click on the marker to fight the creature.
+
+When you're in a fight, you will be able to see your health and the enemy's in the bottom right. Above the health bars, you will see a box with arrows. You can use WASD or arrow keys."
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="Description4" type="Label" parent="Combat"]
+offset_left = 508.0
+offset_top = 391.0
+offset_right = 1137.0
+offset_bottom = 1127.0
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Combat"]
+position = Vector2(822, 183)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("13_x5h5f")
+
+[connection signal="go_to_page" from="Introduction/Contents" to="." method="_on_contents_go_to_page"]

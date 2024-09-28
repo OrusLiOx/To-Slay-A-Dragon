@@ -1,7 +1,5 @@
 extends Node2D
 
-@export var storage :Node2D
-
 var text
 var header
 var count
@@ -12,7 +10,6 @@ func _ready():
 	header = $Title
 	count = 1
 	_on_control_mouse_exited()
-	storage = storage.get_child(3)
 	pass # Replace with function body.
 
 
@@ -48,16 +45,10 @@ func _on_blueprint_active_mouse_entered():
 
 func _on_storage_mouse_entered():
 	count+=1
-	if storage.visible:
-		header.text = "Storage: Materials"
-		text.text = "Displays how much of every material you have.\n\n"
-		text.text += "Hovering over a material displays information about it.\n"
-		text.text += "Clicking on a material that you have adds it to the active blueprint if possible."
-	else:
-		header.text = "Storage: Equipment"
-		text.text = "Displays all crafted equipment.\n\n"
-		text.text += "Hovering over an equipment displays its stats.\n"
-		text.text += "Clicking on an equipment equips/unequips it"
+	header.text = "Storage: Materials"
+	text.text = "Displays how much of every material you have.\n\n"
+	text.text += "Hovering over a material displays information about it.\n"
+	text.text += "Clicking on a material that you have adds it to the active blueprint if possible."
 	pass # Replace with function body.
 
 func _on_required_mouse_entered():

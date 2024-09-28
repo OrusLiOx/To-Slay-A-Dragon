@@ -38,7 +38,7 @@ func set_page(enemy:Enemy):
 			edit.text = "If a dreamer stone is left in an empty container for a week, the container will turn into a mimic. Mimics are suprisingly smart and can be kept as companions if you have the patience to train them. They're a lot like cats except they can bite your hand off and cast fireball."
 		
 		"Dragon":
-			edit.text = "dragon text"
+			edit.text = "Dragons are some of the most powerful creatures in the world. They often attack kingdoms where they'll eat civilians and steal treasures for their hoard. \nDefeating a dragon bring you glory and wealth beyond imagination. Many have tried and many have failed. Do you think you have what it takes?"
 	
 	edit = $Stats
 	edit.text = "Attack: " + str(enemy.attack) + "\n"

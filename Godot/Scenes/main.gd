@@ -16,7 +16,11 @@ func _ready():
 	blackout.visible = false
 	blackoutActive = false
 	
+	camp.book = $Book
+	
 	_on_map_to_camp()
+	$Book.update_page(3)
+	$Book.visible = true
 	pass # Replace with function body.
 
 
@@ -36,6 +40,7 @@ func _process(delta):
 
 
 func _on_camp_to_map():
+	$Book.exit()
 	map.position = Vector2(0,0)
 	camp.position = Vector2(0,2000)
 	$Map/QuestName.visible = false
@@ -43,7 +48,7 @@ func _on_camp_to_map():
 	pass # Replace with function body.
 
 func _on_map_to_camp():
-	camp.open()
+	$Book.exit()
 	camp.position = Vector2(0,0)
 	map.position = Vector2(0,2000)
 	pass # Replace with function body.

@@ -59,6 +59,9 @@ offset_left = 529.0
 offset_top = 221.0
 offset_right = 1193.0
 offset_bottom = 714.0
+text = "Dragons are some of the most powerful creatures in the world. They often attack kingdoms where they'll eat civilians and steal treasures for their hoard. 
+
+Defeating a dragon bring you glory and wealth beyond imagination. Many have tried and many have failed. Do you think you have what it takes?"
 label_settings = ExtResource("4_4drxp")
 autowrap_mode = 2
 text_overrun_behavior = 1

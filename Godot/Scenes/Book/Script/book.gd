@@ -13,7 +13,7 @@ func _ready():
 	length = {
 		"info": 28,
 		"settings":2,
-		"help":2
+		"help":6
 	}
 	start = {
 		"info": pageBuffer,
@@ -29,6 +29,7 @@ func _ready():
 	maxPage = pageBuffer
 	for value in length.values():
 		maxPage+=value
+	maxPage-=1
 	
 	# region/enemy info stuff
 	enemyInfo["Quest"] = $EnemyInfo/QuestPage
@@ -44,8 +45,8 @@ func _ready():
 	$EnemyInfo/RegionTitlePage/Creatures/Mountain.update()
 	
 	# tutorial/help stuff
-	$Help/Contents.pageNumStart = start["help"]
-	$Help/Contents.update()
+	$Help/Introduction/Contents.pageNumStart = start["help"]
+	$Help/Introduction/Contents.update()
 	
 	# main table of contents
 	var arr:Array[int]
@@ -128,10 +129,11 @@ func update_page(newPage):
 					enemyInfo["Quest"].set_page(Enemy.new("Dragon"))
 	elif newPage>=start["help"] and newPage < start["help"]+length["help"]:
 		$Help.visible = true
+		$Help.toPage(curPage-start["help"])
 	elif newPage>=start["settings"] and newPage < start["settings"]+length["settings"]:
 		$Settings.visible = true
 	pass
-	
+	 
 func _on_left_button_down():
 	update_page(curPage-2)
 	pass # Replace with function body.
@@ -140,7 +142,11 @@ func _on_right_button_down():
 	update_page(curPage+2)
 	pass # Replace with function body.
 
-func _on_exit_button_down():
+func open():
+	visible = true
+	update_page(curPage)
+
+func exit():
 	visible = false
 	emit_signal("close_book")
 	pass # Replace with function body.

@@ -7,6 +7,8 @@ var touchingLizor : bool
 var mouse:InputEventMouseMotion
 var heartParticles
 
+var book
+
 signal toMap()
 
 # Called when the node enters the scene tree for the first time.
@@ -19,11 +21,6 @@ func _ready():
 	touchingLizor = false
 
 	$Anvil/Aura.visible = false
-	open()
-	pass # Replace with function body.
-
-func open():
-	_on_forge_menu_exit()
 
 func _process(_delta):
 	if touchingLizor and Input.is_action_pressed("Pet") and !forge.visible:
@@ -35,16 +32,12 @@ func _process(_delta):
 func _on_anvil_button_down():
 	blacksmith.active = false
 	$Anvil/Aura.visible = false
-	$Switch.visible = false
-	$BookBut.visible = false
 	forge.visible = true
 	forge.set_process(true)
 	forge.open()
 	pass # Replace with function body.
 
 func _on_forge_menu_exit():
-	$Switch.visible = true
-	$BookBut.visible = true
 	blacksmith.active = true
 	
 	forge.visible = false
@@ -74,17 +67,10 @@ func _on_lizor_mouse_exited():
 # tells main to switch to map
 func _on_switch_button_down():
 	emit_signal("toMap")
-	open()
-	pass # Replace with function body.
 
 func _on_book_but_button_down():
-	$Book.visible = true
-	$BookBut.visible = false
-	$Switch.visible = false
-	pass # Replace with function body.
-
-
-func _on_book_close_book():
-	$BookBut.visible = true
-	$Switch.visible = true
-	pass # Replace with function body.
+	if forge.visible:
+		book.update_page(book.start["help"]+2)
+	else:
+		book.update_page(book.curPage)
+	book.visible = !book.visible

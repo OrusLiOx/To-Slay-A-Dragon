@@ -24,27 +24,34 @@ func _ready():
 	pass # Replace with function body.
 
 func pressed_equipment(type, equip):
+	var display
 	if type == "armor":
 		Storage.remove_equipment(Storage.curArmor)
+		display = armorDisplay
 	else:
 		Storage.remove_equipment(Storage.curWeapon)
+		display = weaponDisplay
 	emit_signal("pressed_equip", type, equip.equipment)
 	load_current()
-	hide_equip_display()
+	display_equip_info(display)
 
 # display equipment stats when mouse over
 func display_equip_info(equipDisplay):
 	var equip = equipDisplay.equipment
 	if equip == null:
-		$Info/Label.text = ""
+		#if equipDisplay.name =="Armor":
+			#$Info/Label.text = "Armor\nNone"
+		#else:
+			#$Info/Label.text = "Weapon\nNone"
 		for child in $Info/Parts.get_children():
 			child.queue_free()
 		return
 	
-	if equip.is_weapon():
-		$Info/Label.text = equip.type.capitalize() + "\nAttack: " + str(equip.value)
-	else:
-		$Info/Label.text =  equip.type.capitalize() + "\nHealth: " + str(equip.value)
+	$Info/Label.text = "Parts"
+	#if equip.is_weapon():
+		#$Info/Label.text = equip.type.capitalize() + "\nAttack: " + str(equip.value)
+	#else:
+		#$Info/Label.text =  equip.type.capitalize() + "\nHealth: " + str(equip.value)
 		
 	var x = 0
 	var y = 0

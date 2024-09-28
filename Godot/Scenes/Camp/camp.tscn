@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bmx0jemjixann"]
+[gd_scene load_steps=20 format=3 uid="uid://bmx0jemjixann"]
 
 [ext_resource type="Script" path="res://Scenes/Camp/Scripts/camp.gd" id="1_n2q1u"]
 [ext_resource type="Texture2D" uid="uid://bedtgjo8m3qhr" path="res://Sprites/Camp/campBackground.png" id="2_53k2d"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/Camp/campfire.png" id="10_kjxj7"]
 [ext_resource type="Texture2D" uid="uid://dcnioqhxel2ku" path="res://Sprites/Map/mapIcon.png" id="12_3gpqe"]
 [ext_resource type="Texture2D" uid="uid://cscwiq3psgq8o" path="res://Sprites/book/bookIcon.png" id="13_ang3p"]
-[ext_resource type="PackedScene" uid="uid://tr660l4oomhm" path="res://Scenes/Book/book.tscn" id="14_7evyw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hpgy"]
 
@@ -113,17 +112,17 @@ z_index = 2
 position = Vector2(-960, -540)
 
 [node name="Switch" type="Button" parent="."]
-offset_left = -950.0
-offset_top = -534.0
-offset_right = -850.0
-offset_bottom = -434.0
+offset_left = -951.0
+offset_top = -533.0
+offset_right = -843.0
+offset_bottom = -425.0
 icon = ExtResource("12_3gpqe")
 
 [node name="BookBut" type="Button" parent="."]
-offset_left = 842.0
-offset_top = -534.0
-offset_right = 950.0
-offset_bottom = -426.0
+offset_left = -951.0
+offset_top = -419.0
+offset_right = -843.0
+offset_bottom = -311.0
 icon = ExtResource("13_ang3p")
 
 [node name="fire" type="Button" parent="."]
@@ -134,10 +133,6 @@ offset_bottom = 538.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1a3ij")
 icon = ExtResource("10_kjxj7")
 flat = true
-
-[node name="Book" parent="." instance=ExtResource("14_7evyw")]
-visible = false
-z_index = 2
 
 [connection signal="mouse_entered" from="Lizor" to="." method="_on_lizor_mouse_entered"]
 [connection signal="mouse_exited" from="Lizor" to="." method="_on_lizor_mouse_exited"]
@@ -152,4 +147,3 @@ z_index = 2
 [connection signal="exit" from="ForgeMenu" to="." method="_on_forge_menu_exit"]
 [connection signal="button_down" from="Switch" to="." method="_on_switch_button_down"]
 [connection signal="button_down" from="BookBut" to="." method="_on_book_but_button_down"]
-[connection signal="close_book" from="Book" to="." method="_on_book_close_book"]

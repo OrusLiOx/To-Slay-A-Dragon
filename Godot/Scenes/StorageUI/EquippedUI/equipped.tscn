@@ -1,53 +1,55 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwc7qnmdrv0l5"]
+[gd_scene load_steps=6 format=3 uid="uid://dwc7qnmdrv0l5"]
 
 [ext_resource type="Script" path="res://Scenes/StorageUI/EquippedUI/scripts/equipped.gd" id="1_c3jvx"]
 [ext_resource type="PackedScene" uid="uid://cytiu54cl8vi4" path="res://Scenes/StorageUI/EquipmentUI/equip_button.tscn" id="1_s2qq2"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="2_c2dcs"]
 [ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/StorageUI/PartUI/part_button.tscn" id="2_knonf"]
+[ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="4_oyi1e"]
 
 [node name="Equipped" type="Node2D"]
 script = ExtResource("1_c3jvx")
 matButScene = ExtResource("2_knonf")
 
 [node name="Weapon" parent="." instance=ExtResource("1_s2qq2")]
-offset_left = 124.0
-offset_top = 57.0
-offset_right = 224.0
-offset_bottom = 157.0
+offset_left = 109.0
+offset_top = 94.0
+offset_right = 209.0
+offset_bottom = 194.0
 
 [node name="Armor" parent="." instance=ExtResource("1_s2qq2")]
-offset_left = 245.0
-offset_top = 57.0
-offset_right = 345.0
-offset_bottom = 157.0
+offset_left = 230.0
+offset_top = 94.0
+offset_right = 330.0
+offset_bottom = 194.0
 
 [node name="EquipedLabel" type="Label" parent="."]
-offset_left = 21.0
+offset_left = 7.0
 offset_top = 7.0
-offset_right = 449.0
-offset_bottom = 49.0
-text = "Equipped:"
-label_settings = ExtResource("2_c2dcs")
+offset_right = 435.0
+offset_bottom = 76.0
+text = "Equipment"
+label_settings = ExtResource("4_oyi1e")
 horizontal_alignment = 1
 
 [node name="Stats" type="Label" parent="."]
-offset_left = 143.0
-offset_top = 172.0
-offset_right = 328.0
-offset_bottom = 257.0
+offset_left = 128.0
+offset_top = 209.0
+offset_right = 313.0
+offset_bottom = 294.0
 text = "Attack: 100
 Defense: 200"
 label_settings = ExtResource("2_c2dcs")
 horizontal_alignment = 1
 
 [node name="Info" type="Node2D" parent="."]
-position = Vector2(142, 268)
+position = Vector2(96, 257)
 
 [node name="Label" type="Label" parent="Info"]
-offset_left = -31.0
-offset_right = 221.0
-offset_bottom = 42.0
-text = "help"
+offset_left = -5.0
+offset_top = 43.0
+offset_right = 247.0
+offset_bottom = 85.0
+text = "Parts:"
 label_settings = ExtResource("2_c2dcs")
 horizontal_alignment = 1
 vertical_alignment = 1

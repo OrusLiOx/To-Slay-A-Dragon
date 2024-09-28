@@ -21,7 +21,7 @@ func _ready():
 		"f": [-1],
 		"s": [-1]
 	}
-	storage = $Storage
+	storage = $Main/Storage
 	generate_blueprint_base()
 	load_blueprint_selection()
 	
@@ -60,7 +60,7 @@ func load_blueprint_selection():
 	pass
 
 func generate_blueprint_base():
-	var parent = $ActiveBlueprint/SelectedParts
+	var parent = $Main/ActiveBlueprint/SelectedParts
 	
 	for x in range(0,4):
 		var child = partButScene.instantiate()
@@ -85,7 +85,7 @@ func generate_blueprint_base():
 		child.button_down.connect(return_material.bind(child))
 	
 	builtEquip = equipButScene.instantiate()
-	$ActiveBlueprint.add_child(builtEquip)
+	$Main/ActiveBlueprint.add_child(builtEquip)
 	builtEquip.position = Vector2(parent.position.x,parent.position.y+250)
 	builtEquip.visible = true
 	builtEquip.disabled = false
@@ -113,7 +113,7 @@ func load_blueprint(type, clear = false):
 			selectedParts[r][c].disabled = true
 				
 	activeBlueprint = type
-	$ActiveBlueprint/Type.text = type.capitalize()
+	$Main/ActiveBlueprint/Type.text = type.capitalize()
 	
 	match(type):
 		"dagger": 
@@ -162,7 +162,6 @@ func set_blueprint_slot(r, c, t):
 #open/close
 func open():
 	load_blueprint(activeBlueprint)
-	storage.set_tab(0)
 	pass
 
 func _on_exit_button_down():
@@ -221,7 +220,7 @@ func return_material(partBut):
 
 func update_equip_stats():
 	# determine value of crafted equipment
-	var label = $ActiveBlueprint/EquipStat
+	var label = $Main/ActiveBlueprint/EquipStat
 	if activeBlueprint == "":
 		return
 		
@@ -240,26 +239,17 @@ func update_equip_stats():
 	
 	
 	storage.update()
-	
-	# if row 0 isn't filled, you can't craft
 	var type = activeBlueprint
-	if activeBlueprint.contains("armor"):
+	# if row 0 isn't filled, you can't craft
+	if activeBlueprint == "sword" and selectedParts[0][0].part.rarity >=0 and selectedParts[0][1].part.rarity == -1 and selectedParts[1][0].part.rarity == -1:
+		type = "dagger"
+	else:
 		for partBut in selectedParts[0]:
 			if partBut.part.rarity == -1:
 				builtEquip.set_ghost(activeBlueprint)
 				builtEquip.disabled = true
+				type = activeBlueprint
 				return
-	else:
-		var count = 0
-		for partBut in selectedParts[0]:
-			if partBut.part.rarity >= 0 and partBut.part.type =="m":
-				count += 1
-		if count == 1:
-			type = "dagger"
-		if count == 0:
-			builtEquip.disabled = true
-			builtEquip.set_ghost(activeBlueprint)
-			return
 			
 	# if row 0 is filled, build equip based on selected parts
 	var parts:Array = []
@@ -267,11 +257,23 @@ func update_equip_stats():
 		for partBut in arr:
 			if partBut.part.rarity >= 0:
 				parts.push_back(partBut.part)
+	print(parts)
 	builtEquip.set_equip(Equipment.new(type, parts))
 	builtEquip.disabled = false
 
 # finalize crafting
 func craft_equip():
+	# disassemble current
+	var equip
+	if activeBlueprint.contains("armor"):
+		equip = $Main/Equipped/Armor.equipment
+	else:
+		equip = $Main/Equipped/Weapon.equipment
+	if equip != null:
+		for part in equip.parts:
+			Storage.add_part(part, 1)
+		
+	
 	# put equip in storage and set as current
 	Storage.add_equipment(builtEquip.equipment)
 	Storage.set_cur_equip(0)
@@ -282,7 +284,7 @@ func craft_equip():
 				partBut.set_part(Part.new(partBut.part.type, -1))
 				partBut.update()
 	update_equip_stats()
-	$Equipped.load_current()
+	$Main/Equipped.load_current()
 
 func _on_help_button_down():
 	$HelpStuff.visible = !$HelpStuff.visible
@@ -304,7 +306,6 @@ func decraft(type, equip):
 		return
 		
 	# add all parts
-	var i = 0
 	for part in equip.parts:
 		if part.rarity >=0:
 			add_material(part, false)

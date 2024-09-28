@@ -41,10 +41,10 @@ func set_item_display(vis:bool, part : Part):
 	if vis:
 		var text = part.get_name() + "\n"
 		text += "Value: " + str(part.get_value()) + "\n"
-		text += "Used in "
-		match(part.type):
-			"m": text += "weapons and armor\n"
-			"s": text += "armor\n"
-			"f": text += "weapons\n"
-		text+="Dropped by " + part.get_enemy() + "s"
+		#text += "Used in "
+		#match(part.type):
+			#"m": text += "weapons and armor\n"
+			#"s": text += "armor\n"
+			#"f": text += "weapons\n"
+		#text+="Dropped by " + part.get_enemy() + "s"
 		$PartDisplay/Label.text = text
