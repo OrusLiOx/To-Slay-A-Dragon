@@ -18,22 +18,13 @@
 [ext_resource type="PackedScene" uid="uid://bbqavw5571ou3" path="res://Scenes/Book/help.tscn" id="13_u6qfh"]
 [ext_resource type="PackedScene" uid="uid://dbpw77fbrbkms" path="res://Scenes/Book/settings.tscn" id="13_vb34e"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_782mq"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwrn0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_782mq"]
 
 [node name="Book" type="Node2D"]
 script = ExtResource("1_w6myh")
 pageBuffer = 3
-
-[node name="Home" type="Button" parent="."]
-offset_left = -947.0
-offset_top = -56.0
-offset_right = -839.0
-offset_bottom = 55.0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/focus = SubResource("StyleBoxEmpty_782mq")
-icon = ExtResource("2_nl4pi")
 
 [node name="BookBase" type="Sprite2D" parent="."]
 texture = ExtResource("1_rktjd")
@@ -231,7 +222,15 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_qwrn0")
 icon = ExtResource("5_cw70f")
 icon_alignment = 1
 
-[connection signal="button_down" from="Home" to="." method="update_page" binds= [1]]
+[node name="Home" type="Button" parent="UI"]
+offset_left = -947.0
+offset_top = -56.0
+offset_right = -839.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_782mq")
+icon = ExtResource("2_nl4pi")
+
 [connection signal="go_to_page" from="TitlePage/TableOfContents" to="." method="update_page"]
 [connection signal="go_to_page" from="EnemyInfo/RegionTitlePage/Creatures/Forest" to="." method="update_page"]
 [connection signal="go_to_page" from="EnemyInfo/RegionTitlePage/Creatures/Desert" to="." method="update_page"]
@@ -240,3 +239,4 @@ icon_alignment = 1
 [connection signal="go_to_page" from="Help" to="." method="update_page"]
 [connection signal="button_down" from="UI/Left" to="." method="_on_left_button_down"]
 [connection signal="button_down" from="UI/Right" to="." method="_on_right_button_down"]
+[connection signal="button_down" from="UI/Home" to="." method="update_page" binds= [1]]

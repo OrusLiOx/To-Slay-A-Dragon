@@ -13,7 +13,7 @@ func _ready():
 	length = {
 		"info": 28,
 		"settings":2,
-		"help":6
+		"help":10
 	}
 	start = {
 		"info": pageBuffer,
@@ -59,7 +59,7 @@ func _ready():
 	update_page(1)
 	pass # Replace with function body.
 
-func update_page(newPage):
+func update_page(newPage:int):
 	# clean page number
 	newPage = min(max(newPage,1),maxPage)
 	if newPage%2 == 0:
@@ -150,3 +150,4 @@ func exit():
 	visible = false
 	emit_signal("close_book")
 	pass # Replace with function body.
+

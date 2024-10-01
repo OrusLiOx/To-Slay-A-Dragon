@@ -19,7 +19,7 @@ func _ready():
 	camp.book = $Book
 	
 	_on_map_to_camp()
-	$Book.update_page(3)
+	$Book.update_page(1)
 	$Book.visible = true
 	pass # Replace with function body.
 
