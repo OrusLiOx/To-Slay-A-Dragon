@@ -8,13 +8,10 @@ var selectedParts:Array
 var builtEquip
 var partQueue : Dictionary
 
-var types
-
 signal exit()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	types = ["dagger","sword","greatsword","light armor","armor","heavy armor"]
 	selectedParts = [[],[]]
 	partQueue = {
 		"m": [-1],
@@ -23,9 +20,8 @@ func _ready():
 	}
 	storage = $Main/Storage
 	generate_blueprint_base()
-	load_blueprint_selection()
 	
-	load_blueprint("sword")
+	activeBlueprint = "sword"
 	pass # Replace with function body.
 
 func _process(_delta):
@@ -35,31 +31,9 @@ func _process(_delta):
 		craft_equip()
 	if Input.is_action_just_pressed("Clear"):
 		load_blueprint(activeBlueprint)
-	
-	for i in range(0,6):
-		if Input.is_action_just_pressed("Blueprint"+str(i+1)):
-			load_blueprint(types[i])
-
-# initial blueprint menu setup
-func load_blueprint_selection():
-	var parent = $BlueprintSelect/Blueprints
-	var x = 0
-	var y = 0
-	for type in types:
-		var child = equipButScene.instantiate()
-		parent.add_child(child)
-		child.set_ghost(type)
-		child.position = Vector2(x,y)
-		if y <250:
-			y+=125
-		else:
-			y=0
-			x+=125
-			
-		child.button_down.connect(blueprint_button_down.bind(type))
-	pass
 
 func generate_blueprint_base():
+	print("generate blueprint base")
 	var parent = $Main/ActiveBlueprint/SelectedParts
 	
 	for x in range(0,4):
@@ -93,15 +67,9 @@ func generate_blueprint_base():
 	
 	pass
 
-# handle switching blueprints
-func blueprint_button_down(type):
-	# if active blueprint isn't changed, clear parts from selection
-	if type == activeBlueprint:
-		load_blueprint(type, true)
-	else:
-		load_blueprint(type)
-		
+# handle switching blueprints	
 func load_blueprint(type, clear = false):
+	print("load blueprint")
 	if clear:
 		for i in range(0,6):
 			var r = i/4
@@ -137,6 +105,7 @@ func load_blueprint(type, clear = false):
 	pass
 
 func set_blueprint_slots(slots):
+	print("set blueprint slots")
 	partQueue["m"] = []
 	partQueue["f"] = []
 	partQueue["s"] = []
@@ -150,6 +119,7 @@ func set_blueprint_slots(slots):
 		set_blueprint_slot(1,i,slots[4+i])
 		
 func set_blueprint_slot(r, c, t):
+	print("set blueprint slot")
 	if t =="": # slot not part of blueprint
 		if selectedParts[r][c].part.rarity >= 0:
 			Storage.add_part(selectedParts[r][c].part,1)
@@ -161,10 +131,12 @@ func set_blueprint_slot(r, c, t):
 
 #open/close
 func open():
+	print("open")
 	load_blueprint(activeBlueprint)
 	pass
 
 func _on_exit_button_down():
+	print("on exit button down")
 	for c in range(0,4):
 		set_blueprint_slot(0,c,"")
 	for c in range(0,2):
@@ -175,6 +147,7 @@ func _on_exit_button_down():
 
 # add/remove materials
 func _on_storage_use(part):
+	print("on storage use")
 	if partQueue[part.type].is_empty():
 		return
 	
@@ -183,6 +156,7 @@ func _on_storage_use(part):
 	pass # Replace with function body.
 
 func add_material(part, remove):
+	print("add material")
 	# look for empty slot
 	for arr in selectedParts:
 		for partBut in arr:
@@ -213,12 +187,14 @@ func add_material(part, remove):
 	update_equip_stats()
 
 func return_material(partBut):
+	print("return material")
 	Storage.add_part(partBut.part, 1)
 	partBut.set_part(Part.new(partBut.part.type,-1))
 	partBut.update()
 	update_equip_stats()
 
 func update_equip_stats():
+	print("update equip stats")
 	# determine value of crafted equipment
 	var label = $Main/ActiveBlueprint/EquipStat
 	if activeBlueprint == "":
@@ -257,12 +233,13 @@ func update_equip_stats():
 		for partBut in arr:
 			if partBut.part.rarity >= 0:
 				parts.push_back(partBut.part)
-	print(parts)
+
 	builtEquip.set_equip(Equipment.new(type, parts))
 	builtEquip.disabled = false
 
 # finalize crafting
 func craft_equip():
+	print("craft equip")
 	# disassemble current
 	var equip
 	if activeBlueprint.contains("armor"):
@@ -287,21 +264,24 @@ func craft_equip():
 	$Main/Equipped.load_current()
 
 func _on_help_button_down():
+	print("on help button down")
 	$HelpStuff.visible = !$HelpStuff.visible
 
-# decraft
-func _on_storage_use_equip(index):
-	var equip = Storage.remove_equipment(index)
-	decraft(equip.type, equip)
-
-func decraft(type, equip):
+func clicked_equipment(type, equip):
+	print("clicked equipment")
 	# load corresponding blueprint
-	if type == "armor":
-		load_blueprint("armor", true)
-	else:
+	if type != "armor":
 		type = "sword"
-		load_blueprint("sword", true)
-		
+	
+	var clear = false
+	if type != activeBlueprint:
+		if !builtEquip.disabled:
+			craft_equip()
+		else:
+			clear = true
+	
+	load_blueprint(type,clear)
+	
 	if equip == null:
 		return
 		

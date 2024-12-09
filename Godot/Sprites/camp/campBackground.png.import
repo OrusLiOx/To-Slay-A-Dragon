@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bedtgjo8m3qhr"
-path="res://.godot/imported/campBackground.png-8bcf2362d2674876243f27174b165d8c.ctex"
+path="res://.godot/imported/campBackground.png-22893b2aced898dcc591887c40770579.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Camp/campBackground.png"
-dest_files=["res://.godot/imported/campBackground.png-8bcf2362d2674876243f27174b165d8c.ctex"]
+source_file="res://Sprites/camp/campBackground.png"
+dest_files=["res://.godot/imported/campBackground.png-22893b2aced898dcc591887c40770579.ctex"]
 
 [params]
 

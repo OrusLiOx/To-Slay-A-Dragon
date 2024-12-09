@@ -1,17 +1,17 @@
 [gd_scene load_steps=20 format=3 uid="uid://bmx0jemjixann"]
 
 [ext_resource type="Script" path="res://Scenes/Camp/Scripts/camp.gd" id="1_n2q1u"]
-[ext_resource type="Texture2D" uid="uid://bedtgjo8m3qhr" path="res://Sprites/Camp/campBackground.png" id="2_53k2d"]
-[ext_resource type="Texture2D" uid="uid://b8r30k02j33i2" path="res://Sprites/Camp/lizor.png" id="3_dstkl"]
-[ext_resource type="Texture2D" uid="uid://cln4p7b7ixb78" path="res://Sprites/Camp/heart.png" id="4_7ukv5"]
+[ext_resource type="Texture2D" uid="uid://bedtgjo8m3qhr" path="res://Sprites/camp/campBackground.png" id="2_53k2d"]
+[ext_resource type="Texture2D" uid="uid://b8r30k02j33i2" path="res://Sprites/camp/lizor.png" id="3_dstkl"]
+[ext_resource type="Texture2D" uid="uid://cln4p7b7ixb78" path="res://Sprites/camp/heart.png" id="4_7ukv5"]
 [ext_resource type="Script" path="res://Scenes/Camp/Scripts/Blacksmith.gd" id="5_hyfrg"]
-[ext_resource type="Texture2D" uid="uid://b26uuh4doeuuf" path="res://Sprites/Camp/anvil.png" id="5_lg7wt"]
-[ext_resource type="Texture2D" uid="uid://csk4rdey087lw" path="res://Sprites/Camp/blacksmith.png" id="6_h7npj"]
+[ext_resource type="Texture2D" uid="uid://b26uuh4doeuuf" path="res://Sprites/camp/anvil.png" id="5_lg7wt"]
+[ext_resource type="Texture2D" uid="uid://csk4rdey087lw" path="res://Sprites/camp/blacksmith.png" id="6_h7npj"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="6_tw031"]
-[ext_resource type="Texture2D" uid="uid://ddmy0ntrchc50" path="res://Sprites/Camp/anvilGlow.png" id="6_xnutx"]
+[ext_resource type="Texture2D" uid="uid://ddmy0ntrchc50" path="res://Sprites/camp/anvilGlow.png" id="6_xnutx"]
 [ext_resource type="PackedScene" uid="uid://b7rsad5y1w38s" path="res://Scenes/Camp/forge_menu.tscn" id="7_f5mex"]
-[ext_resource type="Texture2D" uid="uid://c1p32ma6xw854" path="res://Sprites/Camp/blacksmithGlow.png" id="9_ut1ap"]
-[ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/Camp/campfire.png" id="10_kjxj7"]
+[ext_resource type="Texture2D" uid="uid://c1p32ma6xw854" path="res://Sprites/camp/blacksmithGlow.png" id="9_ut1ap"]
+[ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/camp/campfire.png" id="10_kjxj7"]
 [ext_resource type="Texture2D" uid="uid://dcnioqhxel2ku" path="res://Sprites/Map/mapIcon.png" id="12_3gpqe"]
 [ext_resource type="Texture2D" uid="uid://cscwiq3psgq8o" path="res://Sprites/book/bookIcon.png" id="13_ang3p"]
 
@@ -27,9 +27,9 @@ gravity = Vector3(0, 0, 0)
 hue_variation_min = -1.0
 hue_variation_max = -0.9
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edwyj"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pb0gu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edwyj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1a3ij"]
 
@@ -40,10 +40,10 @@ script = ExtResource("1_n2q1u")
 texture = ExtResource("2_53k2d")
 
 [node name="Lizor" type="Button" parent="."]
-offset_left = -515.0
-offset_top = -262.0
-offset_right = 593.0
-offset_bottom = 446.0
+offset_left = -174.0
+offset_top = -253.0
+offset_right = 934.0
+offset_bottom = 455.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8hpgy")
 icon = ExtResource("3_dstkl")
 flat = true
@@ -54,27 +54,12 @@ amount = 10
 process_material = SubResource("ParticleProcessMaterial_yjw64")
 texture = ExtResource("4_7ukv5")
 
-[node name="Anvil" type="Button" parent="."]
-z_index = 1
-offset_left = -540.0
-offset_top = 235.0
-offset_right = -220.0
-offset_bottom = 463.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_edwyj")
-icon = ExtResource("5_lg7wt")
-flat = true
-
-[node name="Aura" type="Sprite2D" parent="Anvil"]
-z_index = -1
-position = Vector2(158, 110)
-texture = ExtResource("6_xnutx")
-
 [node name="Blacksmith" type="Button" parent="."]
 z_index = 1
-offset_left = -122.0
-offset_top = -120.0
-offset_right = 186.0
-offset_bottom = 288.0
+offset_left = 219.0
+offset_top = -111.0
+offset_right = 527.0
+offset_bottom = 297.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pb0gu")
 icon = ExtResource("6_h7npj")
 flat = true
@@ -106,6 +91,21 @@ offset_right = 430.0
 offset_bottom = 154.0
 color = Color(0.933333, 0.862745, 0.701961, 1)
 
+[node name="Anvil" type="Button" parent="."]
+z_index = 1
+offset_left = 17.0
+offset_top = 176.0
+offset_right = 337.0
+offset_bottom = 404.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_edwyj")
+icon = ExtResource("5_lg7wt")
+flat = true
+
+[node name="Aura" type="Sprite2D" parent="Anvil"]
+z_index = -1
+position = Vector2(158, 110)
+texture = ExtResource("6_xnutx")
+
 [node name="ForgeMenu" parent="." instance=ExtResource("7_f5mex")]
 visible = false
 z_index = 2
@@ -126,24 +126,24 @@ offset_bottom = -311.0
 icon = ExtResource("13_ang3p")
 
 [node name="fire" type="Button" parent="."]
-offset_left = -165.0
-offset_top = 261.0
-offset_right = 121.0
-offset_bottom = 538.0
+offset_left = -342.0
+offset_top = 194.0
+offset_right = -56.0
+offset_bottom = 471.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1a3ij")
 icon = ExtResource("10_kjxj7")
 flat = true
 
 [connection signal="mouse_entered" from="Lizor" to="." method="_on_lizor_mouse_entered"]
 [connection signal="mouse_exited" from="Lizor" to="." method="_on_lizor_mouse_exited"]
-[connection signal="button_down" from="Anvil" to="." method="_on_anvil_button_down"]
-[connection signal="mouse_entered" from="Anvil" to="." method="_on_anvil_mouse_entered"]
-[connection signal="mouse_exited" from="Anvil" to="." method="_on_anvil_mouse_exited"]
 [connection signal="button_down" from="Blacksmith" to="Blacksmith" method="_on_button_down"]
 [connection signal="mouse_entered" from="Blacksmith" to="Blacksmith" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Blacksmith" to="Blacksmith" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_entered"]
 [connection signal="mouse_exited" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_exited"]
+[connection signal="button_down" from="Anvil" to="." method="_on_anvil_button_down"]
+[connection signal="mouse_entered" from="Anvil" to="." method="_on_anvil_mouse_entered"]
+[connection signal="mouse_exited" from="Anvil" to="." method="_on_anvil_mouse_exited"]
 [connection signal="exit" from="ForgeMenu" to="." method="_on_forge_menu_exit"]
 [connection signal="button_down" from="Switch" to="." method="_on_switch_button_down"]
 [connection signal="button_down" from="BookBut" to="." method="_on_book_but_button_down"]

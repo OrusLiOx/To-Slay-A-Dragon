@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddmy0ntrchc50"
-path="res://.godot/imported/anvilGlow.png-1eea63eab0add807361b2d35be37fe69.ctex"
+path="res://.godot/imported/anvilGlow.png-720bc9b671c8232b488ce686ab0d4988.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Camp/anvilGlow.png"
-dest_files=["res://.godot/imported/anvilGlow.png-1eea63eab0add807361b2d35be37fe69.ctex"]
+source_file="res://Sprites/camp/anvilGlow.png"
+dest_files=["res://.godot/imported/anvilGlow.png-720bc9b671c8232b488ce686ab0d4988.ctex"]
 
 [params]
 
