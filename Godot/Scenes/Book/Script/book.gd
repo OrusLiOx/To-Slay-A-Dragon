@@ -1,5 +1,5 @@
 extends Node2D
-var curPage = 0
+var curPage = -1
 var enemyInfo:Dictionary
 var start:Dictionary
 var length
@@ -29,7 +29,7 @@ func _ready():
 	maxPage = pageBuffer
 	for value in length.values():
 		maxPage+=value
-	maxPage-=1
+	maxPage-=2
 	
 	# region/enemy info stuff
 	enemyInfo["Quest"] = $EnemyInfo/QuestPage
@@ -56,12 +56,10 @@ func _ready():
 	$TitlePage/TableOfContents.pageNumStart = 1
 	$TitlePage/TableOfContents.update()
 	pageBuffer -=1
-	update_page(1)
-	pass # Replace with function body.
 
-func update_page(newPage:int):
+func update_page(newPage:int, pageSound = true):
 	# clean page number
-	newPage = min(max(newPage,1),maxPage)
+	newPage = min(max(newPage,-1),maxPage)
 	if newPage%2 == 0:
 		newPage-=1
 	# set visual page number 
@@ -71,8 +69,19 @@ func update_page(newPage:int):
 	# if page number is unchanged, return
 	if newPage == curPage:
 		return
+		
+	if pageSound:
+		Audio.play("PageFlip")
 	
+	if curPage <= 1:
+		$UI/Left.disabled = false
+	if curPage >= maxPage:
+		$UI/Right.disabled = false
 	curPage = newPage
+	if curPage <= 1:
+		$UI/Left.disabled = true
+	if curPage >= maxPage:
+		$UI/Right.disabled = true
 	
 	# hide all
 	enemyInfo["Quest"].visible = false
@@ -132,22 +141,23 @@ func update_page(newPage:int):
 		$Help.toPage(curPage-start["help"])
 	elif newPage>=start["settings"] and newPage < start["settings"]+length["settings"]:
 		$Settings.visible = true
-	pass
+	
 	 
 func _on_left_button_down():
 	update_page(curPage-2)
-	pass # Replace with function body.
 
 func _on_right_button_down():
 	update_page(curPage+2)
-	pass # Replace with function body.
 
-func open():
+func open(page = -1):
+	if page == -1:
+		page = curPage
+	Audio.play("OpenBook")
+	update_page(page, false)
 	visible = true
-	update_page(curPage)
 
-func exit():
+func close():
+	Audio.play("CloseBook")
 	visible = false
 	emit_signal("close_book")
-	pass # Replace with function body.
 

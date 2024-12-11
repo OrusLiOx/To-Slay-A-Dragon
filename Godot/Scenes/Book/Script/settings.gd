@@ -5,7 +5,6 @@ func _ready():
 	$Gameplay/Colors/Normal.button_pressed  = true
 	$Gameplay/Symbols/Mixed.button_pressed  = true
 	update_symbol_display()
-	pass # Replace with function body.
 
 func set_note_colors(choice:String):
 	match choice:

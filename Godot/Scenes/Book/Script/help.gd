@@ -12,12 +12,10 @@ func _on_contents_go_to_page(page):
 	emit_signal("go_to_page",page)
 
 func toPage(page):
-	print(page)
 	var objs:Array = get_children()
 	var cur
 	var found = false
 	for i in objs.size():
-		print(objs[i].name +" " + str(page)+ " "+str(sectionStart[i]))
 		objs[i].visible = false
 		if !found and page < sectionStart[i]:
 			objs[i-1].visible = true
@@ -34,9 +32,6 @@ func toPage(page):
 	if cur.name == "Introduction" or cur.name == "ButtonGuide":
 		return
 	objs = cur.get_children()
-	print(str(page) + " " + cur.name)
-	print(objs)
-	print()
 	for i in objs.size():
 		objs[i].visible = page == i
 	

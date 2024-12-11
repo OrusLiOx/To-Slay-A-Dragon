@@ -22,7 +22,6 @@ func _ready():
 	generate_blueprint_base()
 	
 	activeBlueprint = "sword"
-	pass # Replace with function body.
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Exit"):
@@ -33,7 +32,6 @@ func _process(_delta):
 		load_blueprint(activeBlueprint)
 
 func generate_blueprint_base():
-	print("generate blueprint base")
 	var parent = $Main/ActiveBlueprint/SelectedParts
 	
 	for x in range(0,4):
@@ -63,13 +61,9 @@ func generate_blueprint_base():
 	builtEquip.position = Vector2(parent.position.x,parent.position.y+250)
 	builtEquip.visible = true
 	builtEquip.disabled = false
-	builtEquip.button_down.connect(craft_equip)
-	
-	pass
 
 # handle switching blueprints	
 func load_blueprint(type, clear = false):
-	print("load blueprint")
 	if clear:
 		for i in range(0,6):
 			var r = i/4
@@ -102,10 +96,8 @@ func load_blueprint(type, clear = false):
 	
 	storage.update()
 	update_equip_stats()
-	pass
 
 func set_blueprint_slots(slots):
-	print("set blueprint slots")
 	partQueue["m"] = []
 	partQueue["f"] = []
 	partQueue["s"] = []
@@ -119,7 +111,6 @@ func set_blueprint_slots(slots):
 		set_blueprint_slot(1,i,slots[4+i])
 		
 func set_blueprint_slot(r, c, t):
-	print("set blueprint slot")
 	if t =="": # slot not part of blueprint
 		if selectedParts[r][c].part.rarity >= 0:
 			Storage.add_part(selectedParts[r][c].part,1)
@@ -131,32 +122,24 @@ func set_blueprint_slot(r, c, t):
 
 #open/close
 func open():
-	print("open")
 	load_blueprint(activeBlueprint)
-	pass
 
 func _on_exit_button_down():
-	print("on exit button down")
 	for c in range(0,4):
 		set_blueprint_slot(0,c,"")
 	for c in range(0,2):
 		set_blueprint_slot(1,c,"")
 			
 	emit_signal("exit")
-	pass # Replace with function body.
 
 # add/remove materials
 func _on_storage_use(part):
-	print("on storage use")
 	if partQueue[part.type].is_empty():
 		return
 	
 	add_material(part, true)
-	
-	pass # Replace with function body.
 
 func add_material(part, remove):
-	print("add material")
 	# look for empty slot
 	for arr in selectedParts:
 		for partBut in arr:
@@ -187,14 +170,12 @@ func add_material(part, remove):
 	update_equip_stats()
 
 func return_material(partBut):
-	print("return material")
 	Storage.add_part(partBut.part, 1)
 	partBut.set_part(Part.new(partBut.part.type,-1))
 	partBut.update()
 	update_equip_stats()
 
 func update_equip_stats():
-	print("update equip stats")
 	# determine value of crafted equipment
 	var label = $Main/ActiveBlueprint/EquipStat
 	if activeBlueprint == "":
@@ -239,7 +220,6 @@ func update_equip_stats():
 
 # finalize crafting
 func craft_equip():
-	print("craft equip")
 	# disassemble current
 	var equip
 	if activeBlueprint.contains("armor"):
@@ -264,11 +244,9 @@ func craft_equip():
 	$Main/Equipped.load_current()
 
 func _on_help_button_down():
-	print("on help button down")
 	$HelpStuff.visible = !$HelpStuff.visible
 
 func clicked_equipment(type, equip):
-	print("clicked equipment")
 	# load corresponding blueprint
 	if type != "armor":
 		type = "sword"

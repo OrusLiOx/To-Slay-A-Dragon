@@ -19,9 +19,7 @@ func _ready():
 	camp.book = $Book
 	
 	_on_map_to_camp()
-	$Book.update_page(1)
-	$Book.visible = true
-	pass # Replace with function body.
+	$Book.open(3)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,28 +34,23 @@ func _process(delta):
 	else:
 		blackout.modulate.a = move_toward(blackout.modulate.a, 0, 2*delta)
 	blackout.visible = blackout.modulate.a != 0
-	pass
 
 
 func _on_camp_to_map():
-	$Book.exit()
+	$Book.close()
 	map.position = Vector2(0,0)
 	camp.position = Vector2(0,2000)
 	$Map/QuestName.visible = false
 	$Map/Combat.visible = false
-	pass # Replace with function body.
 
 func _on_map_to_camp():
-	$Book.exit()
+	$Book.close()
 	camp.position = Vector2(0,0)
 	map.position = Vector2(0,2000)
-	pass # Replace with function body.
 
 
 func _on_map_death():
 	$Sky.turn(3)
-	pass # Replace with function body.
 
 func _on_map_time():
 	$Sky.turn()
-	pass # Replace with function body.
