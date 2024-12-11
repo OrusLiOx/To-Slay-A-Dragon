@@ -27,7 +27,6 @@ func _ready():
 	generate_inv()
 	load_page(0)
 	load_current()
-	pass # Replace with function body.
 
 # generates inventory slots on startup
 func generate_inv():
@@ -167,8 +166,6 @@ func set_active(state):
 # change page
 func _on_left_button_down():
 	load_page(page-1)
-	pass # Replace with function body.
 
 func _on_right_button_down():
 	load_page(page+1)
-	pass # Replace with function body.

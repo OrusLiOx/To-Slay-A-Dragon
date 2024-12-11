@@ -20,4 +20,3 @@ func set_region(region):
 			$Creatures/Desert.visible = false
 			$Creatures/Mountain.visible = true 
 			$Description.text = "Mountain description"
-	pass

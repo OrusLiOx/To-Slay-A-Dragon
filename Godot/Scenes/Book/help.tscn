@@ -16,7 +16,6 @@
 script = ExtResource("1_635m8")
 
 [node name="Introduction" type="Node2D" parent="."]
-visible = false
 
 [node name="Intro" type="Node2D" parent="Introduction"]
 position = Vector2(521, 162)
@@ -62,11 +61,12 @@ offset_left = -129.0
 offset_top = -196.0
 offset_right = 572.0
 offset_bottom = 770.0
-text = "Help"
+text = "Tutorial"
 label_settings = ExtResource("4_p7f1e")
 horizontal_alignment = 1
 
 [node name="Combat" type="Node2D" parent="."]
+visible = false
 
 [node name="1" type="Node2D" parent="Combat"]
 

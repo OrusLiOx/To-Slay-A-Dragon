@@ -30,6 +30,7 @@ pageBuffer = 3
 texture = ExtResource("1_rktjd")
 
 [node name="TitlePage" type="Node2D" parent="."]
+visible = false
 
 [node name="TableOfContents" type="Node2D" parent="TitlePage"]
 position = Vector2(146, -429)
@@ -53,6 +54,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EnemyInfo" type="Node2D" parent="."]
+visible = false
 
 [node name="QuestPage" parent="EnemyInfo" instance=ExtResource("2_vl5qr")]
 visible = false
@@ -239,4 +241,3 @@ icon = ExtResource("2_nl4pi")
 [connection signal="go_to_page" from="Help" to="." method="update_page"]
 [connection signal="button_down" from="UI/Left" to="." method="_on_left_button_down"]
 [connection signal="button_down" from="UI/Right" to="." method="_on_right_button_down"]
-[connection signal="button_down" from="UI/Home" to="." method="update_page" binds= [1]]

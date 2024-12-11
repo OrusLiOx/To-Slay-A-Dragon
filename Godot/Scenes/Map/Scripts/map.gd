@@ -24,7 +24,6 @@ func _ready():
 		quest.mouse_entered.connect(show_quest_data.bind(quest))
 		quest.mouse_exited.connect(hide_quest_data)
 		quest.button_down.connect(start_quest.bind(quest))
-	pass # Replace with function body.
 
 func start_quest(quest):
 	$HelpMenu.visible = false
@@ -71,23 +70,19 @@ func show_quest_data(quest):
 	questData["your stats"].text = str(Storage.get_attack()) + "\n" 
 	questData["your stats"].text += str(Storage.get_defense())
 	questData["main"].visible = true
-	pass
 	
 func hide_quest_data():
 	questData["main"].visible = false
 
 func _on_switch_button_down():
 	emit_signal("toCamp")
-	pass # Replace with function body.
 
 func _on_combat_combat_done():
 	finish_quest()
-	pass # Replace with function body.
 
 func _on_combat_player_death():
 	emit_signal("death")
 	$Clock.turn(2)
-	pass # Replace with function body.
 
 func _on_combat_win():
 	combat.visible = false
@@ -95,8 +90,6 @@ func _on_combat_win():
 	$Win/Stats.text = "You took " + str(Stats.totaltime/4.0) + " days\nto kill the dragon\n"
 	$Win/Stats.text += "\nTotal Combats: " + str(Stats.combats)
 	$Win/Stats.text += "\nDeaths: " + str(Stats.deaths)
-	
-	pass # Replace with function body.
 
 func _on_button_mouse_entered():
 	if Stats.totaltime == 4:
@@ -104,11 +97,9 @@ func _on_button_mouse_entered():
 	else:
 		$ClockOverlay/ColorRect/Label.text = str(Stats.totaltime/4.0)+" days\nhave passed"
 	$ClockOverlay/ColorRect.visible = true
-	pass # Replace with function body.
 
 func _on_button_mouse_exited():
 	$ClockOverlay/ColorRect.visible = false
-	pass # Replace with function body.
 
 func _on_clock_done():
 	if combat.visible:
@@ -118,8 +109,6 @@ func _on_clock_done():
 			for quest in quests:
 				quest.disabled = false
 		return
-	
-	pass # Replace with function body.
 
 func _on_help_button_down():
 	if $HelpMenu.visible:
@@ -129,4 +118,3 @@ func _on_help_button_down():
 		$HelpCombat.visible = false
 	else:
 		$HelpMenu.visible = true
-	pass # Replace with function body.

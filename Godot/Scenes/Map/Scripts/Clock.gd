@@ -12,8 +12,6 @@ func _ready():
 	curAngle = 0
 	angleDest = 0
 
-	pass # Replace with function body.
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if moving:
@@ -28,12 +26,9 @@ func _process(delta):
 			rotation = angleDest
 			curAngle = rotation
 			return
-		
-	pass
 
 func turn(incr = 1):
 	if incr <=0:
 		return
 	moving = true
 	angleDest += incr*PI/3
-	pass

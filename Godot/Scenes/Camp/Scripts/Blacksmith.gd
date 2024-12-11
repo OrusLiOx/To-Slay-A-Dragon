@@ -38,7 +38,7 @@ func _process(delta):
 	# fades out text box if necessary
 	if !active or (!inBlacksmith and !inTextBox):
 		dialogue.modulate.a = move_toward(dialogue.modulate.a,0,.5*delta)
-	pass
+	
 
 # trigger dialogue when clicked
 func _on_button_down():
@@ -51,7 +51,6 @@ func _on_button_down():
 	else:
 		dialogue.text = specialDialogue.front()
 		specialDialogue.remove_at(0);
-	pass # Replace with function body.
 
 # dialogue fade/reapear based on mouse overlap
 func _on_mouse_entered():
@@ -61,14 +60,12 @@ func _on_mouse_entered():
 	inBlacksmith = true
 	if dialogue.modulate.a >0:
 		dialogue.modulate.a = 1
-	pass # Replace with function body.
 
 func _on_mouse_exited():
 	if !active:
 		return
 	aura.visible = false
 	inBlacksmith = false
-	pass # Replace with function body.
 
 func _on_backdrop_mouse_entered():
 	if !active:
@@ -76,10 +73,8 @@ func _on_backdrop_mouse_entered():
 	inTextBox = true
 	if dialogue.modulate.a >0:
 		dialogue.modulate.a = 1
-	pass # Replace with function body.
 
 func _on_backdrop_mouse_exited():
 	if !active:
 		return
 	inTextBox = false
-	pass # Replace with function body.

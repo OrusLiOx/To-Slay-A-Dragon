@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Map/Scripts/map.gd" id="1_bqrdo"]
 [ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map/Map.png" id="2_dmyx0"]
 [ext_resource type="PackedScene" uid="uid://b0781ipcpmjaf" path="res://Scenes/Map/quest.tscn" id="3_d64i7"]
-[ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/Camp/campfire.png" id="3_qnsfu"]
+[ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/camp/campfire.png" id="3_qnsfu"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_7xw65"]
 [ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/StorageUI/PartUI/part_button.tscn" id="6_epqax"]
 [ext_resource type="Texture2D" uid="uid://cqg2d4ursr1sh" path="res://Sprites/Enemies/forest.png" id="6_rorcs"]

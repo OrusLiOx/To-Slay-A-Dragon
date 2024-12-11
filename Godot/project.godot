@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Storage="*res://Globals/Storage.gd"
 Stats="*res://Globals/Stats.gd"
 Settings="*res://Globals/Settings.gd"
+Audio="*res://Globals/SFXHandler.tscn"
 
 [debug]
 
