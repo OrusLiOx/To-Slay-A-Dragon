@@ -44,7 +44,6 @@ func _on_camp_to_map():
 	$Map/Combat.visible = false
 
 func _on_map_to_camp():
-	$Book.close()
 	camp.position = Vector2(0,0)
 	map.position = Vector2(0,2000)
 

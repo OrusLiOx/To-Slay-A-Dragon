@@ -57,9 +57,10 @@ func _ready():
 	$TitlePage/TableOfContents.update()
 	pageBuffer -=1
 
-func update_page(newPage:int, pageSound = true):
+func update_page(newPage:int):
+	var lastPage = maxPage+2
 	# clean page number
-	newPage = min(max(newPage,-1),maxPage)
+	newPage = min(max(newPage,-1),lastPage)
 	if newPage%2 == 0:
 		newPage-=1
 	# set visual page number 
@@ -68,29 +69,28 @@ func update_page(newPage:int, pageSound = true):
 	
 	# if page number is unchanged, return
 	if newPage == curPage:
+		if curPage <= 0 or curPage >= lastPage:
+			Audio.play("CloseBook")
+		else:
+			Audio.play("OpenBook")
 		return
-		
-	if pageSound:
+	
+	if curPage <= 0 or curPage >= lastPage:
+		# was on cover
+		open_book()
+	elif !(newPage <= 0 or newPage >= lastPage):
+		# inner page to inner page
 		Audio.play("PageFlip")
-	
-	if curPage <= 1:
-		$UI/Left.disabled = false
-	if curPage >= maxPage:
-		$UI/Right.disabled = false
+		
 	curPage = newPage
-	if curPage <= 1:
-		$UI/Left.disabled = true
-	if curPage >= maxPage:
-		$UI/Right.disabled = true
-	
-	# hide all
-	enemyInfo["Quest"].visible = false
-	enemyInfo["Region"].visible = false
-	enemyInfo["Map"].visible = false
-	$TitlePage.visible = false
-	$Help.visible = false
-	$Settings.visible = false
-	$EnemyInfo.visible = false
+	if curPage <= 0:
+		show_book_cover("front")
+		return
+	if curPage >= lastPage:
+		show_book_cover("back")
+		return
+
+	hide_all()
 	
 	# title page
 	if curPage == 1:
@@ -98,7 +98,7 @@ func update_page(newPage:int, pageSound = true):
 	# Enemy Info page
 	elif newPage>=start["info"] and newPage < start["info"]+length["info"]:
 		$EnemyInfo.visible = true
-		newPage -=start["info"]
+		newPage -= start["info"]
 		# Map page
 		if newPage == 0:
 			enemyInfo["Map"].visible = true
@@ -113,7 +113,7 @@ func update_page(newPage:int, pageSound = true):
 				2:
 					enemyInfo["Region"].set_region("Mountain")
 		# Enemy page
-		else:
+		elif newPage <= maxPage:
 			enemyInfo["Quest"].visible = true
 			match newPage-4:
 				0:
@@ -142,7 +142,40 @@ func update_page(newPage:int, pageSound = true):
 	elif newPage>=start["settings"] and newPage < start["settings"]+length["settings"]:
 		$Settings.visible = true
 	
-	 
+func show_book_cover(side:String, pageSound = true):
+	hide_all()
+	if pageSound:
+		Audio.play("CloseBook")
+	$UI/PageNumL.visible = false
+	$UI/PageNumR.visible = false
+	
+	if side == "front":
+		$BookBase.texture = load("res://Sprites/book/closedFront.png")
+		$UI/Left.visible = false
+	else:
+		$BookBase.texture = load("res://Sprites/book/closedBack.png")
+		$UI/Right.visible = false
+
+func open_book(pageSound = true):
+	if pageSound:
+		Audio.play("OpenBook")
+	$UI/PageNumL.visible = true
+	$UI/PageNumR.visible = true
+	
+	$BookBase.texture = load("res://Sprites/book/book.png")
+	
+	$UI/Left.visible = true
+	$UI/Right.visible = true
+
+func hide_all():
+	enemyInfo["Quest"].visible = false
+	enemyInfo["Region"].visible = false
+	enemyInfo["Map"].visible = false
+	$TitlePage.visible = false
+	$Help.visible = false
+	$Settings.visible = false
+	$EnemyInfo.visible = false
+
 func _on_left_button_down():
 	update_page(curPage-2)
 
@@ -152,8 +185,7 @@ func _on_right_button_down():
 func open(page = -1):
 	if page == -1:
 		page = curPage
-	Audio.play("OpenBook")
-	update_page(page, false)
+	update_page(page)
 	visible = true
 
 func close():

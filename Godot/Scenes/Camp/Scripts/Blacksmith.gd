@@ -1,10 +1,9 @@
-extends Button
+extends Node2D
 var active
 
 var inBlacksmith:bool
 var inTextBox : bool
 var dialogue
-var aura
 
 var dialogueOptions : Array
 var specialDialogue : Array
@@ -16,8 +15,6 @@ func _ready():
 	inTextBox = false
 	dialogue = $Dialogue
 	dialogue.modulate.a = 0
-	aura = $Aura
-	aura.visible = false
 	
 	dialogueOptions.push_back("Be careful if you see any other magma lizards. They aren't usually so friendly.")
 	dialogueOptions.push_back("You can pet the little lady, she won't bite.")
@@ -56,7 +53,6 @@ func _on_button_down():
 func _on_mouse_entered():
 	if !active:
 		return
-	aura.visible = true
 	inBlacksmith = true
 	if dialogue.modulate.a >0:
 		dialogue.modulate.a = 1
@@ -64,7 +60,6 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	if !active:
 		return
-	aura.visible = false
 	inBlacksmith = false
 
 func _on_backdrop_mouse_entered():

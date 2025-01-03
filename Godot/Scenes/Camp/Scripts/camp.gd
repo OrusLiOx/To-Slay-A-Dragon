@@ -20,7 +20,6 @@ func _ready():
 	mouse = InputEventMouseMotion.new()
 	touchingLizor = false
 
-	$Anvil/Aura.visible = false
 
 func _process(_delta):
 	if touchingLizor and Input.is_action_pressed("Pet") and !forge.visible:
@@ -31,7 +30,6 @@ func _process(_delta):
 # open/close forge
 func _on_anvil_button_down():
 	blacksmith.active = false
-	$Anvil/Aura.visible = false
 	forge.visible = true
 	forge.set_process(true)
 	forge.open()
@@ -42,13 +40,6 @@ func _on_forge_menu_exit():
 	forge.visible = false
 	forge.set_process(false)
 
-# anvil glow when hovered over
-func _on_anvil_mouse_entered():
-	if !forge.visible:
-		$Anvil/Aura.visible = true
-
-func _on_anvil_mouse_exited():
-	$Anvil/Aura.visible = false
 
 # detects if mouse is touching lizard
 func _on_lizor_mouse_entered():
