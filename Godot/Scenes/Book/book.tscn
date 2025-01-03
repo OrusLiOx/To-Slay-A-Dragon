@@ -176,7 +176,6 @@ offset_right = 410.0
 offset_bottom = 700.0
 
 [node name="Help" parent="." instance=ExtResource("13_u6qfh")]
-visible = false
 position = Vector2(-465, -440)
 
 [node name="Settings" parent="." instance=ExtResource("13_vb34e")]

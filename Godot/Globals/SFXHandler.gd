@@ -9,7 +9,7 @@ var sounds: Dictionary = {
 var i = 0
 
 func _ready():
-	for i in range(maxSounds):
+	for n in range(maxSounds):
 		add_child(AudioStreamPlayer.new())
 
 func play(sound, jitter = true):

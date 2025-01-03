@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bmx0jemjixann"]
+[gd_scene load_steps=19 format=3 uid="uid://bmx0jemjixann"]
 
 [ext_resource type="Script" path="res://Scenes/Camp/Scripts/camp.gd" id="1_n2q1u"]
 [ext_resource type="Texture2D" uid="uid://bedtgjo8m3qhr" path="res://Sprites/camp/campBackground.png" id="2_53k2d"]
@@ -8,12 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://b26uuh4doeuuf" path="res://Sprites/camp/anvil.png" id="5_lg7wt"]
 [ext_resource type="Texture2D" uid="uid://csk4rdey087lw" path="res://Sprites/camp/blacksmith.png" id="6_h7npj"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="6_tw031"]
+[ext_resource type="PackedScene" uid="uid://bnj4eo8jhgckt" path="res://Scenes/glow_button.tscn" id="6_vkfu3"]
 [ext_resource type="Texture2D" uid="uid://ddmy0ntrchc50" path="res://Sprites/camp/anvilGlow.png" id="6_xnutx"]
 [ext_resource type="PackedScene" uid="uid://b7rsad5y1w38s" path="res://Scenes/Camp/forge_menu.tscn" id="7_f5mex"]
 [ext_resource type="Texture2D" uid="uid://c1p32ma6xw854" path="res://Sprites/camp/blacksmithGlow.png" id="9_ut1ap"]
 [ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/camp/campfire.png" id="10_kjxj7"]
 [ext_resource type="Texture2D" uid="uid://dcnioqhxel2ku" path="res://Sprites/Map/mapIcon.png" id="12_3gpqe"]
-[ext_resource type="Texture2D" uid="uid://cscwiq3psgq8o" path="res://Sprites/book/bookIcon.png" id="13_ang3p"]
+[ext_resource type="Texture2D" uid="uid://du82lmn8mf8et" path="res://Sprites/book/closedFront.png" id="14_d5asl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hpgy"]
 
@@ -26,10 +27,6 @@ initial_velocity_max = 387.09
 gravity = Vector3(0, 0, 0)
 hue_variation_min = -1.0
 hue_variation_max = -0.9
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pb0gu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edwyj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1a3ij"]
 
@@ -54,25 +51,11 @@ amount = 10
 process_material = SubResource("ParticleProcessMaterial_yjw64")
 texture = ExtResource("4_7ukv5")
 
-[node name="Blacksmith" type="Button" parent="."]
-z_index = 1
-offset_left = 219.0
-offset_top = -111.0
-offset_right = 527.0
-offset_bottom = 297.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_pb0gu")
-icon = ExtResource("6_h7npj")
-flat = true
+[node name="Blacksmith" type="Node2D" parent="."]
 script = ExtResource("5_hyfrg")
-
-[node name="Aura" type="Sprite2D" parent="Blacksmith"]
-z_index = -1
-position = Vector2(106, 198)
-texture = ExtResource("9_ut1ap")
 
 [node name="Dialogue" type="Label" parent="Blacksmith"]
 z_index = 1
-layout_mode = 0
 offset_left = -360.0
 offset_top = -66.0
 offset_right = 70.0
@@ -91,39 +74,26 @@ offset_right = 430.0
 offset_bottom = 154.0
 color = Color(0.933333, 0.862745, 0.701961, 1)
 
-[node name="Anvil" type="Button" parent="."]
+[node name="GlowButton" parent="Blacksmith" instance=ExtResource("6_vkfu3")]
 z_index = 1
-offset_left = 17.0
-offset_top = 176.0
-offset_right = 337.0
-offset_bottom = 404.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_edwyj")
-icon = ExtResource("5_lg7wt")
-flat = true
+offset_right = 208.0
+offset_bottom = 313.0
+icon = ExtResource("6_h7npj")
+glowSprite = ExtResource("9_ut1ap")
 
-[node name="Aura" type="Sprite2D" parent="Anvil"]
-z_index = -1
-position = Vector2(158, 110)
-texture = ExtResource("6_xnutx")
+[node name="Anvil" parent="." instance=ExtResource("6_vkfu3")]
+z_index = 2
+offset_left = 11.0
+offset_top = 199.0
+offset_right = 331.0
+offset_bottom = 386.0
+icon = ExtResource("5_lg7wt")
+glowSprite = ExtResource("6_xnutx")
 
 [node name="ForgeMenu" parent="." instance=ExtResource("7_f5mex")]
 visible = false
 z_index = 2
 position = Vector2(-960, -540)
-
-[node name="Switch" type="Button" parent="."]
-offset_left = -951.0
-offset_top = -533.0
-offset_right = -843.0
-offset_bottom = -425.0
-icon = ExtResource("12_3gpqe")
-
-[node name="BookBut" type="Button" parent="."]
-offset_left = -951.0
-offset_top = -419.0
-offset_right = -843.0
-offset_bottom = -311.0
-icon = ExtResource("13_ang3p")
 
 [node name="fire" type="Button" parent="."]
 offset_left = -342.0
@@ -134,16 +104,30 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_1a3ij")
 icon = ExtResource("10_kjxj7")
 flat = true
 
+[node name="Book" parent="." instance=ExtResource("6_vkfu3")]
+offset_left = -601.0
+offset_top = 322.0
+offset_right = -593.0
+offset_bottom = 330.0
+icon = ExtResource("14_d5asl")
+glowSprite = ExtResource("14_d5asl")
+
+[node name="Map" parent="." instance=ExtResource("6_vkfu3")]
+offset_left = -793.0
+offset_top = 412.0
+offset_right = -785.0
+offset_bottom = 420.0
+icon = ExtResource("12_3gpqe")
+glowSprite = ExtResource("12_3gpqe")
+
 [connection signal="mouse_entered" from="Lizor" to="." method="_on_lizor_mouse_entered"]
 [connection signal="mouse_exited" from="Lizor" to="." method="_on_lizor_mouse_exited"]
-[connection signal="button_down" from="Blacksmith" to="Blacksmith" method="_on_button_down"]
-[connection signal="mouse_entered" from="Blacksmith" to="Blacksmith" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Blacksmith" to="Blacksmith" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_entered"]
 [connection signal="mouse_exited" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_exited"]
-[connection signal="button_down" from="Anvil" to="." method="_on_anvil_button_down"]
-[connection signal="mouse_entered" from="Anvil" to="." method="_on_anvil_mouse_entered"]
-[connection signal="mouse_exited" from="Anvil" to="." method="_on_anvil_mouse_exited"]
+[connection signal="mouse_entered" from="Blacksmith/GlowButton" to="Blacksmith" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Blacksmith/GlowButton" to="Blacksmith" method="_on_mouse_exited"]
+[connection signal="pressed" from="Blacksmith/GlowButton" to="Blacksmith" method="_on_button_down"]
+[connection signal="pressed" from="Anvil" to="." method="_on_anvil_button_down"]
 [connection signal="exit" from="ForgeMenu" to="." method="_on_forge_menu_exit"]
-[connection signal="button_down" from="Switch" to="." method="_on_switch_button_down"]
-[connection signal="button_down" from="BookBut" to="." method="_on_book_but_button_down"]
+[connection signal="pressed" from="Book" to="." method="_on_book_but_button_down"]
+[connection signal="pressed" from="Map" to="." method="_on_switch_button_down"]

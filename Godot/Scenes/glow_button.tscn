@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnj4eo8jhgckt"]
+
+[ext_resource type="Script" path="res://Scenes/glow_button.gd" id="2_q47n8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gpon2"]
+
+[node name="GlowButton" type="Button"]
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gpon2")
+flat = true
+script = ExtResource("2_q47n8")
+
+[node name="Glow" type="Sprite2D" parent="."]
+z_index = -1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

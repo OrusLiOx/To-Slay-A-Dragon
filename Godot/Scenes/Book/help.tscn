@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbqavw5571ou3"]
+[gd_scene load_steps=13 format=3 uid="uid://bbqavw5571ou3"]
 
 [ext_resource type="Script" path="res://Scenes/Book/Script/help.gd" id="1_635m8"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="1_f63lc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bvrfuba3av8is" path="res://Sprites/UI/home.png" id="6_76xq2"]
 [ext_resource type="Texture2D" uid="uid://bd1v4eo7k8rlo" path="res://Sprites/UI/EnemyData.png" id="7_1amm7"]
 [ext_resource type="Texture2D" uid="uid://chqhu8igli3k0" path="res://Sprites/UI/forgeBuildSample.png" id="11_f35k6"]
+[ext_resource type="Texture2D" uid="uid://dh78llkh6ng25" path="res://Sprites/book/anvil.png" id="12_sjerl"]
 [ext_resource type="Texture2D" uid="uid://sejjgsr510ca" path="res://Sprites/Map/questMarker.png" id="12_vd3m2"]
 [ext_resource type="Texture2D" uid="uid://bgi7i22rlnins" path="res://Sprites/UI/combatSample.png" id="13_x5h5f"]
 
@@ -16,6 +17,7 @@
 script = ExtResource("1_635m8")
 
 [node name="Introduction" type="Node2D" parent="."]
+visible = false
 
 [node name="Intro" type="Node2D" parent="Introduction"]
 position = Vector2(521, 162)
@@ -27,9 +29,9 @@ offset_right = 634.0
 offset_bottom = 759.0
 text = "Welcome to the Adventurer's Handbook. This book will tell you everything you need to know to succeed in your adventures.
 
-To the left you can see the contents of the Help section of this book. Clicking on an entry in the list will take you to the corresponding page.
+To the left you can see all the topics covered in this section. You can click on a topic to jump to the corresponding page.
 
-You can also flip through pages by clicking on the arrows on the left and right side of the book. The next page will tell you more about buttons in this game.
+You can also flip through pages by clicking on the arrows on the left and right side of the book. You can close this book by clicking the x in the top right.
 "
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
@@ -66,28 +68,27 @@ label_settings = ExtResource("4_p7f1e")
 horizontal_alignment = 1
 
 [node name="Combat" type="Node2D" parent="."]
-visible = false
 
 [node name="1" type="Node2D" parent="Combat"]
 
 [node name="Title" type="Label" parent="Combat/1"]
-offset_left = -203.0
-offset_top = 56.0
-offset_right = 434.0
-offset_bottom = 125.0
+offset_left = -217.0
+offset_top = 25.0
+offset_right = 420.0
+offset_bottom = 94.0
 text = "Combat"
 label_settings = ExtResource("1_f63lc")
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Combat/1"]
-offset_left = -199.0
-offset_top = 205.0
-offset_right = 430.0
-offset_bottom = 978.0
-text = "As an adventurer, you will encounter many creatures and some will drop useful materials.
+offset_left = -191.0
+offset_top = 151.0
+offset_right = 438.0
+offset_bottom = 924.0
+text = "As an adventurer, you will encounter many creatures. Some of these creatures will drop valuable materials. Look at your map to find the location of those creatures.
 
-        These green markers indicate notable
-        locations where you may find certain creatures. You can click  a marker to fight the creature at that location.
+        Locations are marked by these blue markers. Hovering over the marker will 
+        You can click a marker to fight the creature at that location.
 
 Hovering over a marker will display a block of information similar to the one shown on the next page.
 
@@ -126,9 +127,9 @@ visible = false
 
 [node name="Title2" type="Label" parent="Combat/2"]
 offset_left = -203.0
-offset_top = 56.0
+offset_top = 23.0
 offset_right = 434.0
-offset_bottom = 125.0
+offset_bottom = 92.0
 text = "Combat (cont.)"
 label_settings = ExtResource("1_f63lc")
 horizontal_alignment = 1
@@ -193,6 +194,62 @@ autowrap_mode = 2
 position = Vector2(1007, 185)
 scale = Vector2(0.596, 0.6)
 texture = ExtResource("11_f35k6")
+
+[node name="Forge2" type="Node2D" parent="."]
+visible = false
+position = Vector2(-196, 0)
+
+[node name="1" type="Node2D" parent="Forge2"]
+
+[node name="Title" type="Label" parent="Forge2/1"]
+offset_left = -31.0
+offset_top = 25.0
+offset_right = 626.0
+offset_bottom = 94.0
+text = "Forging"
+label_settings = ExtResource("1_f63lc")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Forge2/1"]
+offset_left = 5.0
+offset_top = 151.0
+offset_right = 634.0
+offset_bottom = 887.0
+text = "A blacksmith can turn the materials you gather into powerful equipment. I've heard of a few blacksmiths who have created mobile forges and will travel with adventurers. If you're lucky, you might be able to team up with one of them. "
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="Description2" type="Label" parent="Forge2/1"]
+offset_left = 711.0
+offset_top = 35.0
+offset_right = 1340.0
+offset_bottom = 801.0
+text = "Either way, you can click their anvil to open the forge menu which you can see below. "
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="Anvil" type="Sprite2D" parent="Forge2/1"]
+position = Vector2(283, 657)
+texture = ExtResource("12_sjerl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Forge2/1"]
+position = Vector2(1003, 312)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("11_f35k6")
+
+[node name="2" type="Node2D" parent="Forge2"]
+visible = false
+
+[node name="Description2" type="Label" parent="Forge2/2"]
+offset_left = 711.0
+offset_top = 366.0
+offset_right = 1340.0
+offset_bottom = 782.0
+text = "On the left, you will see your current equipment. Click either the sword or the armor to chose which one you want to modify.
+
+"
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
 
 [node name="ButtonGuide" type="Node2D" parent="."]
 visible = false
