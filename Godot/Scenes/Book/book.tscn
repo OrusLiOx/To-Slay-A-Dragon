@@ -61,6 +61,7 @@ visible = false
 position = Vector2(-495, -284)
 
 [node name="RegionTitlePage" type="Node2D" parent="EnemyInfo"]
+visible = false
 script = ExtResource("2_4ahq4")
 
 [node name="Map" type="Sprite2D" parent="EnemyInfo/RegionTitlePage"]
@@ -135,11 +136,13 @@ position = Vector2(-360, 213)
 texture = ExtResource("7_2h8yx")
 
 [node name="Fairy" type="Sprite2D" parent="EnemyInfo/MapTitlePage"]
+visible = false
 position = Vector2(487, -357)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_sxw0x")
 
 [node name="Snake" type="Sprite2D" parent="EnemyInfo/MapTitlePage"]
+visible = false
 position = Vector2(-580, -208)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("8_hgdp7")
@@ -153,10 +156,10 @@ text = "Contents"
 label_settings = ExtResource("12_pafpr")
 
 [node name="Title" type="Label" parent="EnemyInfo/MapTitlePage"]
-offset_left = -543.0
-offset_top = -409.0
-offset_right = -69.0
-offset_bottom = 8.0
+offset_left = -587.0
+offset_top = -411.0
+offset_right = -113.0
+offset_bottom = 6.0
 text = "Creatures
 &
 Regions"
