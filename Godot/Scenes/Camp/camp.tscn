@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://b7rsad5y1w38s" path="res://Scenes/Camp/forge_menu.tscn" id="7_f5mex"]
 [ext_resource type="Texture2D" uid="uid://c1p32ma6xw854" path="res://Sprites/camp/blacksmithGlow.png" id="9_ut1ap"]
 [ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/camp/campfire.png" id="10_kjxj7"]
-[ext_resource type="Texture2D" uid="uid://dcnioqhxel2ku" path="res://Sprites/Map/mapIcon.png" id="12_3gpqe"]
 [ext_resource type="Texture2D" uid="uid://du82lmn8mf8et" path="res://Sprites/book/closedFront.png" id="14_d5asl"]
+[ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map/Map.png" id="15_0qlce"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hpgy"]
 
@@ -113,12 +113,14 @@ icon = ExtResource("14_d5asl")
 glowSprite = ExtResource("14_d5asl")
 
 [node name="Map" parent="." instance=ExtResource("6_vkfu3")]
-offset_left = -793.0
-offset_top = 412.0
-offset_right = -785.0
-offset_bottom = 420.0
-icon = ExtResource("12_3gpqe")
-glowSprite = ExtResource("12_3gpqe")
+offset_left = -644.0
+offset_top = 256.0
+offset_right = -419.0
+offset_bottom = 385.0
+rotation = -0.261799
+icon = ExtResource("15_0qlce")
+expand_icon = true
+glowSprite = ExtResource("15_0qlce")
 
 [connection signal="mouse_entered" from="Lizor" to="." method="_on_lizor_mouse_entered"]
 [connection signal="mouse_exited" from="Lizor" to="." method="_on_lizor_mouse_exited"]

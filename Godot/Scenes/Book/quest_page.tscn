@@ -67,9 +67,9 @@ autowrap_mode = 2
 text_overrun_behavior = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-clip_children = 1
+clip_children = 2
 position = Vector2(128, 392)
-scale = Vector2(1.8, 1.8)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_xod6u")
 
 [node name="Enemy" type="Sprite2D" parent="Sprite2D"]

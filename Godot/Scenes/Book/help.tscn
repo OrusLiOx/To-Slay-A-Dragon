@@ -7,10 +7,10 @@
 [ext_resource type="LabelSettings" uid="uid://b11e7oyd37eom" path="res://Themes/TitleLabel.tres" id="4_p7f1e"]
 [ext_resource type="Texture2D" uid="uid://6203f8cgpqcs" path="res://Sprites/UI/arrow.png" id="5_5m4lw"]
 [ext_resource type="Texture2D" uid="uid://bvrfuba3av8is" path="res://Sprites/UI/home.png" id="6_76xq2"]
+[ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map/Map.png" id="6_o38ts"]
 [ext_resource type="Texture2D" uid="uid://bd1v4eo7k8rlo" path="res://Sprites/UI/EnemyData.png" id="7_1amm7"]
 [ext_resource type="Texture2D" uid="uid://chqhu8igli3k0" path="res://Sprites/UI/forgeBuildSample.png" id="11_f35k6"]
 [ext_resource type="Texture2D" uid="uid://dh78llkh6ng25" path="res://Sprites/book/anvil.png" id="12_sjerl"]
-[ext_resource type="Texture2D" uid="uid://sejjgsr510ca" path="res://Sprites/Map/questMarker.png" id="12_vd3m2"]
 [ext_resource type="Texture2D" uid="uid://bgi7i22rlnins" path="res://Sprites/UI/combatSample.png" id="13_x5h5f"]
 
 [node name="Help" type="Node2D"]
@@ -68,8 +68,15 @@ label_settings = ExtResource("4_p7f1e")
 horizontal_alignment = 1
 
 [node name="Combat" type="Node2D" parent="."]
+visible = false
 
 [node name="1" type="Node2D" parent="Combat"]
+visible = false
+
+[node name="Map" type="Sprite2D" parent="Combat/1"]
+position = Vector2(84, 647)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_o38ts")
 
 [node name="Title" type="Label" parent="Combat/1"]
 offset_left = -217.0
@@ -85,45 +92,37 @@ offset_left = -191.0
 offset_top = 151.0
 offset_right = 438.0
 offset_bottom = 924.0
-text = "As an adventurer, you will encounter many creatures. Some of these creatures will drop valuable materials. Look at your map to find the location of those creatures.
+text = "As an adventurer, you will encounter many creatures. Some of these creatures will drop valuable materials.
 
-        Locations are marked by these blue markers. Hovering over the marker will 
-        You can click a marker to fight the creature at that location.
-
-Hovering over a marker will display a block of information similar to the one shown on the next page.
-
-"
+When viewing your map, you should see blue markers which indicate the location of these creatures."
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
-
-[node name="QuestMarker" type="Sprite2D" parent="Combat/1/Description"]
-position = Vector2(23, 219)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_vd3m2")
 
 [node name="Description2" type="Label" parent="Combat/1"]
-offset_left = 518.0
-offset_top = 497.0
-offset_right = 1141.0
-offset_bottom = 735.0
-text = "At the top of the block, you will find the location's name. Below that is the material you will find there. At the bottom, you can see the stats for the creature at that location and your own stats."
+offset_left = 531.0
+offset_top = 117.0
+offset_right = 1154.0
+offset_bottom = 703.0
+text = "Hovering over the marker will display information about the creature at that location.
+
+
+
+
+
+
+
+
+
+Click on the marker to fight that creature."
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="Combat/1"]
-offset_left = 603.0
-offset_top = 102.0
-offset_right = 1023.0
-offset_bottom = 418.0
-color = Color(0, 0, 0, 0.164706)
-
-[node name="Sprite2D" type="Sprite2D" parent="Combat/1/ColorRect"]
-position = Vector2(209.6, 156.8)
+[node name="Sprite2D" type="Sprite2D" parent="Combat/1"]
+position = Vector2(811, 433)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_1amm7")
 
 [node name="2" type="Node2D" parent="Combat"]
-visible = false
 
 [node name="Title2" type="Label" parent="Combat/2"]
 offset_left = -203.0
@@ -135,20 +134,33 @@ label_settings = ExtResource("1_f63lc")
 horizontal_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Combat/2"]
-position = Vector2(832, 164)
+position = Vector2(100, 563)
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("13_x5h5f")
 
 [node name="Description3" type="Label" parent="Combat/2"]
 offset_left = -199.0
-offset_top = 205.0
+offset_top = 153.0
 offset_right = 430.0
 offset_bottom = 978.0
+text = "While in combat, you will see a screen similar to the one shown below. You will mainly want to focus on the top left section."
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="Description4" type="Label" parent="Combat/2"]
+offset_left = 528.0
+offset_top = 37.0
+offset_right = 1157.0
+offset_bottom = 862.0
+text = "Arrows will appear at the top of the section and fall towards the row of arrows a the bottom of the section. When a falling arrow overlaps with the row of arrows, press the corresponding key. You can use arrow keys or WASD
+
+The up and down arrows represent opportunities to attack the enemy. The left and right arrows represent incoming enemy attacks which you can block. 
+
+The effectiveness of your attack or block is determined by how well you time your key press."
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
 [node name="Forge" type="Node2D" parent="."]
-visible = false
 position = Vector2(-196, 0)
 
 [node name="1" type="Node2D" parent="Forge"]
@@ -163,6 +175,62 @@ label_settings = ExtResource("1_f63lc")
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Forge/1"]
+offset_left = 5.0
+offset_top = 151.0
+offset_right = 634.0
+offset_bottom = 887.0
+text = "A blacksmith can turn the materials you gather into powerful equipment. I've heard of a few blacksmiths who have created mobile forges and will travel with adventurers. If you're lucky, you might be able to team up with one of them. "
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="Description2" type="Label" parent="Forge/1"]
+offset_left = 711.0
+offset_top = 35.0
+offset_right = 1340.0
+offset_bottom = 801.0
+text = "Either way, you can click their anvil to open the forge menu which you can see below. "
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="Anvil" type="Sprite2D" parent="Forge/1"]
+position = Vector2(283, 657)
+texture = ExtResource("12_sjerl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Forge/1"]
+position = Vector2(1003, 312)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("11_f35k6")
+
+[node name="2" type="Node2D" parent="Forge"]
+visible = false
+
+[node name="Description2" type="Label" parent="Forge/2"]
+offset_left = 711.0
+offset_top = 366.0
+offset_right = 1340.0
+offset_bottom = 782.0
+text = "On the left, you will see your current equipment. Click either the sword or the armor to chose which one you want to modify.
+
+"
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="ForgeOld" type="Node2D" parent="."]
+visible = false
+position = Vector2(-196, 0)
+
+[node name="1" type="Node2D" parent="ForgeOld"]
+
+[node name="Title" type="Label" parent="ForgeOld/1"]
+offset_left = -31.0
+offset_top = 25.0
+offset_right = 626.0
+offset_bottom = 94.0
+text = "Forging"
+label_settings = ExtResource("1_f63lc")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="ForgeOld/1"]
 offset_left = 5.0
 offset_top = 127.0
 offset_right = 634.0
@@ -179,7 +247,7 @@ If you want to remove a material, click on it in the blueprint section.
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
-[node name="Description2" type="Label" parent="Forge/1"]
+[node name="Description2" type="Label" parent="ForgeOld/1"]
 offset_left = 711.0
 offset_top = 366.0
 offset_right = 1340.0
@@ -190,66 +258,10 @@ Once you have selected all the material you want, click on the equipment in the 
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Forge/1"]
+[node name="Sprite2D" type="Sprite2D" parent="ForgeOld/1"]
 position = Vector2(1007, 185)
 scale = Vector2(0.596, 0.6)
 texture = ExtResource("11_f35k6")
-
-[node name="Forge2" type="Node2D" parent="."]
-visible = false
-position = Vector2(-196, 0)
-
-[node name="1" type="Node2D" parent="Forge2"]
-
-[node name="Title" type="Label" parent="Forge2/1"]
-offset_left = -31.0
-offset_top = 25.0
-offset_right = 626.0
-offset_bottom = 94.0
-text = "Forging"
-label_settings = ExtResource("1_f63lc")
-horizontal_alignment = 1
-
-[node name="Description" type="Label" parent="Forge2/1"]
-offset_left = 5.0
-offset_top = 151.0
-offset_right = 634.0
-offset_bottom = 887.0
-text = "A blacksmith can turn the materials you gather into powerful equipment. I've heard of a few blacksmiths who have created mobile forges and will travel with adventurers. If you're lucky, you might be able to team up with one of them. "
-label_settings = ExtResource("2_q0mne")
-autowrap_mode = 2
-
-[node name="Description2" type="Label" parent="Forge2/1"]
-offset_left = 711.0
-offset_top = 35.0
-offset_right = 1340.0
-offset_bottom = 801.0
-text = "Either way, you can click their anvil to open the forge menu which you can see below. "
-label_settings = ExtResource("2_q0mne")
-autowrap_mode = 2
-
-[node name="Anvil" type="Sprite2D" parent="Forge2/1"]
-position = Vector2(283, 657)
-texture = ExtResource("12_sjerl")
-
-[node name="Sprite2D" type="Sprite2D" parent="Forge2/1"]
-position = Vector2(1003, 312)
-scale = Vector2(0.55, 0.55)
-texture = ExtResource("11_f35k6")
-
-[node name="2" type="Node2D" parent="Forge2"]
-visible = false
-
-[node name="Description2" type="Label" parent="Forge2/2"]
-offset_left = 711.0
-offset_top = 366.0
-offset_right = 1340.0
-offset_bottom = 782.0
-text = "On the left, you will see your current equipment. Click either the sword or the armor to chose which one you want to modify.
-
-"
-label_settings = ExtResource("2_q0mne")
-autowrap_mode = 2
 
 [node name="ButtonGuide" type="Node2D" parent="."]
 visible = false
