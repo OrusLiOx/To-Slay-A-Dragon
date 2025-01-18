@@ -30,10 +30,9 @@ pageBuffer = 3
 texture = ExtResource("1_rktjd")
 
 [node name="TitlePage" type="Node2D" parent="."]
-visible = false
 
 [node name="TableOfContents" type="Node2D" parent="TitlePage"]
-position = Vector2(146, -429)
+position = Vector2(112, -310)
 script = ExtResource("7_v5i45")
 headers = Array[Array]([["Tutorial"], ["Settings"], ["Creatures & Regions"]])
 
@@ -46,12 +45,21 @@ offset_bottom = 700.0
 offset_left = -704.0
 offset_top = -532.0
 offset_right = -3.0
-offset_bottom = 434.0
+offset_bottom = 2.0
 text = "Adventurer's
 Handbook"
 label_settings = ExtResource("2_aod8j")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Title" type="Label" parent="TitlePage"]
+offset_left = 14.0
+offset_top = -398.0
+offset_right = 671.0
+offset_bottom = -329.0
+text = "Table of Contents"
+label_settings = ExtResource("12_pafpr")
+horizontal_alignment = 1
 
 [node name="EnemyInfo" type="Node2D" parent="."]
 visible = false
@@ -179,6 +187,7 @@ offset_right = 410.0
 offset_bottom = 700.0
 
 [node name="Help" parent="." instance=ExtResource("13_u6qfh")]
+visible = false
 position = Vector2(-465, -440)
 
 [node name="Settings" parent="." instance=ExtResource("13_vb34e")]
@@ -188,19 +197,19 @@ position = Vector2(-832, -467)
 [node name="UI" type="Node2D" parent="."]
 
 [node name="PageNumR" type="Label" parent="UI"]
-offset_left = 645.0
-offset_top = 400.0
-offset_right = 757.0
-offset_bottom = 450.0
+offset_left = 340.0
+offset_top = 415.0
+offset_right = 452.0
+offset_bottom = 465.0
 theme = ExtResource("4_cdtq7")
 text = "00"
 label_settings = ExtResource("5_iiqke")
 
 [node name="PageNumL" type="Label" parent="UI"]
-offset_left = -686.0
-offset_top = 398.0
-offset_right = -574.0
-offset_bottom = 448.0
+offset_left = -413.0
+offset_top = 417.0
+offset_right = -301.0
+offset_bottom = 467.0
 theme = ExtResource("4_cdtq7")
 text = "12"
 label_settings = ExtResource("5_iiqke")

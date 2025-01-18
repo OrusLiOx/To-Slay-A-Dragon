@@ -13,7 +13,6 @@ func _ready():
 	glow.set_texture(glowSprite)
 	
 func _on_mouse_entered():
-	print(name)
 	glow.visible = true
 
 func _on_mouse_exited():
