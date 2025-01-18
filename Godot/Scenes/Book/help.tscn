@@ -19,7 +19,6 @@
 script = ExtResource("1_635m8")
 
 [node name="Introduction" type="Node2D" parent="."]
-visible = false
 
 [node name="Intro" type="Node2D" parent="Introduction"]
 position = Vector2(521, 162)
@@ -33,7 +32,7 @@ text = "Welcome to the Adventurer's Handbook. This book will tell you everything
 
 To the left you can see all the topics covered in this section. You can click on a topic to jump to the corresponding page.
 
-You can also flip through pages by clicking on the arrows on the left and right side of the book. You can close this book by clicking the x in the top right.
+You can also flip through pages by clicking on the bottom corners of the pages. You can close the book by clicking anywhere out side of the book.
 "
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
@@ -177,6 +176,7 @@ offset_right = 418.0
 offset_bottom = 738.0
 
 [node name="Forge" type="Node2D" parent="."]
+visible = false
 position = Vector2(-196, 0)
 
 [node name="1" type="Node2D" parent="Forge"]

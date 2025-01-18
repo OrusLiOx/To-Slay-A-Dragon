@@ -162,10 +162,14 @@ func show_book_cover(side:String, pageSound = true):
 	$UI/PageNumR.visible = false
 	
 	if side == "front":
-		$BookBase.texture = load("res://Sprites/book/closedFront.png")
+		$BookBase.visible = false
+		$Back.visible = false
+		$Front.visible = true
 		$UI/Left.visible = false
 	else:
-		$BookBase.texture = load("res://Sprites/book/closedBack.png")
+		$BookBase.visible = false
+		$Front.visible = false
+		$Back.visible = true
 		$UI/Right.visible = false
 
 func open_book(pageSound = true):
@@ -174,7 +178,9 @@ func open_book(pageSound = true):
 	$UI/PageNumL.visible = true
 	$UI/PageNumR.visible = true
 	
-	$BookBase.texture = load("res://Sprites/book/book.png")
+	$BookBase.visible = true
+	$Front.visible = false
+	$Back.visible = false
 	
 	$UI/Left.visible = true
 	$UI/Right.visible = true
