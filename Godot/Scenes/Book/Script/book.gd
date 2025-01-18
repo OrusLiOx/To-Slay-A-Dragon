@@ -49,10 +49,22 @@ func _ready():
 	$Help/Introduction/Contents.update()
 	
 	# main table of contents
+	var heads:Array[Array] = [["Tutorial","Introduction", "Combat","Forging"],
+		["Settings"],
+		["Creatures & Resgions","Forest", "Desert","Mountains"]]
+	$TitlePage/TableOfContents.headers = heads
+
+	
 	var arr:Array[int]
-	for key in order:
-		arr.push_back(start[key])
+	for i in $Help/Introduction/Contents.pageNums:
+		arr.push_back(i+start["help"])
+	arr.push_back(start["settings"])
+	for i in [0,8,16,24]:
+		arr.push_back(i+start["info"])
+	#for key in order:
+		#arr.push_back(start[key])
 	$TitlePage/TableOfContents.pageNums = arr
+	
 	$TitlePage/TableOfContents.pageNumStart = 1
 	$TitlePage/TableOfContents.update()
 	pageBuffer -=1

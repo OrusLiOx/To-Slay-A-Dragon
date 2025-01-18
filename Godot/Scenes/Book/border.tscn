@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cciemd06ybsue"]
+
+[node name="Border" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+modulate = Color(0.380392, 0.0392157, 0.176471, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="top" type="ColorRect" parent="Control"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+
+[node name="bot" type="ColorRect" parent="Control"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="left" type="ColorRect" parent="Control"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 5.0
+grow_vertical = 2
+
+[node name="right" type="ColorRect" parent="Control"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+grow_horizontal = 0
+grow_vertical = 2

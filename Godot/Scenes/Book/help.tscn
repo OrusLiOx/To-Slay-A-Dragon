@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbqavw5571ou3"]
+[gd_scene load_steps=15 format=3 uid="uid://bbqavw5571ou3"]
 
 [ext_resource type="Script" path="res://Scenes/Book/Script/help.gd" id="1_635m8"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="1_f63lc"]
@@ -9,9 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://bvrfuba3av8is" path="res://Sprites/UI/home.png" id="6_76xq2"]
 [ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map/Map.png" id="6_o38ts"]
 [ext_resource type="Texture2D" uid="uid://bd1v4eo7k8rlo" path="res://Sprites/UI/EnemyData.png" id="7_1amm7"]
+[ext_resource type="PackedScene" uid="uid://cciemd06ybsue" path="res://Scenes/Book/border.tscn" id="10_i7mn5"]
 [ext_resource type="Texture2D" uid="uid://chqhu8igli3k0" path="res://Sprites/UI/forgeBuildSample.png" id="11_f35k6"]
-[ext_resource type="Texture2D" uid="uid://dh78llkh6ng25" path="res://Sprites/book/anvil.png" id="12_sjerl"]
+[ext_resource type="Texture2D" uid="uid://l4vrrgm7nyut" path="res://Sprites/UI/forgeWorkingArmorSample.png" id="11_hyujn"]
 [ext_resource type="Texture2D" uid="uid://bgi7i22rlnins" path="res://Sprites/UI/combatSample.png" id="13_x5h5f"]
+[ext_resource type="Texture2D" uid="uid://b1myimqp0e6i5" path="res://Sprites/UI/forgeWorkingWeaponSample.png" id="14_21w5d"]
 
 [node name="Help" type="Node2D"]
 script = ExtResource("1_635m8")
@@ -49,8 +51,8 @@ metadata/_edit_use_anchors_ = true
 [node name="Contents" type="Node2D" parent="Introduction"]
 position = Vector2(-144, 256)
 script = ExtResource("1_qwcor")
-headers = Array[Array]([["Introduction"], ["Combat"], ["Forging"], ["Button Guide"], ["Settings"]])
-pageNums = Array[int]([1, 2, 6, 8, 10])
+headers = Array[Array]([["Introduction"], ["Combat"], ["Forging"]])
+pageNums = Array[int]([1, 2, 6, 10, 12])
 pageNumStart = 2
 
 [node name="Text" type="ColorRect" parent="Introduction/Contents"]
@@ -72,6 +74,13 @@ visible = false
 
 [node name="1" type="Node2D" parent="Combat"]
 visible = false
+
+[node name="Border" parent="Combat/1" instance=ExtResource("10_i7mn5")]
+custom_minimum_size = Vector2(50, 50)
+offset_left = -159.0
+offset_top = 513.0
+offset_right = 330.0
+offset_bottom = 782.0
 
 [node name="Map" type="Sprite2D" parent="Combat/1"]
 position = Vector2(84, 647)
@@ -103,7 +112,7 @@ offset_left = 531.0
 offset_top = 117.0
 offset_right = 1154.0
 offset_bottom = 703.0
-text = "Hovering over the marker will display information about the creature at that location.
+text = "Hovering over the marker will display information about the creature at that location. Click on the marker to fight that creature.
 
 
 
@@ -112,17 +121,17 @@ text = "Hovering over the marker will display information about the creature at 
 
 
 
-
-Click on the marker to fight that creature."
+More detailed descriptions of each creature can be found in a future section of this book"
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Combat/1"]
-position = Vector2(811, 433)
+position = Vector2(811, 463)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_1amm7")
 
 [node name="2" type="Node2D" parent="Combat"]
+visible = false
 
 [node name="Title2" type="Label" parent="Combat/2"]
 offset_left = -203.0
@@ -160,10 +169,18 @@ The effectiveness of your attack or block is determined by how well you time you
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
+[node name="Border" parent="Combat/2" instance=ExtResource("10_i7mn5")]
+custom_minimum_size = Vector2(50, 50)
+offset_left = -218.0
+offset_top = 388.0
+offset_right = 418.0
+offset_bottom = 738.0
+
 [node name="Forge" type="Node2D" parent="."]
 position = Vector2(-196, 0)
 
 [node name="1" type="Node2D" parent="Forge"]
+visible = false
 
 [node name="Title" type="Label" parent="Forge/1"]
 offset_left = -31.0
@@ -179,7 +196,9 @@ offset_left = 5.0
 offset_top = 151.0
 offset_right = 634.0
 offset_bottom = 887.0
-text = "A blacksmith can turn the materials you gather into powerful equipment. I've heard of a few blacksmiths who have created mobile forges and will travel with adventurers. If you're lucky, you might be able to team up with one of them. "
+text = "A blacksmith can upgrade your weapons and armor using the materials you gathered. 
+
+Talking to a blacksmith will open the forge menu which you can see below. "
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
@@ -188,32 +207,150 @@ offset_left = 711.0
 offset_top = 35.0
 offset_right = 1340.0
 offset_bottom = 801.0
-text = "Either way, you can click their anvil to open the forge menu which you can see below. "
+text = "The section on the left is the equipment section. It displays your current equipment and the stats they provide you. Your sword determines your attack and your armor determines your health.
+
+The middle section is the materials section which shows how much of each material you have.
+
+The section on the right is the working section. This section shows the piece of equipment you are currently working on and the materials that make up that equipment.
+
+
+
+ "
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
-[node name="Anvil" type="Sprite2D" parent="Forge/1"]
-position = Vector2(283, 657)
-texture = ExtResource("12_sjerl")
+[node name="Border" parent="Forge/1" instance=ExtResource("10_i7mn5")]
+custom_minimum_size = Vector2(100, 100)
+offset_left = -13.0
+offset_top = 456.0
+offset_right = 624.0
+offset_bottom = 726.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Forge/1"]
-position = Vector2(1003, 312)
+[node name="Sprite2D" type="Sprite2D" parent="Forge/1/Border"]
+position = Vector2(316, 135)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("11_f35k6")
 
 [node name="2" type="Node2D" parent="Forge"]
-visible = false
 
-[node name="Description2" type="Label" parent="Forge/2"]
-offset_left = 711.0
-offset_top = 366.0
-offset_right = 1340.0
-offset_bottom = 782.0
-text = "On the left, you will see your current equipment. Click either the sword or the armor to chose which one you want to modify.
+[node name="Title" type="Label" parent="Forge/2"]
+offset_left = -31.0
+offset_top = 25.0
+offset_right = 626.0
+offset_bottom = 94.0
+text = "Forging (cont.)"
+label_settings = ExtResource("1_f63lc")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Forge/2"]
+offset_left = 5.0
+offset_top = 121.0
+offset_right = 634.0
+offset_bottom = 857.0
+text = "To being forging, click on either your sword or your armor in the equipment section. The piece of equipment that you click will be placed into the working section.
+
+Click on a material in the working section to remove it from the equipment. Click on a material in the materials section to add it to the equipment
 
 "
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
+
+[node name="Description2" type="Label" parent="Forge/2"]
+offset_left = 711.0
+offset_top = 18.0
+offset_right = 1340.0
+offset_bottom = 834.0
+text = "The top row of the working section indicates the materials that are required to make that piece of equipment. Swords require two pieces of metal while armor requires one piece of metal and two scales.
+
+The second row indicates how many magic stones can be attached to the equipment. These are not required but they will increase the stats of your equipment.
+
+
+
+
+
+
+
+Click the item in the bottom row to forge your new piece of equipment."
+label_settings = ExtResource("2_q0mne")
+autowrap_mode = 2
+
+[node name="Border4" parent="Forge/2" instance=ExtResource("10_i7mn5")]
+custom_minimum_size = Vector2(100, 100)
+offset_left = -15.0
+offset_top = 572.0
+offset_right = 614.0
+offset_bottom = 842.0
+
+[node name="Label" type="Label" parent="Forge/2/Border4"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 56.0
+offset_right = 113.0
+offset_bottom = 141.0
+text = "Add ->"
+label_settings = ExtResource("2_q0mne")
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Forge/2/Border4"]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 128.0
+offset_right = 586.0
+offset_bottom = 213.0
+text = "<- Remove"
+label_settings = ExtResource("2_q0mne")
+
+[node name="ColorRect" type="ColorRect" parent="Forge/2/Border4"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 78.0
+offset_top = -10.0
+offset_right = 78.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Forge/2/Border4/ColorRect"]
+position = Vector2(138, 147)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("11_f35k6")
+
+[node name="WorkingImages" type="Control" parent="Forge/2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 703.0
+offset_top = 13.0
+offset_right = 743.0
+offset_bottom = 53.0
+
+[node name="Border2" parent="Forge/2/WorkingImages" instance=ExtResource("10_i7mn5")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+offset_left = -4.0
+offset_top = 456.0
+offset_right = 257.0
+offset_bottom = 683.0
+
+[node name="ForgeWorkingWeaponSample" type="Sprite2D" parent="Forge/2/WorkingImages/Border2"]
+position = Vector2(151, 136)
+scale = Vector2(0.54, 0.54)
+texture = ExtResource("14_21w5d")
+
+[node name="Border3" parent="Forge/2/WorkingImages" instance=ExtResource("10_i7mn5")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+offset_left = 331.0
+offset_top = 456.0
+offset_right = 592.0
+offset_bottom = 684.0
+
+[node name="ForgeWorkingArmorSample" type="Sprite2D" parent="Forge/2/WorkingImages/Border3"]
+position = Vector2(131, 137)
+scale = Vector2(0.54, 0.54)
+texture = ExtResource("11_hyujn")
 
 [node name="ForgeOld" type="Node2D" parent="."]
 visible = false
