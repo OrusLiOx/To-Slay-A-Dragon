@@ -19,4 +19,4 @@ func set_region(region):
 			$Creatures/Forest.visible = false
 			$Creatures/Desert.visible = false
 			$Creatures/Mountain.visible = true 
-			$Description.text = "Mountain description"
+			$Description.text = "The mountains are where most adventurers go in search of glory and wealth. The terrain is treacherous, and the creatures in the region are very powerful. Since it's so dangerous, almost everything you can find there is valuable. Even seemingly mundane items can be of interest to researchers."

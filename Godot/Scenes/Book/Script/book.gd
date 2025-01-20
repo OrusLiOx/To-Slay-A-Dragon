@@ -66,10 +66,10 @@ func _ready():
 	arr.push_back(start["info"])
 	for i in [2,10,18]:
 		arr.push_back(i+start["info"])
-	print(arr)
+
 	$TitlePage/TableOfContents.pageNums = arr
 	$TitlePage/TableOfContents.update()
-	pageBuffer -=1
+	pageBuffer -= 1
 
 func update_page(newPage:int):
 	var lastPage = maxPage+2

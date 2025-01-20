@@ -136,12 +136,14 @@ position = Vector2(-30, 34)
 texture = ExtResource("8_00kf0")
 
 [node name="EnemyInfo" type="Node2D" parent="."]
+visible = false
 
 [node name="QuestPage" parent="EnemyInfo" instance=ExtResource("2_vl5qr")]
 visible = false
 position = Vector2(-495, -284)
 
 [node name="RegionTitlePage" type="Node2D" parent="EnemyInfo"]
+visible = false
 script = ExtResource("2_4ahq4")
 
 [node name="Map" type="Sprite2D" parent="EnemyInfo/RegionTitlePage"]
