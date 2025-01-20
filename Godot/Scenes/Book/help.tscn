@@ -1,12 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbqavw5571ou3"]
+[gd_scene load_steps=13 format=3 uid="uid://bbqavw5571ou3"]
 
 [ext_resource type="Script" path="res://Scenes/Book/Script/help.gd" id="1_635m8"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="1_f63lc"]
 [ext_resource type="Script" path="res://Scenes/Book/Script/TableOfContents.gd" id="1_qwcor"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="2_q0mne"]
 [ext_resource type="LabelSettings" uid="uid://b11e7oyd37eom" path="res://Themes/TitleLabel.tres" id="4_p7f1e"]
-[ext_resource type="Texture2D" uid="uid://6203f8cgpqcs" path="res://Sprites/UI/arrow.png" id="5_5m4lw"]
-[ext_resource type="Texture2D" uid="uid://bvrfuba3av8is" path="res://Sprites/UI/home.png" id="6_76xq2"]
 [ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map/Map.png" id="6_o38ts"]
 [ext_resource type="Texture2D" uid="uid://bd1v4eo7k8rlo" path="res://Sprites/UI/EnemyData.png" id="7_1amm7"]
 [ext_resource type="PackedScene" uid="uid://cciemd06ybsue" path="res://Scenes/Book/border.tscn" id="10_i7mn5"]
@@ -28,11 +26,12 @@ offset_left = 5.0
 offset_top = 23.0
 offset_right = 634.0
 offset_bottom = 759.0
-text = "Welcome to the Adventurer's Handbook. This book will tell you everything you need to know to succeed in your adventures.
+text = "Welcome to the Adventurer's Handbook. If you know what you're doing, you can close this book by clicking outside of it.
 
-To the left you can see all the topics covered in this section. You can click on a topic to jump to the corresponding page.
+To the left you can see all the topics covered in this section. You can click on a topic to jump to the corresponding page or you can flip through pages by clicking on the sides of the book. 
 
-You can also flip through pages by clicking on the bottom corners of the pages. You can close the book by clicking anywhere out side of the book.
+Settings can be found on the previous page and the red bookmark at the bottom will take you to the full table of contents for the book.
+
 "
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
@@ -51,8 +50,8 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-144, 256)
 script = ExtResource("1_qwcor")
 headers = Array[Array]([["Introduction"], ["Combat"], ["Forging"]])
-pageNums = Array[int]([1, 2, 6, 10, 12])
-pageNumStart = 2
+pageNums = Array[int]([1, 2, 6])
+pageNumStart = 3
 
 [node name="Text" type="ColorRect" parent="Introduction/Contents"]
 clip_children = 1
@@ -351,220 +350,5 @@ offset_bottom = 684.0
 position = Vector2(131, 137)
 scale = Vector2(0.54, 0.54)
 texture = ExtResource("11_hyujn")
-
-[node name="ForgeOld" type="Node2D" parent="."]
-visible = false
-position = Vector2(-196, 0)
-
-[node name="1" type="Node2D" parent="ForgeOld"]
-
-[node name="Title" type="Label" parent="ForgeOld/1"]
-offset_left = -31.0
-offset_top = 25.0
-offset_right = 626.0
-offset_bottom = 94.0
-text = "Forging"
-label_settings = ExtResource("1_f63lc")
-horizontal_alignment = 1
-
-[node name="Description" type="Label" parent="ForgeOld/1"]
-offset_left = 5.0
-offset_top = 127.0
-offset_right = 634.0
-offset_bottom = 863.0
-text = "The forge has three sections: equipment, materials, and blueprint.
-
-The equipment section displays your current weapon and armor. Clicking on a piece of equipment will place it in the blueprint section. This will allow you to add/replace materials on your equipment.
-
-Click on the material you want to add in the Materials section to add it to your weapon.
-
-If you want to remove a material, click on it in the blueprint section.
-
-"
-label_settings = ExtResource("2_q0mne")
-autowrap_mode = 2
-
-[node name="Description2" type="Label" parent="ForgeOld/1"]
-offset_left = 711.0
-offset_top = 366.0
-offset_right = 1340.0
-offset_bottom = 1102.0
-text = "The top row of materials in the blueprint indicate requirments to biuld the equipment. The second row allows you to add bonus material to further strengthen your equipment.
-
-Once you have selected all the material you want, click on the equipment in the bottom row of the blueprint to equip it."
-label_settings = ExtResource("2_q0mne")
-autowrap_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="ForgeOld/1"]
-position = Vector2(1007, 185)
-scale = Vector2(0.596, 0.6)
-texture = ExtResource("11_f35k6")
-
-[node name="ButtonGuide" type="Node2D" parent="."]
-visible = false
-position = Vector2(49, -223)
-
-[node name="title" type="Label" parent="ButtonGuide"]
-offset_left = -131.0
-offset_top = 321.0
-offset_right = 424.0
-offset_bottom = 390.0
-text = "Button Guide"
-label_settings = ExtResource("1_f63lc")
-
-[node name="Left" type="Node2D" parent="ButtonGuide"]
-position = Vector2(-6, 84)
-
-[node name="text" type="Label" parent="ButtonGuide/Left"]
-offset_left = -2.0
-offset_top = 440.0
-offset_right = 281.0
-offset_bottom = 869.0
-text = "Previous/Next Page
-
-
-
-Table Of Contents
-
-
-
-Exit Menu"
-label_settings = ExtResource("2_q0mne")
-
-[node name="Symbols" type="Node2D" parent="ButtonGuide/Left"]
-position = Vector2(-16, 1)
-
-[node name="LeftArrowBox" type="ColorRect" parent="ButtonGuide/Left/Symbols"]
-offset_left = -167.0
-offset_top = 400.0
-offset_right = -90.0
-offset_bottom = 518.0
-color = Color(0, 0, 0, 0.329412)
-
-[node name="Arrow2" type="Sprite2D" parent="ButtonGuide/Left/Symbols/LeftArrowBox"]
-position = Vector2(65, 58)
-texture = ExtResource("5_5m4lw")
-
-[node name="RightArrowBox" type="ColorRect" parent="ButtonGuide/Left/Symbols"]
-offset_left = -80.0
-offset_top = 400.0
-offset_right = -9.0
-offset_bottom = 518.0
-color = Color(0, 0, 0, 0.329412)
-
-[node name="Arrow" type="Sprite2D" parent="ButtonGuide/Left/Symbols/RightArrowBox"]
-position = Vector2(10, 60)
-rotation = -3.14159
-texture = ExtResource("5_5m4lw")
-
-[node name="TableOfContentsBox" type="ColorRect" parent="ButtonGuide/Left/Symbols"]
-offset_left = -140.0
-offset_top = 582.0
-offset_right = -34.0
-offset_bottom = 691.0
-color = Color(0, 0, 0, 0.329412)
-
-[node name="tableofcontents" type="Sprite2D" parent="ButtonGuide/Left/Symbols/TableOfContentsBox"]
-position = Vector2(54, 56)
-texture = ExtResource("6_76xq2")
-
-[node name="ExitBox" type="ColorRect" parent="ButtonGuide/Left/Symbols"]
-offset_left = -141.0
-offset_top = 750.0
-offset_right = -35.0
-offset_bottom = 859.0
-color = Color(0, 0, 0, 0.329412)
-
-[node name="Label" type="Label" parent="ButtonGuide/Left/Symbols/ExitBox"]
-layout_mode = 0
-offset_right = 107.0
-offset_bottom = 109.0
-theme_override_font_sizes/font_size = 80
-text = "X"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Right" type="Node2D" parent="ButtonGuide"]
-position = Vector2(746, 71)
-
-[node name="text" type="Label" parent="ButtonGuide/Right"]
-offset_left = -2.0
-offset_top = 440.0
-offset_right = 281.0
-offset_bottom = 869.0
-text = "Open Book
-
-
-
-Open Forge
-
-
-
-Open Map"
-label_settings = ExtResource("2_q0mne")
-
-[node name="text2" type="Label" parent="ButtonGuide/Right"]
-offset_left = -247.0
-offset_top = 106.0
-offset_right = 285.0
-offset_bottom = 535.0
-text = "Click on these objects in camp "
-label_settings = ExtResource("2_q0mne")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="Symbols" type="Node2D" parent="ButtonGuide/Right"]
-position = Vector2(-16, 1)
-
-[node name="LeftArrowBox" type="ColorRect" parent="ButtonGuide/Right/Symbols"]
-offset_left = -167.0
-offset_top = 400.0
-offset_right = -90.0
-offset_bottom = 518.0
-color = Color(0, 0, 0, 0.329412)
-
-[node name="Arrow2" type="Sprite2D" parent="ButtonGuide/Right/Symbols/LeftArrowBox"]
-position = Vector2(65, 58)
-texture = ExtResource("5_5m4lw")
-
-[node name="RightArrowBox" type="ColorRect" parent="ButtonGuide/Right/Symbols"]
-offset_left = -80.0
-offset_top = 400.0
-offset_right = -9.0
-offset_bottom = 518.0
-color = Color(0, 0, 0, 0.329412)
-
-[node name="Arrow" type="Sprite2D" parent="ButtonGuide/Right/Symbols/RightArrowBox"]
-position = Vector2(10, 60)
-rotation = -3.14159
-texture = ExtResource("5_5m4lw")
-
-[node name="TableOfContentsBox" type="ColorRect" parent="ButtonGuide/Right/Symbols"]
-offset_left = -139.0
-offset_top = 583.0
-offset_right = -33.0
-offset_bottom = 692.0
-color = Color(0, 0, 0, 0.329412)
-
-[node name="tableofcontents" type="Sprite2D" parent="ButtonGuide/Right/Symbols/TableOfContentsBox"]
-position = Vector2(54, 56)
-texture = ExtResource("6_76xq2")
-
-[node name="ExitBox" type="ColorRect" parent="ButtonGuide/Right/Symbols"]
-offset_left = -139.0
-offset_top = 759.0
-offset_right = -33.0
-offset_bottom = 868.0
-color = Color(0, 0, 0, 0.329412)
-
-[node name="Label" type="Label" parent="ButtonGuide/Right/Symbols/ExitBox"]
-layout_mode = 0
-offset_right = 107.0
-offset_bottom = 109.0
-theme_override_font_sizes/font_size = 80
-text = "X"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="go_to_page" from="Introduction/Contents" to="." method="_on_contents_go_to_page"]

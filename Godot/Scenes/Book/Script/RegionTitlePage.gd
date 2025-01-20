@@ -14,7 +14,7 @@ func set_region(region):
 			$Creatures/Forest.visible = false
 			$Creatures/Desert.visible = true
 			$Creatures/Mountain.visible = false
-			$Description.text = "Desert description"
+			$Description.text = "If you're looking for more of a challenge, the desert is the place to go. Most creatures in this region only come out at night to avoid the heat. I would advise that you do the same."
 		"Mountain":
 			$Creatures/Forest.visible = false
 			$Creatures/Desert.visible = false

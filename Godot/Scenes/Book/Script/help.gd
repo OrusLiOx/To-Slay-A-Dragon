@@ -1,38 +1,36 @@
 extends Node2D
 signal go_to_page(page)
-var sectionStart
+var sectionStart:Array
 
 func _ready():
 	sectionStart = $Introduction/Contents.pageNums
+	sectionStart = sectionStart.duplicate()
 	for i in sectionStart.size():
 		if sectionStart[i]%2 != 0:
 			sectionStart[i]-=1
-	print(sectionStart)
+
 
 func _on_contents_go_to_page(page):
 	emit_signal("go_to_page",page)
 
 func toPage(page):
+	# find section number
+	var section:int = 0
+	while section < 3 and sectionStart[section] <= page :
+		section+=1
+	section-=1
+	
 	var objs:Array = get_children()
-	var cur
-	var found = false
+
 	for i in objs.size():
-		objs[i].visible = false
-		if !found and page < sectionStart[i]:
-			objs[i-1].visible = true
-			page -= sectionStart[i-1]
-			cur = objs[i-1]
-			found = true
-	
-	if !found:
-		objs[3].visible = true
-		page -= sectionStart[3]
-		cur = objs[3]
-			
-	page/=2
-	if cur.name == "Introduction" or cur.name == "ButtonGuide":
+		objs[i].visible = i == section
+		
+	# specific page
+	if objs[section].name == "Introduction":
 		return
-	objs = cur.get_children()
-	for i in objs.size():
-		objs[i].visible = page == i
-	
+	page -= sectionStart[section]
+	page/=2
+	var pages = objs[section].get_children()
+
+	for i in pages.size():
+		pages[i].visible = i==page

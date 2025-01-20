@@ -20,7 +20,7 @@ func _ready():
 		"settings":pageBuffer,
 		"help":pageBuffer
 	}
-	var order = ["help","settings","info"]
+	var order = ["settings","help","info"]
 	
 	for i in order.size():
 		for j in range(i+1,order.size()):
@@ -49,23 +49,25 @@ func _ready():
 	$Help/Introduction/Contents.update()
 	
 	# main table of contents
-	var heads:Array[Array] = [["Tutorial","Introduction", "Combat","Forging"],
-		["Settings"],
+	var heads:Array[Array] = [["Settings"],
+		["Tutorial","Introduction", "Combat","Forging"],
 		["Creatures & Resgions","Forest", "Desert","Mountains"]]
 	$TitlePage/TableOfContents.headers = heads
 
 	
 	var arr:Array[int]
+	
+	arr.push_back(start["settings"])
+	
+	arr.push_back(start["help"])
 	for i in $Help/Introduction/Contents.pageNums:
 		arr.push_back(i+start["help"])
-	arr.push_back(start["settings"])
-	for i in [0,8,16,24]:
-		arr.push_back(i+start["info"])
-	#for key in order:
-		#arr.push_back(start[key])
-	$TitlePage/TableOfContents.pageNums = arr
 	
-	$TitlePage/TableOfContents.pageNumStart = 1
+	arr.push_back(start["info"])
+	for i in [2,10,18]:
+		arr.push_back(i+start["info"])
+	print(arr)
+	$TitlePage/TableOfContents.pageNums = arr
 	$TitlePage/TableOfContents.update()
 	pageBuffer -=1
 
@@ -211,3 +213,5 @@ func close():
 	visible = false
 	emit_signal("close_book")
 
+func _on_home_pressed():
+	update_page(1)
