@@ -8,7 +8,6 @@ func _ready():
 	for i in sectionStart.size():
 		if sectionStart[i]%2 != 0:
 			sectionStart[i]-=1
-	print(sectionStart)
 
 
 func _on_contents_go_to_page(page):

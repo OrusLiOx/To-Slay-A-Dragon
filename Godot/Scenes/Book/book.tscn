@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://1xio2uxvuhve" path="res://Sprites/book/closedBack.png" id="3_lfrtr"]
 [ext_resource type="Theme" uid="uid://dgifmyw55byck" path="res://Themes/UIButton.tres" id="4_cdtq7"]
 [ext_resource type="Texture2D" uid="uid://dxc67woulqfnb" path="res://Sprites/book/ForestEdit.png" id="4_u7d7b"]
-[ext_resource type="Texture2D" uid="uid://br3lcjhomebab" path="res://Sprites/UI/arrowCrop.png" id="5_cw70f"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_iiqke"]
+[ext_resource type="Texture2D" uid="uid://d2btesxa75k36" path="res://Sprites/book/bookmarkCoveredGlow.png" id="5_qnjho"]
 [ext_resource type="Texture2D" uid="uid://dde35b4ko241e" path="res://Sprites/book/map.png" id="7_2h8yx"]
 [ext_resource type="Texture2D" uid="uid://cnq33yf2cm21l" path="res://Sprites/Enemies/fairy.png" id="7_sxw0x"]
 [ext_resource type="Script" path="res://Scenes/Book/Script/TableOfContents.gd" id="7_v5i45"]
@@ -20,10 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://bbqavw5571ou3" path="res://Scenes/Book/help.tscn" id="13_u6qfh"]
 [ext_resource type="PackedScene" uid="uid://dbpw77fbrbkms" path="res://Scenes/Book/settings.tscn" id="13_vb34e"]
 [ext_resource type="Texture2D" uid="uid://c1fkji0reudii" path="res://Sprites/book/bookmarkCovered.png" id="19_dcs5j"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_782mq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwrn0"]
+[ext_resource type="PackedScene" uid="uid://bnj4eo8jhgckt" path="res://Scenes/glow_button.tscn" id="21_p4uyu"]
+[ext_resource type="Texture2D" uid="uid://h4p464o8n2wk" path="res://Sprites/book/pageglow.png" id="22_sovvs"]
 
 [node name="Book" type="Node2D"]
 script = ExtResource("1_w6myh")
@@ -48,7 +46,7 @@ offset_right = 747.0
 offset_bottom = 501.0
 texture = ExtResource("2_jrsgf")
 
-[node name="Home" type="Button" parent="Front"]
+[node name="Home" parent="Front" instance=ExtResource("21_p4uyu")]
 z_index = -1
 layout_mode = 0
 offset_left = 99.0
@@ -56,10 +54,8 @@ offset_top = 956.0
 offset_right = 165.0
 offset_bottom = 1041.0
 scale = Vector2(-1, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/focus = SubResource("StyleBoxEmpty_782mq")
 icon = ExtResource("19_dcs5j")
-flat = true
+glowSprite = ExtResource("5_qnjho")
 
 [node name="Back" type="TextureRect" parent="."]
 visible = false
@@ -68,17 +64,15 @@ offset_top = -500.0
 offset_bottom = 501.0
 texture = ExtResource("3_lfrtr")
 
-[node name="Home" type="Button" parent="Back"]
+[node name="Home" parent="Back" instance=ExtResource("21_p4uyu")]
 z_index = -1
 layout_mode = 0
-offset_left = 647.0
+offset_left = 646.0
 offset_top = 956.0
-offset_right = 713.0
+offset_right = 712.0
 offset_bottom = 1041.0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/focus = SubResource("StyleBoxEmpty_782mq")
 icon = ExtResource("19_dcs5j")
-flat = true
+glowSprite = ExtResource("5_qnjho")
 
 [node name="BookBase" type="TextureRect" parent="."]
 offset_left = -747.0
@@ -87,19 +81,17 @@ offset_right = 747.0
 offset_bottom = 500.0
 texture = ExtResource("1_rktjd")
 
-[node name="Home" type="Button" parent="BookBase"]
+[node name="Home" parent="BookBase" instance=ExtResource("21_p4uyu")]
+z_index = 1
 layout_mode = 0
 offset_left = 684.0
-offset_top = 956.0
+offset_top = 955.0
 offset_right = 750.0
-offset_bottom = 1041.0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/focus = SubResource("StyleBoxEmpty_782mq")
+offset_bottom = 1040.0
 icon = ExtResource("19_dcs5j")
-flat = true
+glowSprite = ExtResource("5_qnjho")
 
 [node name="TitlePage" type="Node2D" parent="."]
-visible = false
 
 [node name="TableOfContents" type="Node2D" parent="TitlePage"]
 position = Vector2(112, -310)
@@ -112,10 +104,10 @@ offset_right = 410.0
 offset_bottom = 700.0
 
 [node name="Label" type="Label" parent="TitlePage"]
-offset_left = -704.0
-offset_top = -532.0
-offset_right = -3.0
-offset_bottom = 2.0
+offset_left = -717.0
+offset_top = -460.0
+offset_right = -16.0
+offset_bottom = 415.0
 text = "Adventurer's
 Handbook"
 label_settings = ExtResource("2_aod8j")
@@ -288,26 +280,20 @@ theme = ExtResource("4_cdtq7")
 text = "12"
 label_settings = ExtResource("5_iiqke")
 
-[node name="Left" type="Button" parent="UI"]
-offset_left = -822.0
-offset_top = -56.0
-offset_right = -746.0
-offset_bottom = 57.0
-pivot_offset = Vector2(224, -100)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_qwrn0")
-icon = ExtResource("5_cw70f")
-icon_alignment = 1
+[node name="Left" parent="UI" instance=ExtResource("21_p4uyu")]
+offset_left = -748.0
+offset_top = -500.0
+offset_right = -671.0
+offset_bottom = 500.0
+glowSprite = ExtResource("22_sovvs")
 
-[node name="Right" type="Button" parent="UI"]
-offset_left = 375.0
-offset_top = 256.0
-offset_right = 451.0
-offset_bottom = 369.0
-rotation = 3.14159
-pivot_offset = Vector2(224, -100)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_qwrn0")
-icon = ExtResource("5_cw70f")
-icon_alignment = 1
+[node name="Right" parent="UI" instance=ExtResource("21_p4uyu")]
+offset_left = 747.0
+offset_top = -500.0
+offset_right = 824.0
+offset_bottom = 500.0
+scale = Vector2(-1, 1)
+glowSprite = ExtResource("22_sovvs")
 
 [connection signal="button_down" from="Exit" to="." method="close"]
 [connection signal="pressed" from="Front/Home" to="." method="_on_home_pressed"]

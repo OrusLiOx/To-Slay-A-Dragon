@@ -95,7 +95,10 @@ func update_page(newPage:int):
 	elif !(newPage <= 0 or newPage >= lastPage):
 		# inner page to inner page
 		Audio.play("PageFlip")
-		
+	
+	if curPage == 1:
+		$BookBase/Home.visible = true
+	
 	curPage = newPage
 	if curPage <= 0:
 		show_book_cover("front")
@@ -109,6 +112,7 @@ func update_page(newPage:int):
 	# title page
 	if curPage == 1:
 		$TitlePage.visible = true
+		$BookBase/Home.visible = false
 	# Enemy Info page
 	elif newPage>=start["info"] and newPage < start["info"]+length["info"]:
 		$EnemyInfo.visible = true

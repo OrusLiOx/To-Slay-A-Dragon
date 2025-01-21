@@ -17,6 +17,7 @@
 script = ExtResource("1_635m8")
 
 [node name="Introduction" type="Node2D" parent="."]
+visible = false
 
 [node name="Intro" type="Node2D" parent="Introduction"]
 position = Vector2(521, 162)
@@ -68,10 +69,8 @@ label_settings = ExtResource("4_p7f1e")
 horizontal_alignment = 1
 
 [node name="Combat" type="Node2D" parent="."]
-visible = false
 
 [node name="1" type="Node2D" parent="Combat"]
-visible = false
 
 [node name="Border" parent="Combat/1" instance=ExtResource("10_i7mn5")]
 custom_minimum_size = Vector2(50, 50)
@@ -107,10 +106,11 @@ autowrap_mode = 2
 
 [node name="Description2" type="Label" parent="Combat/1"]
 offset_left = 531.0
-offset_top = 117.0
+offset_top = 74.0
 offset_right = 1154.0
-offset_bottom = 703.0
+offset_bottom = 761.0
 text = "Hovering over the marker will display information about the creature at that location. Click on the marker to fight that creature.
+
 
 
 
@@ -124,7 +124,7 @@ label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Combat/1"]
-position = Vector2(811, 463)
+position = Vector2(811, 431)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_1amm7")
 
@@ -156,7 +156,7 @@ autowrap_mode = 2
 
 [node name="Description4" type="Label" parent="Combat/2"]
 offset_left = 528.0
-offset_top = 37.0
+offset_top = 75.0
 offset_right = 1157.0
 offset_bottom = 862.0
 text = "Arrows will appear at the top of the section and fall towards the row of arrows a the bottom of the section. When a falling arrow overlaps with the row of arrows, press the corresponding key. You can use arrow keys or WASD
@@ -175,7 +175,6 @@ offset_right = 418.0
 offset_bottom = 738.0
 
 [node name="Forge" type="Node2D" parent="."]
-visible = false
 position = Vector2(-196, 0)
 
 [node name="1" type="Node2D" parent="Forge"]
@@ -202,10 +201,10 @@ label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
 [node name="Description2" type="Label" parent="Forge/1"]
-offset_left = 711.0
-offset_top = 35.0
-offset_right = 1340.0
-offset_bottom = 801.0
+offset_left = 725.0
+offset_top = 74.0
+offset_right = 1354.0
+offset_bottom = 890.0
 text = "The section on the left is the equipment section. It displays your current equipment and the stats they provide you. Your sword determines your attack and your armor determines your health.
 
 The middle section is the materials section which shows how much of each material you have.
