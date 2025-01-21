@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://3po5cq6p7ujc"]
+[gd_scene load_steps=12 format=3 uid="uid://3po5cq6p7ujc"]
 
 [ext_resource type="Script" path="res://Scenes/Map/Scripts/map.gd" id="1_bqrdo"]
 [ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map/Map.png" id="2_dmyx0"]
 [ext_resource type="PackedScene" uid="uid://b0781ipcpmjaf" path="res://Scenes/Map/quest.tscn" id="3_d64i7"]
-[ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/camp/campfire.png" id="3_qnsfu"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_7xw65"]
 [ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/StorageUI/PartUI/part_button.tscn" id="6_epqax"]
 [ext_resource type="Texture2D" uid="uid://cqg2d4ursr1sh" path="res://Sprites/Enemies/forest.png" id="6_rorcs"]
@@ -11,24 +10,28 @@
 [ext_resource type="PackedScene" uid="uid://bxfmkq8bgumev" path="res://Scenes/Map/Combat/combat.tscn" id="7_fpvvu"]
 [ext_resource type="Texture2D" uid="uid://6203f8cgpqcs" path="res://Sprites/UI/arrow.png" id="8_3rdga"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="9_cuwvo"]
-[ext_resource type="Texture2D" uid="uid://28eu1obcagk1" path="res://Sprites/skybox/clock.png" id="9_jxxns"]
-[ext_resource type="Script" path="res://Scenes/Map/Scripts/Clock.gd" id="10_mq4ra"]
 [ext_resource type="Texture2D" uid="uid://etvfwjmynpus" path="res://Sprites/UI/Equipment.png" id="10_uiadi"]
-[ext_resource type="Texture2D" uid="uid://3n0fg608t8j7" path="res://Sprites/skybox/clockFrame.png" id="11_vuy1i"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_bqrdo")
 
+[node name="Switch" type="Button" parent="."]
+offset_left = -1273.0
+offset_top = -679.0
+offset_right = 1525.0
+offset_bottom = 807.0
+flat = true
+
 [node name="TempMap" type="Sprite2D" parent="."]
 texture = ExtResource("2_dmyx0")
 
-[node name="Switch" type="Button" parent="."]
-offset_left = -950.0
-offset_top = -534.0
-offset_right = -850.0
-offset_bottom = -434.0
-icon = ExtResource("3_qnsfu")
-expand_icon = true
+[node name="Control" type="Control" parent="TempMap"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -927.0
+offset_top = -486.0
+offset_right = 927.0
+offset_bottom = 490.0
 
 [node name="Quests" type="Node2D" parent="."]
 
@@ -490,52 +493,7 @@ offset_right = 1926.0
 offset_bottom = 1405.0
 color = Color(1, 1, 1, 0)
 
-[node name="Clock" type="Sprite2D" parent="."]
-position = Vector2(-788, -483)
-texture = ExtResource("9_jxxns")
-script = ExtResource("10_mq4ra")
-
-[node name="ClockHand" type="Sprite2D" parent="."]
-position = Vector2(-788, -483)
-texture = ExtResource("11_vuy1i")
-
-[node name="ClockOverlay" type="Button" parent="."]
-offset_left = -838.0
-offset_top = -535.0
-offset_right = -737.0
-offset_bottom = -434.0
-flat = true
-
-[node name="ColorRect" type="ColorRect" parent="ClockOverlay"]
-visible = false
-layout_mode = 0
-offset_left = 112.0
-offset_right = 341.0
-offset_bottom = 103.0
-color = Color(0.933333, 0.862745, 0.701961, 1)
-
-[node name="Label" type="Label" parent="ClockOverlay/ColorRect"]
-layout_mode = 0
-offset_right = 228.0
-offset_bottom = 103.0
-text = "20 days 
-have passed"
-label_settings = ExtResource("5_7xw65")
-horizontal_alignment = 1
-
-[node name="Help" type="Button" parent="."]
-offset_left = -952.0
-offset_top = 434.0
-offset_right = -852.0
-offset_bottom = 534.0
-theme_override_font_sizes/font_size = 60
-text = "?"
-
 [connection signal="button_down" from="Switch" to="." method="_on_switch_button_down"]
 [connection signal="combat_done" from="Combat" to="." method="_on_combat_combat_done"]
 [connection signal="player_death" from="Combat" to="." method="_on_combat_player_death"]
 [connection signal="win" from="Combat" to="." method="_on_combat_win"]
-[connection signal="done" from="Clock" to="." method="_on_clock_done"]
-[connection signal="mouse_entered" from="ClockOverlay" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="ClockOverlay" to="." method="_on_button_mouse_exited"]
-[connection signal="button_down" from="Help" to="." method="_on_help_button_down"]

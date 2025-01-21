@@ -29,7 +29,6 @@ func start_quest(quest):
 	$HelpMenu.visible = false
 	$HelpCombat.visible = false
 	emit_signal("time")
-	$Clock.turn()
 	combat.visible = true
 	$Switch.disabled = true
 	for q in quests:
@@ -75,14 +74,13 @@ func hide_quest_data():
 	questData["main"].visible = false
 
 func _on_switch_button_down():
-	emit_signal("toCamp")
+	visible = false
 
 func _on_combat_combat_done():
 	finish_quest()
 
 func _on_combat_player_death():
 	emit_signal("death")
-	$Clock.turn(2)
 
 func _on_combat_win():
 	combat.visible = false
@@ -90,25 +88,6 @@ func _on_combat_win():
 	$Win/Stats.text = "You took " + str(Stats.totaltime/4.0) + " days\nto kill the dragon\n"
 	$Win/Stats.text += "\nTotal Combats: " + str(Stats.combats)
 	$Win/Stats.text += "\nDeaths: " + str(Stats.deaths)
-
-func _on_button_mouse_entered():
-	if Stats.totaltime == 4:
-		$ClockOverlay/ColorRect/Label.text = "1 day\nhas passed"
-	else:
-		$ClockOverlay/ColorRect/Label.text = str(Stats.totaltime/4.0)+" days\nhave passed"
-	$ClockOverlay/ColorRect.visible = true
-
-func _on_button_mouse_exited():
-	$ClockOverlay/ColorRect.visible = false
-
-func _on_clock_done():
-	if combat.visible:
-		if combat.player["hp"] <=0:
-			combat.visible = false
-			$Switch.disabled = false
-			for quest in quests:
-				quest.disabled = false
-		return
 
 func _on_help_button_down():
 	if $HelpMenu.visible:

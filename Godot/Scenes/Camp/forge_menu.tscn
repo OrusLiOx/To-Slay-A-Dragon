@@ -18,13 +18,21 @@ partButScene = ExtResource("2_a6guu")
 equipButScene = ExtResource("3_ovuc1")
 
 [node name="Exit" type="Button" parent="."]
-offset_left = 1805.0
-offset_top = 6.0
-offset_right = 1913.0
-offset_bottom = 114.0
+offset_left = -88.0
+offset_top = -72.0
+offset_right = 1991.0
+offset_bottom = 1115.0
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rnipj")
-text = "x"
+flat = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 251.0
+offset_top = 119.0
+offset_right = 1649.0
+offset_bottom = 918.0
 
 [node name="Main" type="Node2D" parent="."]
 position = Vector2(250, 218)

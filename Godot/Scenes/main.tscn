@@ -16,27 +16,16 @@ script = ExtResource("1_gtsxp")
 z_index = 2
 
 [node name="Map" parent="." instance=ExtResource("4_x1pbn")]
+z_index = 100
 
 [node name="Book" parent="." instance=ExtResource("5_3fu5v")]
 z_index = 6
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Blackout" type="ColorRect" parent="."]
-visible = false
-z_index = 10
-offset_left = -1386.0
-offset_top = -1336.0
-offset_right = 1542.0
-offset_bottom = 982.0
-color = Color(0, 0, 0, 1)
-
 [node name="Timer" type="Timer" parent="."]
 
 [node name="SfxHandler" parent="." instance=ExtResource("6_o7twe")]
 
 [connection signal="toMap" from="Camp" to="." method="_on_camp_to_map"]
-[connection signal="death" from="Map" to="." method="_on_map_death"]
-[connection signal="time" from="Map" to="." method="_on_map_time"]
-[connection signal="toCamp" from="Map" to="." method="_on_map_to_camp"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
