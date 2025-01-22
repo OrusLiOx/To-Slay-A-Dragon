@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbpw77fbrbkms"]
+[gd_scene load_steps=8 format=3 uid="uid://dbpw77fbrbkms"]
 
 [ext_resource type="Script" path="res://Scenes/Book/Script/settings.gd" id="1_flgxf"]
 [ext_resource type="LabelSettings" uid="uid://b11e7oyd37eom" path="res://Themes/TitleLabel.tres" id="1_odr8i"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="4_aupfm"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_5ftlp"]
 [ext_resource type="Theme" uid="uid://dgifmyw55byck" path="res://Themes/UIButton.tres" id="6_pugfj"]
-[ext_resource type="ButtonGroup" uid="uid://bp6djds6cxkj8" path="res://Scenes/Book/buttonGroups/noteColorSelection.tres" id="6_vmg0p"]
 [ext_resource type="ButtonGroup" uid="uid://cel4cc1af3pu4" path="res://Scenes/Book/buttonGroups/noteSymbolSelection.tres" id="8_324q5"]
 [ext_resource type="PackedScene" uid="uid://bs6ej35oeq114" path="res://Scenes/Map/Combat/note.tscn" id="8_q7bmn"]
 
@@ -42,106 +41,122 @@ offset_bottom = 102.0
 text = "Gameplay"
 label_settings = ExtResource("4_aupfm")
 
-[node name="Demo" type="Node2D" parent="Gameplay"]
-position = Vector2(318, 436)
+[node name="Gameplay" type="VBoxContainer" parent="Gameplay"]
+offset_left = 223.0
+offset_top = 126.0
+offset_right = 781.0
+offset_bottom = 398.0
 
-[node name="ColorRect" type="ColorRect" parent="Gameplay/Demo"]
-offset_left = -118.0
-offset_top = -65.0
-offset_right = 421.0
-offset_bottom = 66.0
-color = Color(0, 0, 0, 0.184314)
+[node name="AttackColor" type="HBoxContainer" parent="Gameplay/Gameplay"]
+layout_mode = 2
 
-[node name="Note" parent="Gameplay/Demo" instance=ExtResource("8_q7bmn")]
-
-[node name="Note2" parent="Gameplay/Demo" instance=ExtResource("8_q7bmn")]
-dir = 1
-
-[node name="Note3" parent="Gameplay/Demo" instance=ExtResource("8_q7bmn")]
-dir = 3
-
-[node name="Note4" parent="Gameplay/Demo" instance=ExtResource("8_q7bmn")]
-dir = 2
-
-[node name="Colors" type="Node2D" parent="Gameplay"]
-position = Vector2(223, 126)
-
-[node name="Label" type="Label" parent="Gameplay/Colors"]
-offset_right = 282.0
-offset_bottom = 42.0
-text = "Attack/Block Indicator Colors"
+[node name="AttackColorLable" type="Label" parent="Gameplay/Gameplay/AttackColor"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Attack Color "
 label_settings = ExtResource("5_5ftlp")
 
-[node name="Normal" type="CheckBox" parent="Gameplay/Colors"]
-offset_top = 50.0
-offset_right = 129.0
-offset_bottom = 92.0
-theme = ExtResource("6_pugfj")
-button_group = ExtResource("6_vmg0p")
-text = "Normal"
-icon_alignment = 1
+[node name="AttackColorRect" type="ColorRect" parent="Gameplay/Gameplay/AttackColor"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(43, 0)
+layout_mode = 2
 
-[node name="Swap" type="CheckBox" parent="Gameplay/Colors"]
-offset_left = 200.0
-offset_top = 50.0
-offset_right = 298.0
-offset_bottom = 92.0
-theme = ExtResource("6_pugfj")
-button_group = ExtResource("6_vmg0p")
-text = "Swap"
-icon_alignment = 1
+[node name="Blank" type="Label" parent="Gameplay/Gameplay"]
+layout_mode = 2
+label_settings = ExtResource("5_5ftlp")
 
-[node name="None" type="CheckBox" parent="Gameplay/Colors"]
-offset_left = 400.0
-offset_top = 50.0
-offset_right = 498.0
-offset_bottom = 92.0
-theme = ExtResource("6_pugfj")
-button_group = ExtResource("6_vmg0p")
-text = "None"
-icon_alignment = 1
+[node name="BlockColor" type="HBoxContainer" parent="Gameplay/Gameplay"]
+layout_mode = 2
 
-[node name="Symbols" type="Node2D" parent="Gameplay"]
-position = Vector2(220, 253)
+[node name="BlockColorLable" type="Label" parent="Gameplay/Gameplay/BlockColor"]
+layout_mode = 2
+text = "Block Color   "
+label_settings = ExtResource("5_5ftlp")
 
-[node name="Label" type="Label" parent="Gameplay/Symbols"]
-offset_right = 313.0
-offset_bottom = 42.0
+[node name="BlockColorRect" type="ColorRect" parent="Gameplay/Gameplay/BlockColor"]
+custom_minimum_size = Vector2(43, 0)
+layout_mode = 2
+
+[node name="Blank2" type="Label" parent="Gameplay/Gameplay"]
+layout_mode = 2
+text = "
+
+
+
+"
+label_settings = ExtResource("5_5ftlp")
+
+[node name="Symbols" type="Label" parent="Gameplay/Gameplay"]
+layout_mode = 2
 text = "Attack/Block Indicator Symbols"
 label_settings = ExtResource("5_5ftlp")
 
-[node name="Mixed" type="CheckBox" parent="Gameplay/Symbols"]
-offset_top = 50.0
-offset_right = 109.0
-offset_bottom = 92.0
+[node name="SymbolSelect" type="HBoxContainer" parent="Gameplay/Gameplay"]
+layout_mode = 2
+
+[node name="Mixed" type="CheckBox" parent="Gameplay/Gameplay/SymbolSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("6_pugfj")
 button_group = ExtResource("8_324q5")
 text = "Mixed"
 icon_alignment = 1
 
-[node name="WASD" type="CheckBox" parent="Gameplay/Symbols"]
-offset_left = 200.0
-offset_top = 50.0
-offset_right = 376.0
-offset_bottom = 92.0
+[node name="WASD" type="CheckBox" parent="Gameplay/Gameplay/SymbolSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("6_pugfj")
 button_group = ExtResource("8_324q5")
 text = "WASD"
 icon_alignment = 1
 
-[node name="Arrow" type="CheckBox" parent="Gameplay/Symbols"]
-offset_left = 400.0
-offset_top = 50.0
-offset_right = 509.0
-offset_bottom = 92.0
+[node name="Arrow" type="CheckBox" parent="Gameplay/Gameplay/SymbolSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("6_pugfj")
 button_group = ExtResource("8_324q5")
 text = "Arrow"
 icon_alignment = 1
 
-[connection signal="button_down" from="Gameplay/Colors/Normal" to="." method="set_note_colors" binds= ["normal"]]
-[connection signal="button_down" from="Gameplay/Colors/Swap" to="." method="set_note_colors" binds= ["swap"]]
-[connection signal="button_down" from="Gameplay/Colors/None" to="." method="set_note_colors" binds= ["none"]]
-[connection signal="button_down" from="Gameplay/Symbols/Mixed" to="." method="set_note_symbols" binds= ["mixed"]]
-[connection signal="button_down" from="Gameplay/Symbols/WASD" to="." method="set_note_symbols" binds= ["letter"]]
-[connection signal="button_down" from="Gameplay/Symbols/Arrow" to="." method="set_note_symbols" binds= ["arrow"]]
+[node name="Blank3" type="Label" parent="Gameplay/Gameplay"]
+layout_mode = 2
+label_settings = ExtResource("5_5ftlp")
+
+[node name="Demo" type="ColorRect" parent="Gameplay/Gameplay"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+color = Color(0, 0, 0, 0.184314)
+
+[node name="Note" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
+position = Vector2(118, 65)
+
+[node name="Note2" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
+position = Vector2(118, 65)
+dir = 1
+
+[node name="Note3" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
+position = Vector2(118, 65)
+dir = 3
+
+[node name="Note4" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
+position = Vector2(118, 65)
+dir = 2
+
+[node name="Control" type="Control" parent="Gameplay/Gameplay"]
+layout_mode = 2
+
+[node name="ColorPicker" type="ColorPicker" parent="Gameplay"]
+offset_left = 502.0
+offset_top = 115.0
+offset_right = 800.0
+offset_bottom = 418.0
+edit_alpha = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+presets_visible = false
+
+[connection signal="button_down" from="Gameplay/Gameplay/SymbolSelect/Mixed" to="." method="set_note_symbols" binds= ["mixed"]]
+[connection signal="button_down" from="Gameplay/Gameplay/SymbolSelect/WASD" to="." method="set_note_symbols" binds= ["letter"]]
+[connection signal="button_down" from="Gameplay/Gameplay/SymbolSelect/Arrow" to="." method="set_note_symbols" binds= ["arrow"]]

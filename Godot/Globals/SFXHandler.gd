@@ -13,6 +13,7 @@ func _ready():
 		add_child(AudioStreamPlayer.new())
 
 func play(sound, jitter = true):
+	return
 	if !sounds.has(sound):
 		push_error("Error: no sound effect of name " + sound + " found")
 		return

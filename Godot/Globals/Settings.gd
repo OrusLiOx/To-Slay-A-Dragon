@@ -21,25 +21,14 @@ func _ready():
 func set_to_default():
 	noteSpeed = 300
 	
-	noteColorDefault = Color(1,1,1)
 	noteColorAttack = Color("a60000")
 	noteColorBlock = Color("2953b5")
-	noteColorSwap = false
-	noteColorOff = false
+
 	noteType = "mixed"
 	noteSyncBar = "none"
 	
 func get_note_color(type):
-	if noteColorOff:
-		return noteColorDefault
-	
 	if type == "block":
-		if noteColorSwap:
-			return noteColorAttack
-		else:
-			return noteColorBlock
+		return noteColorBlock
 	else:
-		if noteColorSwap:
-			return noteColorBlock 
-		else:
-			return noteColorAttack
+		return noteColorAttack

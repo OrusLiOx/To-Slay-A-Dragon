@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://do5wmo3cktya7"]
+
+[ext_resource type="Texture2D" uid="uid://d1h1bcwdcv5vn" path="res://Sprites/UI/statIcons.png" id="1_1cy6a"]
+[ext_resource type="Script" path="res://Scenes/Book/Script/ActionIcon.gd" id="2_e41uk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erw7h"]
+resource_local_to_scene = true
+atlas = ExtResource("1_1cy6a")
+region = Rect2(0, 0, 100, 100)
+
+[node name="ActionIcon" type="TextureRect"]
+custom_minimum_size = Vector2(42, 42)
+offset_right = 100.0
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_erw7h")
+expand_mode = 5
+stretch_mode = 4
+script = ExtResource("2_e41uk")
+action = 1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

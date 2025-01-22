@@ -10,13 +10,13 @@ func set_page(enemy:Enemy):
 	match enemy.type:
 		"Goblin":
 			drop = Part.new("m",0)
-			edit.text = "Goblins typically live in small groups. They camp together and gather food together and many assume that attacking one goblin will cause the whole group to attack you. In reality, goblins are quite cowardly and will typically flee if a member of the group gets attacked."
+			edit.text = "Goblins typically live in small groups. They camp together and gather food together so many assume that attacking one goblin will cause the whole group to attack you. In reality, goblins are quite cowardly and will typically flee if a member of the group gets attacked."
 		"Serpent":
 			drop = Part.new("s",0)
 			edit.text = "Serpents spend most of their time basking near rivers. When they're hungry, they dive into the water to hunt fish and other animals drinking from the river. They're pretty slow on land and don't pose much of a threat unless they manage to drag you underwater."
 		"Fairy":
 			drop = Part.new("f",0)
-			edit.text = "Despite their name, the pink stones that fairies often leave behind are not their hearts. This should be obvious considering the stones are larger than a fairy's body and faries are immortal. Fairies consider fighting to be a form a play and they leave behind magical stones as gifts."
+			edit.text = "Despite their name, the pink stones that fairies often leave behind are not their hearts. This should be obvious considering the stones are larger than a fairy's body and faries are immortal. Fairies consider fighting to be a form a play and they leave behind magical stones as gifts for those that they like."
 		"Gold Beetle":
 			drop = Part.new("m",1)
 			edit.text = "At high temperatures, the plating on gold beetles can be melted down into a metal-like material known as Pyre's ore. Pyre's ore is difficult to obtain since gold beetles don't develop their plating until they reach adulthood. If you feel well prepared, you should definitely try to take one down. Pyre's ore is very strong and makes excellent weapons and armor."
@@ -38,7 +38,7 @@ func set_page(enemy:Enemy):
 			edit.text = "If a dreamer stone is left in an empty container for a week, the container will turn into a mimic. Mimics are suprisingly smart and can be kept as companions if you have the patience to train them. They're a lot like cats except they can bite your hand off and cast fireball."
 		
 		"Dragon":
-			edit.text = "Dragons are some of the most powerful creatures in the world. They often attack kingdoms where they'll eat civilians and steal treasures for their hoard. \nDefeating a dragon bring you glory and wealth beyond imagination. Many have tried and many have failed. Do you think you have what it takes?"
+			edit.text = "Dragons are some of the most powerful creatures in the world. They often attack kingdoms where they'll eat civilians and steal treasures for their hoard. \n\nDefeating a dragon bring you glory and wealth beyond imagination. Many have tried and many have failed. Do you think you have what it takes?"
 	
 	edit = $Stats
 	edit.text = "Attack: " + str(enemy.attack) + "\n"
@@ -60,18 +60,10 @@ func set_page(enemy:Enemy):
 	if mi != ma:
 		edit.text += str(mi) + " - "
 	edit.text += str(ma)+" s\n\n"
-	
+	edit.text += "Actions:\n"
+	for child in $ActionsIcons.get_children():
+		child.visible = false
 	for key in enemy.weight.keys():
-		match key:
-			"attack":
-				edit.text += "Attack: "
-			"block":
-				edit.text += "Block: "
-			"double block":
-				edit.text += "Block x2: "
-			"attack block":
-				edit.text += "Attack + Block: "
-			"attack double block":
-				edit.text += "Block x2 + Attack: "
+		$ActionsIcons.get_node(key).visible = true
 		edit.text += str(enemy.weight[key]*100)+"%\n"
 	

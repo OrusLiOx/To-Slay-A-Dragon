@@ -10,16 +10,17 @@ var heartParticles
 var book
 
 signal toMap()
+signal openBook()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	heartParticles = $Lizor/GPUParticles2D
 	blacksmith = $Blacksmith
 	forge = $ForgeMenu
+	book = $Book
 	
 	mouse = InputEventMouseMotion.new()
 	touchingLizor = false
-
 
 func _process(_delta):
 	if touchingLizor and Input.is_action_pressed("Pet") and !forge.visible:
@@ -40,7 +41,6 @@ func _on_forge_menu_exit():
 	forge.visible = false
 	forge.set_process(false)
 
-
 # detects if mouse is touching lizard
 func _on_lizor_mouse_entered():
 	touchingLizor =true
@@ -48,16 +48,10 @@ func _on_lizor_mouse_entered():
 func _on_lizor_mouse_exited():
 	touchingLizor =false
 
-# tells main to switch to map
+# buttons
 func _on_switch_button_down():
 	emit_signal("toMap")
 
 func _on_book_but_button_down():
-	if book.visible:
-		book.close()
-	else:
-		if forge.visible:
-			book.open(book.start["help"]+2)
-		else:
-			book.open()
+	emit_signal("openBook")
 	

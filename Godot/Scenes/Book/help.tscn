@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbqavw5571ou3"]
+[gd_scene load_steps=14 format=3 uid="uid://bbqavw5571ou3"]
 
 [ext_resource type="Script" path="res://Scenes/Book/Script/help.gd" id="1_635m8"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="1_f63lc"]
@@ -7,6 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://b11e7oyd37eom" path="res://Themes/TitleLabel.tres" id="4_p7f1e"]
 [ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map/Map.png" id="6_o38ts"]
 [ext_resource type="Texture2D" uid="uid://bd1v4eo7k8rlo" path="res://Sprites/UI/EnemyData.png" id="7_1amm7"]
+[ext_resource type="Texture2D" uid="uid://sejjgsr510ca" path="res://Sprites/Map/questMarker.png" id="8_me6hl"]
 [ext_resource type="PackedScene" uid="uid://cciemd06ybsue" path="res://Scenes/Book/border.tscn" id="10_i7mn5"]
 [ext_resource type="Texture2D" uid="uid://chqhu8igli3k0" path="res://Sprites/UI/forgeBuildSample.png" id="11_f35k6"]
 [ext_resource type="Texture2D" uid="uid://l4vrrgm7nyut" path="res://Sprites/UI/forgeWorkingArmorSample.png" id="11_hyujn"]
@@ -25,7 +26,7 @@ position = Vector2(521, 162)
 [node name="Description2" type="Label" parent="Introduction/Intro"]
 offset_left = 5.0
 offset_top = 23.0
-offset_right = 634.0
+offset_right = 604.0
 offset_bottom = 759.0
 text = "Welcome to the Adventurer's Handbook. If you know what you're doing, you can close this book by clicking outside of it.
 
@@ -36,7 +37,6 @@ Settings can be found on the previous page and the red bookmark at the bottom wi
 "
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Label" parent="Introduction/Intro"]
 offset_left = 117.0
@@ -69,8 +69,10 @@ label_settings = ExtResource("4_p7f1e")
 horizontal_alignment = 1
 
 [node name="Combat" type="Node2D" parent="."]
+visible = false
 
 [node name="1" type="Node2D" parent="Combat"]
+visible = false
 
 [node name="Border" parent="Combat/1" instance=ExtResource("10_i7mn5")]
 custom_minimum_size = Vector2(50, 50)
@@ -83,6 +85,56 @@ offset_bottom = 782.0
 position = Vector2(84, 647)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_o38ts")
+
+[node name="QuestMarker" type="Sprite2D" parent="Combat/1/Map"]
+position = Vector2(-664, 400)
+scale = Vector2(0.46, 0.459999)
+texture = ExtResource("8_me6hl")
+
+[node name="QuestMarker2" type="Sprite2D" parent="Combat/1/Map"]
+position = Vector2(-348, 264)
+scale = Vector2(0.46, 0.459999)
+texture = ExtResource("8_me6hl")
+
+[node name="QuestMarker3" type="Sprite2D" parent="Combat/1/Map"]
+position = Vector2(-392, -336)
+scale = Vector2(0.46, 0.459999)
+texture = ExtResource("8_me6hl")
+
+[node name="QuestMarker4" type="Sprite2D" parent="Combat/1/Map"]
+position = Vector2(39.9999, -112)
+scale = Vector2(0.46, 0.459999)
+texture = ExtResource("8_me6hl")
+
+[node name="QuestMarker5" type="Sprite2D" parent="Combat/1/Map"]
+position = Vector2(168, 164)
+scale = Vector2(0.46, 0.459999)
+texture = ExtResource("8_me6hl")
+
+[node name="QuestMarker6" type="Sprite2D" parent="Combat/1/Map"]
+position = Vector2(584, 328)
+scale = Vector2(0.46, 0.459999)
+texture = ExtResource("8_me6hl")
+
+[node name="QuestMarker7" type="Sprite2D" parent="Combat/1/Map"]
+position = Vector2(588, -23.9999)
+scale = Vector2(0.46, 0.459999)
+texture = ExtResource("8_me6hl")
+
+[node name="QuestMarker8" type="Sprite2D" parent="Combat/1/Map"]
+position = Vector2(340, -180)
+scale = Vector2(0.46, 0.459999)
+texture = ExtResource("8_me6hl")
+
+[node name="QuestMarker9" type="Sprite2D" parent="Combat/1/Map"]
+position = Vector2(132, -364)
+scale = Vector2(0.46, 0.459999)
+texture = ExtResource("8_me6hl")
+
+[node name="QuestMarker10" type="Sprite2D" parent="Combat/1/Map"]
+position = Vector2(580, -436)
+scale = Vector2(0.46, 0.459999)
+texture = ExtResource("8_me6hl")
 
 [node name="Title" type="Label" parent="Combat/1"]
 offset_left = -217.0
@@ -109,7 +161,7 @@ offset_left = 531.0
 offset_top = 74.0
 offset_right = 1154.0
 offset_bottom = 761.0
-text = "Hovering over the marker will display information about the creature at that location. Click on the marker to fight that creature.
+text = "Hovering over the marker will show you the stats of the creature at that location and what material you will get from defeating it. Click on the marker to fight that creature.
 
 
 
@@ -119,17 +171,16 @@ text = "Hovering over the marker will display information about the creature at 
 
 
 
-More detailed descriptions of each creature can be found in a future section of this book"
+More detailed descriptions of each creature can be found in a future section of this book."
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Combat/1"]
-position = Vector2(811, 431)
+position = Vector2(806, 478)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_1amm7")
 
 [node name="2" type="Node2D" parent="Combat"]
-visible = false
 
 [node name="Title2" type="Label" parent="Combat/2"]
 offset_left = -203.0
@@ -140,17 +191,23 @@ text = "Combat (cont.)"
 label_settings = ExtResource("1_f63lc")
 horizontal_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Combat/2"]
-position = Vector2(100, 563)
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("13_x5h5f")
-
 [node name="Description3" type="Label" parent="Combat/2"]
 offset_left = -199.0
 offset_top = 153.0
 offset_right = 430.0
 offset_bottom = 978.0
-text = "While in combat, you will see a screen similar to the one shown below. You will mainly want to focus on the top left section."
+text = "Below you can see what the combat window looks like. You will mainly want to focus on the top right section.
+
+
+
+
+
+
+
+
+
+
+You can click outside of the window to run away from the fight."
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
@@ -169,10 +226,15 @@ autowrap_mode = 2
 
 [node name="Border" parent="Combat/2" instance=ExtResource("10_i7mn5")]
 custom_minimum_size = Vector2(50, 50)
-offset_left = -218.0
-offset_top = 388.0
-offset_right = 418.0
-offset_bottom = 738.0
+offset_left = -214.0
+offset_top = 331.0
+offset_right = 422.0
+offset_bottom = 681.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Combat/2/Border"]
+position = Vector2(318, 175)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("13_x5h5f")
 
 [node name="Forge" type="Node2D" parent="."]
 position = Vector2(-196, 0)
@@ -209,11 +271,7 @@ text = "The section on the left is the equipment section. It displays your curre
 
 The middle section is the materials section which shows how much of each material you have.
 
-The section on the right is the working section. This section shows the piece of equipment you are currently working on and the materials that make up that equipment.
-
-
-
- "
+The section on the right is the working section. This section shows the piece of equipment you are currently working on and the materials that make up that piece of equipment."
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
@@ -247,26 +305,24 @@ offset_right = 634.0
 offset_bottom = 857.0
 text = "To being forging, click on either your sword or your armor in the equipment section. The piece of equipment that you click will be placed into the working section.
 
-Click on a material in the working section to remove it from the equipment. Click on a material in the materials section to add it to the equipment
-
-"
+Click on a material in the working section to remove it from the equipment. Click on a material in the materials section to add it to the equipment."
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
 [node name="Description2" type="Label" parent="Forge/2"]
-offset_left = 711.0
-offset_top = 18.0
-offset_right = 1340.0
-offset_bottom = 834.0
-text = "The top row of the working section indicates the materials that are required to make that piece of equipment. Swords require two pieces of metal while armor requires one piece of metal and two scales.
+offset_left = 713.0
+offset_top = 30.0
+offset_right = 1342.0
+offset_bottom = 846.0
+text = "
+
+
+
+
+
+The top row of the working section indicates the materials that are required to make that piece of equipment. Swords require two pieces of metal while armor requires one piece of metal and two scales.
 
 The second row indicates how many magic stones can be attached to the equipment. These are not required but they will increase the stats of your equipment.
-
-
-
-
-
-
 
 Click the item in the bottom row to forge your new piece of equipment."
 label_settings = ExtResource("2_q0mne")
@@ -319,10 +375,10 @@ texture = ExtResource("11_f35k6")
 [node name="WorkingImages" type="Control" parent="Forge/2"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 703.0
-offset_top = 13.0
-offset_right = 743.0
-offset_bottom = 53.0
+offset_left = 701.0
+offset_top = -452.0
+offset_right = 741.0
+offset_bottom = -412.0
 
 [node name="Border2" parent="Forge/2/WorkingImages" instance=ExtResource("10_i7mn5")]
 custom_minimum_size = Vector2(100, 100)

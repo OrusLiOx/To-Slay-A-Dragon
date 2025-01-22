@@ -27,6 +27,14 @@
 script = ExtResource("1_w6myh")
 pageBuffer = 3
 
+[node name="Control" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -1222.0
+offset_top = -717.0
+offset_right = 1221.0
+offset_bottom = 718.0
+color = Color(0, 0, 0, 0.247059)
+
 [node name="Exit" type="Button" parent="."]
 anchors_preset = 15
 anchor_right = 1.0

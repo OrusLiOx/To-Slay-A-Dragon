@@ -423,6 +423,10 @@ Clear={
 ]
 }
 
+[physics]
+
+common/icon="res://icon.svg"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

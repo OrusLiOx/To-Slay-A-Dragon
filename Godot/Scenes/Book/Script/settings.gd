@@ -2,8 +2,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Gameplay/Colors/Normal.button_pressed  = true
-	$Gameplay/Symbols/Mixed.button_pressed  = true
+	$Gameplay/Gameplay/SymbolSelect/Mixed.button_pressed  = true
 	update_symbol_display()
 
 func set_note_colors(choice:String):
@@ -23,29 +22,33 @@ func set_note_symbols(choice):
 	update_symbol_display()
 
 func update_symbol_display():
+	var notes = $Gameplay/Gameplay/Demo.get_children()
 	match Settings.noteType:
 		"letter":
-			$Gameplay/Demo/Note.position.x = 0
-			$Gameplay/Demo/Note2.position.x = 100
-			$Gameplay/Demo/Note3.position.x = 200
-			$Gameplay/Demo/Note4.position.x = 300
+			notes[0].position.x = 0
+			notes[1].position.x = 100
+			notes[2].position.x = 200
+			notes[3].position.x = 300
 		"arrow":
-			$Gameplay/Demo/Note.position.x = -20
-			$Gameplay/Demo/Note2.position.x = 92.5
-			$Gameplay/Demo/Note3.position.x = 207.5
-			$Gameplay/Demo/Note4.position.x = 320
+			notes[0].position.x = -20
+			notes[1].position.x = 92.5
+			notes[2].position.x = 207.5
+			notes[3].position.x = 320
 		_:
-			$Gameplay/Demo/Note.position.x = 0
-			$Gameplay/Demo/Note2.position.x = 95
-			$Gameplay/Demo/Note3.position.x = 205
-			$Gameplay/Demo/Note4.position.x = 300
-			
-	$Gameplay/Demo/Note.go(0)
-	$Gameplay/Demo/Note2.go(0)
-	$Gameplay/Demo/Note3.go(0)
-	$Gameplay/Demo/Note4.go(0)
+			notes[0].position.x = 0
+			notes[1].position.x = 95
+			notes[2].position.x = 205
+			notes[3].position.x = 300
 	
-	$Gameplay/Demo/Note.modulate = Settings.get_note_color("block")
-	$Gameplay/Demo/Note2.modulate = Settings.get_note_color("attack")
-	$Gameplay/Demo/Note3.modulate = Settings.get_note_color("attack")
-	$Gameplay/Demo/Note4.modulate = Settings.get_note_color("block")
+	for note in notes:
+		note.position.x += 118
+		note.go(0)
+	notes[0].go(0)
+	notes[1].go(0)
+	notes[2].go(0)
+	notes[3].go(0)
+	
+	notes[0].modulate = Settings.get_note_color("block")
+	notes[1].modulate = Settings.get_note_color("attack")
+	notes[2].modulate = Settings.get_note_color("attack")
+	notes[3].modulate = Settings.get_note_color("block")

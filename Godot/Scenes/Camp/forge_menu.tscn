@@ -17,6 +17,14 @@ script = ExtResource("1_5tl1t")
 partButScene = ExtResource("2_a6guu")
 equipButScene = ExtResource("3_ovuc1")
 
+[node name="Control2" type="ColorRect" parent="."]
+offset_left = -260.0
+offset_top = -168.0
+offset_right = 2183.0
+offset_bottom = 1267.0
+pivot_offset = Vector2(859, 227)
+color = Color(0, 0, 0, 0.247059)
+
 [node name="Exit" type="Button" parent="."]
 offset_left = -88.0
 offset_top = -72.0
