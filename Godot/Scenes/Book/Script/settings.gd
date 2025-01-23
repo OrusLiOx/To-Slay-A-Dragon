@@ -1,22 +1,15 @@
 extends Node2D
+var editing:String
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$Gameplay/Gameplay/SymbolSelect/Mixed.button_pressed  = true
+	$'Gameplay/Gameplay/MaxSelect/3'.button_pressed  = true
+	%AttackColorRect.color = Settings.noteColorAttack
+	%BlockColorRect.color = Settings.noteColorBlock
 	update_symbol_display()
+	_on_attack_color_edit_pressed()
 
-func set_note_colors(choice:String):
-	match choice:
-		"none":
-			Settings.noteColorOff = true
-		"normal":
-			Settings.noteColorOff = false
-			Settings.noteColorSwap = false
-		"swap":
-			Settings.noteColorOff = false
-			Settings.noteColorSwap = true
-	update_symbol_display()
-
+## SYMBOL SELECT ##
 func set_note_symbols(choice):
 	Settings.noteType = choice
 	update_symbol_display()
@@ -43,6 +36,7 @@ func update_symbol_display():
 	for note in notes:
 		note.position.x += 118
 		note.go(0)
+		
 	notes[0].go(0)
 	notes[1].go(0)
 	notes[2].go(0)
@@ -52,3 +46,45 @@ func update_symbol_display():
 	notes[1].modulate = Settings.get_note_color("attack")
 	notes[2].modulate = Settings.get_note_color("attack")
 	notes[3].modulate = Settings.get_note_color("block")
+
+## COLOR EDIT ##
+func _on_attack_color_edit_pressed():
+	%AttackColorSelect.visible = true
+	%BlockColorSelect.visible = false
+	editing = "attack"
+	%ColorPicker.color = Settings.noteColorAttack
+
+func _on_block_color_edit_pressed():
+	%AttackColorSelect.visible = false
+	%BlockColorSelect.visible = true
+	editing = "block"
+	%ColorPicker.color = Settings.noteColorBlock
+
+func _on_color_picker_color_changed(color):
+	set_color(editing, color)
+	
+func set_color(action, color:Color):
+	var notes = $Gameplay/Gameplay/Demo.get_children()
+	if action == "attack":
+		%AttackColorRect.color = color
+		Settings.noteColorAttack = color
+		notes[1].modulate = color
+		notes[2].modulate = color
+		%AttackColorReset.visible = color.to_html(false) != Settings.defaultAttackColor
+			
+	else:
+		%BlockColorRect.color = color
+		Settings.noteColorBlock = color
+		notes[0].modulate = color
+		notes[3].modulate = color
+		%BlockColorReset.visible = color.to_html(false) != Settings.defaultBlockColor
+
+func _on_attack_color_rest_pressed():
+	set_color("attack", Color(Settings.defaultAttackColor))
+
+func _on_block_color_reset_pressed():
+	set_color("block", Color(Settings.defaultBlockColor))
+
+## MAX NOTES ##
+func set_max(maxi:int):
+	Settings.noteMax = maxi

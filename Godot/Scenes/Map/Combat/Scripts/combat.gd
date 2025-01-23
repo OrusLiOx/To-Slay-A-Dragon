@@ -24,7 +24,6 @@ var player : Dictionary
 var accuracy
 var totalNotes
 var questReward
-var rewardQuantity
 
 # note stuff
 var goodNote :Array
@@ -55,8 +54,12 @@ func _process(delta):
 		else:
 			if partSprite.visible == false:
 				timer.start(2)
+				# no drop if dragon
+				if enemy.stats.type == "Dragon":
+					partSprite.modulate.a = 0
+				else:
+					partSprite.modulate.a = 1
 			partSprite.visible = true
-	pass
 
 func start(quest):
 	# generic
@@ -108,14 +111,9 @@ func start(quest):
 	player["hp"] = player["maxHp"]
 
 	# quest reward
-	$EnemyScreen/Reward.text = ""
 	questReward = quest.questMaterial
 	partSprite.set_part(questReward)
 	partSprite.visible = false
-	
-	# no drop if dragon
-	if quest.enemy == "Dragon":
-		partSprite.modulate.a = 0
 	
 	# start
 	minigameActive = true
@@ -161,10 +159,11 @@ func hit_player(quality):
 	
 	if player["hp"] <= 0:
 		end_minigame()
-		Stats.deaths += 1
-		emit_signal("player_death")
 		timer.stop()
-	pass
+		Stats.deaths += 1
+		await get_tree().create_timer(2).timeout
+		visible = false
+		emit_signal("player_death")
 
 func hit_enemy(quality):
 	update_accuracy(quality)
@@ -188,22 +187,33 @@ func hit_enemy(quality):
 	if enemy.stats.hp <= 0:
 		end_minigame()
 		killEnemy = true
-		rewardQuantity = 1
-		var bonus = accuracy/totalNotes
-		while bonus >= 1:
-			rewardQuantity += 1
-			bonus -= 1
-			
-		if randf() <= bonus:
-			rewardQuantity +=1
-		
-		$EnemyScreen/Reward.text = "+"+str(rewardQuantity)
 		timer.stop()
-	pass
 
 func spawn_note():
 	var spawnedNotes :Array
-	match enemy.stats.pick_action():
+	var action = enemy.stats.pick_action()
+	
+	if Settings.noteMax == 1:
+		match action:
+			"double block":
+				action = "block"
+			"attack block":
+				if randi_range(0,1) == 0:
+					action = "attack"
+				else:
+					action = "block"
+			"attack double block":
+				if randi_range(0,1) == 0:
+					action = "attack"
+				else:
+					action = "block"
+	elif Settings.noteMax == 2 and action == "attack double block":
+			if randi_range(0,1) == 0:
+				action = "attack block"
+			else:
+				action = "double block"
+	
+	match action:
 		"attack":
 			if randf()<.5:
 				spawnedNotes.push_back(gameCols[1].spawn_note())
@@ -250,8 +260,12 @@ func _on_timer_timeout():
 			timer.stop()
 			return
 		timer.stop()
-		Storage.add_part(questReward, rewardQuantity)
+		Storage.add_part(questReward, 1)
 		emit_signal("combat_done")
 	else:
 		spawn_note()
-	pass # Replace with function body.
+
+
+func _on_button_pressed():
+	end_minigame()
+	visible = false

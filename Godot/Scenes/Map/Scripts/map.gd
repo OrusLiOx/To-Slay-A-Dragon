@@ -30,17 +30,11 @@ func start_quest(quest):
 	$HelpCombat.visible = false
 	emit_signal("time")
 	combat.visible = true
-	$Switch.disabled = true
-	for q in quests:
-		q.disabled = true
 	questData["main"].visible = false
 	combat.start(quest)
 
 func finish_quest():
 	combat.visible = false
-	$Switch.disabled = false
-	for quest in quests:
-		quest.disabled = false
 
 func show_quest_data(quest):
 	if combat.visible:

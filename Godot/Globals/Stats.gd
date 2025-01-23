@@ -1,17 +1,23 @@
 extends Node
 
-var totaltime
-var combats
+var time
+
 var deaths
-var accuracy
+var forfeits
+var wins
+
+var greatNotes
+var goodNotes
+var missedNotes
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	totaltime = 0
-	combats = 0
+	time = 0
+	
 	deaths = 0
-	accuracy = Vector2(0,0)
-	pass # Replace with function body.
+	forfeits = 0
+	wins = 0
 
-func get_accuracy():
-	return accuracy.x/accuracy.y
+	greatNotes = 0
+	goodNotes = 0
+	missedNotes = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbpw77fbrbkms"]
+[gd_scene load_steps=10 format=3 uid="uid://dbpw77fbrbkms"]
 
 [ext_resource type="Script" path="res://Scenes/Book/Script/settings.gd" id="1_flgxf"]
 [ext_resource type="LabelSettings" uid="uid://b11e7oyd37eom" path="res://Themes/TitleLabel.tres" id="1_odr8i"]
@@ -7,6 +7,8 @@
 [ext_resource type="Theme" uid="uid://dgifmyw55byck" path="res://Themes/UIButton.tres" id="6_pugfj"]
 [ext_resource type="ButtonGroup" uid="uid://cel4cc1af3pu4" path="res://Scenes/Book/buttonGroups/noteSymbolSelection.tres" id="8_324q5"]
 [ext_resource type="PackedScene" uid="uid://bs6ej35oeq114" path="res://Scenes/Map/Combat/note.tscn" id="8_q7bmn"]
+[ext_resource type="Texture2D" uid="uid://dg3x48scotuko" path="res://Sprites/UI/reset.png" id="8_vvtdk"]
+[ext_resource type="ButtonGroup" uid="uid://cpvgm5ei486g8" path="res://Scenes/Book/buttonGroups/maxNoteSelection.tres" id="9_b6mnm"]
 
 [node name="Settings" type="Node2D"]
 script = ExtResource("1_flgxf")
@@ -31,14 +33,14 @@ text = "Audio"
 label_settings = ExtResource("4_aupfm")
 
 [node name="Gameplay" type="Node2D" parent="."]
-position = Vector2(717, -4)
+position = Vector2(696, -4)
 
 [node name="Label" type="Label" parent="Gameplay"]
 offset_left = 376.0
 offset_top = 33.0
 offset_right = 517.0
 offset_bottom = 102.0
-text = "Gameplay"
+text = "Combat"
 label_settings = ExtResource("4_aupfm")
 
 [node name="Gameplay" type="VBoxContainer" parent="Gameplay"]
@@ -47,43 +49,36 @@ offset_top = 126.0
 offset_right = 781.0
 offset_bottom = 398.0
 
-[node name="AttackColor" type="HBoxContainer" parent="Gameplay/Gameplay"]
+[node name="Demo" type="ColorRect" parent="Gameplay/Gameplay"]
+custom_minimum_size = Vector2(0, 130)
 layout_mode = 2
+color = Color(0, 0, 0, 0.184314)
 
-[node name="AttackColorLable" type="Label" parent="Gameplay/Gameplay/AttackColor"]
-unique_name_in_owner = true
+[node name="Note" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
+position = Vector2(118, 65)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Note2" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
+position = Vector2(118, 65)
+collision_layer = 0
+collision_mask = 0
+dir = 1
+
+[node name="Note3" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
+position = Vector2(118, 65)
+collision_layer = 0
+collision_mask = 0
+dir = 3
+
+[node name="Note4" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
+position = Vector2(118, 65)
+collision_layer = 0
+collision_mask = 0
+dir = 2
+
+[node name="Blank3" type="Label" parent="Gameplay/Gameplay"]
 layout_mode = 2
-text = "Attack Color "
-label_settings = ExtResource("5_5ftlp")
-
-[node name="AttackColorRect" type="ColorRect" parent="Gameplay/Gameplay/AttackColor"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(43, 0)
-layout_mode = 2
-
-[node name="Blank" type="Label" parent="Gameplay/Gameplay"]
-layout_mode = 2
-label_settings = ExtResource("5_5ftlp")
-
-[node name="BlockColor" type="HBoxContainer" parent="Gameplay/Gameplay"]
-layout_mode = 2
-
-[node name="BlockColorLable" type="Label" parent="Gameplay/Gameplay/BlockColor"]
-layout_mode = 2
-text = "Block Color   "
-label_settings = ExtResource("5_5ftlp")
-
-[node name="BlockColorRect" type="ColorRect" parent="Gameplay/Gameplay/BlockColor"]
-custom_minimum_size = Vector2(43, 0)
-layout_mode = 2
-
-[node name="Blank2" type="Label" parent="Gameplay/Gameplay"]
-layout_mode = 2
-text = "
-
-
-
-"
 label_settings = ExtResource("5_5ftlp")
 
 [node name="Symbols" type="Label" parent="Gameplay/Gameplay"]
@@ -118,45 +113,196 @@ button_group = ExtResource("8_324q5")
 text = "Arrow"
 icon_alignment = 1
 
-[node name="Blank3" type="Label" parent="Gameplay/Gameplay"]
+[node name="Blank" type="Label" parent="Gameplay/Gameplay"]
 layout_mode = 2
+text = "
+"
 label_settings = ExtResource("5_5ftlp")
 
-[node name="Demo" type="ColorRect" parent="Gameplay/Gameplay"]
-custom_minimum_size = Vector2(0, 130)
+[node name="AttackColor" type="HBoxContainer" parent="Gameplay/Gameplay"]
 layout_mode = 2
-color = Color(0, 0, 0, 0.184314)
+theme_override_constants/separation = 13
 
-[node name="Note" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
-position = Vector2(118, 65)
-
-[node name="Note2" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
-position = Vector2(118, 65)
-dir = 1
-
-[node name="Note3" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
-position = Vector2(118, 65)
-dir = 3
-
-[node name="Note4" parent="Gameplay/Gameplay/Demo" instance=ExtResource("8_q7bmn")]
-position = Vector2(118, 65)
-dir = 2
-
-[node name="Control" type="Control" parent="Gameplay/Gameplay"]
+[node name="AttackColorLable" type="Label" parent="Gameplay/Gameplay/AttackColor"]
 layout_mode = 2
+text = "Attack Color"
+label_settings = ExtResource("5_5ftlp")
+
+[node name="AttackColorRect" type="ColorRect" parent="Gameplay/Gameplay/AttackColor"]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 2
+focus_mode = 1
+color = Color(1, 0.521569, 0.521569, 1)
+
+[node name="AttackColorSelect" type="ColorRect" parent="Gameplay/Gameplay/AttackColor/AttackColorRect"]
+unique_name_in_owner = true
+visible = false
+z_index = -1
+custom_minimum_size = Vector2(49, 49)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -24.5
+offset_right = 24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="Gameplay/Gameplay/AttackColor/AttackColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme = ExtResource("6_pugfj")
+flat = true
+
+[node name="AttackColorReset" type="Button" parent="Gameplay/Gameplay/AttackColor"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(43, 0)
+layout_mode = 2
+theme = ExtResource("6_pugfj")
+icon = ExtResource("8_vvtdk")
+flat = true
+expand_icon = true
+
+[node name="Blank2" type="Label" parent="Gameplay/Gameplay"]
+layout_mode = 2
+text = "
+"
+label_settings = ExtResource("5_5ftlp")
+
+[node name="BlockColor" type="HBoxContainer" parent="Gameplay/Gameplay"]
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="BlockColorLable" type="Label" parent="Gameplay/Gameplay/BlockColor"]
+layout_mode = 2
+text = "Block Color  "
+label_settings = ExtResource("5_5ftlp")
+
+[node name="BlockColorRect" type="ColorRect" parent="Gameplay/Gameplay/BlockColor"]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 2
+focus_mode = 1
+color = Color(0.407843, 0.729412, 1, 1)
+
+[node name="BlockColorSelect" type="ColorRect" parent="Gameplay/Gameplay/BlockColor/BlockColorRect"]
+unique_name_in_owner = true
+z_index = -1
+custom_minimum_size = Vector2(49, 49)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -24.5
+offset_right = 24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="Gameplay/Gameplay/BlockColor/BlockColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme = ExtResource("6_pugfj")
+flat = true
+
+[node name="BlockColorReset" type="Button" parent="Gameplay/Gameplay/BlockColor"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(43, 0)
+layout_mode = 2
+theme = ExtResource("6_pugfj")
+icon = ExtResource("8_vvtdk")
+flat = true
+expand_icon = true
+
+[node name="Blank4" type="Label" parent="Gameplay/Gameplay"]
+layout_mode = 2
+text = "
+"
+label_settings = ExtResource("5_5ftlp")
+
+[node name="MaxNotes" type="Label" parent="Gameplay/Gameplay"]
+layout_mode = 2
+text = "Maximum Simultaneous Notes"
+label_settings = ExtResource("5_5ftlp")
+
+[node name="MaxSelect" type="HBoxContainer" parent="Gameplay/Gameplay"]
+layout_mode = 2
+
+[node name="3" type="CheckBox" parent="Gameplay/Gameplay/MaxSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_pugfj")
+button_group = ExtResource("9_b6mnm")
+text = "3"
+icon_alignment = 1
+
+[node name="2" type="CheckBox" parent="Gameplay/Gameplay/MaxSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_pugfj")
+button_group = ExtResource("9_b6mnm")
+text = "2"
+icon_alignment = 1
+
+[node name="1" type="CheckBox" parent="Gameplay/Gameplay/MaxSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_pugfj")
+button_group = ExtResource("9_b6mnm")
+text = "1"
+icon_alignment = 1
 
 [node name="ColorPicker" type="ColorPicker" parent="Gameplay"]
-offset_left = 502.0
-offset_top = 115.0
-offset_right = 800.0
-offset_bottom = 418.0
+unique_name_in_owner = true
+offset_left = 517.0
+offset_top = 429.0
+offset_right = 815.0
+offset_bottom = 732.0
+scale = Vector2(0.7, 0.7)
 edit_alpha = false
 can_add_swatches = false
 sampler_visible = false
 color_modes_visible = false
 sliders_visible = false
+hex_visible = false
 presets_visible = false
 
-[connection signal="button_down" from="Gameplay/Gameplay/SymbolSelect/Mixed" to="." method="set_note_symbols" binds= ["mixed"]]
-[connection signal="button_down" from="Gameplay/Gameplay/SymbolSelect/WASD" to="." method="set_note_symbols" binds= ["letter"]]
-[connection signal="button_down" from="Gameplay/Gameplay/SymbolSelect/Arrow" to="." method="set_note_symbols" binds= ["arrow"]]
+[connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/Mixed" to="." method="set_note_symbols" binds= ["mixed"]]
+[connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/WASD" to="." method="set_note_symbols" binds= ["letter"]]
+[connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/Arrow" to="." method="set_note_symbols" binds= ["arrow"]]
+[connection signal="pressed" from="Gameplay/Gameplay/AttackColor/AttackColorRect/Button" to="." method="_on_attack_color_edit_pressed"]
+[connection signal="pressed" from="Gameplay/Gameplay/AttackColor/AttackColorReset" to="." method="_on_attack_color_rest_pressed"]
+[connection signal="pressed" from="Gameplay/Gameplay/BlockColor/BlockColorRect/Button" to="." method="_on_block_color_edit_pressed"]
+[connection signal="pressed" from="Gameplay/Gameplay/BlockColor/BlockColorReset" to="." method="_on_block_color_reset_pressed"]
+[connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/3" to="." method="set_max" binds= [3]]
+[connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/2" to="." method="set_max" binds= [2]]
+[connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/1" to="." method="set_max" binds= [1]]
+[connection signal="color_changed" from="Gameplay/ColorPicker" to="." method="_on_color_picker_color_changed"]
