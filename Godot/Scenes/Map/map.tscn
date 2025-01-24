@@ -463,44 +463,42 @@ offset_bottom = 183.0
 visible = false
 position = Vector2(-702, -425)
 
-[node name="Win" type="Label" parent="."]
-visible = false
-z_index = 1
-offset_left = -262.0
-offset_top = -227.0
-offset_right = 247.0
-offset_bottom = -158.0
+[node name="Win" type="ColorRect" parent="."]
+offset_left = -1222.0
+offset_top = -669.0
+offset_right = 1221.0
+offset_bottom = 766.0
+color = Color(0, 0, 0, 0.247059)
+
+[node name="ColorRect" type="ColorRect" parent="Win"]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 353.0
+offset_right = 1520.0
+offset_bottom = 1038.0
+color = Color(0.933333, 0.862745, 0.701961, 1)
+
+[node name="Win" type="Label" parent="Win"]
+layout_mode = 0
+offset_left = 967.0
+offset_top = 397.0
+offset_right = 1476.0
+offset_bottom = 466.0
 text = "You Win!"
 label_settings = ExtResource("9_cuwvo")
 horizontal_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="Win"]
-z_index = -1
-layout_mode = 0
-offset_left = -39.0
-offset_top = -44.0
-offset_right = 553.0
-offset_bottom = 406.0
-color = Color(0.933333, 0.862745, 0.701961, 1)
-
 [node name="Stats" type="Label" parent="Win"]
 layout_mode = 0
-offset_top = 70.0
-offset_right = 508.0
-offset_bottom = 315.0
+offset_left = 967.0
+offset_top = 467.0
+offset_right = 1475.0
+offset_bottom = 712.0
 text = "you took 10 days to kill the dragon"
 label_settings = ExtResource("5_7xw65")
 horizontal_alignment = 1
 
-[node name="ColorRect2" type="ColorRect" parent="Win"]
-layout_mode = 0
-offset_left = -894.0
-offset_top = -470.0
-offset_right = 1926.0
-offset_bottom = 1405.0
-color = Color(1, 1, 1, 0)
-
-[connection signal="button_down" from="Switch" to="." method="_on_switch_button_down"]
+[connection signal="pressed" from="Switch" to="." method="_on_switch_pressed"]
 [connection signal="combat_done" from="Combat" to="." method="_on_combat_combat_done"]
 [connection signal="player_death" from="Combat" to="." method="_on_combat_player_death"]
 [connection signal="win" from="Combat" to="." method="_on_combat_win"]

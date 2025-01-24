@@ -81,5 +81,5 @@ horizontal_alignment = 1
 [node name="Parts" type="Node2D" parent="Main/PartDisplay"]
 position = Vector2(74, 100)
 
-[connection signal="button_down" from="Main/Left" to="." method="_on_left_button_down"]
-[connection signal="button_down" from="Main/Right" to="." method="_on_right_button_down"]
+[connection signal="pressed" from="Main/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="Main/Right" to="." method="_on_right_pressed"]

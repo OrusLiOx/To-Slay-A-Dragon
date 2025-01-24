@@ -41,7 +41,7 @@ func generate_inv():
 		child.mouse_entered.connect(set_item_display.bind(true,child))
 		child.mouse_exited.connect(set_item_display.bind(false,child))
 		
-		child.button_down.connect(equip.bind(i))
+		child.pressed.connect(equip.bind(i))
 	
 func update():
 	load_page(page)
@@ -164,8 +164,8 @@ func set_active(state):
 	$Main.visible = state
 
 # change page
-func _on_left_button_down():
+func _on_left_pressed():
 	load_page(page-1)
 
-func _on_right_button_down():
+func _on_right_pressed():
 	load_page(page+1)

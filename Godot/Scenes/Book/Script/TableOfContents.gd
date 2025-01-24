@@ -18,7 +18,7 @@ func update():
 			but.text_overrun_behavior = 1
 			but.flat = true
 			but.theme = load("res://Themes/UIButton.tres")
-			but.button_down.connect(clicked.bind(int(str(pageNums[y]+pageNumStart))))
+			but.pressed.connect(clicked.bind(int(str(pageNums[y]+pageNumStart))))
 			if val != arr[0]:
 				but.text = "     "
 			else:

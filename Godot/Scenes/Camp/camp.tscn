@@ -36,6 +36,14 @@ script = ExtResource("1_n2q1u")
 [node name="TempCampBackground" type="Sprite2D" parent="."]
 texture = ExtResource("2_53k2d")
 
+[node name="Book" parent="." instance=ExtResource("6_vkfu3")]
+offset_left = -601.0
+offset_top = 322.0
+offset_right = 154.0
+offset_bottom = 1331.0
+icon = ExtResource("14_d5asl")
+glowSprite = ExtResource("14_d5asl")
+
 [node name="Lizor" type="Button" parent="."]
 offset_left = -174.0
 offset_top = -253.0
@@ -104,14 +112,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_1a3ij")
 icon = ExtResource("10_kjxj7")
 flat = true
 
-[node name="Book" parent="." instance=ExtResource("6_vkfu3")]
-offset_left = -601.0
-offset_top = 322.0
-offset_right = -593.0
-offset_bottom = 330.0
-icon = ExtResource("14_d5asl")
-glowSprite = ExtResource("14_d5asl")
-
 [node name="Map" parent="." instance=ExtResource("6_vkfu3")]
 offset_left = -644.0
 offset_top = 256.0
@@ -122,14 +122,14 @@ icon = ExtResource("15_0qlce")
 expand_icon = true
 glowSprite = ExtResource("15_0qlce")
 
+[connection signal="pressed" from="Book" to="." method="_on_book_but_pressed"]
 [connection signal="mouse_entered" from="Lizor" to="." method="_on_lizor_mouse_entered"]
 [connection signal="mouse_exited" from="Lizor" to="." method="_on_lizor_mouse_exited"]
 [connection signal="mouse_entered" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_entered"]
 [connection signal="mouse_exited" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_exited"]
 [connection signal="mouse_entered" from="Blacksmith/GlowButton" to="Blacksmith" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Blacksmith/GlowButton" to="Blacksmith" method="_on_mouse_exited"]
-[connection signal="pressed" from="Blacksmith/GlowButton" to="Blacksmith" method="_on_button_down"]
-[connection signal="pressed" from="Anvil" to="." method="_on_anvil_button_down"]
+[connection signal="pressed" from="Blacksmith/GlowButton" to="Blacksmith" method="_on_pressed"]
+[connection signal="pressed" from="Anvil" to="." method="_on_anvil_pressed"]
 [connection signal="exit" from="ForgeMenu" to="." method="_on_forge_menu_exit"]
-[connection signal="pressed" from="Book" to="." method="_on_book_but_button_down"]
-[connection signal="pressed" from="Map" to="." method="_on_switch_button_down"]
+[connection signal="pressed" from="Map" to="." method="_on_switch_pressed"]

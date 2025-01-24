@@ -20,9 +20,7 @@ var noteSpeed
 var enemyDamage
 var playerDamage
 var player : Dictionary
-
-var accuracy
-var totalNotes
+var startTime
 var questReward
 
 # note stuff
@@ -62,13 +60,12 @@ func _process(delta):
 			partSprite.visible = true
 
 func start(quest):
+	$Exit.disabled = false
 	# generic
-	accuracy =0
-	totalNotes = 0
-	Stats.combats +=1
-	
 	killEnemy = false
 	noteSpeed = Settings.noteSpeed
+	
+	startTime = Time.get_ticks_msec()
 	
 	for col in gameCols:
 		col.speed = noteSpeed
@@ -121,25 +118,17 @@ func start(quest):
 	pass
 
 func end_minigame():
+	Stats.combatTime += Time.get_ticks_msec()-startTime
 	minigameActive = false
 	for bar in bars.get_children():
 		bar.queue_free()
 	for col in gameCols:
 		col.reset()
-	Stats.accuracy.x += accuracy
-	Stats.accuracy.y += totalNotes
-
-func update_accuracy(quality):
-	if !minigameActive:
-		return
-	totalNotes+=1
-	match quality:
-		"good": accuracy +=1
-		"ok": accuracy +=.5
 
 func hit_player(quality):
-	update_accuracy(quality)
 	var damage = enemyDamage
+	if Settings.infiniteHealth:
+		damage = 0
 	match quality:
 		"good":
 			$Health/You/LastHit.text = "PERFECT BLOCK"
@@ -159,6 +148,7 @@ func hit_player(quality):
 	
 	if player["hp"] <= 0:
 		end_minigame()
+		$Exit.disabled = true
 		timer.stop()
 		Stats.deaths += 1
 		await get_tree().create_timer(2).timeout
@@ -166,8 +156,9 @@ func hit_player(quality):
 		emit_signal("player_death")
 
 func hit_enemy(quality):
-	update_accuracy(quality)
 	var damage = playerDamage
+	if Settings.infiniteDamage:
+		damage = 9999
 	match quality:
 		"good":
 			damage *= 1.5
@@ -186,6 +177,8 @@ func hit_enemy(quality):
 	
 	if enemy.stats.hp <= 0:
 		end_minigame()
+		$Exit.disabled = true
+		Stats.wins += 1
 		killEnemy = true
 		timer.stop()
 
@@ -256,6 +249,7 @@ func spawn_note():
 func _on_timer_timeout():
 	if killEnemy:
 		if enemy.stats.type == "Dragon":
+			Stats.time = Time.get_ticks_msec()
 			emit_signal("win")
 			timer.stop()
 			return
@@ -265,7 +259,7 @@ func _on_timer_timeout():
 	else:
 		spawn_note()
 
-
 func _on_button_pressed():
 	end_minigame()
+	Stats.forfeits += 1
 	visible = false

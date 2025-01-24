@@ -18,31 +18,10 @@ func _ready():
 	for key in parts.keys():
 		for i in range(0,5):
 			parts[key].push_back(0)
-	parts['s'][0] = 2
-	parts['f'][0] = 1
-	parts['m'][0] = 5
-	
-	#add_equipment(Equipment.new("sword", [Part.new("m",0),Part.new("m",0)]))
-	#add_equipment(Equipment.new("sword", [Part.new("m",0),Part.new("m",0),Part.new("f",0)]))
-	#add_equipment(Equipment.new("sword", [Part.new("m",1),Part.new("m",1),Part.new("f",0)]))
-	#add_equipment(Equipment.new("sword", [Part.new("m",1),Part.new("m",1),Part.new("f",1)]))
-	#add_equipment(Equipment.new("sword", [Part.new("m",2),Part.new("m",2),Part.new("f",1)]))
-	#add_equipment(Equipment.new("sword", [Part.new("m",2),Part.new("m",2),Part.new("f",2)]))
-	#
-	#add_equipment(Equipment.new("armor", [Part.new("m",0),Part.new("s",0),Part.new("s",0)]))
-	#add_equipment(Equipment.new("armor", [Part.new("m",0),Part.new("s",0),Part.new("s",0),Part.new("f",0),Part.new("f",0)]))
-	#add_equipment(Equipment.new("armor", [Part.new("m",1),Part.new("s",0),Part.new("s",0),Part.new("f",0),Part.new("f",0)]))
-	#add_equipment(Equipment.new("armor", [Part.new("m",1),Part.new("s",1),Part.new("s",1),Part.new("f",0),Part.new("f",0)]))
-	#add_equipment(Equipment.new("armor", [Part.new("m",1),Part.new("s",1),Part.new("s",1),Part.new("f",1),Part.new("f",1)]))
-	#add_equipment(Equipment.new("armor", [Part.new("m",2),Part.new("s",1),Part.new("s",1),Part.new("f",1),Part.new("f",1)]))
-	#add_equipment(Equipment.new("armor", [Part.new("m",2),Part.new("s",2),Part.new("s",2),Part.new("f",1),Part.new("f",1)]))
-	#add_equipment(Equipment.new("armor", [Part.new("m",2),Part.new("s",2),Part.new("s",2),Part.new("f",2),Part.new("f",2)]))
-	#
 	
 	add_equipment(Equipment.new("sword", [Part.new("m",0),Part.new("m",0)]))
 	curWeapon = 0
 	curArmor = -1
-	pass # Replace with function body.
 
 func add_part(p : Part, amount : int):
 	var result = parts[p.type][p.rarity] + amount

@@ -87,15 +87,18 @@ func _process(_delta):
 			if good.find(ok.front()) == -1:
 				ok.front().queue_free()
 				emit_signal("hit","ok")
+				Stats.goodNotes += 1
 			else:
 				good.front().queue_free()
 				emit_signal("hit","good")
+				Stats.greatNotes += 1
 		else:
 			emit_signal("hit", "wrong")
 
 func _on_kill_area_entered(area):
 	if area.is_in_group("Note"):
 		emit_signal("hit", "miss")
+		Stats.missedNotes += 1
 	area.queue_free()
 
 func _on_ok_area_entered(area):

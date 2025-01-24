@@ -88,3 +88,9 @@ func _on_block_color_reset_pressed():
 ## MAX NOTES ##
 func set_max(maxi:int):
 	Settings.noteMax = maxi
+
+func _on_infinite_health_toggled(toggled_on):
+	Settings.infiniteHealth = toggled_on
+
+func _on_infinite_damage_toggled(toggled_on):
+	Settings.infiniteDamage = toggled_on

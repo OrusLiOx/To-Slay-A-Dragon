@@ -7,8 +7,10 @@ var combat
 signal toCamp()
 signal death()
 signal time()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Win.visible = false
 	combat = $Combat
 	
 	questData["main"]=$QuestName
@@ -20,10 +22,11 @@ func _ready():
 	questData["your stats"] = $QuestName/Node2D/You/YourData
 	quests = $Quests.get_children()
 	
+	
 	for quest in quests:
 		quest.mouse_entered.connect(show_quest_data.bind(quest))
 		quest.mouse_exited.connect(hide_quest_data)
-		quest.button_down.connect(start_quest.bind(quest))
+		quest.pressed.connect(start_quest.bind(quest))
 
 func start_quest(quest):
 	$HelpMenu.visible = false
@@ -67,7 +70,7 @@ func show_quest_data(quest):
 func hide_quest_data():
 	questData["main"].visible = false
 
-func _on_switch_button_down():
+func _on_switch_pressed():
 	visible = false
 
 func _on_combat_combat_done():
@@ -79,15 +82,4 @@ func _on_combat_player_death():
 func _on_combat_win():
 	combat.visible = false
 	$Win.visible = true
-	$Win/Stats.text = "You took " + str(Stats.totaltime/4.0) + " days\nto kill the dragon\n"
-	$Win/Stats.text += "\nTotal Combats: " + str(Stats.combats)
-	$Win/Stats.text += "\nDeaths: " + str(Stats.deaths)
-
-func _on_help_button_down():
-	if $HelpMenu.visible:
-		$HelpCombat.visible = true
-		$HelpMenu.visible = false
-	elif $HelpCombat.visible:
-		$HelpCombat.visible = false
-	else:
-		$HelpMenu.visible = true
+	$Win/Stats.text = Stats.stats_to_string()

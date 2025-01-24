@@ -16,8 +16,8 @@ func _ready():
 	armorDisplay.mouse_exited.connect(hide_equip_display)
 	weaponDisplay.mouse_exited.connect(hide_equip_display)
 	
-	armorDisplay.button_down.connect(pressed_equipment.bind("armor",armorDisplay))
-	weaponDisplay.button_down.connect(pressed_equipment.bind("weapon",weaponDisplay))
+	armorDisplay.pressed.connect(pressed_equipment.bind("armor",armorDisplay))
+	weaponDisplay.pressed.connect(pressed_equipment.bind("weapon",weaponDisplay))
 	
 	load_current()
 	hide_equip_display()

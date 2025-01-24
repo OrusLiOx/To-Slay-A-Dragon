@@ -100,6 +100,7 @@ icon = ExtResource("19_dcs5j")
 glowSprite = ExtResource("5_qnjho")
 
 [node name="TitlePage" type="Node2D" parent="."]
+visible = false
 
 [node name="TableOfContents" type="Node2D" parent="TitlePage"]
 position = Vector2(112, -310)
@@ -265,7 +266,6 @@ visible = false
 position = Vector2(-465, -440)
 
 [node name="Settings" parent="." instance=ExtResource("13_vb34e")]
-visible = false
 position = Vector2(-832, -467)
 
 [node name="UI" type="Node2D" parent="."]
@@ -303,7 +303,7 @@ offset_bottom = 500.0
 scale = Vector2(-1, 1)
 glowSprite = ExtResource("22_sovvs")
 
-[connection signal="button_down" from="Exit" to="." method="close"]
+[connection signal="pressed" from="Exit" to="." method="close"]
 [connection signal="pressed" from="Front/Home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="Back/Home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="BookBase/Home" to="." method="_on_home_pressed"]
@@ -313,5 +313,5 @@ glowSprite = ExtResource("22_sovvs")
 [connection signal="go_to_page" from="EnemyInfo/RegionTitlePage/Creatures/Mountain" to="." method="update_page"]
 [connection signal="go_to_page" from="EnemyInfo/MapTitlePage/Buttons" to="." method="update_page"]
 [connection signal="go_to_page" from="Help" to="." method="update_page"]
-[connection signal="pressed" from="UI/Left" to="." method="_on_left_button_down"]
-[connection signal="pressed" from="UI/Right" to="." method="_on_right_button_down"]
+[connection signal="pressed" from="UI/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="UI/Right" to="." method="_on_right_pressed"]

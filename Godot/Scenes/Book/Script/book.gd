@@ -200,10 +200,10 @@ func hide_all():
 	$Settings.visible = false
 	$EnemyInfo.visible = false
 
-func _on_left_button_down():
+func _on_left_pressed():
 	update_page(curPage-2)
 
-func _on_right_button_down():
+func _on_right_pressed():
 	update_page(curPage+2)
 
 func open(page = -1):

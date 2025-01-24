@@ -12,6 +12,8 @@ var noteMax:int
 
 var infiniteParts
 
+var infiniteDamage:bool
+var infiniteHealth:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,6 +28,9 @@ func set_to_default():
 
 	noteType = "mixed"
 	noteSyncBar = "none"
+	
+	infiniteHealth = false
+	infiniteDamage = false
 	
 func get_note_color(type):
 	if type == "block":

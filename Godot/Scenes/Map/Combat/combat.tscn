@@ -20,7 +20,7 @@ offset_right = 2055.0
 offset_bottom = 1121.0
 color = Color(0, 0, 0, 0.247059)
 
-[node name="Button" type="Button" parent="."]
+[node name="Exit" type="Button" parent="."]
 offset_left = -553.0
 offset_top = -355.0
 offset_right = 2240.0
@@ -150,7 +150,7 @@ isBlock = true
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_button_pressed"]
 [connection signal="hit" from="Minigame/cols/A" to="." method="hit_player"]
 [connection signal="hit" from="Minigame/cols/W" to="." method="hit_enemy"]
 [connection signal="hit" from="Minigame/cols/S" to="." method="hit_enemy"]

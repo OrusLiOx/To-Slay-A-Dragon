@@ -29,7 +29,7 @@ func _process(_delta):
 		heartParticles.amount_ratio = 0
 
 # open/close forge
-func _on_anvil_button_down():
+func _on_anvil_pressed():
 	blacksmith.active = false
 	forge.visible = true
 	forge.set_process(true)
@@ -49,9 +49,9 @@ func _on_lizor_mouse_exited():
 	touchingLizor =false
 
 # buttons
-func _on_switch_button_down():
+func _on_switch_pressed():
 	emit_signal("toMap")
 
-func _on_book_but_button_down():
+func _on_book_but_pressed():
 	emit_signal("openBook")
 	

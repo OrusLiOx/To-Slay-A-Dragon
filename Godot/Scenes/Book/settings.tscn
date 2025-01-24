@@ -280,6 +280,22 @@ button_group = ExtResource("9_b6mnm")
 text = "1"
 icon_alignment = 1
 
+[node name="Blank5" type="Label" parent="Gameplay/Gameplay"]
+layout_mode = 2
+text = "
+"
+label_settings = ExtResource("5_5ftlp")
+
+[node name="InfiniteHealth" type="CheckBox" parent="Gameplay/Gameplay"]
+layout_mode = 2
+theme = ExtResource("6_pugfj")
+text = "  Invincibility"
+
+[node name="InfiniteDamage" type="CheckBox" parent="Gameplay/Gameplay"]
+layout_mode = 2
+theme = ExtResource("6_pugfj")
+text = "  One Shot Enemies"
+
 [node name="ColorPicker" type="ColorPicker" parent="Gameplay"]
 unique_name_in_owner = true
 offset_left = 517.0
@@ -305,4 +321,6 @@ presets_visible = false
 [connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/3" to="." method="set_max" binds= [3]]
 [connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/2" to="." method="set_max" binds= [2]]
 [connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/1" to="." method="set_max" binds= [1]]
+[connection signal="toggled" from="Gameplay/Gameplay/InfiniteHealth" to="." method="_on_infinite_health_toggled"]
+[connection signal="toggled" from="Gameplay/Gameplay/InfiniteDamage" to="." method="_on_infinite_damage_toggled"]
 [connection signal="color_changed" from="Gameplay/ColorPicker" to="." method="_on_color_picker_color_changed"]

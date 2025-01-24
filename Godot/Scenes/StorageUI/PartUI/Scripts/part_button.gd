@@ -32,7 +32,7 @@ func update():
 		$PartSprite.modulate.a = 1
 		$Quantity.modulate.a = 1
 
-func _on_button_down():
+func _on_pressed():
 	emit_signal("use",part)
 	update()
 	pass # Replace with function body.

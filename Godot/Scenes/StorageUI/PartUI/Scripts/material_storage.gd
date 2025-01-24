@@ -20,7 +20,7 @@ func _ready():
 			child.mouse_entered.connect(set_item_display.bind(true,child.part))
 			child.mouse_exited.connect(set_item_display.bind(false,child.part))
 			
-			child.button_down.connect(emit_signal.bind("use", child.part))
+			child.pressed.connect(emit_signal.bind("use", child.part))
 		x +=125
 	pass # Replace with function body.
 

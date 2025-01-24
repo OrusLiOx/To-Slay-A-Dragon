@@ -38,7 +38,7 @@ func _process(delta):
 	
 
 # trigger dialogue when clicked
-func _on_button_down():
+func _on_pressed():
 	if !active:
 		return
 		

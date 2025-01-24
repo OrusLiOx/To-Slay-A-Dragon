@@ -25,7 +25,7 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Exit"):
-		_on_exit_button_down()
+		_on_exit_pressed()
 	if Input.is_action_just_pressed("Craft") and !builtEquip.disabled:
 		craft_equip()
 	if Input.is_action_just_pressed("Clear"):
@@ -43,7 +43,7 @@ func generate_blueprint_base():
 		selectedParts[0].push_back(child)
 		child.get_child(1).visible = false
 		
-		child.button_down.connect(return_material.bind(child))
+		child.pressed.connect(return_material.bind(child))
 	
 	for x in range(0,2):
 		var child = partButScene.instantiate()
@@ -54,9 +54,10 @@ func generate_blueprint_base():
 		selectedParts[1].push_back(child)
 		child.get_child(1).visible = false
 		
-		child.button_down.connect(return_material.bind(child))
+		child.pressed.connect(return_material.bind(child))
 	
 	builtEquip = equipButScene.instantiate()
+	builtEquip.pressed.connect(craft_equip)
 	$Main/ActiveBlueprint.add_child(builtEquip)
 	builtEquip.position = Vector2(parent.position.x,parent.position.y+250)
 	builtEquip.visible = true
@@ -124,7 +125,7 @@ func set_blueprint_slot(r, c, t):
 func open():
 	load_blueprint(activeBlueprint)
 
-func _on_exit_button_down():
+func _on_exit_pressed():
 	for c in range(0,4):
 		set_blueprint_slot(0,c,"")
 	for c in range(0,2):
@@ -242,9 +243,6 @@ func craft_equip():
 				partBut.update()
 	update_equip_stats()
 	$Main/Equipped.load_current()
-
-func _on_help_button_down():
-	$HelpStuff.visible = !$HelpStuff.visible
 
 func clicked_equipment(type, equip):
 	# load corresponding blueprint
