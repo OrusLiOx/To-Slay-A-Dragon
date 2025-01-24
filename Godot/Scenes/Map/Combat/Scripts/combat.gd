@@ -30,6 +30,9 @@ var badNote :Array
 var notes
 var bars
 
+var mimic
+var chest
+
 signal combat_done()
 signal player_death()
 signal win()
@@ -42,7 +45,9 @@ func _ready():
 	enemyHealth = $Health/Enemy/Current
 	gameCols = $Minigame/cols.get_children()
 	bars = $Minigame/Bars
-	pass # Replace with function body.
+	
+	mimic = Enemy.new("Mimic")
+	chest = Enemy.new("Chest")
 
 func _process(delta):
 	if killEnemy:
@@ -89,8 +94,18 @@ func start(quest):
 			gameCols[3].position.x = 300
 	
 	# Enemy stuff
-	$Health/Enemy/Name.text = quest.enemy
-	enemy.set_enemy(quest.questEnemy)
+	var enemyName = quest.enemy
+	var enemyInst = quest.questEnemy
+	if enemyName == "Chest?":
+		if randi_range(1,100)==1:
+			enemyName = "Chest"
+			enemyInst = chest
+		else:
+			enemyName = "Mimic"
+			enemyInst = mimic
+			
+	$Health/Enemy/Name.text = enemyName
+	enemy.set_enemy(enemyInst)
 	enemy.stats.heal()
 	enemy.modulate.a = 1
 	

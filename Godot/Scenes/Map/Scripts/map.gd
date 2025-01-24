@@ -29,8 +29,6 @@ func _ready():
 		quest.pressed.connect(start_quest.bind(quest))
 
 func start_quest(quest):
-	$HelpMenu.visible = false
-	$HelpCombat.visible = false
 	emit_signal("time")
 	combat.visible = true
 	questData["main"].visible = false

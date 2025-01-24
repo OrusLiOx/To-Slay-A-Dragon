@@ -13,11 +13,6 @@ func _init(t :String):
 
 func set_enemy(t : String):
 	type = t
-	if type == "Chest?":
-		if randf()<.1:
-			type = "Chest"
-		else:
-			type = "Mimic"
 	match(type):
 		"Goblin": # 5, 10
 			attack = 5
@@ -100,7 +95,7 @@ func set_enemy(t : String):
 			noteDelayMin = .7
 			noteDelayMax = .7
 			weight["attack"] = 1
-		"Mimic": # 50, 95
+		"Mimic", "Chest?": # 50, 95
 			attack = 20
 			maxHp = 450
 			noteDelayMin = .3

@@ -1,10 +1,10 @@
 extends Button
 
-@export var part :String
+@export var part : String
 @export var enemy : String
 @export var dataDisplayPosition : Vector2
 var questMaterial : Part
-var questEnemy :Enemy
+var questEnemy : Enemy
 
 signal show_quest_data(quest)
 signal hide_quest_data()
