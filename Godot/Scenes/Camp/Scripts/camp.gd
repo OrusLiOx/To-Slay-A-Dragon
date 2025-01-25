@@ -1,6 +1,5 @@
 extends Node2D
 
-var blacksmith
 var forge : Node2D
 
 var touchingLizor : bool
@@ -15,7 +14,6 @@ signal openBook()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	heartParticles = $Lizor/GPUParticles2D
-	blacksmith = $Blacksmith
 	forge = $ForgeMenu
 	book = $Book
 	
@@ -30,14 +28,11 @@ func _process(_delta):
 
 # open/close forge
 func _on_anvil_pressed():
-	blacksmith.active = false
 	forge.visible = true
 	forge.set_process(true)
 	forge.open()
 
 func _on_forge_menu_exit():
-	blacksmith.active = true
-	
 	forge.visible = false
 	forge.set_process(false)
 

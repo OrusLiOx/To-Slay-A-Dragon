@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwgh5bcbxpkpj"]
+[gd_scene load_steps=6 format=3 uid="uid://dwgh5bcbxpkpj"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_gtsxp"]
-[ext_resource type="PackedScene" uid="uid://wstkkynamdel" path="res://Scenes/Camp/sky.tscn" id="2_kt1cm"]
 [ext_resource type="PackedScene" uid="uid://bmx0jemjixann" path="res://Scenes/Camp/camp.tscn" id="3_0baxm"]
 [ext_resource type="PackedScene" uid="uid://3po5cq6p7ujc" path="res://Scenes/Map/map.tscn" id="4_x1pbn"]
 [ext_resource type="PackedScene" uid="uid://tr660l4oomhm" path="res://Scenes/Book/book.tscn" id="5_3fu5v"]
@@ -9,8 +8,6 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_gtsxp")
-
-[node name="Sky" parent="." instance=ExtResource("2_kt1cm")]
 
 [node name="Camp" parent="." instance=ExtResource("3_0baxm")]
 z_index = 2

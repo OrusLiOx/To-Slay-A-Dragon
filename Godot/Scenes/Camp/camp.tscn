@@ -1,20 +1,22 @@
-[gd_scene load_steps=19 format=3 uid="uid://bmx0jemjixann"]
+[gd_scene load_steps=20 format=3 uid="uid://bmx0jemjixann"]
 
 [ext_resource type="Script" path="res://Scenes/Camp/Scripts/camp.gd" id="1_n2q1u"]
 [ext_resource type="Texture2D" uid="uid://bedtgjo8m3qhr" path="res://Sprites/camp/campBackground.png" id="2_53k2d"]
 [ext_resource type="Texture2D" uid="uid://b8r30k02j33i2" path="res://Sprites/camp/lizor.png" id="3_dstkl"]
 [ext_resource type="Texture2D" uid="uid://cln4p7b7ixb78" path="res://Sprites/camp/heart.png" id="4_7ukv5"]
-[ext_resource type="Script" path="res://Scenes/Camp/Scripts/Blacksmith.gd" id="5_hyfrg"]
+[ext_resource type="Texture2D" uid="uid://bwg7gjk6dm55i" path="res://Sprites/camp/lizardShadow.png" id="5_f53xq"]
 [ext_resource type="Texture2D" uid="uid://b26uuh4doeuuf" path="res://Sprites/camp/anvil.png" id="5_lg7wt"]
-[ext_resource type="Texture2D" uid="uid://csk4rdey087lw" path="res://Sprites/camp/blacksmith.png" id="6_h7npj"]
-[ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="6_tw031"]
 [ext_resource type="PackedScene" uid="uid://bnj4eo8jhgckt" path="res://Scenes/glow_button.tscn" id="6_vkfu3"]
 [ext_resource type="Texture2D" uid="uid://ddmy0ntrchc50" path="res://Sprites/camp/anvilGlow.png" id="6_xnutx"]
 [ext_resource type="PackedScene" uid="uid://b7rsad5y1w38s" path="res://Scenes/Camp/forge_menu.tscn" id="7_f5mex"]
-[ext_resource type="Texture2D" uid="uid://c1p32ma6xw854" path="res://Sprites/camp/blacksmithGlow.png" id="9_ut1ap"]
-[ext_resource type="Texture2D" uid="uid://uyp1u80u77t6" path="res://Sprites/camp/campfire.png" id="10_kjxj7"]
-[ext_resource type="Texture2D" uid="uid://du82lmn8mf8et" path="res://Sprites/book/closedFront.png" id="14_d5asl"]
-[ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map/Map.png" id="15_0qlce"]
+[ext_resource type="Texture2D" uid="uid://bc7lsfxl647h4" path="res://Sprites/camp/table.png" id="8_1opn5"]
+[ext_resource type="Texture2D" uid="uid://wek2op3n1ryp" path="res://Sprites/camp/anvilShadow.png" id="8_1x7wa"]
+[ext_resource type="Texture2D" uid="uid://ca2vs6aw4e02q" path="res://Sprites/camp/bookShadow.png" id="11_1dk2m"]
+[ext_resource type="Texture2D" uid="uid://bn38b027j30yx" path="res://Sprites/camp/mapShadow.png" id="14_b1llp"]
+[ext_resource type="Texture2D" uid="uid://jh826jcd8oly" path="res://Sprites/camp/book.png" id="14_rq3ik"]
+[ext_resource type="Texture2D" uid="uid://b5bwd087g7in" path="res://Sprites/camp/bookGlow.png" id="15_xmp4y"]
+[ext_resource type="Texture2D" uid="uid://rp3ycntvtx8a" path="res://Sprites/camp/map.png" id="16_axvbe"]
+[ext_resource type="Texture2D" uid="uid://jsrkws4x21gd" path="res://Sprites/camp/mapGlow.png" id="17_0r28b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hpgy"]
 
@@ -28,27 +30,18 @@ gravity = Vector3(0, 0, 0)
 hue_variation_min = -1.0
 hue_variation_max = -0.9
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1a3ij"]
-
 [node name="Camp" type="Node2D"]
 script = ExtResource("1_n2q1u")
 
 [node name="TempCampBackground" type="Sprite2D" parent="."]
+z_index = -10
 texture = ExtResource("2_53k2d")
 
-[node name="Book" parent="." instance=ExtResource("6_vkfu3")]
-offset_left = -601.0
-offset_top = 322.0
-offset_right = 154.0
-offset_bottom = 1331.0
-icon = ExtResource("14_d5asl")
-glowSprite = ExtResource("14_d5asl")
-
 [node name="Lizor" type="Button" parent="."]
-offset_left = -174.0
-offset_top = -253.0
-offset_right = 934.0
-offset_bottom = 455.0
+offset_left = -126.0
+offset_top = -231.0
+offset_right = 982.0
+offset_bottom = 477.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8hpgy")
 icon = ExtResource("3_dstkl")
 flat = true
@@ -59,77 +52,72 @@ amount = 10
 process_material = SubResource("ParticleProcessMaterial_yjw64")
 texture = ExtResource("4_7ukv5")
 
-[node name="Blacksmith" type="Node2D" parent="."]
-script = ExtResource("5_hyfrg")
-
-[node name="Dialogue" type="Label" parent="Blacksmith"]
-z_index = 1
-offset_left = -360.0
-offset_top = -66.0
-offset_right = 70.0
-offset_bottom = 88.0
-text = "Be careful if you see any other magma lizards. They aren't usually so friendly."
-label_settings = ExtResource("6_tw031")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-justification_flags = 0
-
-[node name="Backdrop" type="ColorRect" parent="Blacksmith/Dialogue"]
+[node name="LizardShadow" type="Sprite2D" parent="Lizor"]
+modulate = Color(1, 1, 1, 0.156863)
 z_index = -1
-layout_mode = 0
-offset_right = 430.0
-offset_bottom = 154.0
-color = Color(0.933333, 0.862745, 0.701961, 1)
-
-[node name="GlowButton" parent="Blacksmith" instance=ExtResource("6_vkfu3")]
-z_index = 1
-offset_right = 208.0
-offset_bottom = 313.0
-icon = ExtResource("6_h7npj")
-glowSprite = ExtResource("9_ut1ap")
+position = Vector2(538, 449)
+texture = ExtResource("5_f53xq")
 
 [node name="Anvil" parent="." instance=ExtResource("6_vkfu3")]
-z_index = 2
-offset_left = 11.0
-offset_top = 199.0
-offset_right = 331.0
-offset_bottom = 386.0
+offset_left = -615.0
+offset_top = -111.0
+offset_right = -107.0
+offset_bottom = 497.0
 icon = ExtResource("5_lg7wt")
 glowSprite = ExtResource("6_xnutx")
 
-[node name="ForgeMenu" parent="." instance=ExtResource("7_f5mex")]
-visible = false
-z_index = 2
-position = Vector2(-960, -540)
+[node name="AnvilShadow" type="Sprite2D" parent="Anvil"]
+modulate = Color(1, 1, 1, 0.164706)
+z_index = -1
+position = Vector2(318, 497)
+texture = ExtResource("8_1x7wa")
 
-[node name="fire" type="Button" parent="."]
-offset_left = -342.0
-offset_top = 194.0
-offset_right = -56.0
-offset_bottom = 471.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_1a3ij")
-icon = ExtResource("10_kjxj7")
-flat = true
+[node name="Table" type="Sprite2D" parent="."]
+position = Vector2(517, 432)
+texture = ExtResource("8_1opn5")
+
+[node name="Book" parent="." instance=ExtResource("6_vkfu3")]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 234.0
+offset_top = 353.0
+offset_right = 472.0
+offset_bottom = 544.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("14_rq3ik")
+glowSprite = ExtResource("15_xmp4y")
+
+[node name="BookShadow" type="Sprite2D" parent="Book"]
+modulate = Color(1, 1, 1, 0.14902)
+z_index = -1
+position = Vector2(215, 105)
+texture = ExtResource("11_1dk2m")
 
 [node name="Map" parent="." instance=ExtResource("6_vkfu3")]
-offset_left = -644.0
-offset_top = 256.0
-offset_right = -419.0
-offset_bottom = 385.0
-rotation = -0.261799
-icon = ExtResource("15_0qlce")
-expand_icon = true
-glowSprite = ExtResource("15_0qlce")
+z_index = 1
+offset_left = 553.0
+offset_top = 364.0
+offset_right = 861.0
+offset_bottom = 527.0
+icon = ExtResource("16_axvbe")
+glowSprite = ExtResource("17_0r28b")
 
-[connection signal="pressed" from="Book" to="." method="_on_book_but_pressed"]
+[node name="MapShadow" type="Sprite2D" parent="Map"]
+modulate = Color(1, 1, 1, 0.192157)
+z_index = -1
+position = Vector2(159, 82)
+texture = ExtResource("14_b1llp")
+
+[node name="ForgeMenu" parent="." instance=ExtResource("7_f5mex")]
+visible = false
+position = Vector2(-960, -540)
+
 [connection signal="mouse_entered" from="Lizor" to="." method="_on_lizor_mouse_entered"]
 [connection signal="mouse_exited" from="Lizor" to="." method="_on_lizor_mouse_exited"]
-[connection signal="mouse_entered" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_entered"]
-[connection signal="mouse_exited" from="Blacksmith/Dialogue/Backdrop" to="Blacksmith" method="_on_backdrop_mouse_exited"]
-[connection signal="mouse_entered" from="Blacksmith/GlowButton" to="Blacksmith" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Blacksmith/GlowButton" to="Blacksmith" method="_on_mouse_exited"]
-[connection signal="pressed" from="Blacksmith/GlowButton" to="Blacksmith" method="_on_pressed"]
 [connection signal="pressed" from="Anvil" to="." method="_on_anvil_pressed"]
-[connection signal="exit" from="ForgeMenu" to="." method="_on_forge_menu_exit"]
+[connection signal="pressed" from="Book" to="." method="_on_book_but_pressed"]
 [connection signal="pressed" from="Map" to="." method="_on_switch_pressed"]
+[connection signal="exit" from="ForgeMenu" to="." method="_on_forge_menu_exit"]
