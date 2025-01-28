@@ -13,7 +13,7 @@ signal openBook()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	heartParticles = $Lizor/GPUParticles2D
+	heartParticles = $Lizard/Lizor/GPUParticles2D
 	forge = $ForgeMenu
 	book = $Book
 	
@@ -28,6 +28,7 @@ func _process(_delta):
 
 # open/close forge
 func _on_anvil_pressed():
+	Audio.play("AnvilClang")
 	forge.visible = true
 	forge.set_process(true)
 	forge.open()

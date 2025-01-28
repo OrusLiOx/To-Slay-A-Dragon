@@ -86,8 +86,8 @@ func _on_block_color_reset_pressed():
 	set_color("block", Color(Settings.defaultBlockColor))
 
 ## MAX NOTES ##
-func set_max(maxi:int):
-	Settings.noteMax = maxi
+func set_max(maximum:int):
+	Settings.noteMax = maximum
 
 func _on_infinite_health_toggled(toggled_on):
 	Settings.infiniteHealth = toggled_on

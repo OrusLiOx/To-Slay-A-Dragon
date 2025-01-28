@@ -65,6 +65,7 @@ func _process(delta):
 			partSprite.visible = true
 
 func start(quest):
+	%DamageEffect.modulate.a = 0
 	$Exit.disabled = false
 	# generic
 	killEnemy = false
@@ -144,31 +145,41 @@ func hit_player(quality):
 	var damage = enemyDamage
 	if Settings.infiniteHealth:
 		damage = 0
+	var alpha = .3
 	match quality:
 		"good":
 			$Health/You/LastHit.text = "PERFECT BLOCK"
+			Audio.play("PlayerBlock")
 			return
 		"ok":
 			damage /= 2
 			$Health/You/LastHit.text = str(damage) + " BLOCK"
+			Audio.play("PlayerBlock")
 		"miss":
 			$Health/You/LastHit.text = str(damage)
+			Audio.play("PlayerInjury")
+			alpha = 1
 		"wrong":
 			return
 	
 		
 	player["hp"] -= damage
-	
 	$Health/You/Current.size.x = max(0,$Health/You.size.x * player["hp"]/player["maxHp"])
 	
 	if player["hp"] <= 0:
+		alpha = 1
 		end_minigame()
 		$Exit.disabled = true
 		timer.stop()
 		Stats.deaths += 1
+		var tween = get_tree().create_tween()
+		tween.tween_property(%DamageEffect, "modulate:a", 1, .1)
 		await get_tree().create_timer(2).timeout
 		visible = false
-		emit_signal("player_death")
+	else:
+		var tween = get_tree().create_tween()
+		tween.tween_property(%DamageEffect, "modulate:a", alpha, .1)
+		tween.tween_callback(fade_hit_effect)
 
 func hit_enemy(quality):
 	var damage = playerDamage
@@ -178,8 +189,10 @@ func hit_enemy(quality):
 		"good":
 			damage *= 1.5
 			$Health/Enemy/LastHit.text = str(damage) + " CRIT"
+			Audio.play("PlayerAttack")
 		"ok":
 			$Health/Enemy/LastHit.text = str(damage)
+			Audio.play("PlayerAttack")
 		"miss":
 			return
 		"wrong":
@@ -198,7 +211,7 @@ func hit_enemy(quality):
 		timer.stop()
 
 func spawn_note():
-	var spawnedNotes :Array
+	var spawnedNotes :Array = []
 	var action = enemy.stats.pick_action()
 	
 	if Settings.noteMax == 1:
@@ -278,3 +291,7 @@ func _on_button_pressed():
 	end_minigame()
 	Stats.forfeits += 1
 	visible = false
+
+func fade_hit_effect():
+	var tween = get_tree().create_tween()
+	tween.tween_property(%DamageEffect, "modulate:a", 0, .1)

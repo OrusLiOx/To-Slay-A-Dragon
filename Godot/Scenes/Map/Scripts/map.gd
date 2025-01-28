@@ -81,3 +81,6 @@ func _on_combat_win():
 	combat.visible = false
 	$Win.visible = true
 	$Win/Stats.text = Stats.stats_to_string()
+
+func _on_visibility_changed():
+	Audio.play("PageFlip")

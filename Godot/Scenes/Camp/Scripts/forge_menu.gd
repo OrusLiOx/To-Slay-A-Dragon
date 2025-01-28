@@ -141,6 +141,7 @@ func _on_storage_use(part):
 	add_material(part, true)
 
 func add_material(part, remove):
+	Audio.play("AnvilUI")
 	# look for empty slot
 	for arr in selectedParts:
 		for partBut in arr:
@@ -171,6 +172,7 @@ func add_material(part, remove):
 	update_equip_stats()
 
 func return_material(partBut):
+	Audio.play("AnvilUI")
 	Storage.add_part(partBut.part, 1)
 	partBut.set_part(Part.new(partBut.part.type,-1))
 	partBut.update()
@@ -221,6 +223,7 @@ func update_equip_stats():
 
 # finalize crafting
 func craft_equip():
+	Audio.play("AnvilClang")
 	# disassemble current
 	var equip
 	if activeBlueprint.contains("armor"):
@@ -260,7 +263,7 @@ func clicked_equipment(type, equip):
 	
 	if equip == null:
 		return
-		
+	Audio.play("AnvilUI")
 	# add all parts
 	for part in equip.parts:
 		if part.rarity >=0:

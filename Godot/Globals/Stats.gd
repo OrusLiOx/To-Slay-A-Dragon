@@ -30,19 +30,19 @@ func reset():
 func time_to_string(total:int):
 	var hours:int = total/3600000
 	total %= 3600000
-	var min:int = total/60000
+	var minutes:int = total/60000
 	total %= 60000
 	var sec:float = total/1000.0
 	
-	min %= 60
+	minutes %= 60
 	
 	var timeString = ""
 	if hours != 0:
 		timeString += str(hours) +":"
-		if min < 9:
+		if minutes < 9:
 			timeString += "0"
 	
-	timeString += str(min) +":"
+	timeString += str(minutes) +":"
 	if sec < 9:
 		timeString += "0"
 	timeString += str(sec)

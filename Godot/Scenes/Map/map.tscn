@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://3po5cq6p7ujc"]
+[gd_scene load_steps=10 format=3 uid="uid://3po5cq6p7ujc"]
 
 [ext_resource type="Script" path="res://Scenes/Map/Scripts/map.gd" id="1_bqrdo"]
 [ext_resource type="Texture2D" uid="uid://c3w108nm4f2sv" path="res://Sprites/Map/Map.png" id="2_dmyx0"]
 [ext_resource type="PackedScene" uid="uid://b0781ipcpmjaf" path="res://Scenes/Map/quest.tscn" id="3_d64i7"]
 [ext_resource type="LabelSettings" uid="uid://dw18pcv0wtiom" path="res://Themes/BodyLabel.tres" id="5_7xw65"]
 [ext_resource type="PackedScene" uid="uid://c6gdoil0o70r1" path="res://Scenes/StorageUI/PartUI/part_button.tscn" id="6_epqax"]
+[ext_resource type="Texture2D" uid="uid://d1h1bcwdcv5vn" path="res://Sprites/UI/statIcons.png" id="7_cjl5g"]
 [ext_resource type="PackedScene" uid="uid://bxfmkq8bgumev" path="res://Scenes/Map/Combat/combat.tscn" id="7_fpvvu"]
 [ext_resource type="LabelSettings" uid="uid://cb4eflp81bok5" path="res://Themes/HeaderLabel.tres" id="9_cuwvo"]
 [ext_resource type="Texture2D" uid="uid://etvfwjmynpus" path="res://Sprites/UI/Equipment.png" id="10_uiadi"]
@@ -173,10 +174,9 @@ vframes = 6
 modulate = Color(0, 0, 0, 1)
 position = Vector2(58, 100)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_uiadi")
-hframes = 8
-vframes = 6
-frame = 40
+texture = ExtResource("7_cjl5g")
+hframes = 3
+frame = 2
 
 [node name="EnemyData" type="Label" parent="QuestName/Node2D/Enemy"]
 layout_mode = 0
@@ -219,10 +219,9 @@ vframes = 6
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-33, 101)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_uiadi")
-hframes = 8
-vframes = 6
-frame = 40
+texture = ExtResource("7_cjl5g")
+hframes = 3
+frame = 2
 
 [node name="ColorRect" type="ColorRect" parent="QuestName"]
 clip_children = 2
@@ -278,6 +277,7 @@ text = "you took 10 days to kill the dragon"
 label_settings = ExtResource("5_7xw65")
 horizontal_alignment = 1
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Switch" to="." method="_on_switch_pressed"]
 [connection signal="combat_done" from="Combat" to="." method="_on_combat_combat_done"]
 [connection signal="player_death" from="Combat" to="." method="_on_combat_player_death"]

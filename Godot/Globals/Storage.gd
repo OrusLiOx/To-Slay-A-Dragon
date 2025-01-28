@@ -19,7 +19,7 @@ func _ready():
 		for i in range(0,5):
 			parts[key].push_back(0)
 	
-	add_equipment(Equipment.new("sword", [Part.new("m",0),Part.new("m",0)]))
+	add_equipment(Equipment.new("sword", [Part.new("m",0)]))
 	curWeapon = 0
 	curArmor = -1
 

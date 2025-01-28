@@ -55,7 +55,7 @@ func _ready():
 	$TitlePage/TableOfContents.headers = heads
 
 	
-	var arr:Array[int]
+	var arr:Array[int] = []
 	
 	arr.push_back(start["settings"])
 	

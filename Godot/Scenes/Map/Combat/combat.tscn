@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxfmkq8bgumev"]
+[gd_scene load_steps=9 format=3 uid="uid://bxfmkq8bgumev"]
 
 [ext_resource type="Script" path="res://Scenes/Map/Combat/Scripts/combat.gd" id="1_pbo0u"]
 [ext_resource type="PackedScene" uid="uid://bs6ej35oeq114" path="res://Scenes/Map/Combat/note.tscn" id="2_kjpon"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://coa8b87kpurhs" path="res://Scenes/Map/Combat/bar.tscn" id="3_dp415"]
 [ext_resource type="PackedScene" uid="uid://bnvwxkdgsp4vp" path="res://Scenes/StorageUI/PartUI/part_sprite.tscn" id="4_6gjpa"]
 [ext_resource type="PackedScene" uid="uid://dmylbepggimag" path="res://Scenes/Map/Combat/enemy_sprite.tscn" id="5_d7coi"]
+[ext_resource type="Texture2D" uid="uid://535qcuttsjk8" path="res://Sprites/UI/circleGradientCorner.png" id="6_1udxj"]
 [ext_resource type="PackedScene" uid="uid://cefk5ifs7rf4r" path="res://Scenes/Map/Combat/minigame_column.tscn" id="6_7xsl3"]
 
 [node name="Combat" type="Node2D"]
@@ -34,6 +35,7 @@ offset_bottom = 762.0
 color = Color(0.933333, 0.862745, 0.701961, 1)
 
 [node name="EnemyScreen" type="ColorRect" parent="."]
+clip_children = 2
 offset_left = 20.0
 offset_top = 16.0
 offset_right = 898.0
@@ -49,6 +51,27 @@ position = Vector2(442, 328)
 [node name="Enemy" parent="EnemyScreen" node_paths=PackedStringArray("background") instance=ExtResource("5_d7coi")]
 position = Vector2(439, 361.5)
 background = NodePath("../background")
+
+[node name="DamageEffect" type="Sprite2D" parent="EnemyScreen"]
+unique_name_in_owner = true
+modulate = Color(0.729412, 0, 0, 0)
+position = Vector2(147, 131)
+texture = ExtResource("6_1udxj")
+
+[node name="Sprite2D2" type="Sprite2D" parent="EnemyScreen/DamageEffect"]
+position = Vector2(500, 0)
+rotation = 1.5708
+texture = ExtResource("6_1udxj")
+
+[node name="Sprite2D3" type="Sprite2D" parent="EnemyScreen/DamageEffect"]
+position = Vector2(500, 500)
+rotation = 3.14159
+texture = ExtResource("6_1udxj")
+
+[node name="Sprite2D4" type="Sprite2D" parent="EnemyScreen/DamageEffect"]
+position = Vector2(0, 500)
+rotation = -1.5708
+texture = ExtResource("6_1udxj")
 
 [node name="Health" type="Node2D" parent="."]
 position = Vector2(913, 573)

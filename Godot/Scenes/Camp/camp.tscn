@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bmx0jemjixann"]
+[gd_scene load_steps=19 format=3 uid="uid://bmx0jemjixann"]
 
 [ext_resource type="Script" path="res://Scenes/Camp/Scripts/camp.gd" id="1_n2q1u"]
 [ext_resource type="Texture2D" uid="uid://bedtgjo8m3qhr" path="res://Sprites/camp/campBackground.png" id="2_53k2d"]
@@ -18,8 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://rp3ycntvtx8a" path="res://Sprites/camp/map.png" id="16_axvbe"]
 [ext_resource type="Texture2D" uid="uid://jsrkws4x21gd" path="res://Sprites/camp/mapGlow.png" id="17_0r28b"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hpgy"]
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yjw64"]
 particle_flag_disable_z = true
 inherit_velocity_ratio = 30.0
@@ -37,26 +35,29 @@ script = ExtResource("1_n2q1u")
 z_index = -10
 texture = ExtResource("2_53k2d")
 
-[node name="Lizor" type="Button" parent="."]
-offset_left = -126.0
-offset_top = -231.0
-offset_right = 982.0
-offset_bottom = 477.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8hpgy")
-icon = ExtResource("3_dstkl")
-flat = true
+[node name="Lizard" type="Sprite2D" parent="."]
+position = Vector2(449, 118)
+texture = ExtResource("3_dstkl")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Lizor"]
+[node name="LizardShadow" type="Sprite2D" parent="Lizard"]
+modulate = Color(1, 1, 1, 0.156863)
+z_index = -1
+position = Vector2(28, 97)
+texture = ExtResource("5_f53xq")
+
+[node name="Lizor" type="Control" parent="Lizard"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -501.0
+offset_top = -296.0
+offset_right = 499.0
+offset_bottom = 109.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Lizard/Lizor"]
 position = Vector2(180, 155)
 amount = 10
 process_material = SubResource("ParticleProcessMaterial_yjw64")
 texture = ExtResource("4_7ukv5")
-
-[node name="LizardShadow" type="Sprite2D" parent="Lizor"]
-modulate = Color(1, 1, 1, 0.156863)
-z_index = -1
-position = Vector2(538, 449)
-texture = ExtResource("5_f53xq")
 
 [node name="Anvil" parent="." instance=ExtResource("6_vkfu3")]
 offset_left = -615.0
@@ -113,10 +114,11 @@ texture = ExtResource("14_b1llp")
 
 [node name="ForgeMenu" parent="." instance=ExtResource("7_f5mex")]
 visible = false
+z_index = 5
 position = Vector2(-960, -540)
 
-[connection signal="mouse_entered" from="Lizor" to="." method="_on_lizor_mouse_entered"]
-[connection signal="mouse_exited" from="Lizor" to="." method="_on_lizor_mouse_exited"]
+[connection signal="mouse_entered" from="Lizard/Lizor" to="." method="_on_lizor_mouse_entered"]
+[connection signal="mouse_exited" from="Lizard/Lizor" to="." method="_on_lizor_mouse_exited"]
 [connection signal="pressed" from="Anvil" to="." method="_on_anvil_pressed"]
 [connection signal="pressed" from="Book" to="." method="_on_book_but_pressed"]
 [connection signal="pressed" from="Map" to="." method="_on_switch_pressed"]
