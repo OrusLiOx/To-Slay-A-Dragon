@@ -240,9 +240,10 @@ offset_bottom = 183.0
 
 [node name="Combat" parent="." instance=ExtResource("7_fpvvu")]
 visible = false
-position = Vector2(-702, -425)
+position = Vector2(-674, -377)
 
 [node name="Win" type="ColorRect" parent="."]
+visible = false
 offset_left = -1222.0
 offset_top = -669.0
 offset_right = 1221.0

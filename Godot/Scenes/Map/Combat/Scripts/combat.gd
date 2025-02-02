@@ -30,9 +30,6 @@ var badNote :Array
 var notes
 var bars
 
-var mimic
-var chest
-
 signal combat_done()
 signal player_death()
 signal win()
@@ -45,9 +42,6 @@ func _ready():
 	enemyHealth = $Health/Enemy/Current
 	gameCols = $Minigame/cols.get_children()
 	bars = $Minigame/Bars
-	
-	mimic = Enemy.new("Mimic")
-	chest = Enemy.new("Chest")
 
 func _process(delta):
 	if killEnemy:
@@ -55,7 +49,7 @@ func _process(delta):
 			enemy.modulate.a -= 2*delta
 			enemyHealthBar.modulate.a -= 2*delta
 		else:
-			if partSprite.visible == false:
+			if !partSprite.visible:
 				timer.start(2)
 				# no drop if dragon
 				if enemy.stats.type == "Dragon":
@@ -65,9 +59,9 @@ func _process(delta):
 			partSprite.visible = true
 
 func start(quest):
-	%DamageEffect.modulate.a = 0
-	$Exit.disabled = false
 	# generic
+	%DamageEffect.modulate.a = 0
+	%DeathEffect.color.a = 0
 	killEnemy = false
 	noteSpeed = Settings.noteSpeed
 	
@@ -100,10 +94,10 @@ func start(quest):
 	if enemyName == "Chest?":
 		if randi_range(1,100)==1:
 			enemyName = "Chest"
-			enemyInst = chest
+			enemyInst = Enemy.new("Chest")
 		else:
 			enemyName = "Mimic"
-			enemyInst = mimic
+			enemyInst = Enemy.new("Mimic")
 			
 	$Health/Enemy/Name.text = enemyName
 	enemy.set_enemy(enemyInst)
@@ -174,10 +168,12 @@ func hit_player(quality):
 		Stats.deaths += 1
 		var tween = get_tree().create_tween()
 		tween.tween_property(%DamageEffect, "modulate:a", 1, .1)
-		await get_tree().create_timer(2).timeout
+		var tween2 = get_tree().create_tween()
+		tween2.tween_property(%DeathEffect, "color:a", 1, 1)
+		await get_tree().create_timer(1.5).timeout
 		visible = false
 	else:
-		var tween = get_tree().create_tween()
+		var tween = create_tween()
 		tween.tween_property(%DamageEffect, "modulate:a", alpha, .1)
 		tween.tween_callback(fade_hit_effect)
 
@@ -293,5 +289,6 @@ func _on_button_pressed():
 	visible = false
 
 func fade_hit_effect():
-	var tween = get_tree().create_tween()
+	var tween = create_tween()
 	tween.tween_property(%DamageEffect, "modulate:a", 0, .1)
+	

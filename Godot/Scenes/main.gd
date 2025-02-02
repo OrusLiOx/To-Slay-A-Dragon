@@ -12,3 +12,4 @@ func _on_camp_to_map():
 
 func _on_camp_open_book():
 	$Book.open()
+	

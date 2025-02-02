@@ -11,6 +11,7 @@ signal time()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Win.visible = false
+	
 	combat = $Combat
 	
 	questData["main"]=$QuestName
@@ -32,15 +33,13 @@ func start_quest(quest):
 	emit_signal("time")
 	combat.visible = true
 	questData["main"].visible = false
+	
 	combat.start(quest)
 
 func finish_quest():
 	combat.visible = false
 
 func show_quest_data(quest):
-	if combat.visible:
-		return
-	
 	var x = quest.position.x
 	if x < 0:
 		x += 57
