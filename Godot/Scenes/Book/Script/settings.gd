@@ -1,11 +1,18 @@
 extends Node2D
-var editing:String
+var selectedAction:String
+var LineEditRegEx = RegEx.new()
 
 func _ready():
 	$Gameplay/Gameplay/SymbolSelect/Mixed.button_pressed  = true
 	$'Gameplay/Gameplay/MaxSelect/3'.button_pressed  = true
 	%AttackColorRect.color = Settings.noteColorAttack
 	%BlockColorRect.color = Settings.noteColorBlock
+	
+	LineEditRegEx.compile("^[0-9]*$")
+	%MasterSlider.value = 70
+	%MusicSlider.value = 70
+	%SFXSlider.value = 70
+	
 	update_symbol_display()
 	_on_attack_color_edit_pressed()
 
@@ -51,17 +58,17 @@ func update_symbol_display():
 func _on_attack_color_edit_pressed():
 	%AttackColorSelect.visible = true
 	%BlockColorSelect.visible = false
-	editing = "attack"
+	selectedAction = "attack"
 	%ColorPicker.color = Settings.noteColorAttack
 
 func _on_block_color_edit_pressed():
 	%AttackColorSelect.visible = false
 	%BlockColorSelect.visible = true
-	editing = "block"
+	selectedAction = "block"
 	%ColorPicker.color = Settings.noteColorBlock
 
 func _on_color_picker_color_changed(color):
-	set_color(editing, color)
+	set_color(selectedAction, color)
 	
 func set_color(action, color:Color):
 	var notes = $Gameplay/Gameplay/Demo.get_children()
@@ -94,3 +101,8 @@ func _on_infinite_health_toggled(toggled_on):
 
 func _on_infinite_damage_toggled(toggled_on):
 	Settings.infiniteDamage = toggled_on
+
+## VOLUME ##
+func _volume_changed(value, bus):
+	var decible = linear_to_db(float(value)/100.0)
+	AudioServer.set_bus_volume_db(bus, decible)

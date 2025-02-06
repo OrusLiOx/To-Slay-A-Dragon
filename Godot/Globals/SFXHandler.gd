@@ -17,7 +17,9 @@ var i = 0
 
 func _ready():
 	for n in range(maxSounds):
-		add_child(AudioStreamPlayer.new())
+		var audio = AudioStreamPlayer.new()
+		audio.bus = "SFX"
+		add_child(audio)
 
 func play(sound, jitter = true):
 	if !sounds.has(sound):

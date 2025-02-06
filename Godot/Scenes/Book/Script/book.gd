@@ -13,7 +13,7 @@ func _ready():
 	length = {
 		"info": 28,
 		"settings":2,
-		"help":10
+		"help":8
 	}
 	start = {
 		"info": pageBuffer,

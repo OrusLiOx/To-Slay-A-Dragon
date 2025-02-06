@@ -24,13 +24,56 @@ label_settings = ExtResource("1_odr8i")
 [node name="Audio" type="Node2D" parent="."]
 position = Vector2(-730, 121)
 
-[node name="Label" type="Label" parent="Audio"]
-offset_left = 1133.0
-offset_top = 43.0
-offset_right = 1274.0
-offset_bottom = 112.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Audio"]
+offset_left = 943.0
+offset_top = 59.0
+offset_right = 1452.0
+offset_bottom = 326.0
+
+[node name="Label" type="Label" parent="Audio/VBoxContainer"]
+layout_mode = 2
 text = "Audio"
 label_settings = ExtResource("4_aupfm")
+horizontal_alignment = 1
+
+[node name="MasterLabel" type="Label" parent="Audio/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master"
+label_settings = ExtResource("5_5ftlp")
+
+[node name="MasterSlider" type="HSlider" parent="Audio/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_pugfj")
+
+[node name="MusicLabel" type="Label" parent="Audio/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Music"
+label_settings = ExtResource("5_5ftlp")
+
+[node name="MusicSlider" type="HSlider" parent="Audio/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_pugfj")
+
+[node name="SFXLabel" type="Label" parent="Audio/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sound Effects"
+label_settings = ExtResource("5_5ftlp")
+
+[node name="SFXSlider" type="HSlider" parent="Audio/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_pugfj")
 
 [node name="Gameplay" type="Node2D" parent="."]
 position = Vector2(696, -4)
@@ -311,6 +354,9 @@ sliders_visible = false
 hex_visible = false
 presets_visible = false
 
+[connection signal="value_changed" from="Audio/VBoxContainer/MasterSlider" to="." method="_volume_changed" binds= [0]]
+[connection signal="value_changed" from="Audio/VBoxContainer/MusicSlider" to="." method="_volume_changed" binds= [2]]
+[connection signal="value_changed" from="Audio/VBoxContainer/SFXSlider" to="." method="_volume_changed" binds= [1]]
 [connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/Mixed" to="." method="set_note_symbols" binds= ["mixed"]]
 [connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/WASD" to="." method="set_note_symbols" binds= ["letter"]]
 [connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/Arrow" to="." method="set_note_symbols" binds= ["arrow"]]

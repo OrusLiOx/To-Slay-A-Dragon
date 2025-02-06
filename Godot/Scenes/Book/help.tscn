@@ -76,14 +76,14 @@ visible = false
 
 [node name="Border" parent="Combat/1" instance=ExtResource("10_i7mn5")]
 custom_minimum_size = Vector2(50, 50)
-offset_left = -159.0
-offset_top = 513.0
-offset_right = 330.0
-offset_bottom = 782.0
+offset_left = -216.0
+offset_top = 399.2
+offset_right = 424.0
+offset_bottom = 756.2
 
 [node name="Map" type="Sprite2D" parent="Combat/1"]
-position = Vector2(84, 647)
-scale = Vector2(0.25, 0.25)
+position = Vector2(104, 576.2)
+scale = Vector2(0.33, 0.33)
 texture = ExtResource("6_o38ts")
 
 [node name="QuestMarker" type="Sprite2D" parent="Combat/1/Map"]
@@ -146,13 +146,11 @@ label_settings = ExtResource("1_f63lc")
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Combat/1"]
-offset_left = -191.0
+offset_left = -192.0
 offset_top = 151.0
-offset_right = 438.0
+offset_right = 437.0
 offset_bottom = 924.0
-text = "As an adventurer, you will encounter many creatures. Some of these creatures will drop valuable materials.
-
-When viewing your map, you should see blue markers which indicate the location of these creatures."
+text = "You can gain valuable materials by hunting certain creatures. The blue markers on your map show where you can find these creatures. "
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
@@ -161,7 +159,9 @@ offset_left = 531.0
 offset_top = 74.0
 offset_right = 1154.0
 offset_bottom = 761.0
-text = "Hovering over the marker will show you the stats of the creature at that location and what material you will get from defeating it. Click on the marker to fight that creature.
+text = "Hovering over the marker will show information about the creature. 
+
+Click on the marker to fight that creature.
 
 
 
@@ -176,7 +176,7 @@ label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Combat/1"]
-position = Vector2(806, 478)
+position = Vector2(796, 433)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_1amm7")
 
@@ -216,7 +216,7 @@ offset_left = 528.0
 offset_top = 75.0
 offset_right = 1157.0
 offset_bottom = 862.0
-text = "Arrows will appear at the top of the section and fall towards the row of arrows a the bottom of the section. When a falling arrow overlaps with the row of arrows, press the corresponding key. You can use arrow keys or WASD
+text = "Arrows will fall from the top of the screen. When a falling arrow overlaps with the row of arrows at the bottom, press the corresponding key. You can use arrow keys or WASD.
 
 The up and down arrows represent opportunities to attack the enemy. The left and right arrows represent incoming enemy attacks which you can block. 
 
@@ -227,9 +227,9 @@ autowrap_mode = 2
 [node name="Border" parent="Combat/2" instance=ExtResource("10_i7mn5")]
 custom_minimum_size = Vector2(50, 50)
 offset_left = -214.0
-offset_top = 331.0
+offset_top = 318.0
 offset_right = 422.0
-offset_bottom = 681.0
+offset_bottom = 668.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Combat/2/Border"]
 position = Vector2(318, 175)
@@ -240,7 +240,6 @@ texture = ExtResource("13_x5h5f")
 position = Vector2(-196, 0)
 
 [node name="1" type="Node2D" parent="Forge"]
-visible = false
 
 [node name="Title" type="Label" parent="Forge/1"]
 offset_left = -31.0
@@ -256,38 +255,97 @@ offset_left = 5.0
 offset_top = 151.0
 offset_right = 634.0
 offset_bottom = 887.0
-text = "A blacksmith can upgrade your weapons and armor using the materials you gathered. 
+text = "A blacksmith can use the materials you gathered to upgrade your weapons and armor. 
 
-Talking to a blacksmith will open the forge menu which you can see below. "
+
+
+
+
+
+
+
+In the equipment section on the left, click on your sword or your armor to choose which one you want to upgrade."
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
 [node name="Description2" type="Label" parent="Forge/1"]
 offset_left = 725.0
-offset_top = 74.0
+offset_top = 57.0
 offset_right = 1354.0
-offset_bottom = 890.0
-text = "The section on the left is the equipment section. It displays your current equipment and the stats they provide you. Your sword determines your attack and your armor determines your health.
+offset_bottom = 873.0
+text = "The equipment you choose will be placed in the section on the right where you can add and remove materials.
 
-The middle section is the materials section which shows how much of each material you have.
 
-The section on the right is the working section. This section shows the piece of equipment you are currently working on and the materials that make up that piece of equipment."
+
+
+
+
+
+
+The materials in the top row are required to forge that piece of equipment. The second row is for optional materials you can add to improve your equipment.
+
+Click on the equipment in the bottom row to finalize your changes."
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
 
 [node name="Border" parent="Forge/1" instance=ExtResource("10_i7mn5")]
 custom_minimum_size = Vector2(100, 100)
-offset_left = -13.0
-offset_top = 456.0
-offset_right = 624.0
-offset_bottom = 726.0
+offset_left = -12.0
+offset_top = 314.0
+offset_right = 625.0
+offset_bottom = 584.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Forge/1/Border"]
 position = Vector2(316, 135)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("11_f35k6")
 
+[node name="Border4" parent="Forge/1" instance=ExtResource("10_i7mn5")]
+custom_minimum_size = Vector2(100, 100)
+offset_left = 708.0
+offset_top = 225.0
+offset_right = 1337.0
+offset_bottom = 495.0
+
+[node name="Label" type="Label" parent="Forge/1/Border4"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 56.0
+offset_right = 113.0
+offset_bottom = 141.0
+text = "Add ->"
+label_settings = ExtResource("2_q0mne")
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Forge/1/Border4"]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 128.0
+offset_right = 586.0
+offset_bottom = 213.0
+text = "<- Remove"
+label_settings = ExtResource("2_q0mne")
+
+[node name="ColorRect" type="ColorRect" parent="Forge/1/Border4"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 78.0
+offset_top = -10.0
+offset_right = 78.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Forge/1/Border4/ColorRect"]
+position = Vector2(138, 147)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("11_f35k6")
+
 [node name="2" type="Node2D" parent="Forge"]
+visible = false
 
 [node name="Title" type="Label" parent="Forge/2"]
 offset_left = -31.0
@@ -327,50 +385,6 @@ The second row indicates how many magic stones can be attached to the equipment.
 Click the item in the bottom row to forge your new piece of equipment."
 label_settings = ExtResource("2_q0mne")
 autowrap_mode = 2
-
-[node name="Border4" parent="Forge/2" instance=ExtResource("10_i7mn5")]
-custom_minimum_size = Vector2(100, 100)
-offset_left = -15.0
-offset_top = 572.0
-offset_right = 614.0
-offset_bottom = 842.0
-
-[node name="Label" type="Label" parent="Forge/2/Border4"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 56.0
-offset_right = 113.0
-offset_bottom = 141.0
-text = "Add ->"
-label_settings = ExtResource("2_q0mne")
-horizontal_alignment = 2
-
-[node name="Label2" type="Label" parent="Forge/2/Border4"]
-layout_mode = 0
-offset_left = 435.0
-offset_top = 128.0
-offset_right = 586.0
-offset_bottom = 213.0
-text = "<- Remove"
-label_settings = ExtResource("2_q0mne")
-
-[node name="ColorRect" type="ColorRect" parent="Forge/2/Border4"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 78.0
-offset_top = -10.0
-offset_right = 78.0
-offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Forge/2/Border4/ColorRect"]
-position = Vector2(138, 147)
-scale = Vector2(0.55, 0.55)
-texture = ExtResource("11_f35k6")
 
 [node name="WorkingImages" type="Control" parent="Forge/2"]
 layout_mode = 3
