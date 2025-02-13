@@ -154,7 +154,7 @@ offset_bottom = 509.0
 layout_mode = 0
 offset_left = -31.0
 offset_top = -6.0
-offset_right = 508.0
+offset_right = 461.0
 offset_bottom = 485.0
 color = Color(0, 0, 0, 0.184314)
 
@@ -183,7 +183,7 @@ isBlock = true
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="pressed" from="Exit" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
 [connection signal="hit" from="Minigame/cols/A" to="." method="hit_player"]
 [connection signal="hit" from="Minigame/cols/W" to="." method="hit_enemy"]
 [connection signal="hit" from="Minigame/cols/S" to="." method="hit_enemy"]

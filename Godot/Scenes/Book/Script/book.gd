@@ -13,14 +13,18 @@ func _ready():
 	length = {
 		"info": 28,
 		"settings":2,
-		"help":8
+		"help":8,
+		"credits":2,
+		"stats":2
 	}
 	start = {
 		"info": pageBuffer,
 		"settings":pageBuffer,
-		"help":pageBuffer
+		"help":pageBuffer,
+		"credits":pageBuffer,
+		"stats":pageBuffer
 	}
-	var order = ["settings","help","info"]
+	var order = ["settings","help","info", "credits", "stats"]
 	
 	for i in order.size():
 		for j in range(i+1,order.size()):
@@ -30,6 +34,7 @@ func _ready():
 	for value in length.values():
 		maxPage+=value
 	maxPage-=2
+	print(maxPage)
 	
 	# region/enemy info stuff
 	enemyInfo["Quest"] = $EnemyInfo/QuestPage
@@ -51,7 +56,9 @@ func _ready():
 	# main table of contents
 	var heads:Array[Array] = [["Settings"],
 		["Tutorial","Introduction", "Combat","Forging"],
-		["Creatures & Resgions","Forest", "Desert","Mountains"]]
+		["Creatures & Resgions","Forest", "Desert","Mountains"],
+		["Credits"],
+		["Stats"]]
 	$TitlePage/TableOfContents.headers = heads
 
 	
@@ -66,6 +73,9 @@ func _ready():
 	arr.push_back(start["info"])
 	for i in [2,10,18]:
 		arr.push_back(i+start["info"])
+
+	arr.push_back(start["credits"])
+	arr.push_back(start["stats"])
 
 	$TitlePage/TableOfContents.pageNums = arr
 	$TitlePage/TableOfContents.update()
@@ -114,7 +124,7 @@ func update_page(newPage:int):
 		$TitlePage.visible = true
 		$BookBase/Home.visible = false
 	# Enemy Info page
-	elif newPage>=start["info"] and newPage < start["info"]+length["info"]:
+	elif in_range("info",newPage):
 		$EnemyInfo.visible = true
 		newPage -= start["info"]
 		# Map page
@@ -154,11 +164,19 @@ func update_page(newPage:int):
 					enemyInfo["Quest"].set_page(Enemy.new("Mimic"))
 				22:
 					enemyInfo["Quest"].set_page(Enemy.new("Dragon"))
-	elif newPage>=start["help"] and newPage < start["help"]+length["help"]:
+	elif in_range("help",newPage):
 		$Help.visible = true
 		$Help.toPage(curPage-start["help"])
-	elif newPage>=start["settings"] and newPage < start["settings"]+length["settings"]:
+	elif in_range("settings",newPage):
 		$Settings.visible = true
+	elif in_range("credits",newPage):
+		$Credits.visible = true
+	elif in_range("stats",newPage):
+		$Stats.visible = true
+		$Stats/StatsText.text = Stats.stats_to_string()
+
+func in_range(section, page):
+	return page>=start[section] and page < start[section]+length[section]
 	
 func show_book_cover(side:String, pageSound = true):
 	hide_all()
@@ -199,6 +217,8 @@ func hide_all():
 	$Help.visible = false
 	$Settings.visible = false
 	$EnemyInfo.visible = false
+	$Credits.visible = false
+	$Stats.visible = false
 
 func _on_left_pressed():
 	update_page(curPage-2)

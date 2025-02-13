@@ -10,10 +10,9 @@ var noteType : String # mixed, letter, arrow
 var noteSyncBar : String # multi, all. none
 var noteMax:int
 
-var infiniteParts
-
 var infiniteDamage:bool
 var infiniteHealth:bool
+var infiniteMaterials:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,6 +30,7 @@ func set_to_default():
 	
 	infiniteHealth = false
 	infiniteDamage = false
+	infiniteMaterials = false
 	
 func get_note_color(type):
 	if type == "block":

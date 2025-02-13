@@ -62,6 +62,7 @@ func start(quest):
 	# generic
 	%DamageEffect.modulate.a = 0
 	%DeathEffect.color.a = 0
+	$Exit.disabled = false
 	killEnemy = false
 	noteSpeed = Settings.noteSpeed
 	
@@ -128,6 +129,7 @@ func start(quest):
 	pass
 
 func end_minigame():
+	timer.stop()
 	Stats.combatTime += Time.get_ticks_msec()-startTime
 	minigameActive = false
 	for bar in bars.get_children():
@@ -142,15 +144,18 @@ func hit_player(quality):
 	var alpha = .3
 	match quality:
 		"good":
+			damage = 0 
+			%DamageEffect.modulate = Color(0,0,0, %DamageEffect.modulate.a)
 			$Health/You/LastHit.text = "PERFECT BLOCK"
 			Audio.play("PlayerBlock")
-			return
 		"ok":
 			damage /= 2
+			%DamageEffect.modulate = Color(186/255.0,0,0,%DamageEffect.modulate.a)
 			$Health/You/LastHit.text = str(damage) + " BLOCK"
 			Audio.play("PlayerBlock")
 		"miss":
 			$Health/You/LastHit.text = str(damage)
+			%DamageEffect.modulate = Color(186/255.0,0,0,%DamageEffect.modulate.a)
 			Audio.play("PlayerInjury")
 			alpha = 1
 		"wrong":
@@ -166,10 +171,8 @@ func hit_player(quality):
 		$Exit.disabled = true
 		timer.stop()
 		Stats.deaths += 1
-		var tween = get_tree().create_tween()
-		tween.tween_property(%DamageEffect, "modulate:a", 1, .1)
-		var tween2 = get_tree().create_tween()
-		tween2.tween_property(%DeathEffect, "color:a", 1, 1)
+		create_tween().tween_property(%DamageEffect, "modulate:a", 1, .1)
+		create_tween().tween_property(%DeathEffect, "color:a", 1, 1)
 		await get_tree().create_timer(1.5).timeout
 		visible = false
 	else:
@@ -186,16 +189,17 @@ func hit_enemy(quality):
 			damage *= 1.5
 			$Health/Enemy/LastHit.text = str(damage) + " CRIT"
 			Audio.play("PlayerAttack")
+			enemy.hit(true)
 		"ok":
 			$Health/Enemy/LastHit.text = str(damage)
 			Audio.play("PlayerAttack")
+			enemy.hit()
 		"miss":
 			return
 		"wrong":
 			return
 
 	enemy.stats.hp -= damage
-	enemy.hit()
 	
 	enemyHealth.size.x = max(0,enemyHealthBar.size.x * enemy.stats.hp/enemy.stats.maxHp)
 	
@@ -283,12 +287,11 @@ func _on_timer_timeout():
 	else:
 		spawn_note()
 
-func _on_button_pressed():
+func _on_exit_pressed():
 	end_minigame()
 	Stats.forfeits += 1
 	visible = false
 
 func fade_hit_effect():
-	var tween = create_tween()
-	tween.tween_property(%DamageEffect, "modulate:a", 0, .1)
+	create_tween().tween_property(%DamageEffect, "modulate:a", 0, .1)
 	

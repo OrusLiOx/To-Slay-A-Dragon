@@ -126,10 +126,13 @@ func open():
 	load_blueprint(activeBlueprint)
 
 func _on_exit_pressed():
-	for c in range(0,4):
-		set_blueprint_slot(0,c,"")
-	for c in range(0,2):
-		set_blueprint_slot(1,c,"")
+	if !builtEquip.disabled:
+		craft_equip(true)
+		#
+	#for c in range(0,4):
+		#set_blueprint_slot(0,c,"")
+	#for c in range(0,2):
+		#set_blueprint_slot(1,c,"")
 			
 	emit_signal("exit")
 
@@ -222,8 +225,9 @@ func update_equip_stats():
 	builtEquip.disabled = false
 
 # finalize crafting
-func craft_equip():
-	Audio.play("AnvilClang")
+func craft_equip(mute = false):
+	if !mute:
+		Audio.play("AnvilClang")
 	# disassemble current
 	var equip
 	if activeBlueprint.contains("armor"):

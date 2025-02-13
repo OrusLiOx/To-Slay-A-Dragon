@@ -23,6 +23,10 @@ func update():
 		disabled = true
 		$PartSprite.modulate.a = 1
 		$Quantity.modulate.a = 1
+	elif Settings.infiniteMaterials:
+		disabled = false
+		$PartSprite.modulate.a = 1
+		$Quantity.modulate.a = 0
 	elif amount == 0:
 		disabled = true
 		$PartSprite.modulate.a = .3

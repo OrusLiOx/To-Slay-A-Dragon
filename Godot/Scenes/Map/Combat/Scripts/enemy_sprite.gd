@@ -1,31 +1,10 @@
 extends Node2D
 var stats : Enemy
-var flash 
-var flashSpeed
 @export var background : Sprite2D
 var sprite
 
 func _ready():
-	flash = 0
-	flashSpeed = 10
 	sprite = $Enemy
-
-func _process(delta):
-	match(flash):
-		1:
-			sprite.modulate.b -= flashSpeed*delta
-			sprite.modulate.g -= flashSpeed*delta
-			if sprite.modulate.b <.05:
-				flash = -1
-				sprite.modulate.b = 0
-				sprite.modulate.g = 0
-		-1:
-			sprite.modulate.b += flashSpeed*delta
-			sprite.modulate.g += flashSpeed*delta
-			if sprite.modulate.b >.95:
-				flash = 0
-				sprite.modulate.b = 1
-				sprite.modulate.g = 1
 
 func make_enemy(t:String):
 	set_enemy(Enemy.new(t))
@@ -76,5 +55,16 @@ func set_background(path):
 	if background != null:
 		background.texture = load(path)
 
-func hit():
-	flash = 1
+func hit(crit = false):
+	var to = .3
+	var time = .2
+	if crit:
+		to = 0
+		
+	create_tween().tween_property(sprite, "modulate:g", to, time)
+	create_tween().tween_property(sprite, "modulate:b", to, time)
+	
+	await get_tree().create_timer(time).timeout
+	
+	create_tween().tween_property(sprite, "modulate:g", 1, time)
+	create_tween().tween_property(sprite, "modulate:b", 1, time)

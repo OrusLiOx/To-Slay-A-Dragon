@@ -19,11 +19,14 @@ func _ready():
 		for i in range(0,5):
 			parts[key].push_back(0)
 	
-	add_equipment(Equipment.new("sword", [Part.new("m",0)]))
+	add_equipment(Equipment.new("dagger", [Part.new("m",0)]))
 	curWeapon = 0
 	curArmor = -1
 
 func add_part(p : Part, amount : int):
+	if Settings.infiniteMaterials:
+		return true
+		
 	var result = parts[p.type][p.rarity] + amount
 	if result < 0:
 		return false

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwgh5bcbxpkpj"]
+[gd_scene load_steps=7 format=3 uid="uid://dwgh5bcbxpkpj"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_gtsxp"]
 [ext_resource type="PackedScene" uid="uid://bmx0jemjixann" path="res://Scenes/Camp/camp.tscn" id="3_0baxm"]
 [ext_resource type="PackedScene" uid="uid://3po5cq6p7ujc" path="res://Scenes/Map/map.tscn" id="4_x1pbn"]
 [ext_resource type="PackedScene" uid="uid://tr660l4oomhm" path="res://Scenes/Book/book.tscn" id="5_3fu5v"]
+[ext_resource type="AudioStream" uid="uid://7tr4kqe5k4kk" path="res://Sounds/midnight-forest-184304.mp3" id="6_atjlv"]
 [ext_resource type="PackedScene" uid="uid://b4dnjtak014k4" path="res://Globals/SFXHandler.tscn" id="6_o7twe"]
 
 [node name="Main" type="Node2D"]
@@ -24,5 +25,10 @@ z_index = 100
 z_index = 10
 position = Vector2(-1, -6)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_atjlv")
+bus = &"Music"
+
 [connection signal="openBook" from="Camp" to="." method="_on_camp_open_book"]
 [connection signal="toMap" from="Camp" to="." method="_on_camp_to_map"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

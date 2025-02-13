@@ -14,15 +14,15 @@
 script = ExtResource("1_flgxf")
 
 [node name="Title" type="Label" parent="."]
-offset_left = 276.0
-offset_top = 8.0
-offset_right = 663.0
-offset_bottom = 145.0
+offset_left = 259.0
+offset_top = 87.0
+offset_right = 646.0
+offset_bottom = 224.0
 text = "Settings"
 label_settings = ExtResource("1_odr8i")
 
 [node name="Audio" type="Node2D" parent="."]
-position = Vector2(-730, 121)
+position = Vector2(-735, 206)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Audio"]
 offset_left = 943.0
@@ -75,8 +75,38 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource("6_pugfj")
 
+[node name="Label3" type="Label" parent="Audio/VBoxContainer"]
+layout_mode = 2
+text = "
+
+"
+
+[node name="Label2" type="Label" parent="Audio/VBoxContainer"]
+layout_mode = 2
+text = "Cheats"
+label_settings = ExtResource("4_aupfm")
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Audio/VBoxContainer"]
+layout_mode = 2
+
+[node name="InfiniteHealth" type="CheckBox" parent="Audio/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_pugfj")
+text = "  Invincibility"
+
+[node name="InfiniteDamage" type="CheckBox" parent="Audio/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_pugfj")
+text = "  One Shot Enemies"
+
+[node name="InfiniteMaterials" type="CheckBox" parent="Audio/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_pugfj")
+text = "  Infinite Materials"
+
 [node name="Gameplay" type="Node2D" parent="."]
-position = Vector2(696, -4)
+position = Vector2(700, 34)
 
 [node name="Label" type="Label" parent="Gameplay"]
 offset_left = 376.0
@@ -87,10 +117,10 @@ text = "Combat"
 label_settings = ExtResource("4_aupfm")
 
 [node name="Gameplay" type="VBoxContainer" parent="Gameplay"]
-offset_left = 223.0
-offset_top = 126.0
-offset_right = 781.0
-offset_bottom = 398.0
+offset_left = 216.0
+offset_top = 146.0
+offset_right = 774.0
+offset_bottom = 784.0
 
 [node name="Demo" type="ColorRect" parent="Gameplay/Gameplay"]
 custom_minimum_size = Vector2(0, 130)
@@ -329,22 +359,12 @@ text = "
 "
 label_settings = ExtResource("5_5ftlp")
 
-[node name="InfiniteHealth" type="CheckBox" parent="Gameplay/Gameplay"]
-layout_mode = 2
-theme = ExtResource("6_pugfj")
-text = "  Invincibility"
-
-[node name="InfiniteDamage" type="CheckBox" parent="Gameplay/Gameplay"]
-layout_mode = 2
-theme = ExtResource("6_pugfj")
-text = "  One Shot Enemies"
-
 [node name="ColorPicker" type="ColorPicker" parent="Gameplay"]
 unique_name_in_owner = true
-offset_left = 517.0
-offset_top = 429.0
-offset_right = 815.0
-offset_bottom = 732.0
+offset_left = 515.0
+offset_top = 444.0
+offset_right = 813.0
+offset_bottom = 747.0
 scale = Vector2(0.7, 0.7)
 edit_alpha = false
 can_add_swatches = false
@@ -357,6 +377,9 @@ presets_visible = false
 [connection signal="value_changed" from="Audio/VBoxContainer/MasterSlider" to="." method="_volume_changed" binds= [0]]
 [connection signal="value_changed" from="Audio/VBoxContainer/MusicSlider" to="." method="_volume_changed" binds= [2]]
 [connection signal="value_changed" from="Audio/VBoxContainer/SFXSlider" to="." method="_volume_changed" binds= [1]]
+[connection signal="toggled" from="Audio/VBoxContainer/InfiniteHealth" to="." method="_on_infinite_health_toggled"]
+[connection signal="toggled" from="Audio/VBoxContainer/InfiniteDamage" to="." method="_on_infinite_damage_toggled"]
+[connection signal="toggled" from="Audio/VBoxContainer/InfiniteMaterials" to="." method="_on_infinite_materials_toggled"]
 [connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/Mixed" to="." method="set_note_symbols" binds= ["mixed"]]
 [connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/WASD" to="." method="set_note_symbols" binds= ["letter"]]
 [connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/Arrow" to="." method="set_note_symbols" binds= ["arrow"]]
@@ -367,6 +390,4 @@ presets_visible = false
 [connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/3" to="." method="set_max" binds= [3]]
 [connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/2" to="." method="set_max" binds= [2]]
 [connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/1" to="." method="set_max" binds= [1]]
-[connection signal="toggled" from="Gameplay/Gameplay/InfiniteHealth" to="." method="_on_infinite_health_toggled"]
-[connection signal="toggled" from="Gameplay/Gameplay/InfiniteDamage" to="." method="_on_infinite_damage_toggled"]
 [connection signal="color_changed" from="Gameplay/ColorPicker" to="." method="_on_color_picker_color_changed"]

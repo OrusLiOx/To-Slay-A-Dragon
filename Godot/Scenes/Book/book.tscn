@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://tr660l4oomhm"]
+[gd_scene load_steps=24 format=3 uid="uid://tr660l4oomhm"]
 
 [ext_resource type="Texture2D" uid="uid://cf2sbqwtsq0vd" path="res://Sprites/book/book.png" id="1_rktjd"]
 [ext_resource type="Script" path="res://Scenes/Book/Script/book.gd" id="1_w6myh"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://c1fkji0reudii" path="res://Sprites/book/bookmarkCovered.png" id="19_dcs5j"]
 [ext_resource type="PackedScene" uid="uid://bnj4eo8jhgckt" path="res://Scenes/glow_button.tscn" id="21_p4uyu"]
 [ext_resource type="Texture2D" uid="uid://h4p464o8n2wk" path="res://Sprites/book/pageglow.png" id="22_sovvs"]
+[ext_resource type="Texture2D" uid="uid://cgj7tdeex32ib" path="res://Sprites/book/Logo.png" id="23_0vgu4"]
 
 [node name="Book" type="Node2D"]
 script = ExtResource("1_w6myh")
@@ -266,7 +267,172 @@ visible = false
 position = Vector2(-465, -440)
 
 [node name="Settings" parent="." instance=ExtResource("13_vb34e")]
+visible = false
 position = Vector2(-832, -467)
+
+[node name="Credits" type="Node2D" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="Credits"]
+offset_left = -526.0
+offset_top = -432.0
+offset_right = -184.0
+offset_bottom = -295.0
+text = "Credits"
+label_settings = ExtResource("2_aod8j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits"]
+offset_left = -657.0
+offset_top = -278.0
+offset_right = -48.0
+offset_bottom = 540.0
+theme_override_constants/separation = -6
+
+[node name="Label11" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "Code + Art by OrusLiOx
+
+"
+label_settings = ExtResource("5_iiqke")
+horizontal_alignment = 1
+
+[node name="Label10" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "Music / Sound"
+label_settings = ExtResource("5_iiqke")
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+label_settings = ExtResource("5_iiqke")
+
+[node name="LinkButton9" type="LinkButton" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_cdtq7")
+text = "https://pixabay.com/music/ambient-midnight-forest-184304/"
+uri = "https://pixabay.com/music/ambient-midnight-forest-184304/"
+
+[node name="Label" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "Open Book"
+label_settings = ExtResource("5_iiqke")
+
+[node name="LinkButton" type="LinkButton" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_cdtq7")
+text = "https://pixabay.com/sound-effects/page-flip-47177/"
+uri = "https://pixabay.com/sound-effects/page-flip-47177/"
+
+[node name="Label2" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "Close Book"
+label_settings = ExtResource("5_iiqke")
+
+[node name="LinkButton2" type="LinkButton" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_cdtq7")
+text = "https://pixabay.com/sound-effects/closing-a-book-14771/"
+uri = "https://pixabay.com/sound-effects/closing-a-book-14771/"
+
+[node name="Label3" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "Page Flip / Map"
+label_settings = ExtResource("5_iiqke")
+
+[node name="LinkButton3" type="LinkButton" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_cdtq7")
+text = "https://pixabay.com/sound-effects/pageturn-102978/"
+uri = "https://pixabay.com/sound-effects/pageturn-102978/"
+
+[node name="Label4" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "Anvil / Forge"
+label_settings = ExtResource("5_iiqke")
+
+[node name="LinkButton4" type="LinkButton" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_cdtq7")
+text = "https://pixabay.com/sound-effects/hammering-on-anvil-71902/"
+uri = "https://pixabay.com/sound-effects/hammering-on-anvil-71902/"
+
+[node name="Label5" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "Select Material or Equipment"
+label_settings = ExtResource("5_iiqke")
+
+[node name="LinkButton5" type="LinkButton" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_cdtq7")
+text = "https://pixabay.com/sound-effects/stone-effect-254998/"
+uri = "https://pixabay.com/sound-effects/stone-effect-254998/"
+
+[node name="Label6" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "Player Attack"
+label_settings = ExtResource("5_iiqke")
+
+[node name="LinkButton6" type="LinkButton" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_cdtq7")
+text = "https://pixabay.com/sound-effects/sword-sound-260274/"
+uri = "https://pixabay.com/sound-effects/sword-sound-260274/"
+
+[node name="Label7" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "Player Injury"
+label_settings = ExtResource("5_iiqke")
+
+[node name="LinkButton7" type="LinkButton" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_cdtq7")
+text = "https://pixabay.com/sound-effects/hit-by-a-wood-230542/"
+uri = "https://pixabay.com/sound-effects/hit-by-a-wood-230542/"
+
+[node name="Label8" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "Blocked Attack"
+label_settings = ExtResource("5_iiqke")
+
+[node name="LinkButton8" type="LinkButton" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_cdtq7")
+text = "https://pixabay.com/sound-effects/block-6839/"
+uri = "https://pixabay.com/sound-effects/block-6839/"
+
+[node name="Label2" type="Label" parent="Credits"]
+offset_left = 122.0
+offset_top = -126.0
+offset_right = 605.0
+offset_bottom = 86.0
+text = "Special thanks to everyone who provided feedback and helped make this update possible"
+label_settings = ExtResource("5_iiqke")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Stats" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Stats"]
+offset_left = -498.0
+offset_top = -382.0
+offset_right = -258.0
+offset_bottom = -245.0
+text = "Stats"
+label_settings = ExtResource("2_aod8j")
+
+[node name="StatsText" type="Label" parent="Stats"]
+offset_left = -622.0
+offset_top = -194.0
+offset_right = -168.0
+offset_bottom = 391.0
+label_settings = ExtResource("5_iiqke")
+horizontal_alignment = 1
+
+[node name="BookCoverImage" type="Sprite2D" parent="Stats"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(350, 47)
+texture = ExtResource("23_0vgu4")
 
 [node name="UI" type="Node2D" parent="."]
 

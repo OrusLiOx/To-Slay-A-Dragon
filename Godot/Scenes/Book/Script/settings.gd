@@ -96,13 +96,17 @@ func _on_block_color_reset_pressed():
 func set_max(maximum:int):
 	Settings.noteMax = maximum
 
+## VOLUME ##
+func _volume_changed(value, bus):
+	var decible = linear_to_db(float(value)/100.0)
+	AudioServer.set_bus_volume_db(bus, decible)
+
+## CHEATS ##
 func _on_infinite_health_toggled(toggled_on):
 	Settings.infiniteHealth = toggled_on
 
 func _on_infinite_damage_toggled(toggled_on):
 	Settings.infiniteDamage = toggled_on
 
-## VOLUME ##
-func _volume_changed(value, bus):
-	var decible = linear_to_db(float(value)/100.0)
-	AudioServer.set_bus_volume_db(bus, decible)
+func _on_infinite_materials_toggled(toggled_on):
+	Settings.infiniteMaterials = toggled_on
