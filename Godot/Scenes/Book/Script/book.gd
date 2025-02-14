@@ -24,7 +24,7 @@ func _ready():
 		"credits":pageBuffer,
 		"stats":pageBuffer
 	}
-	var order = ["settings","help","info", "credits", "stats"]
+	var order = ["settings","help","info",  "credits", "stats"]
 	
 	for i in order.size():
 		for j in range(i+1,order.size()):
@@ -34,7 +34,6 @@ func _ready():
 	for value in length.values():
 		maxPage+=value
 	maxPage-=2
-	print(maxPage)
 	
 	# region/enemy info stuff
 	enemyInfo["Quest"] = $EnemyInfo/QuestPage
@@ -172,8 +171,9 @@ func update_page(newPage:int):
 	elif in_range("credits",newPage):
 		$Credits.visible = true
 	elif in_range("stats",newPage):
-		$Stats.visible = true
+		Stats.time = Time.get_ticks_msec()
 		$Stats/StatsText.text = Stats.stats_to_string()
+		$Stats.visible = true
 
 func in_range(section, page):
 	return page>=start[section] and page < start[section]+length[section]
@@ -230,6 +230,8 @@ func open(page = -1):
 	if page == -1:
 		page = curPage
 	update_page(page)
+	Stats.time = Time.get_ticks_msec()
+	$Stats/StatsText.text = Stats.stats_to_string()
 	visible = true
 
 func close():

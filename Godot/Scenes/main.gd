@@ -1,6 +1,9 @@
 extends Node2D
 
 func _ready():
+	
+	Input.set_custom_mouse_cursor(load("res://Sprites/UI/mousePointer.png"),2)
+	
 	$AudioStreamPlayer.play()
 	$Map.visible = false
 	$Camp.visible = true

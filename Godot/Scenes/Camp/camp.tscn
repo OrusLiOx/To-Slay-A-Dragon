@@ -36,7 +36,7 @@ z_index = -10
 texture = ExtResource("2_53k2d")
 
 [node name="Lizard" type="Sprite2D" parent="."]
-position = Vector2(449, 118)
+position = Vector2(515, 125)
 texture = ExtResource("3_dstkl")
 
 [node name="LizardShadow" type="Sprite2D" parent="Lizard"]
