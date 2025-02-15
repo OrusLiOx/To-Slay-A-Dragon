@@ -149,7 +149,7 @@ func hit_player(quality):
 			$Health/You/LastHit.text = "PERFECT BLOCK"
 			Audio.play("PlayerBlock")
 		"ok":
-			damage /= 2
+			damage /= 4
 			%DamageEffect.modulate = Color(186/255.0,0,0,%DamageEffect.modulate.a)
 			$Health/You/LastHit.text = str(damage) + " BLOCK"
 			Audio.play("PlayerBlock")

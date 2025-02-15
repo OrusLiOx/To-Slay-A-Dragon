@@ -10,7 +10,6 @@ func _ready():
 	$Book.visible = true
 	$Book.open(5)
 
-
 func _on_camp_to_map():
 	$Map.visible = true
 

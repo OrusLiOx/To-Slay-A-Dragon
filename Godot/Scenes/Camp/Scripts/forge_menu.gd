@@ -6,17 +6,17 @@ var storage
 var activeBlueprint : String
 var selectedParts:Array
 var builtEquip
-var partQueue : Dictionary
+var partCount
 
 signal exit()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	selectedParts = [[],[]]
-	partQueue = {
-		"m": [-1],
-		"f": [-1],
-		"s": [-1]
+	partCount = {
+		"m": -1,
+		"f": -1,
+		"s": -1
 	}
 	storage = $Main/Storage
 	generate_blueprint_base()
@@ -99,16 +99,16 @@ func load_blueprint(type, clear = false):
 	update_equip_stats()
 
 func set_blueprint_slots(slots):
-	partQueue["m"] = []
-	partQueue["f"] = []
-	partQueue["s"] = []
+	partCount["m"] = 0
+	partCount["f"] = 0
+	partCount["s"] = 0
 	for i in range(0,4):
 		if slots[i] != "":
-			partQueue[slots[i]].push_back(i)
+			partCount[slots[i]] += 1
 		set_blueprint_slot(0,i,slots[i])
 	for i in range(0,2):
 		if slots[4+i] != "":
-			partQueue["f"].push_back(i)
+			partCount["f"] += 1
 		set_blueprint_slot(1,i,slots[4+i])
 		
 func set_blueprint_slot(r, c, t):
@@ -138,7 +138,7 @@ func _on_exit_pressed():
 
 # add/remove materials
 func _on_storage_use(part):
-	if partQueue[part.type].is_empty():
+	if partCount[part.type] == 0:
 		return
 	
 	add_material(part, true)
@@ -158,14 +158,22 @@ func add_material(part, remove):
 				return
 	
 	# if no empty slot, go in order
-	var i = partQueue[part.type].front()
+	var start = 0
+	var offset = 0
 	var p = 0
-	partQueue[part.type].pop_front()
-	partQueue[part.type].push_back(i)
+	if part.type == "s":
+		start = 1
 	if part.type == "f":
 		p = 1
 	
-	var but = selectedParts[p][i]
+	for l in range(partCount[part.type]):
+		if selectedParts[p][start+offset].part.rarity != part.rarity:
+			break
+		offset += 1
+	if offset >= partCount[part.type]:
+		offset = 0
+		
+	var but = selectedParts[p][start + offset]
 	if remove:
 		Storage.add_part(part, -1)
 	if but.part.rarity != -1:
