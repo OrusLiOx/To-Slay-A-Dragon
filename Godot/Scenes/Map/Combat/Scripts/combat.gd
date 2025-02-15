@@ -265,13 +265,6 @@ func spawn_note():
 			spawnedNotes.push_back(gameCols[0].spawn_note())
 			spawnedNotes.push_back(gameCols[3].spawn_note())
 	
-	if Settings.noteSyncBar == "all" or (Settings.noteSyncBar == "multi" and spawnedNotes.size()>1):
-		var bar = syncBar.instantiate()
-		bar.position = Vector2.ZERO
-		bar.speed = noteSpeed
-		bars.add_child(bar)
-		bar.notes = spawnedNotes
-	
 	timer.start(randf_range(enemy.stats.noteDelayMin,enemy.stats.noteDelayMax))
 
 func _on_timer_timeout():

@@ -4,7 +4,7 @@ var LineEditRegEx = RegEx.new()
 
 func _ready():
 	$Gameplay/Gameplay/SymbolSelect/Mixed.button_pressed  = true
-	$'Gameplay/Gameplay/MaxSelect/3'.button_pressed  = true
+	$'VBoxContainer/MaxSelect/3'.button_pressed  = true
 	%AttackColorRect.color = Settings.noteColorAttack
 	%BlockColorRect.color = Settings.noteColorBlock
 	

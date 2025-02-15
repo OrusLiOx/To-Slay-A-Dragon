@@ -14,99 +14,131 @@
 script = ExtResource("1_flgxf")
 
 [node name="Title" type="Label" parent="."]
-offset_left = 259.0
-offset_top = 87.0
-offset_right = 646.0
-offset_bottom = 224.0
+offset_left = 265.0
+offset_top = 32.0
+offset_right = 652.0
+offset_bottom = 169.0
 text = "Settings"
 label_settings = ExtResource("1_odr8i")
 
-[node name="Audio" type="Node2D" parent="."]
-position = Vector2(-735, 206)
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 939.0
+offset_top = 95.0
+offset_right = 1448.0
+offset_bottom = 742.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Audio"]
-offset_left = 943.0
-offset_top = 59.0
-offset_right = 1452.0
-offset_bottom = 326.0
-
-[node name="Label" type="Label" parent="Audio/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Audio"
 label_settings = ExtResource("4_aupfm")
 horizontal_alignment = 1
 
-[node name="MasterLabel" type="Label" parent="Audio/VBoxContainer"]
+[node name="MasterLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Master"
 label_settings = ExtResource("5_5ftlp")
 
-[node name="MasterSlider" type="HSlider" parent="Audio/VBoxContainer"]
+[node name="MasterSlider" type="HSlider" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource("6_pugfj")
 
-[node name="MusicLabel" type="Label" parent="Audio/VBoxContainer"]
+[node name="MusicLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Music"
 label_settings = ExtResource("5_5ftlp")
 
-[node name="MusicSlider" type="HSlider" parent="Audio/VBoxContainer"]
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource("6_pugfj")
 
-[node name="SFXLabel" type="Label" parent="Audio/VBoxContainer"]
+[node name="SFXLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sound Effects"
 label_settings = ExtResource("5_5ftlp")
 
-[node name="SFXSlider" type="HSlider" parent="Audio/VBoxContainer"]
+[node name="SFXSlider" type="HSlider" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource("6_pugfj")
 
-[node name="Label3" type="Label" parent="Audio/VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "
 
 "
 
-[node name="Label2" type="Label" parent="Audio/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Cheats"
+text = "Modifiers"
 label_settings = ExtResource("4_aupfm")
 horizontal_alignment = 1
 
-[node name="Label4" type="Label" parent="Audio/VBoxContainer"]
+[node name="Label4" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="InfiniteHealth" type="CheckBox" parent="Audio/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("6_pugfj")
-text = "  Invincibility"
-
-[node name="InfiniteDamage" type="CheckBox" parent="Audio/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("6_pugfj")
-text = "  One Shot Enemies"
-
-[node name="InfiniteMaterials" type="CheckBox" parent="Audio/VBoxContainer"]
+[node name="InfiniteMaterials" type="CheckBox" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_pugfj")
 text = "  Infinite Materials"
 
+[node name="InfiniteHealth" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_pugfj")
+text = "  Invincibility"
+
+[node name="InfiniteDamage" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_pugfj")
+text = "  One Shot Enemies"
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MaxNotes" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Maximum Simultaneous Notes"
+label_settings = ExtResource("5_5ftlp")
+
+[node name="MaxSelect" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="3" type="CheckBox" parent="VBoxContainer/MaxSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_pugfj")
+button_group = ExtResource("9_b6mnm")
+text = "3"
+icon_alignment = 1
+
+[node name="2" type="CheckBox" parent="VBoxContainer/MaxSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_pugfj")
+button_group = ExtResource("9_b6mnm")
+text = "2"
+icon_alignment = 1
+
+[node name="1" type="CheckBox" parent="VBoxContainer/MaxSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_pugfj")
+button_group = ExtResource("9_b6mnm")
+text = "1"
+icon_alignment = 1
+
 [node name="Gameplay" type="Node2D" parent="."]
-position = Vector2(700, 34)
+position = Vector2(-20, 173)
 
 [node name="Label" type="Label" parent="Gameplay"]
 offset_left = 376.0
@@ -321,38 +353,6 @@ text = "
 "
 label_settings = ExtResource("5_5ftlp")
 
-[node name="MaxNotes" type="Label" parent="Gameplay/Gameplay"]
-layout_mode = 2
-text = "Maximum Simultaneous Notes"
-label_settings = ExtResource("5_5ftlp")
-
-[node name="MaxSelect" type="HBoxContainer" parent="Gameplay/Gameplay"]
-layout_mode = 2
-
-[node name="3" type="CheckBox" parent="Gameplay/Gameplay/MaxSelect"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("6_pugfj")
-button_group = ExtResource("9_b6mnm")
-text = "3"
-icon_alignment = 1
-
-[node name="2" type="CheckBox" parent="Gameplay/Gameplay/MaxSelect"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("6_pugfj")
-button_group = ExtResource("9_b6mnm")
-text = "2"
-icon_alignment = 1
-
-[node name="1" type="CheckBox" parent="Gameplay/Gameplay/MaxSelect"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("6_pugfj")
-button_group = ExtResource("9_b6mnm")
-text = "1"
-icon_alignment = 1
-
 [node name="Blank5" type="Label" parent="Gameplay/Gameplay"]
 layout_mode = 2
 text = "
@@ -374,12 +374,15 @@ sliders_visible = false
 hex_visible = false
 presets_visible = false
 
-[connection signal="value_changed" from="Audio/VBoxContainer/MasterSlider" to="." method="_volume_changed" binds= [0]]
-[connection signal="value_changed" from="Audio/VBoxContainer/MusicSlider" to="." method="_volume_changed" binds= [2]]
-[connection signal="value_changed" from="Audio/VBoxContainer/SFXSlider" to="." method="_volume_changed" binds= [1]]
-[connection signal="toggled" from="Audio/VBoxContainer/InfiniteHealth" to="." method="_on_infinite_health_toggled"]
-[connection signal="toggled" from="Audio/VBoxContainer/InfiniteDamage" to="." method="_on_infinite_damage_toggled"]
-[connection signal="toggled" from="Audio/VBoxContainer/InfiniteMaterials" to="." method="_on_infinite_materials_toggled"]
+[connection signal="value_changed" from="VBoxContainer/MasterSlider" to="." method="_volume_changed" binds= [0]]
+[connection signal="value_changed" from="VBoxContainer/MusicSlider" to="." method="_volume_changed" binds= [2]]
+[connection signal="value_changed" from="VBoxContainer/SFXSlider" to="." method="_volume_changed" binds= [1]]
+[connection signal="toggled" from="VBoxContainer/InfiniteMaterials" to="." method="_on_infinite_materials_toggled"]
+[connection signal="toggled" from="VBoxContainer/InfiniteHealth" to="." method="_on_infinite_health_toggled"]
+[connection signal="toggled" from="VBoxContainer/InfiniteDamage" to="." method="_on_infinite_damage_toggled"]
+[connection signal="pressed" from="VBoxContainer/MaxSelect/3" to="." method="set_max" binds= [3]]
+[connection signal="pressed" from="VBoxContainer/MaxSelect/2" to="." method="set_max" binds= [2]]
+[connection signal="pressed" from="VBoxContainer/MaxSelect/1" to="." method="set_max" binds= [1]]
 [connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/Mixed" to="." method="set_note_symbols" binds= ["mixed"]]
 [connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/WASD" to="." method="set_note_symbols" binds= ["letter"]]
 [connection signal="pressed" from="Gameplay/Gameplay/SymbolSelect/Arrow" to="." method="set_note_symbols" binds= ["arrow"]]
@@ -387,7 +390,4 @@ presets_visible = false
 [connection signal="pressed" from="Gameplay/Gameplay/AttackColor/AttackColorReset" to="." method="_on_attack_color_rest_pressed"]
 [connection signal="pressed" from="Gameplay/Gameplay/BlockColor/BlockColorRect/Button" to="." method="_on_block_color_edit_pressed"]
 [connection signal="pressed" from="Gameplay/Gameplay/BlockColor/BlockColorReset" to="." method="_on_block_color_reset_pressed"]
-[connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/3" to="." method="set_max" binds= [3]]
-[connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/2" to="." method="set_max" binds= [2]]
-[connection signal="pressed" from="Gameplay/Gameplay/MaxSelect/1" to="." method="set_max" binds= [1]]
 [connection signal="color_changed" from="Gameplay/ColorPicker" to="." method="_on_color_picker_color_changed"]
